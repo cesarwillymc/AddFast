@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#004E98</color>
+    <color name="colorPrimaryDark">#004E98</color>
+    <color name="colorAccent">#004E98</color>
+    <color name="shimmerColor">#919191</color>
+
+
+    <!--Gris Scale-->
+    <color name="control_background">#cc4285f4</color>
+    <color name="white">#f9f9f9</color>
+    <color name="yellow">#F6DD00</color>
+    <color name="gris_1">#CCCCCE</color>
+    <color name="gris_2">#7F7F83</color>
+    <color name="gris_3">#7F7F83</color>
+    <color name="red">#FF1100</color>
+    <color name="gris_4">#56575C</color>
+    <color name="gris_5">#2D2E35</color>
+    <color name="black">#06070F</color>
+    <color name="icActive">#FFFFFFFF</color>
+    <color name="icFocused">#DDFFFFFF</color>
+    <color name="icPressed">#AAFFFFFF</color>
+</resources>

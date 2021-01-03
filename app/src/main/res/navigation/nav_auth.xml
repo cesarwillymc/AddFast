@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_auth"
+    app:startDestination="@id/inicioFragment">
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.summit.android.addfast.ui.auth.fragment.InicioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio">
+        <action
+            android:id="@+id/action_inicioFragment_to_confirmCodeFragment"
+            app:destination="@id/confirmCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmCodeFragment"
+        android:name="com.summit.android.addfast.ui.auth.fragment.ConfirmCodeFragment"
+        android:label="VALIDACION"
+        tools:layout="@layout/fragment_confirm_code">
+        <action
+            android:id="@+id/action_confirmCodeFragment_to_registerInfoFragment"
+            app:destination="@id/registerInfoFragment" />
+        <argument
+            android:name="numberPhone"
+            app:argType="string" />
+        <argument
+            android:name="codeCountry"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerInfoFragment"
+        android:name="com.summit.android.addfast.ui.auth.fragment.RegisterInfoFragment"
+        android:label="REGISTRO"
+        tools:layout="@layout/fragment_register_info">
+        <argument
+            android:name="id"
+            android:defaultValue="hola"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_registerInfoFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+        <action
+            android:id="@+id/action_registerInfoFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.summit.android.addfast.ui.camera.GalleryFragment"
+        android:label="GalleryFragment" />
+    <fragment
+        android:id="@+id/selectImage"
+        android:name="com.summit.android.addfast.ui.camera.SelectImage"
+        android:label="SelectImage">
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.summit.android.addfast.ui.camera.CameraFragment"
+        android:label="CameraFragment">
+        <action
+            android:id="@+id/action_cameraFragment_to_selectImage"
+            app:destination="@id/selectImage" />
+        <argument
+            android:name="type"
+            app:argType="string" />
+    </fragment>
+</navigation>

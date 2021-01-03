@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">ADDFAST</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="as_ciate_con">Asóciate con</string>
+    <string name="nameApp">AddFast</string>
+    <string name="complemento2">Y vive la mejor experiencia.</string>
+    <string name="desc_dalo_register">tecnológica que  ayuda a buscar ofertas de trabajos, lugares en alquiler y mucho mas. </string>
+    <string name="comienza">Comienza.</string>
+    <string name="desc_condiciones">Al hacer clic en Enviar, aceptas los Términos y condiciones de AddFast y reconoces que leíste la Política de privacidad.</string>
+
+
+    <string name="capture_button_alt">Capture</string>
+    <string name="switch_camera_button_alt">Switch camera</string>
+    <string name="gallery_button_alt">Gallery</string>
+    <string name="back_button_alt">Back</string>
+    <string name="share_button_alt">Share</string>
+    <string name="share_hint">Share using</string>
+    <string name="capture_mode_camera">Camera</string>
+    <string name="capture_mode_hdr">HDR</string>
+    <string name="capture_mode_night">Night</string>
+    <string name="delete_button_alt">Delete</string>
+    <string name="delete_dialog">Delete current photo?</string>
+    <string name="delete_title">Confirm</string>
+
+    <string name="capture_image">capture Image</string>
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="flashMode">FlashMode</string>
+    <string name="warning_str">CameraKit is not installed or not support this device.</string>
+    <string name="agora_app_id">adbf0c54b42c476ca1e85abd5bae581e</string>
+    <string name="agora_access_token">66621fd1880c4e4d95e8684ead076b1b</string>
+
+    <string name="costo">%s0</string>
+    <string name="costoTotal">S/. %.1f0"</string>
+    <string name="twodecimal">%.1f0"</string>
+    <string name="twodecimalwithS">S/. %.1f0"</string>
+    <string name="defaultUbicacion">Sin Ubicación</string>
+    <string name="google_maps_key">AIzaSyATz3u8hZqJTY6ibagqBNKaSpsgdMnwjtA</string>
+</resources>
