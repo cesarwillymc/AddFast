@@ -11,11 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.ui.main.MainViewModel
 import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.lifeData.Status
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_mi_anuncio_preview.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -44,7 +46,9 @@ class MiAnuncioPreviewFragment : BaseFragment(), KodeinAware {
 
 
         Glide.with(requireContext()).load(args.modelo.img).into(ver_anuncio_preview_img)
-
+        Glide.with(requireContext()).load(args.modelo.img)
+                .apply(RequestOptions.bitmapTransform(BlurTransformation(5, 2)))
+                .error(R.drawable.grad_splash).into(ver_anuncio_preview_img_blur)
         val prettyTime = PrettyTime(Locale.getDefault())
         val ago: String = prettyTime.format(Date(args.modelo.fecha))
         ver_anuncio_preview_time_ago.text=ago

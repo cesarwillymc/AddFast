@@ -142,7 +142,6 @@ class UbicationPosition : BaseFragment(), KodeinAware{
         viewModel= requireActivity().run {
             ViewModelProvider(this,factory).get(MainViewModel::class.java)
         }
-
         geo = Geocoder(context, Locale.getDefault())
         mapa_icon_gpsaa.isEnabled=false
         requireContext().verifyPermission()

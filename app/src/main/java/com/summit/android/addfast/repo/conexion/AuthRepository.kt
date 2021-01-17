@@ -67,9 +67,19 @@ class AuthRepository(
     //GET INFO
     suspend fun getDataInformation(id: String): Usuario? = suspendCancellableCoroutine { continuation->
         firebase.collection("users").document(id).get().addOnCompleteListener {
-            if (it.result!!.exists()){
-                continuation.resume(it.result!!.toObject(Usuario::class.java))
-            }else{
+            try{
+                if (it.result!=null){
+                    if (it.result!!.exists()){
+                        Log.e("getinfo","informacion ${it.result!!.get("admin")}")
+                        continuation.resume(it.result!!.toObject(Usuario::class.java))
+                    }else{
+                        continuation.resume(null)
+                    }
+                }else{
+                    continuation.resume(null)
+                }
+
+            }catch (e:Exception){
                 continuation.resume(null)
             }
         }.addOnFailureListener {

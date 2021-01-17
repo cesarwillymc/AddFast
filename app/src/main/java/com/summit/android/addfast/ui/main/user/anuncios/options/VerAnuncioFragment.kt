@@ -1,5 +1,6 @@
 package com.summit.android.addfast.ui.main.user.anuncios.options
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,14 +10,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
+import com.summit.android.addfast.ui.auth.AuthActivity
 import com.summit.android.addfast.ui.main.MainViewModel
 import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.ui.main.user.SelectPlaceDialog
 import com.summit.android.addfast.utils.callNumber
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.sendMessageWhatsApp
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.fragment_ver_anuncio.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -55,6 +59,9 @@ class VerAnuncioFragment : BaseFragment(), KodeinAware {
     private fun loadData(){
 
         Glide.with(requireContext()).load(args.modelo.img).into(ver_anuncio_img)
+        Glide.with(requireContext()).load(args.modelo.img)
+                .apply(RequestOptions.bitmapTransform(BlurTransformation(5, 2)))
+                .error(R.drawable.grad_splash).into(ver_anuncio_img_blur)
         ver_anuncio_desc.text=args.modelo.descripcion
         val prettyTime = PrettyTime(Locale.getDefault())
         val ago: String = prettyTime.format(Date(args.modelo.fecha))
@@ -73,22 +80,34 @@ class VerAnuncioFragment : BaseFragment(), KodeinAware {
         }
         //Fragment
         ver_anuncio_postular.setOnClickListener {
-            findNavController().navigate(VerAnuncioFragmentDirections.actionVerAnuncioFragmentToCrearPostulacionFragment(args.modelo))
+            val usuario=viewModel.getStaticDataUser()
+            if(usuario==null){
+                startActivity(Intent(requireContext(), AuthActivity::class.java))
+            }else{
+                findNavController().navigate(VerAnuncioFragmentDirections.actionVerAnuncioFragmentToCrearPostulacionFragment(args.modelo))
+            }
+
         }
         ver_anuncio_ubicacion.setOnClickListener {
             findNavController().navigate(VerAnuncioFragmentDirections.actionVerAnuncioFragmentToUbicationPosition(args.modelo))
         }
         //Dialog
         ver_anuncio_report.setOnClickListener {
-            val newFragment = ReportarAnuncioDialog()
-            val arg=Bundle()
-            arg.putParcelable("modelo",args.modelo)
-            newFragment.isCancelable=true
-            newFragment.arguments=arg
-            newFragment!!.show(
-                    requireActivity().supportFragmentManager.beginTransaction(),
-                    "aa"
-            )
+            val usuario=viewModel.getStaticDataUser()
+            if(usuario==null){
+                startActivity(Intent(requireContext(), AuthActivity::class.java))
+            }else{
+                val newFragment = ReportarAnuncioDialog()
+                val arg=Bundle()
+                arg.putParcelable("modelo",args.modelo)
+                newFragment.isCancelable=true
+                newFragment.arguments=arg
+                newFragment!!.show(
+                        requireActivity().supportFragmentManager.beginTransaction(),
+                        "aa"
+                )
+            }
+
         }
     }
 

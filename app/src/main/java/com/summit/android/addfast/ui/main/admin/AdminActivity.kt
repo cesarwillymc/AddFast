@@ -1,4 +1,4 @@
-package com.summit.android.addfast.ui.main
+package com.summit.android.addfast.ui.main.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,88 +15,92 @@ import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseActivity
 import com.summit.android.addfast.repo.model.departamento.UbicacionModel
 import com.summit.android.addfast.ui.camera.CameraViewModel
+import com.summit.android.addfast.ui.main.MainViewModel
+import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.ui.main.user.SelectPlaceDialog
 import com.summit.android.addfast.utils.verifyPermission
+import kotlinx.android.synthetic.main.activity_admin.*
+import kotlinx.android.synthetic.main.activity_admin.imageView23
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class MainActivity : BaseActivity(), KodeinAware {
-    private lateinit var viewModel: MainViewModel
+class AdminActivity : BaseActivity() ,KodeinAware{
+    private lateinit var viewModel: AdminViewModel
     override val kodein: Kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+    private val factory: AdminViewModelFactory by instance()
     lateinit var navController: NavController
     lateinit var cameraViewModel: CameraViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
+            ViewModelProvider(this, factory).get(AdminViewModel::class.java)
         }
         cameraViewModel= run{
             ViewModelProvider(this).get(CameraViewModel::class.java)
         }
         verifyPermission()
-        setSupportActionBar(tollbar_main)
+        setSupportActionBar(tollbar_admin)
         observarPermisos()
         inicializarVariables()
         navController = findNavController(R.id.am_fragment)
         val appBarConfig = AppBarConfiguration(setOf(
-            R.id.nav_postulaciones, R.id.nav_inicio, R.id.nav_perfil,R.id.nav_anuncios))
+            R.id.nav_admin_anuncios, R.id.nav_admin_usuarios, R.id.nav_admin_perfil,R.id.nav_promocion))
         setupActionBarWithNavController(navController, appBarConfig)
-        nav_view.setupWithNavController(navController)
+        nav_view_admin.setupWithNavController(navController)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
 
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_ios_black)
-            main_text.text=destination.label
+            admin_text.text=destination.label
             when (destination.id) {
-                R.id.nav_postulaciones -> {
-                    main_text.hide()
-                    nav_view.show()
-                    main_linear.show()
-                    appBarLayout.hide()
+                R.id.nav_admin_anuncios -> {
+                    admin_text.hide()
+                    admin_linear.show()
+                    nav_view_admin.show()
+                    appBarLayout_admin.show()
                 }
-                R.id.nav_inicio -> {
-                    main_text.hide()
-                    main_linear.show()
-                    nav_view.show()
-                    appBarLayout.show()
+                R.id.nav_admin_usuarios -> {
+                    admin_text.hide()
+                    admin_linear.show()
+                    nav_view_admin.show()
+                    appBarLayout_admin.show()
                 }
-                R.id.galleryFragment2->{
-                    nav_view.hide()
-                    appBarLayout.hide()
-                }
-                R.id.nav_perfil -> {
-                    main_text.hide()
-                    main_linear.show()
-                    appBarLayout.show()
-                    nav_view.show()
-                }
-
-                R.id.nav_anuncios -> {
-                    main_text.hide()
-                    appBarLayout.hide()
-                    nav_view.show()
-                    main_linear.show()
+                R.id.nav_promocion -> {
+                    admin_text.hide()
+                    admin_linear.show()
+                    nav_view_admin.show()
+                    appBarLayout_admin.show()
                     cameraViewModel.imageSelect.postValue("")
                 }
 
-                else -> {
+                R.id.nav_admin_perfil -> {
+                    admin_text.hide()
+                    admin_linear.show()
+                    nav_view_admin.show()
+                    appBarLayout_admin.show()
+                }
+
+                R.id.galleryFragment3->{
                     nav_view.hide()
-                    appBarLayout.show()
-                    main_linear.hide()
-                    main_text.show()
+                    appBarLayout.hide()
+                }
+
+                else -> {
+                    nav_view_admin.hide()
+                    appBarLayout_admin.show()
+                    admin_linear.hide()
+                    admin_text.show()
                 }
             }
 
 
         }
 
-        verificarAnuncios()
 
 
 
@@ -107,7 +111,7 @@ class MainActivity : BaseActivity(), KodeinAware {
     private fun inicializarVariables(){
         viewModel.getUbicacion().observe(this, Observer {
             if(it!=null){
-                main_ubicacion.text = "${it.departamento}-${it.provincia}"
+                admin_ubicacion.text = "${it.departamento}-${it.provincia}"
             }else{
                 viewModel.saveUbicacion(UbicacionModel("Puno","Puno",0))
             }
@@ -119,21 +123,21 @@ class MainActivity : BaseActivity(), KodeinAware {
                 val newFragment = SelectPlaceDialog()
                 newFragment.isCancelable=true
                 newFragment!!.show(
-                        supportFragmentManager.beginTransaction(),
-                        "dialog"
+                    supportFragmentManager.beginTransaction(),
+                    "dialog"
                 )
             }catch (e: IllegalStateException){
                 Log.e("ilegal nav", e.message!!)
             }
         }
-        main_ubicacion.setOnClickListener {
+        admin_ubicacion.setOnClickListener {
             try {
                 toast("Cargando..")
                 val newFragment = SelectPlaceDialog()
                 newFragment.isCancelable=true
                 newFragment!!.show(
-                        supportFragmentManager.beginTransaction(),
-                        "dialog"
+                    supportFragmentManager.beginTransaction(),
+                    "dialog"
                 )
             }catch (e: IllegalStateException){
                 Log.e("ilegal nav", e.message!!)
@@ -142,28 +146,10 @@ class MainActivity : BaseActivity(), KodeinAware {
 
 
     }
-    private fun verificarAnuncios(){
-        val usuario=viewModel.getStaticDataUser()
-        if (usuario==null){
-            nav_view.menu.getItem(2).isVisible = false
-            nav_view.menu.getItem(1).isVisible = false
-            //R.id.nav_anuncios
-            //R.id.nav_postulaciones
-        }else{
-            nav_view.menu.getItem(1).isVisible = true
-            nav_view.menu.getItem(2).isVisible = usuario.ruc != ""
-        }
-    }
     //Find Nav controller UP
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
-    //Layout get data
-    override fun getLayout(): Int =R.layout.activity_main
-
-
-
-    //Obserbar permisos de datastore
     var permissosVariables=false
     private fun observarPermisos() {
         Handler().postDelayed({
@@ -173,4 +159,5 @@ class MainActivity : BaseActivity(), KodeinAware {
             })
         }, 1000L)
     }
+    override fun getLayout() = R.layout.activity_admin
 }

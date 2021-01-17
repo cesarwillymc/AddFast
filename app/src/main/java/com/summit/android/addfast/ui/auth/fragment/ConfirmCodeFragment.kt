@@ -14,6 +14,7 @@ import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.ui.auth.AuthViewModel
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.main.MainActivity
+import com.summit.android.addfast.ui.main.admin.AdminActivity
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_confirm_code.*
@@ -60,7 +61,12 @@ class ConfirmCodeFragment : BaseFragment(),KodeinAware {
     private fun observeDataLogged(){
         viewModel.getDataDB().observe(viewLifecycleOwner, Observer {
             if (it!=null){
-                navigateToActivity(Intent(requireContext(), MainActivity::class.java))
+                if(it.admin!!){
+                    navigateToActivity(Intent(requireContext(), AdminActivity::class.java))
+                }else{
+                    navigateToActivity(Intent(requireContext(), MainActivity::class.java))
+                }
+
             }
         })
     }

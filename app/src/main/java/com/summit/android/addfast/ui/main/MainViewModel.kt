@@ -142,7 +142,10 @@ class MainViewModel(private val repo: MainRepository) :ViewModel(){
                     listado.add(ListaAnuncios(it.id,it.name,waiting))
                 }
                 if(dato==resultado.size-1){
-                    anunciosData.postValue(listado)
+                    if (listado.isNotEmpty()){
+                        anunciosData.postValue(listado)
+                    }
+
                 }
                 dato++
 

@@ -45,18 +45,6 @@ class AuthViewModel(private val repo: AuthRepository) : ViewModel() {
     fun sendMessageLogged(code: String, numberPhone: String) = liveData<RsrProgress<Boolean>> {
         emit(RsrProgress.loading(0.0))
         try {
-           /* if(numberPhone.contentEquals("962601310")){
-                repo.signInAnonimous()
-                repo.insertUser(
-                        Usuario(
-                                "Cesar Willy", "Mamani Canaza ", "Peru", "Puno",
-                                "https://summit-puno.s3.us-east-2.amazonaws.com/yachay/boy.webp","Jiron Selva Alegre 578", "por la facultad de minas",-15.822227042080963,-70.01513857394457,0,"invitado"
-                        )
-                )
-                emit(RsrProgress.success(true))
-            }else{
-
-            }*/
             val settings = VerifyCodeSettings.newBuilder()
                 .action(VerifyCodeSettings.ACTION_REGISTER_LOGIN)
                 .sendInterval(30) // Shortest sending interval, 30–120s
@@ -98,8 +86,9 @@ class AuthViewModel(private val repo: AuthRepository) : ViewModel() {
                     response= repo.createUserVerifyCode(phoneUser)
                 }
                 //Trae datos de firebase para comprobar si era nuevo usuario
-                Log.e("TAG","function ${response.user.uid}")
                 val traerDatos = repo.getDataInformation(response.user.uid)
+
+                Log.e("login","function ${traerDatos}")
                 //Inserta el usuario en caso exista y en caso no se ira a la siguiente ventana de registro
                 if (traerDatos!=null){
                     if(traerDatos.accountactivate){
@@ -142,6 +131,7 @@ class AuthViewModel(private val repo: AuthRepository) : ViewModel() {
         try {
             val getEnlaceUrl= repo.getUrlDownloadFile(usuario.uriImgPerfil!!)
             usuario.uriImgPerfil = getEnlaceUrl
+            usuario.admin=false
             val data = repo.createDataInformation(usuario._id, usuario)
             if (data){
                 repo.insertUser(usuario)

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.admin.fragments.user.PreviewPostulacionAdminFragment">
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <androidx.cardview.widget.CardView
+               android:id="@+id/cardView2"
+               android:layout_width="0dp"
+               android:layout_height="200dp"
+               app:cardCornerRadius="20dp"
+               android:layout_margin="10dp"
+               app:layout_constraintEnd_toStartOf="@+id/guideline3"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent">
+
+               <ImageView
+                   android:id="@+id/profile_admin_img"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/profileanonimo" />
+           </androidx.cardview.widget.CardView>
+
+           <androidx.constraintlayout.widget.Guideline
+               android:id="@+id/guideline3"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               app:layout_constraintGuide_percent="0.5"/>
+
+           <TextView
+               android:id="@+id/profile_admin_name"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginEnd="16dp"
+               android:text="CESAR  WILLY MAMANI CANAZA"
+               android:textSize="22sp"
+               android:fontFamily="@font/gilroy_extrabold"
+               android:textColor="@color/black"
+               app:layout_constraintBottom_toBottomOf="@+id/cardView2"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toEndOf="@+id/cardView2"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <TextView
+               android:id="@+id/profile_admin_estado"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="8dp"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="8dp"
+               android:fontFamily="@font/gilroy_ligth"
+               android:text="Activo"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+
+           <TextView
+               android:id="@+id/textView15"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="16dp"
+               android:fontFamily="@font/gilroy_extrabold"
+               android:text="Reportes"
+               android:textColor="@color/black"
+               android:textSize="18sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/profile_admin_estado" />
+
+           <TextView
+               android:id="@+id/profile_admin_reportes"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="16dp"
+               android:fontFamily="@font/gilroy_ligth"
+               android:text="Trabaje proyectos en la ciudad de puno los cuales
+fueron para colegios de distritos, un club de Puno,
+Soy ganador de un concurso de natación,
+actualmente culmine mis estudios graduado con
+honores."
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/textView15"
+               tools:text="0" />
+
+           <TextView
+               android:id="@+id/textView24"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="16dp"
+               android:fontFamily="@font/gilroy_extrabold"
+               android:textColor="@color/black"
+               android:textSize="18sp"
+               android:text="EMPRESA"
+
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/profile_admin_reportes" />
+
+           <TextView
+               android:id="@+id/profile_admin_empresa"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="8dp"
+               android:layout_marginEnd="16dp"
+               android:fontFamily="@font/gilroy_ligth"
+               android:text="the summir"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+           <com.google.android.material.floatingactionbutton.FloatingActionButton
+               android:id="@+id/profile_admin_call"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="16dp"
+               android:layout_marginTop="16dp"
+               android:src="@drawable/ic_phone_call"
+               app:backgroundTint="#4CAF50"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/profile_admin_hacer_admin"
+               app:tint="@color/white" />
+
+           <com.google.android.material.floatingactionbutton.FloatingActionButton
+               android:id="@+id/profile_admin_message"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:layout_marginEnd="16dp"
+               android:src="@drawable/ic_baseline_message_24"
+               app:backgroundTint="#4CAF50"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/profile_admin_hacer_admin"
+               app:tint="@color/white" />
+
+           <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+               android:id="@+id/profile_admin_account"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="24dp"
+               android:clickable="true"
+               android:textColor="@color/white"
+               app:backgroundTint="@color/colorPrimary"
+               android:src="@drawable/ic_baseline_edit_24"
+               android:text="Desactivar cuenta"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/profile_admin_empresa" />
+
+           <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+               android:id="@+id/profile_admin_hacer_admin"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="24dp"
+               android:clickable="true"
+               android:text="Hacer Admin"
+               app:backgroundTint="@color/colorPrimary"
+               android:textColor="@color/white"
+               android:src="@drawable/ic_baseline_edit_24"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/profile_admin_account" />
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </ScrollView>
+</FrameLayout>

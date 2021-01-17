@@ -60,51 +60,56 @@ class Categorias : BaseFragment(),KodeinAware, SlideAdapter.onCLickListenerPromo
         viewModel = requireActivity().run {
             ViewModelProvider(this, factory).get(MainViewModel::class.java)
         }
-
-        //Rv Promociones
-        slideAdapter =
-                SlideAdapter(this)
-        viewPager.adapter = slideAdapter
-
-        //Categorias Rv
-        categoriasAdaper = CategoriasAdaper(this)
-        //LinearLayoutManager(requireContext(),
-        //                LinearLayoutManager.HORIZONTAL,false)
-        categorias_rv.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-            setHasFixedSize(true)
-            adapter = categoriasAdaper
-        }
-        //Rv Productos
-        // productosAdapter =
-        //   AdapterProductosCategoria(this)
         viewModel.getUbicacion().observe(viewLifecycleOwner, Observer {
             if(it!=null){
                 Log.e("ubicaciom data","${it.departamento}")
-                loadService()
+                 loadAnunciosReload()
             }else{
                 viewModel.saveUbicacion(UbicacionModel("Puno","Puno",0))
             }
 
         })
+        //Rv Promociones
+        slideAdapter =
+                SlideAdapter(this)
+        viewPager?.let{
+            it.apply {
+            adapter = slideAdapter
+        }
 
-
-        //Obtener productosd con categorias
-
-        viewModel.getCategorias().observe(viewLifecycleOwner, Observer {
-            when (it.status) {
-                Status.LOADING -> {
-                }
-                Status.SUCCESS -> {
-                    categoriasAdaper.updateData(it.data as MutableList<CategoriasModel>)
-                }
-                Status.ERROR -> {
-                    Log.e("getCategorias",it.exception!!.message!!)
-                    toast(it.exception!!.message!!)
-                }
-
+            //Categorias Rv
+            categoriasAdaper = CategoriasAdaper(this)
+            //LinearLayoutManager(requireContext(),
+            //                LinearLayoutManager.HORIZONTAL,false)
+            categorias_rv.apply {
+                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+                setHasFixedSize(true)
+                adapter = categoriasAdaper
             }
-        })
+            loadService()
+            //Rv Productos
+            // productosAdapter =
+            //   AdapterProductosCategoria(this)
+
+
+
+            //Obtener productosd con categorias
+
+            viewModel.getCategorias().observe(viewLifecycleOwner, Observer {
+                when (it.status) {
+                    Status.LOADING -> {
+                    }
+                    Status.SUCCESS -> {
+                        categoriasAdaper.updateData(it.data as MutableList<CategoriasModel>)
+                    }
+                    Status.ERROR -> {
+                        Log.e("getCategorias",it.exception!!.message!!)
+                        toast(it.exception!!.message!!)
+                    }
+
+                }
+            })
+        }
 
 
     }

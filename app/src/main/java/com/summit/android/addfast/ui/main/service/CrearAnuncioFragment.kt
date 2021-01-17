@@ -37,9 +37,10 @@ class CrearAnuncioFragment : BaseFragment(), KodeinAware {
     override fun getLayout()=R.layout.fragment_crear_anuncio
     lateinit var spinnerAdapterDepartamento: SpinnerAdapter
     lateinit var spinnerAdapterProvincia: SpinnerAdapter
-    lateinit var spinnerAdapterCategoria: SpinnerAdapter
+
 
     //ViewModel prueba
+    lateinit var spinnerAdapterCategoria: SpinnerAdapter
     lateinit var cameraViewModel: CameraViewModel
     var imagen:File?=null
 
@@ -110,7 +111,7 @@ class CrearAnuncioFragment : BaseFragment(), KodeinAware {
                 val modelo= Anuncios(crear_anuncio_resumen.text.toString(), Date().time,Date().time.toString(),usuario._id,usuario._id,"",usuario.phone!!,
                 posicionActual!!, spinnerAdapterCategoria.lisProducts!![tipospinner].name, spinnerAdapterCategoria.lisProducts!![tipospinner].id,
                     crear_anuncio_titulo.text.toString(),
-                    listOf(),0,0,"PUBLICADO" )
+                    listOf(),0,0,"REVISION" )
                 subirImgAnuncio(modelo)
             }
 

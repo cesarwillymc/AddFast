@@ -129,7 +129,8 @@ class MainRepository(
 
     /**promocion**/
     suspend fun getPromocion(): List<Promociones> {
-        val anuncios = firestore.collection("promocion").get().await()
+        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("promocion").get().await()
         return anuncios.toObjects(Promociones::class.java)
     }
     suspend fun getAnuncioId(id: String): Anuncios {

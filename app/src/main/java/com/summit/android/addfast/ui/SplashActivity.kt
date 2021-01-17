@@ -11,6 +11,7 @@ import com.summit.android.addfast.ui.auth.AuthActivity
 import com.summit.android.addfast.ui.auth.AuthViewModel
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.main.MainActivity
+import com.summit.android.addfast.ui.main.admin.AdminActivity
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
@@ -31,22 +32,16 @@ class SplashActivity : BaseActivity(), KodeinAware {
     }
 
     private fun verifyDataLogged() {
-        /*
-        if (!restorePrefData()) {
-            val mainActivity = Intent(applicationContext, IntroActivity::class.java)
-            startActivity(mainActivity)
-            finish()
-        }else{
-
-        }*/
-       /* val userData=viewModel.getDataDBstatic()
+        val userData=viewModel.getDataDBstatic()
         if (userData!=null){
-            navigateToActivity(Intent(this, MainActivity::class.java))
+            if(userData.admin!!){
+                navigateToActivity(Intent(this, AdminActivity::class.java))
+            }else{
+                navigateToActivity(Intent(this, MainActivity::class.java))
+            }
         }else{
-            navigateToActivity(Intent(this,AuthActivity::class.java))
-        }*/
-        navigateToActivity(Intent(this,MainActivity::class.java))
-
+            navigateToActivity(Intent(this,MainActivity::class.java))
+        }
     }
     private fun restorePrefData(): Boolean {
         val pref = applicationContext.getSharedPreferences(

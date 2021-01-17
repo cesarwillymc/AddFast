@@ -1,10 +1,13 @@
 package com.summit.android.addfast.repo.model
 
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.summit.android.addfast.utils.Constants
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = Constants.NAME_TABLE_USER)
 data class Usuario(
     var name:String? = null,
@@ -16,5 +19,6 @@ data class Usuario(
     var reportes: Int = 0,
     var accountactivate: Boolean = true,
     @PrimaryKey(autoGenerate = false)
-    var _id:String=""
-)
+    var _id:String="",
+    var admin:Boolean?=null
+):Parcelable

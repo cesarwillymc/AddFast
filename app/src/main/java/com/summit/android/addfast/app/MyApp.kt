@@ -2,17 +2,21 @@ package com.summit.android.addfast.app
 
 import android.app.Application
 import android.content.Context
+import com.bugsnag.android.Bugsnag
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
 import com.huawei.agconnect.config.AGConnectServicesConfig
 import com.huawei.agconnect.config.LazyInputStream
 import com.summit.android.addfast.R
+import com.summit.android.addfast.repo.conexion.AdminRepository
 import com.summit.android.addfast.repo.conexion.AuthRepository
 import com.summit.android.addfast.repo.conexion.MainRepository
 import com.summit.android.addfast.repo.local.AppDB
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.main.MainViewModelFactory
+import com.summit.android.addfast.ui.main.admin.AdminViewModel
+import com.summit.android.addfast.ui.main.admin.AdminViewModelFactory
 import io.agora.rtc.RtcEngine
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -34,6 +38,8 @@ class MyApp : Application(), KodeinAware {
         //Auth viewModel Kodein App
         bind() from provider { AuthRepository(instance(), instance(), instance(), instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
+        bind() from provider { AdminRepository(instance(), instance(), instance(), instance()) }
+        bind() from provider { AdminViewModelFactory(instance()) }
       /*  bind() from provider { ServiceViewModelFactory(instance(),instance()) }
 
         //Main viewModel Kodein App
@@ -78,6 +84,7 @@ class MyApp : Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
         setInstance(this)
+        Bugsnag.start(this)
     }
 
 }
