@@ -83,9 +83,11 @@ Contiene todas las funciones de uso constante
 
 ![13](assets/image13.jpeg)
 
- ## Contactos
+ ## Creador
  
  CREADOR: CESAR WILLY MAMANI CANAZA
+  ## Correo
  CORREO: CESARWILLY@GMAIL.COM
+  ## Redes
  LINKEDIN: CESARWILLYMC
 
