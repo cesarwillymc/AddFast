@@ -1,6 +1,6 @@
 # ADD FAST
 Gestion de anuncios 
-![N|Solid](https://flutter.dev/images/flutter-logo-sharing.png)
+![N|Solid](https://i.blogs.es/df41c1/kotlin_800x320/450_1000.png)
 
 La arquitectura usada es de MVVM
 
