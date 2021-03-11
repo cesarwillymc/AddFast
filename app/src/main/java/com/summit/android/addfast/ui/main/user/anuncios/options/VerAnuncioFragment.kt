@@ -2,6 +2,7 @@ package com.summit.android.addfast.ui.main.user.anuncios.options
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -67,7 +68,8 @@ class VerAnuncioFragment : BaseFragment(), KodeinAware {
         val ago: String = prettyTime.format(Date(args.modelo.fecha))
         ver_anuncio_time_ago.text=ago
         ver_anuncio_title.text=args.modelo.titulo
-        if (args.modelo.type!="Trabajos"){
+        Log.e("profile",args.modelo.type)
+        if (args.modelo.typeID!="Y3bRcyksupn35UaVIzRr"){
             ver_anuncio_postular.hide()
         }
 
@@ -80,6 +82,7 @@ class VerAnuncioFragment : BaseFragment(), KodeinAware {
         }
         //Fragment
         ver_anuncio_postular.setOnClickListener {
+
             val usuario=viewModel.getStaticDataUser()
             if(usuario==null){
                 startActivity(Intent(requireContext(), AuthActivity::class.java))
@@ -89,7 +92,12 @@ class VerAnuncioFragment : BaseFragment(), KodeinAware {
 
         }
         ver_anuncio_ubicacion.setOnClickListener {
-            findNavController().navigate(VerAnuncioFragmentDirections.actionVerAnuncioFragmentToUbicationPosition(args.modelo))
+            if(args.modelo.ubicacion.latitude!=0.0){
+                findNavController().navigate(VerAnuncioFragmentDirections.actionVerAnuncioFragmentToUbicationPosition(args.modelo))
+            }else{
+                snakBar("No contiene una ubicacion valida")
+            }
+
         }
         //Dialog
         ver_anuncio_report.setOnClickListener {

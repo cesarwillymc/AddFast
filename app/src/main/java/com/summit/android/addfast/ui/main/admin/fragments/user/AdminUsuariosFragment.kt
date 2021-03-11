@@ -3,6 +3,7 @@ package com.summit.android.addfast.ui.main.admin.fragments.user
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.summit.android.addfast.ui.main.admin.AdminViewModel
 import com.summit.android.addfast.ui.main.admin.AdminViewModelFactory
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.setOnSingleClickListener
+import kotlinx.android.synthetic.main.fragment_admin_anuncios.*
 import kotlinx.android.synthetic.main.fragment_admin_usuarios.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -38,10 +40,24 @@ class AdminUsuariosFragment : BaseFragment(),KodeinAware, UsuariosAdapter.Listen
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
             adapter = adapterPostulacion
         }
+
+
+        editText_admin_user.addTextChangedListener {
+            try{
+                val text=it.toString().trim()
+                if (text.isEmpty()){
+                    loadDataPalabra("")
+                }else{
+                    loadDataPalabra(text)
+                }
+            }catch (e: Exception){
+                loadDataPalabra("")
+            }
+        }
         usuarios_search_admin.setOnSingleClickListener {
             val text=editText_admin_user.text.toString().trim()
             if (text.isEmpty()){
-                loadData()
+                loadDataPalabra("")
             }else{
                 loadDataPalabra(text)
             }
@@ -55,7 +71,6 @@ class AdminUsuariosFragment : BaseFragment(),KodeinAware, UsuariosAdapter.Listen
         viewModel.getAllPostulantes().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.LOADING ->{
-                    snakBar("Enviado")
                     hideKeyboard()
                 }
                 Status.SUCCESS ->{
@@ -71,23 +86,28 @@ class AdminUsuariosFragment : BaseFragment(),KodeinAware, UsuariosAdapter.Listen
         })
     }
     private fun loadDataPalabra(palabra:String) {
-        viewModel.getAllPostulantesByPalabra(palabra).observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Status.LOADING ->{
-                    snakBar("Enviado")
-                    hideKeyboard()
+        if(adapterPostulacion.preciosinicial.isEmpty()){
+            viewModel.getAllPostulantesByPalabra(palabra).observe(viewLifecycleOwner, Observer {
+                when(it.status){
+                    Status.LOADING ->{
+                        hideKeyboard()
+                    }
+                    Status.SUCCESS ->{
+                        usuarios_ver_rv_admin.show()
+                        usuarios_ver_shimmer_admin.hide()
+                        adapterPostulacion.updateData(it.data as MutableList<Usuario> )
+                    }
+                    Status.ERROR ->{
+                        snakBar(it.exception!!.message!!)
+                        Log.e("TAG",it.exception!!.message!!)
+                    }
                 }
-                Status.SUCCESS ->{
-                    usuarios_ver_rv_admin.show()
-                    usuarios_ver_shimmer_admin.hide()
-                    adapterPostulacion.updateData(it.data as MutableList<Usuario> )
-                }
-                Status.ERROR ->{
-                    snakBar(it.exception!!.message!!)
-                    Log.e("TAG",it.exception!!.message!!)
-                }
-            }
-        })
+            })
+
+        }else{
+            adapterPostulacion.searchData(palabra)
+        }
+
     }
 
     override fun onclick(anuncios: Usuario, position: Int) {

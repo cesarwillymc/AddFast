@@ -50,15 +50,16 @@ class AnunciosAdapter(private val listener: Listener): RecyclerView.Adapter<Anun
     }
 
     fun searchBy(dato: String) {
-        precios = if(dato=="TODOS"){
-            preciosinicial
-        }else{
-            val lista:List<Anuncios> = precios.sortedBy {
-                it.estado==dato
-            }.reversed()
-            lista as  MutableList<Anuncios>
+        if(precios.isNotEmpty()) {
+            precios = if(dato=="TODOS"){
+                preciosinicial
+            }else{
+                val lista:List<Anuncios> = precios.sortedBy {
+                    it.estado==dato
+                }.reversed()
+                lista as  MutableList<Anuncios>
+            }
         }
-
         notifyDataSetChanged()
         //Log.e("anuncios","$dato  $lista y luego $precios")
     }

@@ -3,6 +3,7 @@ package com.summit.android.addfast.ui.main.admin.fragments.anuncio
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -41,10 +42,22 @@ class AdminAnunciosFragment : BaseFragment(),KodeinAware,VerCateegoriasAdapter.L
             setHasFixedSize(true)
             adapter = anunciosAdaper
         }
+        editText_admin.addTextChangedListener {
+            try{
+                val text=it.toString().trim()
+                if (text.isEmpty()){
+                    loadDataPalabra("")
+                }else{
+                    loadDataPalabra(text)
+                }
+            }catch (e: Exception){
+                loadDataPalabra("")
+            }
+        }
         feid_edtxt_search.setOnSingleClickListener {
             val text=editText_admin.text.toString().trim()
             if (text.isEmpty()){
-                loadData()
+                loadDataPalabra("")
             }else{
                 loadDataPalabra(text)
             }
@@ -57,7 +70,6 @@ class AdminAnunciosFragment : BaseFragment(),KodeinAware,VerCateegoriasAdapter.L
         viewModel.getAllAnuncios().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.LOADING ->{
-                    snakBar("Enviado")
                     hideKeyboard()
                 }
                 Status.SUCCESS ->{
@@ -73,23 +85,27 @@ class AdminAnunciosFragment : BaseFragment(),KodeinAware,VerCateegoriasAdapter.L
         })
     }
     private fun loadDataPalabra(palabra:String) {
-        viewModel.getAllAnunciosByPalabra(palabra).observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Status.LOADING ->{
-                    snakBar("Enviado")
-                    hideKeyboard()
+        if(anunciosAdaper.preciosinicial.isEmpty()){
+            viewModel.getAllAnuncios().observe(viewLifecycleOwner, Observer {
+                when(it.status){
+                    Status.LOADING ->{
+                        hideKeyboard()
+                    }
+                    Status.SUCCESS ->{
+                        anuncios_ver_rv_admin.show()
+                        anuncios_ver_shimmer_admin.hide()
+                        anunciosAdaper.updateData(it.data as MutableList<Anuncios> )
+                    }
+                    Status.ERROR ->{
+                        snakBar(it.exception!!.message!!)
+                        Log.e("TAG",it.exception!!.message!!)
+                    }
                 }
-                Status.SUCCESS ->{
-                    anuncios_ver_rv_admin.show()
-                    anuncios_ver_shimmer_admin.hide()
-                    anunciosAdaper.updateData(it.data as MutableList<Anuncios> )
-                }
-                Status.ERROR ->{
-                    snakBar(it.exception!!.message!!)
-                    Log.e("TAG",it.exception!!.message!!)
-                }
-            }
-        })
+            })
+        }else{
+            anunciosAdaper.searchData(palabra)
+        }
+
     }
 
     override fun onclick(anuncios: Anuncios, position: Int) {

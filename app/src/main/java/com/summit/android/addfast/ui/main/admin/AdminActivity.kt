@@ -86,8 +86,8 @@ class AdminActivity : BaseActivity() ,KodeinAware{
                 }
 
                 R.id.galleryFragment3->{
-                    nav_view.hide()
-                    appBarLayout.hide()
+                    nav_view_admin.hide()
+                    appBarLayout_admin.hide()
                 }
 
                 else -> {

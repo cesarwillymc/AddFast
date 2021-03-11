@@ -86,6 +86,7 @@ class MisAnunciosFragment : BaseFragment(), KodeinAware,TipeSearchGalleryAdapter
     private fun loadBarraSuperior() {
         adaptadorView.updateData(listOf(
             TipeSearchGalleryAdapter.GalleryDocs("TODOS","TODOS"),
+                TipeSearchGalleryAdapter.GalleryDocs("PENDIENTE","PENDIENTE"),
             TipeSearchGalleryAdapter.GalleryDocs("PUBLICADO","PUBLICADO"), TipeSearchGalleryAdapter.GalleryDocs("FINALIZADO","FINALIZADO")))
     }
 

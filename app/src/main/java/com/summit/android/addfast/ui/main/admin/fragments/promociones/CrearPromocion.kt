@@ -16,11 +16,9 @@ import com.summit.android.addfast.repo.model.Promociones
 import com.summit.android.addfast.ui.camera.CameraViewModel
 import com.summit.android.addfast.ui.main.admin.AdminViewModel
 import com.summit.android.addfast.ui.main.admin.AdminViewModelFactory
-import com.summit.android.addfast.ui.main.service.CrearAnuncioFragmentDirections
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.system.SharedPreferencsTemp
 import com.summit.android.addfast.utils.system.SharedPreferencsTemp.Companion.setTempIntValue
-import kotlinx.android.synthetic.main.fragment_crear_anuncio.*
 import kotlinx.android.synthetic.main.fragment_crear_promocion.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -87,7 +85,6 @@ class CrearPromocion : BaseFragment(),KodeinAware {
         viewModel.getAllAnunciosPost().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.LOADING ->{
-                    snakBar("Enviado")
                     hideKeyboard()
                 }
                 Status.SUCCESS ->{
@@ -152,10 +149,9 @@ class CrearPromocion : BaseFragment(),KodeinAware {
                     },1000L)
                 }
                 Status.ERROR -> {
-
                     progressDialog.dismiss()
                     snakBar(it.exception!!.message!!)
-                    Log.e("ErrorProfile",it.exception!!.message!!)
+                    Log.e("ErrorProfile",it.exception.message!!)
                 }
             }
         })

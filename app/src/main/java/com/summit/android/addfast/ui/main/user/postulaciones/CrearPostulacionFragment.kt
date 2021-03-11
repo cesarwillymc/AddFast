@@ -19,7 +19,6 @@ import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.shared.FileUtils
 import kotlinx.android.synthetic.main.fragment_crear_postulacion.*
-import kotlinx.android.synthetic.main.fragment_postulaciones.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
@@ -158,6 +157,7 @@ class CrearPostulacionFragment : BaseFragment(), KodeinAware {
                     },1000L)
                 }catch (e:Exception){
                     Log.e("errorPdf", e.message!!)
+                    snakBar("Elige otro gestor de archivos para elegir el documento")
                 }
             }
         }

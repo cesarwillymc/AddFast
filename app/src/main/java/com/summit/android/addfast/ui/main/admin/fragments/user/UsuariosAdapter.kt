@@ -1,5 +1,6 @@
 package com.summit.android.addfast.ui.main.admin.fragments.user
 
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.summit.android.addfast.R
+import com.summit.android.addfast.repo.model.Anuncios
 import com.summit.android.addfast.repo.model.Usuario
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import org.jetbrains.anko.backgroundColor
@@ -35,7 +37,17 @@ class UsuariosAdapter(private val listener: Listener) :
         positionSelected = position
         notifyDataSetChanged()
     }
-
+    fun searchData(palabra:String){
+        precios=if(palabra==""){
+            preciosinicial
+        }else{
+            val lista:List<Usuario> = precios.sortedBy {
+                it.name?.toUpperCase()?.contains(palabra.toUpperCase())
+            }.reversed()
+            lista as  MutableList<Usuario>
+        }
+        Handler().postDelayed({notifyDataSetChanged()},500L)
+    }
     fun updateData(data: MutableList<Usuario>) {
         precios = mutableListOf()
         preciosinicial = mutableListOf()

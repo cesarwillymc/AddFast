@@ -64,6 +64,7 @@ class Categorias : BaseFragment(),KodeinAware, SlideAdapter.onCLickListenerPromo
             if(it!=null){
                 Log.e("ubicaciom data","${it.departamento}")
                  loadAnunciosReload()
+                loadPromocionesReload()
             }else{
                 viewModel.saveUbicacion(UbicacionModel("Puno","Puno",0))
             }
@@ -128,27 +129,18 @@ class Categorias : BaseFragment(),KodeinAware, SlideAdapter.onCLickListenerPromo
     private fun loadService() {
 
         //Obtener lista de Promociones
-
-        viewModel.getPromocionesUpdate().observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Status.LOADING->{
-                }
-                Status.SUCCESS->{
-
-                    if (it.data != null && it.data!!.isNotEmpty()) {
-                        viewPager.show()
-                        inizializarDatos(it.data)
-                    } else {
-                        viewPager.hide()
-                        text_services_ofert.text = "Productos"
-                    }
-                }
-                Status.ERROR->{
-                    Log.e("getPromocionesUpdate",it.exception!!.message!!)
-                    toast(it.exception!!.message!!)
-                }
+        viewModel.promocionesData.observe(viewLifecycleOwner, Observer {
+            Log.e("anunciosData","aa $it")
+            if(it.isNotEmpty()){
+                viewPager.show()
+                inizializarDatos(it)
+            }else{
+                viewPager.hide()
+                text_services_ofert.text = "Productos"
+                loadPromocionesReload()
             }
         })
+
 
         viewModel.anunciosData.observe(viewLifecycleOwner, Observer {
             Log.e("anunciosData","aa $it")
@@ -163,6 +155,22 @@ class Categorias : BaseFragment(),KodeinAware, SlideAdapter.onCLickListenerPromo
 
 
 
+    }
+    private fun loadPromocionesReload(){
+        viewModel.getPromocionesUpdate().observe(viewLifecycleOwner, Observer {
+            when(it.status){
+                Status.LOADING->{
+                }
+                Status.SUCCESS->{
+
+
+                }
+                Status.ERROR->{
+                    Log.e("getPromocionesUpdate",it.exception!!.message!!)
+                    toast(it.exception!!.message!!)
+                }
+            }
+        })
     }
     private fun loadAnunciosReload(){
         viewModel.getAnunciosByCategorias().observe(viewLifecycleOwner, Observer {

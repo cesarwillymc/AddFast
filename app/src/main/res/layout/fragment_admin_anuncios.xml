@@ -21,9 +21,13 @@
             android:id="@+id/editText_admin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:drawableEnd="@drawable/ic_search"
+            android:background="@drawable/border_layout3"
             android:hint="buscar por palabra"
+            android:padding="10dp"
             app:layout_constraintEnd_toStartOf="@+id/feid_edtxt_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +43,8 @@
             android:background="@color/colorPrimaryDark"
             android:padding="10dp"
             android:src="@drawable/ic_search"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_admin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />

@@ -72,12 +72,12 @@ class AdminRepository(
 
     suspend fun getAllAnunciosByPalabra(palabra: String): List<Anuncios> {
         val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
-        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").whereEqualTo("estado", "REVISION").whereArrayContains("titulo",palabra).get().await()
+        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").whereEqualTo("estado", "PENDIENTE").get().await()
         return anuncios.toObjects(Anuncios::class.java)
     }
     suspend fun getAllAnuncios(): List<Anuncios> {
         val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
-        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").whereEqualTo("estado", "REVISION").get().await()
+        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").whereEqualTo("estado", "PENDIENTE").get().await()
         return anuncios.toObjects(Anuncios::class.java)
     }
     suspend fun getAllAnunciosPost(): List<Anuncios> {

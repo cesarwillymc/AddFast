@@ -21,5 +21,5 @@ data class Anuncios(
         var postulaciones:List<String> = listOf(),
         var reporte:Int=0,
         var visualizaciones:Int=0,
-        var estado:String="REVISION"
+        var estado:String="PENDIENTE"
     ):Parcelable

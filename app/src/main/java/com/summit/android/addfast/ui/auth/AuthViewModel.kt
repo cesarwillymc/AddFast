@@ -88,7 +88,7 @@ class AuthViewModel(private val repo: AuthRepository) : ViewModel() {
                 //Trae datos de firebase para comprobar si era nuevo usuario
                 val traerDatos = repo.getDataInformation(response.user.uid)
 
-                Log.e("login","function ${traerDatos}")
+
                 //Inserta el usuario en caso exista y en caso no se ira a la siguiente ventana de registro
                 if (traerDatos!=null){
                     if(traerDatos.accountactivate){

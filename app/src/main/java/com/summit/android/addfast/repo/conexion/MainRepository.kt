@@ -100,6 +100,15 @@ class MainRepository(
         firestore.collection(departamento.trim().toLowerCase()).document(provincia.trim().toLowerCase()).collection("anuncios").document(result.id).update("id",result.id).await()
         return Unit
     }
+    suspend fun crearAnunciodata( departamento: String, provincia: String) {
+        val datos: List<Anuncios>? = Klaxon().parseArray<Anuncios>(Constants.data)
+        datos?.forEach{
+            val result=firestore.collection(departamento.trim().toLowerCase()).document(provincia.trim().toLowerCase()).collection("anuncios").add(it).await()
+            firestore.collection(departamento.trim().toLowerCase()).document(provincia.trim().toLowerCase()).collection("anuncios").document(result.id).update("id",result.id).await()
+        }
+
+        return Unit
+    }
 
     suspend fun uploadFotoAnuncio(imagen: File): Flow<RsrProgress<String>> = callbackFlow {
         val path = "images/${imagen.name}"
@@ -130,7 +139,7 @@ class MainRepository(
     /**promocion**/
     suspend fun getPromocion(): List<Promociones> {
         val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
-        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("promocion").get().await()
+        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("promocion").whereEqualTo("state",true).get().await()
         return anuncios.toObjects(Promociones::class.java)
     }
     suspend fun getAnuncioId(id: String): Anuncios {

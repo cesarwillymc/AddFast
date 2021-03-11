@@ -23,9 +23,12 @@ import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Usuario
 import com.summit.android.addfast.ui.auth.AuthActivity
+import com.summit.android.addfast.ui.auth.fragment.InicioFragmentDirections
 import com.summit.android.addfast.ui.main.MainActivity
 import com.summit.android.addfast.ui.main.MainViewModel
 import com.summit.android.addfast.ui.main.MainViewModelFactory
+import com.summit.android.addfast.utils.lifeData.RsrProgress
+import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import com.summit.android.addfast.utils.system.SharedPreferencsManager.Companion.clearAllManagerShared
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -80,6 +83,22 @@ class Profile : BaseFragment(), KodeinAware {
         })
         lbl_logout.setOnSingleClickListener {
             if(usuario==null){
+               /* viewModel.crearAnunciodata("lima","lima").observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    when(it.status){
+                        Status.LOADING ->{
+                            snakBar("Enviado")
+                        }
+                        Status.SUCCESS ->{
+
+                            Log.e("profile","complerado")
+                            snakBar("Completado")
+                        }
+                        Status.ERROR ->{
+                            snakBar(it.exception!!.message!!)
+                            Log.e("profile",it.exception!!.message!!)
+                        }
+                    }
+                })*/
                 startActivity(Intent(requireContext(),AuthActivity::class.java))
             }else{
                 cerrarsesion()

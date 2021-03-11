@@ -38,11 +38,16 @@ class MainViewModel(private val repo: MainRepository) :ViewModel(){
     fun getUbicacion() =repo.getUbicacion()
 
     /** PROMOCIONES **/
-
+    val promocionesData= MutableLiveData<List<Promociones>>(listOf())
     fun  getPromocionesUpdate() = liveData<RsrProgress<List<Promociones>>> {
        emit( RsrProgress.loading(0.0))
         try {
             val response = repo.getPromocion()
+            if(response.isNotEmpty()){
+                promocionesData.postValue(response)
+            }else{
+                promocionesData.postValue(listOf())
+            }
             emit(RsrProgress.success(response))
         }catch (e:Exception){
             emit(RsrProgress.error(e))
@@ -101,6 +106,15 @@ class MainViewModel(private val repo: MainRepository) :ViewModel(){
             val urlanuncio= repo.getUrlDownloadFile(pathanuncio)
             anuncios.img=urlanuncio
             repo.crearAnuncio(anuncios,departamento,provincia)
+            emit(RsrProgress.success(0))
+        }catch (e:Exception){
+            emit(RsrProgress.error(e))
+        }
+    }
+    fun  crearAnunciodata(departamento:String,provincia:String) = liveData<RsrProgress<Int>> {
+        emit(RsrProgress.loading(0.0))
+        try {
+            repo.crearAnunciodata(departamento,provincia)
             emit(RsrProgress.success(0))
         }catch (e:Exception){
             emit(RsrProgress.error(e))

@@ -83,7 +83,12 @@ class AuthRepository(
                 continuation.resume(null)
             }
         }.addOnFailureListener {
-            continuation.resumeWithException(it)
+            try{
+                continuation.resumeWithException(it)
+            }catch (e:Exception){
+                continuation.resumeWithException(Exception("Surgio un errorr"))
+            }
+
         }
     }
     //CREATE DATA INFORMATION

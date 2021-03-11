@@ -1,5 +1,6 @@
 package com.summit.android.addfast.ui.main.user.anuncios.options
 
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import java.util.*
 class VerCateegoriasAdapter(private val listener: Listener): RecyclerView.Adapter<VerCateegoriasAdapter.ViewHolder>() {
 
     var precios:MutableList<Anuncios> = mutableListOf()
+    var preciosinicial:MutableList<Anuncios> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         LayoutInflater.from(parent.context).inflate(
             R.layout.fragment_categorias_anuncios_item, parent, false
@@ -37,9 +39,21 @@ class VerCateegoriasAdapter(private val listener: Listener): RecyclerView.Adapte
     }
     fun updateData(data: MutableList<Anuncios>){
         precios = mutableListOf()
-        Log.e("getAnunciosByCategorias","trajo datos ${data}")
+        preciosinicial = mutableListOf()
         precios.addAll(data)
+        preciosinicial.addAll(data)
         notifyDataSetChanged()
+    }
+    fun searchData(palabra:String){
+        precios=if(palabra==""){
+            preciosinicial
+        }else{
+            val lista:List<Anuncios> = precios.sortedBy {
+                it.titulo.toUpperCase().contains(palabra.toUpperCase())
+            }.reversed()
+            lista as  MutableList<Anuncios>
+        }
+        Handler().postDelayed({notifyDataSetChanged()},500L)
     }
     fun getValue(position: Int) = precios[position]
     fun removeDato(posicion: Int){

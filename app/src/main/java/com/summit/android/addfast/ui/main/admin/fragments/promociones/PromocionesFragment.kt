@@ -2,9 +2,7 @@ package com.summit.android.addfast.ui.main.admin.fragments.promociones
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -12,10 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Promociones
-import com.summit.android.addfast.repo.model.Usuario
 import com.summit.android.addfast.ui.main.admin.AdminViewModel
 import com.summit.android.addfast.ui.main.admin.AdminViewModelFactory
-import com.summit.android.addfast.ui.main.admin.fragments.user.UsuariosAdapter
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.system.SharedPreferencsTemp
 import kotlinx.android.synthetic.main.fragment_promociones.*
@@ -30,13 +26,12 @@ class PromocionesFragment : BaseFragment(),KodeinAware,PromocionesAdminAdapter.L
     lateinit var viewModel: AdminViewModel
     val factory: AdminViewModelFactory by instance()
 
-    lateinit var adapterPostulacion:PromocionesAdminAdapter
+    private lateinit var adapterPostulacion:PromocionesAdminAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = requireActivity().run{
             ViewModelProvider(this,factory).get(AdminViewModel::class.java)
         }
-
         SharedPreferencsTemp.clearAllTempShared()
         adapterPostulacion = PromocionesAdminAdapter(this)
         promociones_ver_rv_admin.apply {
@@ -52,7 +47,7 @@ class PromocionesFragment : BaseFragment(),KodeinAware,PromocionesAdminAdapter.L
         viewModel.getAllPromociones().observe(viewLifecycleOwner, Observer {
             when(it.status){
                 Status.LOADING ->{
-                    snakBar("Enviado")
+
                     hideKeyboard()
                 }
                 Status.SUCCESS ->{
@@ -62,7 +57,7 @@ class PromocionesFragment : BaseFragment(),KodeinAware,PromocionesAdminAdapter.L
                 }
                 Status.ERROR ->{
                     snakBar(it.exception!!.message!!)
-                    Log.e("TAG",it.exception!!.message!!)
+                    Log.e("TAG",it.exception.message!!)
                 }
             }
         })
