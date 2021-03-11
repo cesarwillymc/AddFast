@@ -1,6 +1,9 @@
 # ADD FAST
-Gestion de anuncios 
+
 ![N|Solid](https://i.blogs.es/df41c1/kotlin_800x320/450_1000.png)
+
+## Gestion de anuncios 
+git
 
 La arquitectura usada es de MVVM
 
