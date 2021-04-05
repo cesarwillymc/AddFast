@@ -38,13 +38,11 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-
-class Categorias : BaseFragment(),KodeinAware, SlideAdapter.onCLickListenerPromo,CategoriasProductosListener,CategoriasListener{
-    private lateinit var viewModel: MainViewModel
-    override val kodein: Kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class Categorias : BaseFragment(), SlideAdapter.onCLickListenerPromo,CategoriasProductosListener,CategoriasListener{
+    val viewModel: MainViewModel by viewModel()
     private lateinit var categoriasAdaper: CategoriasAdaper
     // private lateinit var categoriasAdaper: CategoriasAdaper
     //private lateinit var productosAdapter: AdapterProductosCategoria
@@ -57,9 +55,7 @@ class Categorias : BaseFragment(),KodeinAware, SlideAdapter.onCLickListenerPromo
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         viewModel.getUbicacion().observe(viewLifecycleOwner, Observer {
             if(it!=null){
                 Log.e("ubicaciom data","${it.departamento}")

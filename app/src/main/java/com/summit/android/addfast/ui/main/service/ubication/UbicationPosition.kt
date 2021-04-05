@@ -49,6 +49,7 @@ import kotlinx.android.synthetic.main.fragment_ubication_position.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 /**
@@ -56,16 +57,14 @@ import java.util.*
  */
 
 
-class UbicationPosition : BaseFragment(), KodeinAware{
+class UbicationPosition : BaseFragment(){
 
     lateinit var geo: Geocoder
   //  lateinit var googleMap: GoogleMap
    // lateinit var mapFragment: SupportMapFragment
     private var origen: Marker?=null
 
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+
     private var usuario: Usuario?=null
 
     private var googleMap: GoogleMap? = null
@@ -133,15 +132,13 @@ class UbicationPosition : BaseFragment(), KodeinAware{
             }
         }
     }
-
+    val viewModel: MainViewModel by viewModel()
 
     val args:UbicationPositionArgs by navArgs()
     override fun getLayout(): Int =R.layout.fragment_ubication_position
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel= requireActivity().run {
-            ViewModelProvider(this,factory).get(MainViewModel::class.java)
-        }
+
         geo = Geocoder(context, Locale.getDefault())
         mapa_icon_gpsaa.isEnabled=false
         requireContext().verifyPermission()

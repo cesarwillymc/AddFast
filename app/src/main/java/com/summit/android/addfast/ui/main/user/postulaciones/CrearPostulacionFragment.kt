@@ -22,13 +22,12 @@ import kotlinx.android.synthetic.main.fragment_crear_postulacion.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.util.*
 
-class CrearPostulacionFragment : BaseFragment(), KodeinAware {
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class CrearPostulacionFragment : BaseFragment() {
+    val viewModel: MainViewModel by viewModel()
     private var pdfUri: File?=null
     val args:CrearPostulacionFragmentArgs by navArgs()
     override fun getLayout()=R.layout.fragment_crear_postulacion
@@ -39,9 +38,7 @@ class CrearPostulacionFragment : BaseFragment(), KodeinAware {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         //Porgress dialog
         progressDialog= ProgressDialog(requireContext())
         progressDialog.setTitle("Loading")

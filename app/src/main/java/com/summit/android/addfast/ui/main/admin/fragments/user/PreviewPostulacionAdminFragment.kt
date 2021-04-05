@@ -17,19 +17,16 @@ import kotlinx.android.synthetic.main.fragment_preview_postulacion_admin.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class PreviewPostulacionAdminFragment : BaseFragment(), KodeinAware {
-    private lateinit var viewModel: AdminViewModel
-    override val kodein by kodein()
-    private val factory: AdminViewModelFactory by instance()
+class PreviewPostulacionAdminFragment : BaseFragment() {
+    val viewModel: AdminViewModel by viewModel()
     override fun getLayout()=R.layout.fragment_preview_postulacion_admin
     val args:PreviewPostulacionAdminFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(AdminViewModel::class.java)
-        }
+
 
 
         bindeodeDatos()

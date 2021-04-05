@@ -19,6 +19,7 @@ import com.summit.android.addfast.ui.auth.AuthViewModel
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.camera.CameraViewModel
 import com.summit.android.addfast.ui.main.MainActivity
+import com.summit.android.addfast.ui.main.admin.AdminViewModel
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_register_info.*
@@ -26,14 +27,13 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 
 
-class RegisterInfoFragment : BaseFragment(), KodeinAware {
+class RegisterInfoFragment : BaseFragment() {
     //Instance Data Kodein
-    override val kodein: Kodein by kodein()
-    lateinit var viewModel: AuthViewModel
-    private val factory: AuthViewModelFactory by instance()
+    val viewModel: AuthViewModel by viewModel()
 
     //ViewModel prueba
     lateinit var cameraViewModel: CameraViewModel
@@ -51,9 +51,7 @@ class RegisterInfoFragment : BaseFragment(), KodeinAware {
     lateinit var progressDialog: ProgressDialog
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(AuthViewModel::class.java)
-        }
+
         cameraViewModel= requireActivity().run{
             ViewModelProvider(this).get(CameraViewModel::class.java)
         }

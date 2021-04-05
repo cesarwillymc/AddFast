@@ -13,7 +13,9 @@ import com.summit.android.addfast.repo.conexion.AdminRepository
 import com.summit.android.addfast.repo.conexion.AuthRepository
 import com.summit.android.addfast.repo.conexion.MainRepository
 import com.summit.android.addfast.repo.local.AppDB
+import com.summit.android.addfast.ui.auth.AuthViewModel
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
+import com.summit.android.addfast.ui.main.MainViewModel
 import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.ui.main.admin.AdminViewModel
 import com.summit.android.addfast.ui.main.admin.AdminViewModelFactory
@@ -25,40 +27,18 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.viewmodel.compat.ViewModelCompat
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import java.io.IOException
 import java.io.InputStream
 
 
-class MyApp : Application(), KodeinAware {
-    override val kodein= Kodein.lazy {
+class MyApp : Application() {
 
-        //Module inilize
-        import(androidXModule(this@MyApp))
-
-        //Auth viewModel Kodein App
-        bind() from provider { AuthRepository(instance(), instance(), instance(), instance()) }
-        bind() from provider { AuthViewModelFactory(instance()) }
-        bind() from provider { AdminRepository(instance(), instance(), instance(), instance()) }
-        bind() from provider { AdminViewModelFactory(instance()) }
-      /*  bind() from provider { ServiceViewModelFactory(instance(),instance()) }
-
-        //Main viewModel Kodein App
-        bind() from provider { RepositoryHistorial(instance(),instance()) }
-        bind() from provider { RespositoryCategories(instance(),instance()) }*/
-        bind() from provider { MainViewModelFactory(instance()) }
-        bind() from provider { MainRepository(instance(), instance(), instance(), instance()) }
-
-        //Instance App DB ROOM
-        bind() from singleton { AppDB(instance()) }
-
-        //Huawei Instance App
-        bind() from singleton { AGConnectAuth.getInstance() }
-        bind() from singleton { FirebaseStorage.getInstance() }
-
-        //Firestore Instance App
-        bind() from singleton { FirebaseFirestore.getInstance() }
-
-    }
     companion object{
         private lateinit var instance: MyApp
         fun getInstanceApp(): MyApp = instance
@@ -67,13 +47,6 @@ class MyApp : Application(), KodeinAware {
             Companion.instance =instance
         }
 
-    }
-    private fun inicializeCallingAgora(){
-        try {
-            //mRtcEngine = RtcEngine.create(baseContext, getString(R.string.agora_app_id), mRtcEventHandler)
-        }catch (e:Exception){
-
-        }
     }
 
     //mRtcEngine.enableVideo();
@@ -85,6 +58,28 @@ class MyApp : Application(), KodeinAware {
         super.onCreate()
         setInstance(this)
         Bugsnag.start(this)
-    }
+        startKoin {
+            // Koin Android logger
+            androidLogger()
+            //inject Android context
+            androidContext(this@MyApp)
+            // use modules
 
+            modules(module(override = true) {
+                // Singleton ComponentA
+                single <FirebaseFirestore> { FirebaseFirestore.getInstance()  }
+                single<FirebaseStorage> { FirebaseStorage.getInstance() }
+                single<AppDB> {  AppDB(get()) }
+                single <AGConnectAuth>{ AGConnectAuth.getInstance()  }
+                single<MainRepository> { MainRepository(get(), get(), get(), get()) }
+                    factory<MainRepository> { MainRepository(get(), get(), get(), get()) }
+                single<AuthRepository> { AuthRepository(get(), get(), get(), get())  }
+                single<AdminRepository> { AdminRepository(get(), get(), get(), get()) }
+                viewModel<MainViewModel> { MainViewModel(get()) }
+                viewModel<AdminViewModel> { AdminViewModel(get()) }
+                viewModel<AuthViewModel> { AuthViewModel(get()) }
+            })
+        }
+
+    }
 }

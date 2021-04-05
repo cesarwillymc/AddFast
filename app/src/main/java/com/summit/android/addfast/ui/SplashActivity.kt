@@ -11,21 +11,20 @@ import com.summit.android.addfast.ui.auth.AuthActivity
 import com.summit.android.addfast.ui.auth.AuthViewModel
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.main.MainActivity
+import com.summit.android.addfast.ui.main.MainViewModel
 import com.summit.android.addfast.ui.main.admin.AdminActivity
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashActivity : BaseActivity(), KodeinAware {
-    override val kodein: Kodein by kodein()
-    lateinit var viewModel: AuthViewModel
-    private val factory: AuthViewModelFactory by instance()
+class SplashActivity : BaseActivity() {
+    val viewModel: AuthViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel= run{
-            ViewModelProvider(this,factory).get(AuthViewModel::class.java)
-        }
+
         Handler().postDelayed({
             verifyDataLogged()
         },1500L)

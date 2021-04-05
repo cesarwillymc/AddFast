@@ -26,20 +26,17 @@ import kotlinx.android.synthetic.main.fragment_ver_anuncio.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
-class VerAnuncioFragment : BaseFragment(), KodeinAware {
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class VerAnuncioFragment : BaseFragment() {
+    val viewModel: MainViewModel by viewModel()
     override fun getLayout()=R.layout.fragment_ver_anuncio
     val args:VerAnuncioFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+ 
         aumentarVisualizacion()
         loadData()
     }

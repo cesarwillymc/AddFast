@@ -19,20 +19,17 @@ import kotlinx.android.synthetic.main.fragment_anuncio_preview_admin.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
-class AnuncioPreviewAdminFragment : BaseFragment(), KodeinAware {
-    private lateinit var viewModel: AdminViewModel
-    override val kodein by kodein()
-    private val factory: AdminViewModelFactory by instance()
+class AnuncioPreviewAdminFragment : BaseFragment() {
+    val viewModel: AdminViewModel by viewModel()
     override fun getLayout() = R.layout.fragment_anuncio_preview_admin
     val args: AnuncioPreviewAdminFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(AdminViewModel::class.java)
-        }
+
         loadBindign()
     }
 

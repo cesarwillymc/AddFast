@@ -35,14 +35,13 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import java.io.File
 
-class Profile : BaseFragment(), KodeinAware {
+class Profile : BaseFragment() {
 
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+    val viewModel: MainViewModel by viewModel()
     private var usuario: Usuario? = null
     override fun getLayout(): Int = R.layout.fragment_profile
 
@@ -54,9 +53,7 @@ class Profile : BaseFragment(), KodeinAware {
         dialog = ProgressDialog(requireContext())
         dialog.setMessage("Cerrando sesion")
 
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         /*viewodel= requireActivity().run {
             ViewModelProvider(this).get(ViewModelMain::class.java)
         }

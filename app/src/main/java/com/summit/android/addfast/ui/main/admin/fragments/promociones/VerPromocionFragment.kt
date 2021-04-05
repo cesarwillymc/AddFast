@@ -23,19 +23,15 @@ import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
+class VerPromocionFragment: BaseFragment() {
+    val viewModel: AdminViewModel by viewModel()
 
-class VerPromocionFragment: BaseFragment(), KodeinAware {
-
-    override val kodein: Kodein by kodein()
-    lateinit var viewModel: AdminViewModel
-    val factory: AdminViewModelFactory by instance()
     val args:VerPromocionFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run{
-            ViewModelProvider(this,factory).get(AdminViewModel::class.java)
-        }
+
         Glide.with(requireContext()).load(args.model.img).into(ver_promocion_img)
         ver_promocion_title.text=args.model.name
         val prettyTime = PrettyTime(Locale.getDefault())

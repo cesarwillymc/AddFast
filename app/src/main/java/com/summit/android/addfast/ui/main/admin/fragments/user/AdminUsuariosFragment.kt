@@ -21,18 +21,14 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AdminUsuariosFragment : BaseFragment(),KodeinAware, UsuariosAdapter.Listener {
-    lateinit var viewModel: AdminViewModel
-    override val kodein: Kodein by kodein()
-    val factory:AdminViewModelFactory by instance()
+class AdminUsuariosFragment : BaseFragment(), UsuariosAdapter.Listener {
+    val viewModel: AdminViewModel by viewModel()
     lateinit var adapterPostulacion:UsuariosAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run{
-            ViewModelProvider(this,factory).get(AdminViewModel::class.java)
-        }
 
 
         adapterPostulacion = UsuariosAdapter(this)

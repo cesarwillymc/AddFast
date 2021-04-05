@@ -19,19 +19,16 @@ import kotlinx.android.synthetic.main.fragment_preview_postulacion.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class PreviewPostulacionFragment : BaseFragment(), KodeinAware {
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class PreviewPostulacionFragment : BaseFragment() {
+    val viewModel: MainViewModel by viewModel()
     override fun getLayout()=R.layout.fragment_preview_postulacion
     val args:PreviewPostulacionFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         if(args.isRevision){
             loadCambiarEstado()
         }else{

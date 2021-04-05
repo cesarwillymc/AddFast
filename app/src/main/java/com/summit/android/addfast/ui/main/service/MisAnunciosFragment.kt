@@ -24,19 +24,16 @@ import kotlinx.android.synthetic.main.fragment_mis_anuncios.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MisAnunciosFragment : BaseFragment(), KodeinAware,TipeSearchGalleryAdapter.TipeSearchGalleryListener ,AnunciosAdapter.Listener{
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class MisAnunciosFragment : BaseFragment(),TipeSearchGalleryAdapter.TipeSearchGalleryListener ,AnunciosAdapter.Listener{
+    val viewModel: MainViewModel by viewModel()
     lateinit var adaptadorView:TipeSearchGalleryAdapter
     lateinit var adapterAnuncios:AnunciosAdapter
     override fun getLayout()=R.layout.fragment_mis_anuncios
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         clearAllTempShared()
         viewModel.anuncioCreate.postValue(null)
         adaptadorView = TipeSearchGalleryAdapter(this)

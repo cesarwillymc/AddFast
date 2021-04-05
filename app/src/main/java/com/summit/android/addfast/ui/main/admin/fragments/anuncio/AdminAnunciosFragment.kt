@@ -21,18 +21,15 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class AdminAnunciosFragment : BaseFragment(),KodeinAware,VerCateegoriasAdapter.Listener {
-    override val kodein: Kodein by kodein()
-    lateinit var viewModel: AdminViewModel
-    val factory: AdminViewModelFactory by instance()
+class AdminAnunciosFragment : BaseFragment(),VerCateegoriasAdapter.Listener {
+    val viewModel: AdminViewModel by viewModel()
     private lateinit var anunciosAdaper: VerCateegoriasAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run{
-            ViewModelProvider(this,factory).get(AdminViewModel::class.java)
-        }
+
 
         anunciosAdaper = VerCateegoriasAdapter(this)
         //LinearLayoutManager(requireContext(),

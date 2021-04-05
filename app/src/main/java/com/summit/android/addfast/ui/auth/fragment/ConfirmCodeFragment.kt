@@ -15,6 +15,7 @@ import com.summit.android.addfast.ui.auth.AuthViewModel
 import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.main.MainActivity
 import com.summit.android.addfast.ui.main.admin.AdminActivity
+import com.summit.android.addfast.ui.main.admin.AdminViewModel
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_confirm_code.*
@@ -22,14 +23,12 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ConfirmCodeFragment : BaseFragment(),KodeinAware {
+class ConfirmCodeFragment : BaseFragment() {
     //Instance Data Kodein
-    override val kodein: Kodein by kodein()
-    lateinit var viewModel: AuthViewModel
-    private val factory: AuthViewModelFactory by instance()
-
+    val viewModel: AuthViewModel by viewModel()
     //Argumentos
     private val args:ConfirmCodeFragmentArgs by navArgs()
 
@@ -38,9 +37,7 @@ class ConfirmCodeFragment : BaseFragment(),KodeinAware {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel= run{
-            ViewModelProvider(this,factory).get(AuthViewModel::class.java)
-        }
+
         bideoDatos()
         btn_validate_number.setOnSingleClickListener{
             val numero=et_cellphone__validate.text.toString().trim()

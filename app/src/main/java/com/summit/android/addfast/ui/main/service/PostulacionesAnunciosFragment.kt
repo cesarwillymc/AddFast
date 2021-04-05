@@ -22,19 +22,16 @@ import kotlinx.android.synthetic.main.fragment_postulaciones_anuncios.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PostulacionesAnunciosFragment : BaseFragment(), KodeinAware,VerPostulacionesAnuncioAdapter.Listener {
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class PostulacionesAnunciosFragment : BaseFragment(),VerPostulacionesAnuncioAdapter.Listener {
+    val viewModel: MainViewModel by viewModel()
     override fun getLayout()=R.layout.fragment_postulaciones_anuncios
     lateinit var adapterPostulaciones:VerPostulacionesAnuncioAdapter
     val args:PostulacionesAnunciosFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         adapterPostulaciones = VerPostulacionesAnuncioAdapter(this)
         postulacion_anuncio_rv.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)

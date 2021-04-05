@@ -26,18 +26,15 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AdminActivity : BaseActivity() ,KodeinAware{
-    private lateinit var viewModel: AdminViewModel
-    override val kodein: Kodein by kodein()
-    private val factory: AdminViewModelFactory by instance()
+class AdminActivity : BaseActivity() {
+    val viewModel: AdminViewModel by viewModel()
     lateinit var navController: NavController
     lateinit var cameraViewModel: CameraViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = run {
-            ViewModelProvider(this, factory).get(AdminViewModel::class.java)
-        }
+
         cameraViewModel= run{
             ViewModelProvider(this).get(CameraViewModel::class.java)
         }

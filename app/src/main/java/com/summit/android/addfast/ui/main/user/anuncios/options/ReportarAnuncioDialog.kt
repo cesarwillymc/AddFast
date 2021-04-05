@@ -31,18 +31,15 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class ReportarAnuncioDialog : DialogFragment(), KodeinAware {
-    private lateinit var viewModel: MainViewModel
-    override val kodein: Kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+class ReportarAnuncioDialog : DialogFragment() {
+    val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
 
         return inflater.inflate(R.layout.dialog_reportar_anuncio, container, false)
     }

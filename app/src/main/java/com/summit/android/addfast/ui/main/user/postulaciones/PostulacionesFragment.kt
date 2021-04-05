@@ -21,21 +21,18 @@ import kotlinx.android.synthetic.main.fragment_postulaciones.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class PostulacionesFragment : BaseFragment(),KodeinAware,
+class PostulacionesFragment : BaseFragment(),
     TipeSearchGalleryAdapter.TipeSearchGalleryListener,PostulacionesAdapter.Listener {
-    private lateinit var viewModel: MainViewModel
-    override val kodein by kodein()
-    private val factory: MainViewModelFactory by instance()
+    val viewModel: MainViewModel by viewModel()
     override fun getLayout()=R.layout.fragment_postulaciones
     lateinit var adaptadorView:TipeSearchGalleryAdapter
     lateinit var adapterPostulacion:PostulacionesAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = requireActivity().run {
-            ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        }
+
         //Top
         adaptadorView = TipeSearchGalleryAdapter(this)
         postulaciones_options.apply {
