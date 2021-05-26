@@ -1,14 +1,9 @@
 package com.summit.android.addfast.ui.main.service
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,13 +12,9 @@ import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Anuncios
 import com.summit.android.addfast.ui.camera.TipeSearchGalleryAdapter
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.system.SharedPreferencsTemp.Companion.clearAllTempShared
 import kotlinx.android.synthetic.main.fragment_mis_anuncios.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MisAnunciosFragment : BaseFragment(),TipeSearchGalleryAdapter.TipeSearchGalleryListener ,AnunciosAdapter.Listener{

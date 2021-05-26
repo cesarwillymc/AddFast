@@ -15,8 +15,24 @@ import com.summit.android.addfast.utils.lifeData.RsrProgress
 import kotlinx.coroutines.flow.collect
 import java.io.File
 import java.util.*
+import androidx.lifecycle.LiveData
+
+
+
 
 class MainViewModel(private val repo: MainRepository) :ViewModel(){
+
+
+    private val newDestination: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    fun getNewDestination(): LiveData<Int>? {
+        return newDestination
+    }
+
+    fun setNewDestination(destinationId: Int) {
+        newDestination.value = destinationId
+    }
+
     //Permission data
 
     private val permission = preferencesKey<Boolean>("permissionComplete")

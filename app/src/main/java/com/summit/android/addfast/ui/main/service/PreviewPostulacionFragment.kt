@@ -5,20 +5,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.callNumber
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.sendMessageWhatsApp
 import kotlinx.android.synthetic.main.fragment_preview_postulacion.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

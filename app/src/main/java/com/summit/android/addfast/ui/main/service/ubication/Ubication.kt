@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
-import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
@@ -15,20 +14,14 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.PolylineOptions
-import com.google.android.material.snackbar.Snackbar
-import com.google.maps.android.PolyUtil
 import com.huawei.hms.location.FusedLocationProviderClient
 import com.huawei.hms.location.LocationRequest
 import com.huawei.hms.location.LocationServices
@@ -39,15 +32,11 @@ import com.summit.android.addfast.repo.model.Anuncios
 import com.summit.android.addfast.repo.model.Usuario
 import com.summit.android.addfast.repo.model.departamento.UbiModel
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.bitmapDescriptorFromVector
 import com.summit.android.addfast.utils.getLocationMode
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import com.summit.android.addfast.utils.verifyPermission
 import kotlinx.android.synthetic.main.fragment_ubication.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 

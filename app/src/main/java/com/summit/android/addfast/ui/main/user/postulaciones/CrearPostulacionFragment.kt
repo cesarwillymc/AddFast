@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -15,13 +14,9 @@ import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Postulacion
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.shared.FileUtils
 import kotlinx.android.synthetic.main.fragment_crear_postulacion.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.util.*

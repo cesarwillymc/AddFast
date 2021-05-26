@@ -13,79 +13,81 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseActivity
+import com.summit.android.addfast.databinding.ActivityMainBinding
 import com.summit.android.addfast.repo.model.departamento.UbicacionModel
 import com.summit.android.addfast.ui.camera.CameraViewModel
 import com.summit.android.addfast.ui.main.user.SelectPlaceDialog
 import com.summit.android.addfast.utils.verifyPermission
-import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
     val viewModel: MainViewModel by viewModel()
     lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
     lateinit var cameraViewModel: CameraViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         cameraViewModel= run{
             ViewModelProvider(this).get(CameraViewModel::class.java)
         }
+        bindView(R.layout.activity_main)
         verifyPermission()
-        setSupportActionBar(tollbar_main)
+        setSupportActionBar(dataBinding.tollbar_main)
         observarPermisos()
         inicializarVariables()
         navController = findNavController(R.id.am_fragment)
         val appBarConfig = AppBarConfiguration(setOf(
             R.id.nav_postulaciones, R.id.nav_inicio, R.id.nav_perfil,R.id.nav_anuncios))
         setupActionBarWithNavController(navController, appBarConfig)
-        nav_view.setupWithNavController(navController)
+        dataBinding.nav_view.setupWithNavController(navController)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
 
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_ios_black)
-            main_text.text=destination.label
+            dataBinding.main_text.text=destination.label
             when (destination.id) {
                 R.id.nav_postulaciones -> {
-                    main_text.hide()
-                    nav_view.show()
-                    main_linear.show()
-                    appBarLayout.hide()
+                    dataBinding.main_text.hide()
+                    dataBinding.nav_view.show()
+                    dataBinding.main_linear.show()
+                    dataBinding.appBarLayout.hide()
                 }
                 R.id.nav_inicio -> {
-                    main_text.hide()
-                    main_linear.show()
-                    nav_view.show()
-                    appBarLayout.show()
+                    dataBinding.main_text.hide()
+                    dataBinding.main_linear.show()
+                    dataBinding.nav_view.show()
+                    dataBinding.appBarLayout.show()
                 }
                 R.id.galleryFragment2->{
                     nav_view.hide()
-                    appBarLayout.hide()
+                    dataBinding.appBarLayout.hide()
                 }
                 R.id.nav_perfil -> {
-                    main_text.hide()
-                    main_linear.show()
-                    appBarLayout.show()
-                    nav_view.show()
+                    dataBinding.main_text.hide()
+                    dataBinding.main_linear.show()
+                    dataBinding.appBarLayout.show()
+                    dataBinding.nav_view.show()
                 }
 
                 R.id.nav_anuncios -> {
-                    main_text.hide()
-                    appBarLayout.hide()
-                    nav_view.show()
-                    main_linear.show()
+                    dataBinding.main_text.hide()
+                    dataBinding.appBarLayout.hide()
+                    dataBinding.nav_view.show()
+                    dataBinding.main_linear.show()
                     cameraViewModel.imageSelect.postValue("")
                 }
 
                 else -> {
-                    nav_view.hide()
-                    appBarLayout.show()
-                    main_linear.hide()
-                    main_text.show()
+                    dataBinding.nav_view.hide()
+                    dataBinding.appBarLayout.show()
+                    dataBinding.main_linear.hide()
+                    dataBinding.main_text.show()
                 }
             }
 
@@ -103,13 +105,13 @@ class MainActivity : BaseActivity() {
     private fun inicializarVariables(){
         viewModel.getUbicacion().observe(this, Observer {
             if(it!=null){
-                main_ubicacion.text = "${it.departamento}-${it.provincia}"
+                dataBinding.main_ubicacion.text = "${it.departamento}-${it.provincia}"
             }else{
                 viewModel.saveUbicacion(UbicacionModel("Puno","Puno",0))
             }
 
         })
-        imageView23.setOnClickListener {
+        dataBinding.imageView23.setOnClickListener {
             try {
                 toast("Cargando..")
                 val newFragment = SelectPlaceDialog()
@@ -122,7 +124,7 @@ class MainActivity : BaseActivity() {
                 Log.e("ilegal nav", e.message!!)
             }
         }
-        main_ubicacion.setOnClickListener {
+        dataBinding.main_ubicacion.setOnClickListener {
             try {
                 toast("Cargando..")
                 val newFragment = SelectPlaceDialog()
@@ -141,13 +143,13 @@ class MainActivity : BaseActivity() {
     private fun verificarAnuncios(){
         val usuario=viewModel.getStaticDataUser()
         if (usuario==null){
-            nav_view.menu.getItem(2).isVisible = false
-            nav_view.menu.getItem(1).isVisible = false
+            dataBinding.nav_view.menu.getItem(2).isVisible = false
+            dataBinding.nav_view.menu.getItem(1).isVisible = false
             //R.id.nav_anuncios
             //R.id.nav_postulaciones
         }else{
-            nav_view.menu.getItem(1).isVisible = true
-            nav_view.menu.getItem(2).isVisible = usuario.ruc != ""
+            dataBinding.nav_view.menu.getItem(1).isVisible = true
+            dataBinding.nav_view.menu.getItem(2).isVisible = usuario.ruc != ""
         }
     }
     //Find Nav controller UP
@@ -155,7 +157,7 @@ class MainActivity : BaseActivity() {
         return navController.navigateUp()
     }
     //Layout get data
-    override fun getLayout(): Int =R.layout.activity_main
+
 
 
 
@@ -168,5 +170,9 @@ class MainActivity : BaseActivity() {
                 permissosVariables = it
             })
         }, 1000L)
+    }
+
+    override fun getLayout(): Int? {
+        return null
     }
 }

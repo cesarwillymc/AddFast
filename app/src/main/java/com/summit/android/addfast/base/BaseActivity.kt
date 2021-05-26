@@ -16,17 +16,32 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
 import com.summit.android.addfast.R
 import java.io.File
+import androidx.databinding.DataBindingUtil
 
-abstract  class BaseActivity : AppCompatActivity(){
+
+
+
+abstract  class BaseActivity<B: ViewDataBinding>: AppCompatActivity(){
+    protected lateinit var dataBinding: B
+    protected open fun bindView(layoutId: Int) {
+        dataBinding = DataBindingUtil.setContentView(this, layoutId)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+        if(getLayout()!=null){
+            setContentView(getLayout()!!)
+        }
+
        // window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(getLayout())
     }
+    @LayoutRes
+    protected abstract fun getLayout():Int?
     fun hideKeyboard(){
         try{
             val view = this.currentFocus
@@ -43,8 +58,6 @@ abstract  class BaseActivity : AppCompatActivity(){
     fun View.hide(){
         visibility=View.GONE
     }
-    @LayoutRes
-    protected abstract fun getLayout():Int
     fun View.snackbar(message:String){
         Snackbar.make(this,message, Snackbar.LENGTH_LONG).also { snackbar ->
             snackbar.setAction("Ok"){

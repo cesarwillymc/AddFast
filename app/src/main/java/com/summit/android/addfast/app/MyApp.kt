@@ -6,35 +6,18 @@ import com.bugsnag.android.Bugsnag
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
-import com.huawei.agconnect.config.AGConnectServicesConfig
-import com.huawei.agconnect.config.LazyInputStream
-import com.summit.android.addfast.R
 import com.summit.android.addfast.repo.conexion.AdminRepository
 import com.summit.android.addfast.repo.conexion.AuthRepository
 import com.summit.android.addfast.repo.conexion.MainRepository
 import com.summit.android.addfast.repo.local.AppDB
 import com.summit.android.addfast.ui.auth.AuthViewModel
-import com.summit.android.addfast.ui.auth.AuthViewModelFactory
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.ui.main.admin.AdminViewModel
-import com.summit.android.addfast.ui.main.admin.AdminViewModelFactory
-import io.agora.rtc.RtcEngine
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.androidXModule
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.provider
-import org.kodein.di.generic.singleton
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.viewmodel.compat.ViewModelCompat
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import java.io.IOException
-import java.io.InputStream
 
 
 class MyApp : Application() {

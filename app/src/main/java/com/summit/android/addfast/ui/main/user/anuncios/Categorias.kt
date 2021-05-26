@@ -4,16 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.ViewCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Anuncios
@@ -22,22 +16,13 @@ import com.summit.android.addfast.repo.model.ListaAnuncios
 import com.summit.android.addfast.repo.model.Promociones
 import com.summit.android.addfast.repo.model.departamento.UbicacionModel
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.ui.main.user.carrusel.SlideAdapter
 import com.summit.android.addfast.utils.autoScroll
-import com.summit.android.addfast.utils.lifeData.RsrProgress
 import com.summit.android.addfast.utils.lifeData.Status
-import com.xwray.groupie.ExpandableGroup
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section
 import kotlinx.android.synthetic.main.fragment_anuncios.*
-import kotlinx.coroutines.flow.cancellable
-import kotlinx.coroutines.flow.collect
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

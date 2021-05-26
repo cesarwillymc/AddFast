@@ -1,6 +1,5 @@
 package com.summit.android.addfast.ui.main.admin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -15,17 +14,10 @@ import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseActivity
 import com.summit.android.addfast.repo.model.departamento.UbicacionModel
 import com.summit.android.addfast.ui.camera.CameraViewModel
-import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.ui.main.user.SelectPlaceDialog
 import com.summit.android.addfast.utils.verifyPermission
 import kotlinx.android.synthetic.main.activity_admin.*
 import kotlinx.android.synthetic.main.activity_admin.imageView23
-import kotlinx.android.synthetic.main.activity_main.*
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AdminActivity : BaseActivity() {

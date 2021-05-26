@@ -2,12 +2,8 @@ package com.summit.android.addfast.ui.main.user.postulaciones
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.R
@@ -15,12 +11,8 @@ import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Postulacion
 import com.summit.android.addfast.ui.camera.TipeSearchGalleryAdapter
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
 import com.summit.android.addfast.utils.lifeData.Status
 import kotlinx.android.synthetic.main.fragment_postulaciones.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

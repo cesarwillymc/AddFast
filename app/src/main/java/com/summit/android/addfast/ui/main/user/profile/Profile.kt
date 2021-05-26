@@ -1,43 +1,23 @@
 package com.summit.android.addfast.ui.main.user.profile
 
-import android.Manifest
-import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.content.IntentSender
-import android.location.Address
-import android.location.Geocoder
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.tasks.Task
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Usuario
 import com.summit.android.addfast.ui.auth.AuthActivity
-import com.summit.android.addfast.ui.auth.fragment.InicioFragmentDirections
 import com.summit.android.addfast.ui.main.MainActivity
 import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
-import com.summit.android.addfast.utils.lifeData.RsrProgress
-import com.summit.android.addfast.utils.lifeData.Status
 import com.summit.android.addfast.utils.setOnSingleClickListener
 import com.summit.android.addfast.utils.system.SharedPreferencsManager.Companion.clearAllManagerShared
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
-import org.kodein.di.generic.instance
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
-import java.io.File
 
 class Profile : BaseFragment() {
 
