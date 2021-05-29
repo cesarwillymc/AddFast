@@ -109,7 +109,7 @@ class AdminRepository(
             continuation.resumeWithException(it)
         }
     }
-    suspend fun uploadFotoPromocion(imagen: File): Flow<RsrProgress<String>> = callbackFlow {
+    suspend fun uploadFotoPromocion(imagen: File) =callbackFlow<RsrProgress<String>> {
         val path = "images/${imagen.name}"
         val storageReference = storage.getReference(path)
         //,attribute,100L

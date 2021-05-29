@@ -111,7 +111,7 @@ class AuthRepository(
             continuation.resumeWithException(it)
         }
     }
-    suspend fun uploadImageProfile(imagen: File): Flow<RsrProgress<String>> = callbackFlow{
+    suspend fun uploadImageProfile(imagen: File)= callbackFlow<RsrProgress<String>>{
 
         val path="images/${imagen.name}"
         val storageReference = storage.getReference(path)

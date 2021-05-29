@@ -110,7 +110,7 @@ class MainRepository(
         return Unit
     }
 
-    suspend fun uploadFotoAnuncio(imagen: File): Flow<RsrProgress<String>> = callbackFlow {
+    suspend fun uploadFotoAnuncio(imagen: File) = callbackFlow<RsrProgress<String>>  {
         val path = "images/${imagen.name}"
         val storageReference = storage.getReference(path)
         //,attribute,100L
@@ -156,7 +156,7 @@ class MainRepository(
         return Unit
     }
 
-    suspend fun uploadCurriculumPostulacion(cv: File): Flow<RsrProgress<String>> = callbackFlow {
+    suspend fun uploadCurriculumPostulacion(cv: File) = callbackFlow<RsrProgress<String>> {
         val path = "curriculum/${cv.name}"
         val storageReference = storage.getReference(path)
         val uploadTask = storageReference.putFile(Uri.fromFile(cv))

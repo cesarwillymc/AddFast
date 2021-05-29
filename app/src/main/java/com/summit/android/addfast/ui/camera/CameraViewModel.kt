@@ -17,7 +17,7 @@ import kotlin.Comparator
 
 class CameraViewModel : ViewModel(){
 
-    fun getImageFile(context: Context, path:String): LiveData<RsrProgress<String>> = liveData{
+    fun getImageFile(context: Context, path:String) = liveData<RsrProgress<String>>{
         emit(RsrProgress.loading(0.0))
         try {
             val response = ConvertImage(
