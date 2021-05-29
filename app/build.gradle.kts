@@ -1,8 +1,10 @@
+import dependency.Dependencies
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("com.huawei.agconnect" ) // HUAWEI agconnect Gradle plugin
-    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
     id ("kotlin-kapt")
     id ("androidx.navigation.safeargs.kotlin")
     id ("com.google.gms.google-services")
@@ -60,64 +62,67 @@ ext {
  */
 dependencies {
     implementation(fileTree("libs"){include(listOf("*.aar"))})
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.4.32")
-    implementation ("androidx.core:core-ktx:1.3.2")
-    implementation ("androidx.appcompat:appcompat:1.2.0")
-    // Koin AndroidX ViewModel features
-    implementation ("org.koin:koin-androidx-viewmodel:2.2.2")
-// Koin AndroidX Fragment features
-    implementation ("org.koin:koin-androidx-fragment:2.2.2")
-    //Anko
-    implementation ("org.jetbrains.anko:anko:0.10.8")
-    implementation ("androidx.constraintlayout:constraintlayout:2.0.2")
-    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
+    //Kotlin
+    implementation (Dependencies.KOTLIN)
+    implementation (Dependencies.COREKTX)
 
     //Android
-    implementation ("androidx.cardview:cardview:1.0.0")
-    implementation ("androidx.palette:palette:1.0.0")
-    implementation ("androidx.recyclerview:recyclerview:1.0.0")
-    implementation ("com.google.android.material:material:1.3.0-alpha04")
+    implementation (Dependencies.APPCOMPACT)
+    implementation (Dependencies.CONSTRAINT)
+    implementation (Dependencies.SUPPORTLEGACY)
+    implementation (Dependencies.CARDVIEW)
+    implementation (Dependencies.RECYCLERVIEW)
+    implementation (Dependencies.MATERIALDESING)
 
-    implementation ("com.bugsnag:bugsnag-android:5.+")
+    //DependencyInjection
+    implementation (Dependencies.KOINVM)
+    implementation (Dependencies.KOINFRAGMENT)
+
+    //DB
+
+
+    //UnitTest
+
+    //Format Hour
+    implementation (Dependencies.PRETTYTIME)
+    //Busgnack
+    implementation (Dependencies.BUGSNAG)
+
+
     //Shimer
-    implementation ("com.facebook.shimmer:shimmer:0.5.0")
+    implementation (Dependencies.SHIMMER)
 
     //Karumi Permission
-    implementation ("com.karumi:dexter:6.2.1")
+    implementation (Dependencies.KARUMI)
 
-    //Life
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-beta01")
-    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.5")
+    //LiveDta
 
+    implementation (Dependencies.LIVEDATA)
+    implementation (Dependencies.COROUTINESANDROID)
+    implementation (Dependencies.LIFECYCLEKTX)
 
-
-
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01")
     // Preferences DataStore
-    implementation ("androidx.datastore:datastore-preferences:1.0.0-alpha02")
-    implementation ("org.ocpsoft.prettytime:prettytime:4.0.1.Final")
-    // Proto DataStore
-    implementation ("androidx.datastore:datastore-core:1.0.0-alpha02")
+    
+    implementation (Dependencies.DATASTORE)
+    implementation (Dependencies.DATASTORECORE)
 
 
     //Glide data
     //glide
     implementation ("com.github.bumptech.glide:glide:4.11.0")
-    implementation ("com.google.android.gms:play-services-maps:17.0.0")
+    implementation ("com.google.android.gms:play-services-maps:17.0.1")
     kapt ("com.github.bumptech.glide:compiler:4.9.0")
     implementation ("jp.wasabeef:glide-transformations:4.3.0")
     // If you want to use the GPU Filters
     implementation ("jp.co.cyberagent.android:gpuimage:2.1.0")
-    implementation ("com.google.firebase:firebase-firestore:22.0.0")
+    implementation ("com.google.firebase:firebase-firestore:23.0.0")
     implementation ("com.google.firebase:firebase-storage:20.0.0")
-    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
+
 
 
     //Navigation components
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.3.1")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.3.1")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.3.5")
 
     //Kodein
     implementation ("org.kodein.di:kodein-di-generic-jvm:6.3.2")
@@ -128,12 +133,12 @@ dependencies {
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.3.0")
     testImplementation ("junit:junit:4.+")
 
-    implementation ("androidx.room:room-runtime:2.2.5")
-    kapt ("androidx.room:room-compiler:2.2.5")
+    implementation ("androidx.room:room-runtime:2.3.0")
+    kapt ("androidx.room:room-compiler:2.3.0")
     // For Kotlin use kapt instead of annotationProcessor
 
     // optional - Kotlin Extensions and Coroutines support for Room
-    implementation ("androidx.room:room-ktx:2.2.5")
+    implementation ("androidx.room:room-ktx:2.3.0")
 
     //Huawei Messaging
     implementation ("com.huawei.hms:hianalytics:5.0.3.300")
@@ -159,17 +164,17 @@ dependencies {
     // implementation group: "com.huawei.multimedia", name: "camerakit", version: "1.1.3", ext: "aar"
     implementation ("com.beust:klaxon:5.0.1")
     //Camera x
-    implementation ("androidx.camera:camera-core:1.0.0-beta07")
+    implementation ("androidx.camera:camera-core:1.1.0-alpha04")
     //CIRCLE
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     // CameraX Camera2 extensions
-    implementation ("androidx.camera:camera-camera2:1.0.0-beta07")
+    implementation ("androidx.camera:camera-camera2:1.1.0-alpha04")
 
     // CameraX Lifecycle library
-    implementation( "androidx.camera:camera-lifecycle:1.0.0-beta07")
+    implementation( "androidx.camera:camera-lifecycle:1.1.0-alpha04")
 
     // CameraX View class
-    implementation ("androidx.camera:camera-view:1.0.0-alpha14")
+    implementation ("androidx.camera:camera-view:1.0.0-alpha24")
 
 
     //Agora
@@ -177,10 +182,10 @@ dependencies {
 
 
     //retrofit
-    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.6.0")
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.7.2")
     //Parseo de JSON
-    implementation ("com.squareup.retrofit2:converter-gson:2.6.0")
-    implementation ("com.squareup.retrofit2:converter-scalars:2.6.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
 
     //Swipe Decorator
     implementation ("it.xabaras.android:recyclerview-swipedecorator:1.2.3")
@@ -201,6 +206,6 @@ dependencies {
 
 
     //Reactive
-    implementation ("io.reactivex.rxjava2:rxjava:2.1.14")
-    implementation( "io.reactivex.rxjava2:rxandroid:2.0.2")
+    implementation ("io.reactivex.rxjava2:rxjava:2.2.10")
+    implementation( "io.reactivex.rxjava2:rxandroid:2.1.1")
 }

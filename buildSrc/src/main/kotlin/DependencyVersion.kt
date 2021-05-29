@@ -1,0 +1,17 @@
+object DependencyVersion {
+    const val COREKTX="1.5.0"
+    const val APPCOMPACT="1.3.0"
+    const val KOIN="2.2.2"
+    const val CONSTRAINT="2.0.4"
+    const val SUPPORTLEGACY="1.0.0"
+    const val CARDVIEW="1.0.0"
+    const val RECYCLERVIEW="1.2.0"
+    const val MATERIALDESING="1.4.0-beta01"
+    const val SHIMMER="0.5.0"
+    const val KARUMI="6.2.1"
+    const val PRETTYTIME="4.0.4.Final"
+    const val LIVEDATA="2.4.0-alpha01"
+    const val COROUTINESANDROID="1.4.1"
+    const val LIFECYCLEKTX="2.4.0-alpha01"
+    const val DATASTORE="1.0.0-beta01"
+}
