@@ -62,16 +62,10 @@ class SpinnerAnunciosAdapter(private val context:Context): BaseAdapter() {
     }
 
     class ViewHolder(view:View){
-        lateinit var texto:TextView
-        init {
-            texto= view.findViewById<TextView>(R.id.spinnerValue)
-        }
+        var texto:TextView = view.findViewById<TextView>(R.id.spinnerValue)
     }
     class DropDownViewHolder(view:View){
-        lateinit var textoD:TextView
-        init {
-            textoD= view.findViewById<TextView>(R.id.spinnerValueDrop)
-        }
+        var textoD:TextView = view.findViewById<TextView>(R.id.spinnerValueDrop)
     }
     override fun getCount(): Int = if (lisProducts!=null) lisProducts!!.size else 0
 

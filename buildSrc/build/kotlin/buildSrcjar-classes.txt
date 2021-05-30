@@ -1,1 +1,1 @@
-D:\Proyects\AddFast\buildSrc\build\classes\kotlin\main\ClasspathVersion.class;D:\Proyects\AddFast\buildSrc\build\classes\kotlin\main\DependencyVersion.class
+D:\Proyects\AddFast\buildSrc\build\classes\kotlin\main\ClasspathVersion.class;D:\Proyects\AddFast\buildSrc\build\classes\kotlin\main\DependencyVersion.class;D:\Proyects\AddFast\buildSrc\build\classes\kotlin\main\dependency\Dependencies.class

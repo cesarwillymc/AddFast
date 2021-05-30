@@ -1,25 +1,22 @@
 package com.summit.android.addfast.repo.conexion
 
 import android.net.Uri
-import android.util.Log
 import com.beust.klaxon.Klaxon
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
 import com.summit.android.addfast.repo.local.AppDB
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.tasks.await
 import com.summit.android.addfast.repo.model.*
 import com.summit.android.addfast.repo.model.departamento.ProvinciaItem
 import com.summit.android.addfast.repo.model.departamento.UbicacionModel
 import com.summit.android.addfast.utils.Constants
 import com.summit.android.addfast.utils.lifeData.RsrProgress
+import kotlinx.coroutines.tasks.await
 import java.io.File
+import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -50,7 +47,7 @@ class AdminRepository(
     //FINALIZADO
     suspend fun cambiarEstadoAnuncio(id: String,message:String): Unit {
         val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
-         firestore.collection(ubicacion.departamento.trim().toLowerCase()).document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id).update("estado",message).await()
+         firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT)).document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id).update("estado",message).await()
         return Unit
     }
     suspend fun disableAccount( id:String){
