@@ -1,46 +1,56 @@
 import dependency.Dependencies
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("com.huawei.agconnect") // HUAWEI agconnect Gradle plugin
-    id("kotlin-parcelize")
-    id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
-    id("com.google.gms.google-services")
-    id("com.bugsnag.android.gradle")
+    id(BuildPlugins.ANDROID_APPLICATION)
+    id(BuildPlugins.KOTLIN_ANDROID)
+    id(BuildPlugins.HUAWEI) // HUAWEI agconnect Gradle plugin
+    id(BuildPlugins.KOTLIN_PARCELIZE)
+    id(BuildPlugins.KOTLIN_KAPT)
+    id(BuildPlugins.NAVIGATION_SAFE_ARGS)
+    id(BuildPlugins.GOOGLE_SERVICE)
+    id(BuildPlugins.BUGSNAG)
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(BuildAndroidConfig.COMPILE_SDK_VERSION)
 
     defaultConfig {
-        applicationId = "com.summit.android.addfast"
-        minSdkVersion(23)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "0.001"
-        resConfigs("en", "zh-rCN")
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    lintOptions {
-
-        isCheckReleaseBuilds = false
-
+        applicationId = BuildAndroidConfig.APPLICATION_ID
+        minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
+        targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
+        versionCode = BuildAndroidConfig.VERSION_CODE
+        versionName = BuildAndroidConfig.VERSION_NAME
+        resConfigs(BuildAndroidConfig.RES_LANGUAGES)
+        testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            isShrinkResources = false
+        getByName(BuildType.RELEASE) {
+            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+            isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
+            isShrinkResources = BuildTypeRelease.isShinkResource
+
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-        getByName("debug") {
-            isDebuggable = true
+        getByName(BuildType.DEBUG) {
+            applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
+            versionNameSuffix = BuildTypeDebug.versionNameSuffix
+            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+            isTestCoverageEnabled = BuildTypeDebug.isTestCoverageEnabled
         }
 
     }
+    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
+    productFlavors {
+        ProductFlavorDevelop.appCreate(this)
+        ProductFlavorQA.appCreate(this)
+        ProductFlavorProduction.appCreate(this)
+    }
 
+
+    buildFeatures {
+        dataBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

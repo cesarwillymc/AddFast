@@ -6,6 +6,4 @@ object ClasspathVersion {
     const val versionGoogleService="4.3.8"
     const val versionHuaweiService="1.4.1.300"
     const val versionKoin="2.2.2"
-
-
 }
