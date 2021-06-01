@@ -1,6 +1,8 @@
 buildscript {
+
     repositories {
         google()
+        mavenCentral()
         jcenter()
         maven(url = "https://developer.huawei.com/repo/") // HUAWEI Maven repository
     }
@@ -20,9 +22,13 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
         maven(url = "https://jitpack.io")
-        maven(url = "https://developer.huawei.com/repo/") // HUAWEI Maven repository
+        maven(url = "https://developer.huawei.com/repo/") // HUAWEI Maven r
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        maven("https://plugins.gradle.org/m2/")
+        maven("https://ci.android.com/builds/submitted/5837096/androidx_snapshot/latest/repository")// epository
     }
 }
 

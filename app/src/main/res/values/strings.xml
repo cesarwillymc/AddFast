@@ -5,9 +5,13 @@
     <string name="as_ciate_con">Asóciate con</string>
     <string name="nameApp">AddFast</string>
     <string name="complemento2">Y vive la mejor experiencia.</string>
-    <string name="desc_dalo_register">tecnológica que  ayuda a buscar ofertas de trabajos, lugares en alquiler y mucho mas. </string>
+    <string name="desc_dalo_register">tecnológica que ayuda a buscar ofertas de trabajos, lugares en alquiler y mucho
+        mas.
+    </string>
     <string name="comienza">Comienza.</string>
-    <string name="desc_condiciones">Al hacer clic en Enviar, aceptas los Términos y condiciones de AddFast y reconoces que leíste la Política de privacidad.</string>
+    <string name="desc_condiciones">Al hacer clic en Enviar, aceptas los Términos y condiciones de AddFast y reconoces
+        que leíste la Política de privacidad.
+    </string>
 
 
     <string name="capture_button_alt">Capture</string>
@@ -36,4 +40,6 @@
     <string name="twodecimalwithS">S/. %.1f0"</string>
     <string name="defaultUbicacion">Sin Ubicación</string>
     <string name="google_maps_key">AIzaSyATz3u8hZqJTY6ibagqBNKaSpsgdMnwjtA</string>
+    <string name="title_commons">Commons</string>
+    <string name="title_ui">ui</string>
 </resources>
