@@ -18,6 +18,17 @@
             <option value="$PROJECT_DIR$/commons" />
             <option value="$PROJECT_DIR$/commons/ui" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/advertisements" />
+            <option value="$PROJECT_DIR$/feature/authentification" />
+            <option value="$PROJECT_DIR$/feature/camerax" />
+            <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/offert" />
+            <option value="$PROJECT_DIR$/feature/postulate" />
+            <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature/report" />
+            <option value="$PROJECT_DIR$/feature/ubication" />
+            <option value="$PROJECT_DIR$/home" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

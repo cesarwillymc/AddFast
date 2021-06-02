@@ -44,4 +44,11 @@
     <string name="title_ui">ui</string>
     <string name="title_authentification">Authtentification</string>
     <string name="title_home">Home</string>
+    <string name="title_advertisements">Advertisements</string>
+    <string name="title_camerax">Camerax</string>
+    <string name="title_offert">Offert</string>
+    <string name="title_postulate">Postulate</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_report">Report</string>
+    <string name="title_ubication">Ubication</string>
 </resources>

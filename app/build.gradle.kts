@@ -64,7 +64,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-    dynamicFeatures = mutableSetOf(":authentification", ":authentification", ":home")
+    dynamicFeatures = mutableSetOf(":authentification", ":authentification", ":home", ":feature:advertisements",
+        ":feature:authentification", ":feature:camerax", ":feature:home", ":feature:offert", ":feature:postulate", ":feature:profile",
+        ":feature:report", ":feature:ubication"
+    )
 
 }
 
