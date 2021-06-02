@@ -1,7 +1,6 @@
 package com.summit.android.addfast.repo.model
 
 import android.os.Parcelable
-import com.google.android.gms.maps.model.LatLng
 import com.summit.android.addfast.repo.model.departamento.UbiModel
 import kotlinx.android.parcel.Parcelize
 

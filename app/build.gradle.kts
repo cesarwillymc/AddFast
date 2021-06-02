@@ -3,12 +3,12 @@ import dependency.Dependencies
 plugins {
     id(BuildPlugins.ANDROID_APPLICATION)
     id(BuildPlugins.KOTLIN_ANDROID)
-    id(BuildPlugins.HUAWEI) // HUAWEI agconnect Gradle plugin
-    id(BuildPlugins.KOTLIN_PARCELIZE)
+    id(BuildPlugins.HUAWEI)
     id(BuildPlugins.KOTLIN_KAPT)
     id(BuildPlugins.NAVIGATION_SAFE_ARGS)
     id(BuildPlugins.GOOGLE_SERVICE)
     id(BuildPlugins.BUGSNAG)
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -40,13 +40,18 @@ android {
         }
 
     }
-    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
-    productFlavors {
-        ProductFlavorDevelop.appCreate(this)
-        ProductFlavorQA.appCreate(this)
-        ProductFlavorProduction.appCreate(this)
-    }
 
+    sourceSets {
+        getByName("main") {
+            java.srcDir("src/main/kotlin")
+        }
+        getByName("test") {
+            java.srcDir("src/test/kotlin")
+        }
+        getByName("androidTest") {
+            java.srcDir("src/androidTest/kotlin")
+        }
+    }
 
     buildFeatures {
         dataBinding = true
@@ -59,11 +64,15 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-    dynamicFeatures = mutableSetOf(":commons", ":ui", ":ui")
+    dynamicFeatures = mutableSetOf(":authentification", ":authentification", ":home")
+
 }
 
 dependencies {
-    implementation(fileTree("libs") { include(listOf("*.aar")) })
+    //implementation(fileTree("libs") { include(listOf("*.aar")) })
+    implementation( project(path= ":core"))
+
+    
     //Kotlin
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.COREKTX)
@@ -81,7 +90,7 @@ dependencies {
     implementation(Dependencies.KOINFRAGMENT)
     implementation(Dependencies.KOINGENERIC)
     implementation(Dependencies.KOINGENERICANDROID)
-
+    implementation("org.jetbrains.anko:anko:0.10.8")
     //DB
     implementation(Dependencies.ROOMRUNTIME)
     kapt(Dependencies.ROOMCOMPILER)
@@ -108,11 +117,16 @@ dependencies {
 
 
     // Preferences DataStore
+    implementation("com.google.android.gms:play-services-maps:17.0.0")
+    implementation ("com.google.maps.android:android-maps-utils:2.2.0")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-alpha02")
+    implementation ("com.huawei.hms:maps:5.0.1.300")
+    //Location
+    implementation ("com.huawei.hms:location:5.0.0.302")
+    //implementation(Dependencies.DATASTORE)
+    //implementation(Dependencies.DATASTORECORE)
 
-    implementation(Dependencies.DATASTORE)
-    implementation(Dependencies.DATASTORECORE)
-
-
+    implementation( "androidx.datastore:datastore-core:1.0.0-alpha02")
     //Glide data
 
     implementation(Dependencies.GLIDE)
@@ -127,6 +141,7 @@ dependencies {
 
     implementation(Dependencies.HUAWEIAUTH)
     implementation(Dependencies.HUAWEICORE)
+
     // Firebase
     implementation(Dependencies.FIRESTORE)
     implementation(Dependencies.FIREBASESTORAGE)

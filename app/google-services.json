@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:646108821147:android:6d77302586c46b884e383e",
         "android_client_info": {
-          "package_name": "com.summit.android.addfast"
+          "package_name": "com.summit.android.addfast.debug"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "646108821147-05sm41bhi8uop99r1dnpierv4uu65h99.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.summit.android.addfast",
+            "package_name": "com.summit.android.addfast.debug",
             "certificate_hash": "ad9dfa9e45f8bad0d554b06be3408434f47f555b"
           }
         },

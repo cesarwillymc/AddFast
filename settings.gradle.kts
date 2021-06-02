@@ -1,8 +1,10 @@
-
+include(":home")
+include(":authentification")
+include(":authentification")
 include(
     ":app",
-    ":commons:ui",
-    ":commons:view"
+    ":core",
+    ":commons:ui"
 )
 rootProject.buildFileName = "build.gradle.kts"
 

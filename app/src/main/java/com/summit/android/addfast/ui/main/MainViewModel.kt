@@ -5,7 +5,6 @@ import androidx.datastore.preferences.preferencesKey
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.google.android.gms.maps.model.LatLng
 import com.summit.android.addfast.repo.conexion.MainRepository
 import com.summit.android.addfast.repo.model.*
 import com.summit.android.addfast.repo.model.departamento.ProvinciaItem
@@ -24,6 +23,7 @@ class MainViewModel(private val repo: MainRepository) :ViewModel(){
 
     val getDataPermission = liveData {
         try{
+
             dataStore.data.collect {
                 emit(  it[permission]?:false)
             }
@@ -300,22 +300,5 @@ class MainViewModel(private val repo: MainRepository) :ViewModel(){
 
 
 
-    fun getDirectionsUrl(
-        origin: LatLng,
-        dest: LatLng
-    ): String { // Punto de origen
-        val str_origin = "origin=" + origin.latitude + "," + origin.longitude
-        // punto de destino
-        val str_dest = "destination=" + dest.latitude + "," + dest.longitude
-        // Sensor de modo drive
-        val sensor = "sensor=false"
-        val mode = "mode=driving"
-        // Sensor
-        val parameters = "$str_origin&$str_dest&$sensor&$mode"
-        // Formato de salida
-        val output = "json"
-        // url &key=AIzaSyBXQBe1pHpqQkclaoMEuAnZ6QVFbC860Yo
-        // https://maps.googleapis.com/maps/api/directions/json?origin=-15.837974456285096,-70.02117622643709&destination=-15.837974456285096,-70.02117622643709&sensor=false&mode=driving&key=AIzaSyD7kwgqDzGW8voiXP7gAbxaKnGY_Fr4Cng
-        return "maps/api/directions/$output?$parameters"
-    }
+
 }

@@ -12,8 +12,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.huawei.agconnect.appmessaging.AGConnectAppMessaging
-import com.huawei.hms.aaid.HmsInstanceId
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseActivity
 import com.summit.android.addfast.ui.camera.CameraViewModel
@@ -29,8 +27,6 @@ class AuthActivity :BaseActivity() {
     lateinit var viewModel: CameraViewModel
 
 
-    //Nav controller
-    lateinit var appMessaging: AGConnectAppMessaging
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,24 +73,9 @@ class AuthActivity :BaseActivity() {
                 toast("Necesitas Activar los permisos manualmente")
             }
         }
-        inicializarNotification()
-    }
-    private fun inicializarNotification(){
-        appMessaging=  AGConnectAppMessaging.getInstance()
-        appMessaging.trigger("loginpage")
-        val inst= HmsInstanceId.getInstance(this)
-        val idResult =inst.aaid
-        idResult.addOnSuccessListener {
-            Log.e("TAG", "getAAID success:" + it.id )
-        }.addOnFailureListener {
-            Log.e("TAG", "getAAID error:" + it.message )
-        }
-        appMessaging.addOnClickListener {
-            toast("Mensaje clicleado")
-        }
-        AGConnectAppMessaging.getInstance().setForceFetch()
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }

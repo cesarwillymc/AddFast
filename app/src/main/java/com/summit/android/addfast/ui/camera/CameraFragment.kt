@@ -277,7 +277,6 @@ class CameraFragment : Fragment() {
                     this, cameraSelector, preview, imageCapture, imageAnalyzer)
 
             // Attach the viewfinder's surface provider to preview use case
-            preview?.setSurfaceProvider(viewFinder.createSurfaceProvider())
         } catch (exc: Exception) {
             Log.e(TAG, "Use case binding failed", exc)
         }

@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.gms.maps.model.LatLng
 import com.summit.android.addfast.R
 import com.summit.android.addfast.base.BaseFragment
 import com.summit.android.addfast.repo.model.Anuncios

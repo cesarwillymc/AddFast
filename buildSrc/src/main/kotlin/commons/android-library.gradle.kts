@@ -1,5 +1,3 @@
-
-
 package commons
 
 import BuildAndroidConfig
@@ -8,7 +6,7 @@ import ProductFlavorDevelop
 import ProductFlavorProduction
 import ProductFlavorQA
 import dependency.Dependencies
-import extension.addTestsDependencies
+import extension.implementation
 
 plugins {
     id("com.android.library")
@@ -38,13 +36,13 @@ android {
         dataBinding = true
     }
 
-
-
-    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
-    productFlavors {
-        ProductFlavorDevelop.libraryCreate(this)
-        ProductFlavorQA.libraryCreate(this)
-        ProductFlavorProduction.libraryCreate(this)
+    sourceSets {
+        getByName("main") {
+            java.srcDir("src/main/kotlin")
+        }
+        getByName("test") {
+            java.srcDir("src/test/kotlin")
+        }
     }
 
 
@@ -53,4 +51,8 @@ android {
 
 dependencies {
     implementation(Dependencies.KOTLIN)
+    implementation(Dependencies.KOINVM)
+    implementation(Dependencies.KOINGENERIC)
+    implementation(Dependencies.COROUTINESANDROID)
+    implementation(Dependencies.COROUTINESSERVICES)
 }

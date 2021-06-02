@@ -42,4 +42,6 @@
     <string name="google_maps_key">AIzaSyATz3u8hZqJTY6ibagqBNKaSpsgdMnwjtA</string>
     <string name="title_commons">Commons</string>
     <string name="title_ui">ui</string>
+    <string name="title_authentification">Authtentification</string>
+    <string name="title_home">Home</string>
 </resources>

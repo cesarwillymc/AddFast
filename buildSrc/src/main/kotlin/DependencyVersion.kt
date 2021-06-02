@@ -12,9 +12,9 @@ object DependencyVersion {
     const val KARUMI="6.2.1"
     const val PRETTYTIME="4.0.4.Final"
     const val LIVEDATA="2.4.0-alpha01"
-    const val COROUTINESANDROID="1.1.1"
+    const val COROUTINESANDROID="1.3.9"
     const val LIFECYCLEKTX="2.4.0-alpha01"
-    const val LIFECYCLEEXTENSION="2.2.0"
+    const val LIFECYCLEEXTENSION="1.5.0"
     const val DATASTORE="1.0.0-beta01"
     const val GLIDE="4.11.0"
     const val GLIDECOMPILER="4.9.0"
@@ -36,4 +36,6 @@ object DependencyVersion {
     const val SWIPEDECORATOR="1.2.3"
     const val RXANDROID="2.1.1"
     const val RXJAVA="2.2.10"
+
+    const val COIL = "0.13.0"
 }
