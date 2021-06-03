@@ -1,54 +1,63 @@
 package com.summit.commons.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.lifecycle.ViewModel
+
+abstract class BaseFragment<B : ViewDataBinding, M : ViewModel>(
+    @LayoutRes
+    private val layoutId: Int
+) : Fragment() {
 
 
-abstract class BaseFragment<ViewModel  : BaseViewModel, DB : ViewDataBinding>(@LayoutRes val layout: Int) : Fragment() {
+    protected abstract val viewModel: M
 
-    protected abstract val viewModel: ViewModel
-    open lateinit var binding: DB
-   // lateinit var dataBindingComponent: DataBindingComponent
-    private fun onCreateConfig(inflater: LayoutInflater, container: ViewGroup) {
-        binding = DataBindingUtil.inflate(inflater, layout, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.setVariable(BR.viewModel, viewModel)
-    }
-
-    open fun onCreateConfig() {}
+    lateinit var viewBinding: B
 
 
-    open fun onInject() {}
+    abstract fun onInitDependencyInjection()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    abstract fun onInitDataBinding()
 
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        onCreateConfig(inflater, container!!)
-        onCreateConfig()
-        super.onCreateView(inflater, container, savedInstanceState)
-        return binding.root
+    ): View? {
+        viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        viewBinding.lifecycleOwner = viewLifecycleOwner
+        return viewBinding.root
     }
 
-    open fun refresh() {}
 
-    open fun navigate(action: Int) {
-        view?.let { _view ->
-            Navigation.findNavController(_view).navigate(action)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onInitDependencyInjection()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        onInitDataBinding()
+    }
+
+
+    fun requireCompatActivity(): AppCompatActivity {
+        requireActivity()
+        val activity = requireActivity()
+        if (activity is AppCompatActivity) {
+            return activity
+        } else {
+            throw TypeCastException("Main activity should extend from 'AppCompatActivity'")
         }
     }
 }

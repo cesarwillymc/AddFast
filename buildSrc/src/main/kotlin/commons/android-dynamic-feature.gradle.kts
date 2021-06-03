@@ -8,6 +8,7 @@ import ProductFlavorProduction
 import ProductFlavorQA
 import dependency.Dependencies
 import extension.addTestsDependencies
+import extension.implementation
 
 plugins {
     id("com.android.dynamic-feature")
@@ -42,12 +43,6 @@ android {
     }
 
 
-    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
-    productFlavors {
-        ProductFlavorDevelop.libraryCreate(this)
-        ProductFlavorQA.libraryCreate(this)
-        ProductFlavorProduction.libraryCreate(this)
-    }
 
 
 
@@ -59,7 +54,11 @@ dependencies {
     implementation(project(BuildModules.APP))
     implementation(project(BuildModules.CORE))
     implementation(project(BuildModules.Commons.UI))
-
+    implementation(Dependencies.CONSTRAINT)
+    implementation(Dependencies.KOINVM)
+    implementation(Dependencies.KOINGENERIC)
+    implementation(Dependencies.COROUTINESANDROID)
+    implementation(Dependencies.COROUTINESSERVICES)
  //   testImplementation(project(BuildModules.Libraries.TEST_UTILS))
     //addTestsDependencies()
 }

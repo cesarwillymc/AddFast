@@ -4,14 +4,14 @@ import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.doapps.android.weather.R
 
+import com.summit.commons.ui.R
 
 
 abstract class BaseAdapter<T>(callback: DiffUtil.ItemCallback<T>) : ListAdapter<T, BaseViewHolder<ViewDataBinding>>(callback) {
 
     override fun onBindViewHolder(holder: BaseViewHolder<ViewDataBinding>, position: Int) {
-        (holder as BaseViewHolder<*>).binding.root.setTag(R.string.position, position)
+        (holder as BaseViewHolder<*>).binding.root.setTag(1221321, position)
         bind(holder.binding, position)
     }
 

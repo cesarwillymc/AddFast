@@ -64,18 +64,26 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-    dynamicFeatures = mutableSetOf(":authentification", ":authentification", ":home", ":feature:advertisements",
-        ":feature:authentification", ":feature:camerax", ":feature:home", ":feature:offert", ":feature:postulate", ":feature:profile",
-        ":feature:report", ":feature:ubication"
+    dynamicFeatures = mutableSetOf(
+        ":feature:advertisements",
+        ":feature:authentification",
+        ":feature:camerax",
+        ":feature:home",
+        ":feature:offert",
+        ":feature:postulate",
+        ":feature:profile",
+        ":feature:report",
+        ":feature:ubication",
+        ":feature:navhost"
     )
 
 }
 
 dependencies {
     //implementation(fileTree("libs") { include(listOf("*.aar")) })
-    implementation( project(path= ":core"))
+    implementation(project(path = ":core"))
 
-    
+
     //Kotlin
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.COREKTX)
@@ -121,15 +129,15 @@ dependencies {
 
     // Preferences DataStore
     implementation("com.google.android.gms:play-services-maps:17.0.0")
-    implementation ("com.google.maps.android:android-maps-utils:2.2.0")
+    implementation("com.google.maps.android:android-maps-utils:2.2.0")
     implementation("androidx.datastore:datastore-preferences:1.0.0-alpha02")
-    implementation ("com.huawei.hms:maps:5.0.1.300")
+    implementation("com.huawei.hms:maps:5.0.1.300")
     //Location
-    implementation ("com.huawei.hms:location:5.0.0.302")
+    implementation("com.huawei.hms:location:5.0.0.302")
     //implementation(Dependencies.DATASTORE)
     //implementation(Dependencies.DATASTORECORE)
 
-    implementation( "androidx.datastore:datastore-core:1.0.0-alpha02")
+    implementation("androidx.datastore:datastore-core:1.0.0-alpha02")
     //Glide data
 
     implementation(Dependencies.GLIDE)
