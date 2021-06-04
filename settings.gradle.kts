@@ -1,8 +1,8 @@
-
 include(
     ":app",
     ":core",
     ":commons:ui",
+    ":feature:home",
     ":feature:navhost"
 )
 /*
@@ -11,7 +11,7 @@ include(
     ":feature:advertisements",
     ":feature:authentification",
     ":feature:camerax",
-    ":feature:home",
+
     ":feature:offert",
     ":feature:postulate",
     ":feature:profile",

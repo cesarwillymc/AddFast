@@ -2,14 +2,9 @@
 package commons
 
 import BuildAndroidConfig
-import BuildProductDimensions
-import ProductFlavorDevelop
-import ProductFlavorProduction
-import ProductFlavorQA
 import dependency.Dependencies
-import extension.addTestsDependencies
+import extension.kapt
 import extension.implementation
-import gradle.kotlin.dsl.accessors._bd5d340d956819462ab86b7cd6ba2c5e.kapt
 
 plugins {
     id("com.android.dynamic-feature")
@@ -42,8 +37,24 @@ android {
     dataBinding {
         isEnabled = true
     }
+    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
+    productFlavors {
+        ProductFlavorDevelop.libraryCreate(this)
+        ProductFlavorQA.libraryCreate(this)
+        ProductFlavorProduction.libraryCreate(this)
+    }
 
-
+    sourceSets {
+        getByName("main") {
+            java.srcDir("src/main/kotlin")
+        }
+        getByName("test") {
+            java.srcDir("src/test/kotlin")
+        }
+        getByName("androidTest") {
+            java.srcDir("src/androidTest/kotlin")
+        }
+    }
 
 
 
@@ -55,14 +66,24 @@ dependencies {
     implementation(project(BuildModules.APP))
     implementation(project(BuildModules.CORE))
     implementation(project(BuildModules.Commons.UI))
-    implementation(Dependencies.CONSTRAINT)
-    implementation(Dependencies.MATERIALDESING)
-    implementation(Dependencies.NAVIGATIONFRAGMENT)
-    implementation(Dependencies.NAVIGATIONUI)
-    implementation(Dependencies.DAGGER)
-    kapt(Dependencies.DAGGERCOMPILER)
-    implementation(Dependencies.COROUTINESANDROID)
+
+    implementation(Dependencies.KOTLIN)
+    implementation(Dependencies.APPCOMPACT)
     implementation(Dependencies.COROUTINESSERVICES)
+    implementation(Dependencies.COROUTINESANDROID)
+    implementation(Dependencies.NAVIGATIONUI)
+    implementation(Dependencies.NAVIGATIONFRAGMENT)
+    implementation(Dependencies.LIFECYCLEKTX)
+    implementation(Dependencies.LIVEDATA)
+    implementation(Dependencies.COREKTX)
+    implementation(Dependencies.FRAGMENT_KTX)
+    implementation(Dependencies.CONSTRAINT)
+    implementation(Dependencies.DAGGER)
+
+    kapt(Dependencies.DAGGERCOMPILER)
+    kapt(Dependencies.DATABINDING)
+    kapt(Dependencies.ROOMCOMPILER)
+
  //   testImplementation(project(BuildModules.Libraries.TEST_UTILS))
     //addTestsDependencies()
 }

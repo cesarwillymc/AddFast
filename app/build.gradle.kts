@@ -40,7 +40,12 @@ android {
         }
 
     }
-
+    flavorDimensions(BuildProductDimensions.ENVIRONMENT)
+    productFlavors {
+        ProductFlavorDevelop.libraryCreate(this)
+        ProductFlavorQA.libraryCreate(this)
+        ProductFlavorProduction.libraryCreate(this)
+    }
     sourceSets {
         getByName("main") {
             java.srcDir("src/main/kotlin")
@@ -66,14 +71,14 @@ android {
     }
     dynamicFeatures = mutableSetOf(
 
-
-        ":feature:navhost"
+        BuildModules.Features.NAVHOST
     )
     /*
      ":feature:ubication",
         ":feature:advertisements",
         ":feature:authentification",
         ":feature:camerax",
+,
         ":feature:home",
         ":feature:offert",
         ":feature:postulate",

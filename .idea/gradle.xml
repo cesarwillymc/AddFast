@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/commons/ui" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/navhost" />
           </set>
         </option>

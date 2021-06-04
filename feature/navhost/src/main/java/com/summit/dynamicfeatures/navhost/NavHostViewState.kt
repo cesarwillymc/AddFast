@@ -1,6 +1,6 @@
 
 
-package com.summit.navhost
+package com.summit.dynamicfeatures.navhost
 
 import com.summit.commons.ui.base.BaseViewState
 

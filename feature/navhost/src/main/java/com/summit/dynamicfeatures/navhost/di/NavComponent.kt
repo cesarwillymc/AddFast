@@ -1,9 +1,9 @@
 
-package com.summit.navhost.di
+package com.summit.dynamicfeatures.navhost.di
 
 import com.summit.core.di.CoreComponent
 import com.summit.core.di.scope.FeatureScope
-import com.summit.navhost.nav.NavFragment
+import com.summit.dynamicfeatures.navhost.nav.NavFragment
 import dagger.Component
 
 

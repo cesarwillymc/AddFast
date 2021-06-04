@@ -2,12 +2,15 @@ package com.summit.commons.ui.binding
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuCompat
 import androidx.databinding.BindingAdapter
+import coil.load
 import com.summit.commons.ui.R
 import com.summit.commons.ui.extension.hide
 import com.summit.commons.ui.extension.show
@@ -44,6 +47,8 @@ var View.invisible
         visibility = if (value) View.INVISIBLE else View.VISIBLE
     }
 
+
+
 /*
 @BindingAdapter("app:setWeatherIcon")
 fun setWeatherIcon(view: ImageView, iconPath: String?) {
@@ -75,7 +80,7 @@ fun setErrorText(view: TextView, viewState: BaseViewState?,) {
         view.text = ""
 }
  */
-/*
+
 @BindingAdapter("imageUrl", "imagePlaceholder", requireAll = false)
 fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
     load(url) {
@@ -92,4 +97,4 @@ fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
     }
 }
 
- */
+

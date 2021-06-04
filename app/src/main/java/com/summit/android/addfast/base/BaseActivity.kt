@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.base
 
 import android.app.Activity
@@ -95,3 +96,4 @@ abstract  class BaseActivity : AppCompatActivity(){
     }
 
 }
+ */

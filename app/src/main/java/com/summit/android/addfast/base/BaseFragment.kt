@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.base
 
 import android.content.Context
@@ -92,3 +93,4 @@ abstract class BaseFragment : Fragment(){
     @LayoutRes
     protected abstract fun getLayout():Int
 }
+ */

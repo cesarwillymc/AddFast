@@ -2,18 +2,16 @@ package com.summit.android.addfast.ui
 
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.summit.android.addfast.R
-import com.summit.android.addfast.base.BaseActivity
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
+        setContentView(R.layout.activity_splash)
     }
 
 
-    override fun getLayout()= R.layout.activity_splash
 }

@@ -1,4 +1,4 @@
-package com.summit.navhost.nav
+package com.summit.dynamicfeatures.navhost.nav
 
 import android.os.Bundle
 import android.view.View
@@ -6,11 +6,11 @@ import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.commons.ui.extension.setupWithNavController
-import com.summit.navhost.NavHostViewModel
-import com.summit.navhost.R
-import com.summit.navhost.databinding.FragmentNavBinding
-import com.summit.navhost.di.DaggerNavComponent
-import com.summit.navhost.di.NavModule
+import com.summit.dynamicfeatures.navhost.NavHostViewModel
+import com.summit.dynamicfeatures.navhost.R
+import com.summit.dynamicfeatures.navhost.databinding.FragmentNavBinding
+import com.summit.dynamicfeatures.navhost.di.DaggerNavComponent
+import com.summit.dynamicfeatures.navhost.di.NavModule
 
 
 class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
@@ -19,7 +19,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
 
     private val navGraphIds = listOf(
-        R.navigation.nav_consumer,
+        R.navigation.nav_inicio_graph,
     )
 
     override fun onInitDependencyInjection() {
@@ -47,7 +47,8 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     private fun setupMenu() {
         viewModel.getUserData.observe(viewLifecycleOwner) {
-            viewModel.getMenuActual(it)
+            viewBinding.navView.menu.clear(); //clear old inflated items.
+            viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
         }
     }
 
