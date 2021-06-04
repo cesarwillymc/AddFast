@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.auth
 
 import androidx.lifecycle.ViewModel
@@ -10,3 +11,4 @@ class AuthViewModelFactory(private val repo:AuthRepository) : ViewModelProvider.
     }
 
 }
+ */

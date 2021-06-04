@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.lifeData
 
 enum class Status {
@@ -5,3 +6,4 @@ enum class Status {
     ERROR,
     LOADING
 }
+ */

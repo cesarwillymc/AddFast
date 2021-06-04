@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.conexion
 
 import android.net.Uri
@@ -152,3 +153,4 @@ class AdminRepository(
         return datos
     }
 }
+ */

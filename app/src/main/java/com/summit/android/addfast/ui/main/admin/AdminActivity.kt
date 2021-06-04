@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin
 
 import androidx.appcompat.app.AppCompatActivity
@@ -158,3 +159,4 @@ class AdminActivity : BaseActivity() {
     }
     override fun getLayout() = R.layout.activity_admin
 }
+ */

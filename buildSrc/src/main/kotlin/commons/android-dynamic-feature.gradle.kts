@@ -9,6 +9,7 @@ import ProductFlavorQA
 import dependency.Dependencies
 import extension.addTestsDependencies
 import extension.implementation
+import gradle.kotlin.dsl.accessors._bd5d340d956819462ab86b7cd6ba2c5e.kapt
 
 plugins {
     id("com.android.dynamic-feature")
@@ -55,8 +56,11 @@ dependencies {
     implementation(project(BuildModules.CORE))
     implementation(project(BuildModules.Commons.UI))
     implementation(Dependencies.CONSTRAINT)
-    implementation(Dependencies.KOINVM)
-    implementation(Dependencies.KOINGENERIC)
+    implementation(Dependencies.MATERIALDESING)
+    implementation(Dependencies.NAVIGATIONFRAGMENT)
+    implementation(Dependencies.NAVIGATIONUI)
+    implementation(Dependencies.DAGGER)
+    kapt(Dependencies.DAGGERCOMPILER)
     implementation(Dependencies.COROUTINESANDROID)
     implementation(Dependencies.COROUTINESSERVICES)
  //   testImplementation(project(BuildModules.Libraries.TEST_UTILS))

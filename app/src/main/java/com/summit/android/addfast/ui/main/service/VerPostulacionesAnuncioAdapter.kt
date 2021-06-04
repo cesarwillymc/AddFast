@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.service
 
 import android.view.LayoutInflater
@@ -71,3 +72,4 @@ class VerPostulacionesAnuncioAdapter(private val listener: Listener): RecyclerVi
     }
 
 }
+ */

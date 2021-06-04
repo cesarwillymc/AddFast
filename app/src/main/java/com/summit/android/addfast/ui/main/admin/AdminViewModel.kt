@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin
 
 import android.util.Log
@@ -191,3 +192,4 @@ class AdminViewModel(private val repo: AdminRepository) :ViewModel(){
         }
     }
 }
+ */

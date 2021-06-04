@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 data class SignIn(
@@ -7,3 +8,5 @@ data class SignIn(
      val codeRecibe:String
 
 )
+
+ */

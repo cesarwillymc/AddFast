@@ -35,7 +35,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.main.admin.AdminActivity"/>
 
         <meta-data
             android:name="com.bugsnag.android.API_KEY"
@@ -51,8 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.auth.AuthActivity"/>
-        <activity android:name=".ui.main.MainActivity"/>
     </application>
 
 </manifest>

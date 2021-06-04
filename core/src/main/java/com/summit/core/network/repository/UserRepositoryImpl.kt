@@ -4,6 +4,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.summit.core.db.AppDB
+import com.summit.core.db.dao.UsuarioDao
 import com.summit.core.network.model.Reporte
 import com.summit.core.network.model.Usuario
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -12,7 +13,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 internal class UserRepositoryImpl(
-    private val db: AppDB, private val firestore: FirebaseFirestore,
+    private val db: UsuarioDao, private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage
 ) : UserRepository {
     override suspend fun getUrlDownloadFile(path: String): String = suspendCancellableCoroutine { continuation ->
@@ -23,15 +24,15 @@ internal class UserRepositoryImpl(
         }
     }
 
-    override fun insertUser(usuario: Usuario) = db.usuarioDao.insertUsuario(usuario)
+    override fun insertUser(usuario: Usuario) = db.insertUsuario(usuario)
 
-    override fun updateUser(usuario: Usuario) = db.usuarioDao.updateUsuario(usuario)
+    override fun updateUser(usuario: Usuario) = db.updateUsuario(usuario)
 
-    override fun deleteUser() = db.usuarioDao.deleteUsuario()
+    override fun deleteUser() = db.deleteUsuario()
 
-    override fun getUserStatic() = db.usuarioDao.selectUsuarioStatic()
+    override fun getUserStatic() = db.selectUsuarioStatic()
 
-    override fun getUserTimeReal() = db.usuarioDao.selectUsuario()
+    override fun getUserTimeReal() = db.selectUsuario()
 
     override suspend fun disableAccount(id: String) {
         val result = firestore.collection("users").document(id).update("accountactivate", false).await()

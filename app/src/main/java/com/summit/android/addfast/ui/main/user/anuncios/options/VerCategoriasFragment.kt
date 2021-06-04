@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios.options
 
 import android.content.Intent
@@ -74,3 +75,4 @@ class VerCategoriasFragment : BaseFragment(), KodeinAware,VerCateegoriasAdapter.
     }
 
 }
+ */

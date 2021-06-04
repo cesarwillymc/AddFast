@@ -9,9 +9,9 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
 abstract class BaseFragment<B : ViewDataBinding, M : ViewModel>(
     @LayoutRes
@@ -19,13 +19,14 @@ abstract class BaseFragment<B : ViewDataBinding, M : ViewModel>(
 ) : Fragment() {
 
 
-    protected abstract val viewModel: M
+    @Inject
+    lateinit var viewModel: M
 
     lateinit var viewBinding: B
 
 
-    abstract fun onInitDependencyInjection()
 
+    abstract fun onInitDependencyInjection()
     abstract fun onInitDataBinding()
 
 

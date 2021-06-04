@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.local
 
 import android.content.Context
@@ -34,3 +35,4 @@ abstract class AppDB : RoomDatabase() {
 
     }
 }
+ */

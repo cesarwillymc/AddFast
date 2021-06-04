@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.lifeData
 
 data class RsrProgress<out T>(val status: Status, val progreso:Double?,val data: T?, val exception: Exception?) {
@@ -15,3 +16,4 @@ data class RsrProgress<out T>(val status: Status, val progreso:Double?,val data:
         }
     }
 }
+ */

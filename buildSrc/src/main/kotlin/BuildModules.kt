@@ -23,12 +23,12 @@ object BuildModules {
 
     object Features {
         const val HOME = ":feature:home"
+        const val NAVHOST = ":feature:navhost"
 
     }
 
     object Commons {
         const val UI = ":commons:ui"
-        const val VIEWS = ":commons:view"
     }
 
     object Libraries {

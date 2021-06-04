@@ -3,6 +3,10 @@ include(
     ":app",
     ":core",
     ":commons:ui",
+    ":feature:navhost"
+)
+/*
+
     ":feature:ubication",
     ":feature:advertisements",
     ":feature:authentification",
@@ -12,7 +16,6 @@ include(
     ":feature:postulate",
     ":feature:profile",
     ":feature:report",
-    ":feature:navhost"
-)
+ */
 rootProject.buildFileName = "build.gradle.kts"
 

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios.options
 
 import android.content.Intent
@@ -36,7 +37,7 @@ class VerAnuncioFragment : BaseFragment() {
     val args:VerAnuncioFragmentArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
- 
+
         aumentarVisualizacion()
         loadData()
     }
@@ -117,3 +118,4 @@ class VerAnuncioFragment : BaseFragment() {
     }
 
 }
+ */

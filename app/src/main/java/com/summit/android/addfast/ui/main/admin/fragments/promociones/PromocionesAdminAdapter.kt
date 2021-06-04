@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.promociones
 
 import android.view.LayoutInflater
@@ -81,3 +82,4 @@ class PromocionesAdminAdapter(private val listener: Listener): RecyclerView.Adap
     }
 
 }
+ */

@@ -15,26 +15,8 @@ import com.summit.core.db.migration.MIGRATION_1_2
     exportSchema = BuildConfig.ADDFAST_DATABASE_EXPORT_SCHEMA,
     version = BuildConfig.ADDFAST_DATABASE_VERSION,)
 
-internal abstract class AppDB : RoomDatabase() {
-    abstract val usuarioDao: UsuarioDao
-    abstract val ubicacionModelDao: UbicacionModelDao
+abstract class AppDB : RoomDatabase() {
+    abstract fun usuarioDao(): UsuarioDao
+    abstract fun ubicacionModelDao(): UbicacionModelDao
 
-    internal companion object {
-        @Volatile
-        private var INSTANCE: AppDB? = null
-        private val LOCK = Any()
-        operator fun invoke(context: Context) = INSTANCE ?: synchronized(LOCK) {
-            INSTANCE ?: buildDatabase(context)
-
-        }
-
-        private fun buildDatabase(context: Context) = Room.databaseBuilder(context, AppDB::class.java, BuildConfig.ADDFAST_DATABASE_NAME)
-                .allowMainThreadQueries()
-            .addMigrations(MIGRATION_1_2)
-                .fallbackToDestructiveMigration()
-                .build()
-
-
-
-    }
 }

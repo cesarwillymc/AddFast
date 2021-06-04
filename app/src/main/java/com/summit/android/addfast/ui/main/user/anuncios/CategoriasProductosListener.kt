@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios
 
 import com.summit.android.addfast.repo.model.Anuncios
@@ -8,3 +9,4 @@ interface CategoriasProductosListener {
     fun onClickVerMas(dato: ListaAnuncios, position: Int)
     fun onCLickItem(dato: Anuncios, position: Int)
 }
+ */

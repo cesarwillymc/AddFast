@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.promociones
 
 import android.app.ProgressDialog
@@ -156,3 +157,4 @@ class CrearPromocion : BaseFragment() {
 
     override fun getLayout()= R.layout.fragment_crear_promocion
 }
+ */

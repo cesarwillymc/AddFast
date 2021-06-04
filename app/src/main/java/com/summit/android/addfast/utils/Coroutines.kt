@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.lifeData
 
 import kotlinx.coroutines.CoroutineScope
@@ -15,3 +16,4 @@ object Coroutines{
         }
 
 }
+ */

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model.departamento
 
 data class ProvinciaItem(
@@ -5,3 +6,4 @@ data class ProvinciaItem(
     val id: String,
     val name: String
 )
+ */

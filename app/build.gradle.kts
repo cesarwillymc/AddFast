@@ -1,4 +1,5 @@
 import dependency.Dependencies
+import extension.implementation
 
 plugins {
     id(BuildPlugins.ANDROID_APPLICATION)
@@ -8,7 +9,6 @@ plugins {
     id(BuildPlugins.NAVIGATION_SAFE_ARGS)
     id(BuildPlugins.GOOGLE_SERVICE)
     id(BuildPlugins.BUGSNAG)
-    id("kotlin-android-extensions")
 }
 
 android {
@@ -65,6 +65,12 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     dynamicFeatures = mutableSetOf(
+
+
+        ":feature:navhost"
+    )
+    /*
+     ":feature:ubication",
         ":feature:advertisements",
         ":feature:authentification",
         ":feature:camerax",
@@ -73,9 +79,7 @@ android {
         ":feature:postulate",
         ":feature:profile",
         ":feature:report",
-        ":feature:ubication",
-        ":feature:navhost"
-    )
+     */
 
 }
 
@@ -90,19 +94,21 @@ dependencies {
 
     //Android
     implementation(Dependencies.APPCOMPACT)
-    implementation(Dependencies.CONSTRAINT)
+
+    implementation(Dependencies.MATERIALDESING)
+    //Busgnack
+    implementation(Dependencies.BUGSNAG)
+    /*
+      implementation(Dependencies.CONSTRAINT)
     implementation(Dependencies.SUPPORTLEGACY)
     implementation(Dependencies.CARDVIEW)
     implementation(Dependencies.RECYCLERVIEW)
-    implementation(Dependencies.MATERIALDESING)
+     */
 
     //DependencyInjection
-    implementation(Dependencies.KOINVM)
-    implementation(Dependencies.KOINFRAGMENT)
-    implementation(Dependencies.KOINGENERIC)
-    implementation(Dependencies.KOINGENERICANDROID)
-    implementation("org.jetbrains.anko:anko:0.10.8")
-    //DB
+    implementation(Dependencies.DAGGER)
+    kapt(Dependencies.DAGGERCOMPILER)
+   /* //DB
     implementation(Dependencies.ROOMRUNTIME)
     kapt(Dependencies.ROOMCOMPILER)
     implementation(Dependencies.ROOMKTX)
@@ -110,8 +116,7 @@ dependencies {
 
     //Format Hour
     implementation(Dependencies.PRETTYTIME)
-    //Busgnack
-    implementation(Dependencies.BUGSNAG)
+
 
 
     //Shimer
@@ -143,11 +148,11 @@ dependencies {
     implementation(Dependencies.GLIDE)
     kapt(Dependencies.GLIDECOMPILER)
     implementation(Dependencies.GLIDETRANSFORMATION)
-
+*/
     //Navigation components
     implementation(Dependencies.NAVIGATIONFRAGMENT)
     implementation(Dependencies.NAVIGATIONUI)
-
+/*
     //Huawei
 
     implementation(Dependencies.HUAWEIAUTH)
@@ -188,6 +193,6 @@ dependencies {
     implementation(Dependencies.SWIPEDECORATOR)
     //RX
     implementation(Dependencies.RXANDROID)
-    implementation(Dependencies.RXJAVA)
+    implementation(Dependencies.RXJAVA)*/
 
 }

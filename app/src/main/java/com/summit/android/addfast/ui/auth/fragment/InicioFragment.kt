@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.auth.fragment
 
 import android.content.Intent
@@ -121,3 +122,4 @@ class InicioFragment : BaseFragment() {
 
 
 }
+ */

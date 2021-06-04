@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.auth.fragment
 
 import android.app.AlertDialog
@@ -216,3 +217,4 @@ class RegisterInfoFragment : BaseFragment() {
         })
     }
 }
+ */

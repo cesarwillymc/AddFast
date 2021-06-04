@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_admin_usuarios_graph"
+        android:icon="@drawable/group"
+        android:title="Usuarios"
+        />
+    <item
+        android:id="@+id/nav_admin_anuncios_graph"
+        android:icon="@drawable/suitcase"
+        android:title="Anuncios"
+        />
+    <item
+        android:id="@+id/nav_promocion_graph"
+        android:icon="@drawable/discount"
+        android:title="Promociones"
+        />
+    <item
+        android:id="@+id/nav_admin_perfil_graph"
+        android:icon="@drawable/user"
+        android:title="Perfil"
+        />
+</menu>

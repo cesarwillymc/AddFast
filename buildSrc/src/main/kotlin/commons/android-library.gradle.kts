@@ -51,8 +51,8 @@ android {
 
 dependencies {
     implementation(Dependencies.KOTLIN)
-    implementation(Dependencies.KOINVM)
-    implementation(Dependencies.KOINGENERIC)
+    implementation(Dependencies.DAGGER)
+    kapt(Dependencies.DAGGERCOMPILER)
     implementation(Dependencies.COROUTINESANDROID)
     implementation(Dependencies.COROUTINESSERVICES)
 }

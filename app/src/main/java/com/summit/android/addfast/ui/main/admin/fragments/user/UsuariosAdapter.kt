@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.user
 
 import android.os.Handler
@@ -113,3 +114,4 @@ class UsuariosAdapter(private val listener: Listener) :
     }
 
 }
+ */

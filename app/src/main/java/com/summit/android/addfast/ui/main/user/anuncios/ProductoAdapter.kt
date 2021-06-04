@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios
 
 import android.util.Log
@@ -37,3 +38,4 @@ class ProductoAdapter   (private val producListener: CategoriasProductosListener
 
 
 }
+ */

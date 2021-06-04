@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.shared
 
 import android.annotation.SuppressLint;
@@ -349,3 +350,4 @@ class FileUtils {
         return "com.google.android.apps.docs.storage" == uri.getAuthority() || "com.google.android.apps.docs.storage.legacy" == uri.getAuthority()
     }
 }
+ */

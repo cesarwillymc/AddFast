@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.summit.core.db.AppDB
+import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.exception.ExceptionGeneral
 import com.summit.core.json.Constants
 import com.summit.core.network.model.Anuncios
@@ -19,19 +20,19 @@ import java.util.*
 
 internal class AdRepositoryImpl(
     private val firestore: FirebaseFirestore,
-    private val db: AppDB,
+    private val db: UbicacionModelDao,
     private val storage: FirebaseStorage
 ) : AdRepository {
 
     override suspend fun getAnuncioId(id: String): Anuncios {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         val dato = firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id).get().await()
         return dato.toObject(Anuncios::class.java)!!
     }
 
     override suspend fun getAllAnunciosByPalabra(palabra: String): List<Anuncios> {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios")
             .whereEqualTo("estado", "PENDIENTE").get().await()
@@ -39,7 +40,7 @@ internal class AdRepositoryImpl(
     }
 
     override suspend fun getAllAnuncios(): List<Anuncios> {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios")
             .whereEqualTo("estado", "PENDIENTE").get().await()
@@ -47,7 +48,7 @@ internal class AdRepositoryImpl(
     }
 
      override suspend fun getAllAnunciosPost(): List<Anuncios> {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios")
             .whereEqualTo("estado", "PUBLICADO").get().await()
@@ -55,7 +56,7 @@ internal class AdRepositoryImpl(
     }
 
     override suspend fun cambiarEstadoAnuncio(id: String, message: String): Unit {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id)
             .update("estado", message).await()
@@ -63,7 +64,7 @@ internal class AdRepositoryImpl(
     }
 
     override suspend fun aumentarVisualizacionesAnuncios(id: String) {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id)
             .update("visualizaciones", FieldValue.increment(1)).await()
@@ -71,7 +72,7 @@ internal class AdRepositoryImpl(
     }
 
     override suspend fun reportarAnuncio(id: String) {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id)
             .update("reporte", FieldValue.increment(1)).await()
@@ -118,7 +119,7 @@ internal class AdRepositoryImpl(
     }
 
     override suspend fun getMisAnuncios(id: String): List<Anuncios> {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         Log.e(
             "getMisAnuncios",
             "${ubicacion.departamento.trim().toLowerCase()}   ${ubicacion.provincia.trim().toLowerCase()}"

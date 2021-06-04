@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.carrusel
 
 import android.util.Log
@@ -75,3 +76,4 @@ class PromocionesAdaper(private val listener: onCLickListenerPromo): RecyclerVie
 
 
 }
+ */

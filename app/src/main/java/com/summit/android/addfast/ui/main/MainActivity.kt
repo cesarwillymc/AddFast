@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main
 
 import android.os.Bundle
@@ -165,3 +166,4 @@ class MainActivity : BaseActivity() {
         }, 1000L)
     }
 }
+ */

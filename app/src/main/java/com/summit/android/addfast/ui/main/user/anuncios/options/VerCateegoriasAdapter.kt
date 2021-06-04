@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios.options
 
 import android.os.Handler
@@ -86,3 +87,4 @@ class VerCateegoriasAdapter(private val listener: Listener): RecyclerView.Adapte
     }
 
 }
+ */

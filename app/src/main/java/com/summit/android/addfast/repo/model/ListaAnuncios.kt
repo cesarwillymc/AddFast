@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 data class ListaAnuncios(
@@ -5,3 +6,4 @@ data class ListaAnuncios(
     var name:String,
     var lista:List<Anuncios>
 )
+ */

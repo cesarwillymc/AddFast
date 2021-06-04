@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.service
 
 import android.content.Intent
@@ -73,3 +74,5 @@ class PreviewPostulacionFragment : BaseFragment() {
     }
 
 }
+
+ */

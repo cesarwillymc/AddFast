@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 import android.os.Parcelable
@@ -22,3 +23,4 @@ data class Anuncios(
         var visualizaciones:Int=0,
         var estado:String="PENDIENTE"
     ):Parcelable
+ */

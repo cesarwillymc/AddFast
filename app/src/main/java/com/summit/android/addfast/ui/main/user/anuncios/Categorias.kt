@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios
 
 import android.os.Bundle
@@ -304,3 +305,5 @@ class Categorias : BaseFragment(), SlideAdapter.onCLickListenerPromo,CategoriasP
         }
     }
 }
+
+ */

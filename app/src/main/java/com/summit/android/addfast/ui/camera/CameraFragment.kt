@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.camera
 
 import android.annotation.SuppressLint
@@ -527,3 +528,5 @@ class CameraFragment : Fragment() {
                         .format(System.currentTimeMillis()) + extension)
     }
 }
+
+ */

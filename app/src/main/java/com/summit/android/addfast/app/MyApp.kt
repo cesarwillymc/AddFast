@@ -3,44 +3,26 @@ package com.summit.android.addfast.app
 import android.app.Application
 import android.content.Context
 import com.bugsnag.android.Bugsnag
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.huawei.agconnect.auth.AGConnectAuth
-import com.huawei.agconnect.config.AGConnectServicesConfig
-import com.huawei.agconnect.config.LazyInputStream
-import com.summit.android.addfast.R
-import com.summit.android.addfast.repo.conexion.AdminRepository
-import com.summit.android.addfast.repo.conexion.AuthRepository
-import com.summit.android.addfast.repo.conexion.MainRepository
-import com.summit.android.addfast.repo.local.AppDB
-import com.summit.android.addfast.ui.auth.AuthViewModel
-import com.summit.android.addfast.ui.auth.AuthViewModelFactory
-import com.summit.android.addfast.ui.main.MainViewModel
-import com.summit.android.addfast.ui.main.MainViewModelFactory
-import com.summit.android.addfast.ui.main.admin.AdminViewModel
+import com.summit.android.addfast.di.DaggerAppComponent
+import com.summit.core.di.CoreComponent
+import com.summit.core.di.DaggerCoreComponent
+import com.summit.core.di.modules.ContextModule
 
-
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.androidx.viewmodel.compat.ViewModelCompat
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
-import java.io.IOException
-import java.io.InputStream
 
 
 class MyApp : Application() {
+    lateinit var coreComponent: CoreComponent
 
-    companion object{
-        private lateinit var instance: MyApp
-        fun getInstanceApp(): MyApp = instance
-        fun getContextApp(): Context = instance
-        fun setInstance(instance: MyApp){
-            Companion.instance =instance
-        }
 
+
+    companion object {
+
+
+        @JvmStatic
+        fun coreComponent(context: Context) =
+            (context.applicationContext as? MyApp)?.coreComponent
     }
+
 
     //mRtcEngine.enableVideo();
     //private void joinChannel() {
@@ -49,30 +31,22 @@ class MyApp : Application() {
     //}
     override fun onCreate() {
         super.onCreate()
-        setInstance(this)
         Bugsnag.start(this)
-        startKoin {
-            // Koin Android logger
-            androidLogger()
-            //inject Android context
-            androidContext(this@MyApp)
-            // use modules
+        initCoreDependencyInjection()
+        initAppDependencyInjection()
 
-            modules(module(override = true) {
-                // Singleton ComponentA
-                single <FirebaseFirestore> { FirebaseFirestore.getInstance()  }
-                single<FirebaseStorage> { FirebaseStorage.getInstance() }
-                single<AppDB> {  AppDB(get()) }
-                single <AGConnectAuth>{ AGConnectAuth.getInstance()  }
-                single<MainRepository> { MainRepository(get(), get(), get(), get()) }
-                    factory<MainRepository> { MainRepository(get(), get(), get(), get()) }
-                single<AuthRepository> { AuthRepository(get(), get(), get(), get())  }
-                single<AdminRepository> { AdminRepository(get(), get(), get(), get()) }
-                viewModel<MainViewModel> { MainViewModel(get()) }
-                viewModel<AdminViewModel> { AdminViewModel(get()) }
-                viewModel<AuthViewModel> { AuthViewModel(get()) }
-            })
-        }
-
+    }
+    private fun initCoreDependencyInjection() {
+        coreComponent = DaggerCoreComponent
+            .builder()
+            .contextModule(ContextModule(this))
+            .build()
+    }
+    private fun initAppDependencyInjection() {
+        DaggerAppComponent
+            .builder()
+            .coreComponent(coreComponent)
+            .build()
+            .inject(this)
     }
 }

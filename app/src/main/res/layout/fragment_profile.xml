@@ -16,15 +16,15 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
+        <!--ImageView
             android:id="@+id/changeImage"
             android:layout_width="wrap_content"
             android:elevation="10dp"
 
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
+
             app:layout_constraintTop_toTopOf="@+id/guideline16"
-            app:srcCompat="@drawable/ic_switch" />
+            app:srcCompat="@drawable/ic_switch" /-->
 
         <androidx.cardview.widget.CardView
             app:cardCornerRadius="4dp"
@@ -268,7 +268,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.96" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <!--de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             android:layout_width="100dp"
             android:layout_height="0dp"
@@ -278,7 +278,7 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
-            app:layout_constraintTop_toTopOf="@+id/guideline16" />
+            app:layout_constraintTop_toTopOf="@+id/guideline16" /-->
 
 
 

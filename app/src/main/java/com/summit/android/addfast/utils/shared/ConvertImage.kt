@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.system
 
 import android.app.Activity
@@ -143,3 +144,4 @@ class ConvertImage (private val context:Context){
     }
 
 }
+ */

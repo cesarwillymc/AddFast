@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios.options
 
 import android.os.Bundle
@@ -87,3 +88,4 @@ class ReportarAnuncioDialog : DialogFragment() {
     private var positionAdapter = 0
 
 }
+ */

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.local
 
 import androidx.lifecycle.LiveData
@@ -18,3 +19,4 @@ interface UsuarioDao {
     @Query("SELECT * FROM ${Constants.NAME_TABLE_USER}" )
     fun selectUsuarioStatic():Usuario
 }
+ */

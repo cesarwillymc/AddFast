@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model.departamento
 
 
@@ -12,3 +13,4 @@ data class UbicacionModel(
     @PrimaryKey(autoGenerate = false)
     var _id:Int=0
 )
+ */

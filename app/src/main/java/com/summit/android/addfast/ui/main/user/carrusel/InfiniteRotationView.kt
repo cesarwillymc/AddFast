@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.carrusel
 
 import android.content.Context
@@ -96,3 +97,4 @@ class InfiniteRotationView(context: Context, attributeSet: AttributeSet)
 
     }
 }
+ */

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.anuncios
 
 import android.util.Log
@@ -71,3 +72,4 @@ class CategoriasAdaper(private val listener: CategoriasListener): RecyclerView.A
 
 
 }
+ */

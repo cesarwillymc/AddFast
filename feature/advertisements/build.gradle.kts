@@ -6,5 +6,5 @@ plugins {
 }
 
 dependencies {
-    implementation(project(BuildModules.Features.HOME))
+    implementation(Dependencies.SHIMMER)
 }

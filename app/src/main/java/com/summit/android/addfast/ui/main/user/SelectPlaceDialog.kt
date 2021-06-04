@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user
 
 import android.os.Bundle
@@ -113,3 +114,4 @@ class SelectPlaceDialog : DialogFragment() {
     private var positionAdapter=0
 
 }
+ */

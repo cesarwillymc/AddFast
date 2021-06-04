@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.postulaciones
 
 import android.os.Handler
@@ -95,3 +96,4 @@ class PostulacionesAdapter(private val listener: Listener): RecyclerView.Adapter
     }
 
 }
+ */

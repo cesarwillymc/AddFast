@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.service
 
 import android.os.Bundle
@@ -65,3 +66,4 @@ class PostulacionesAnunciosFragment : BaseFragment(),VerPostulacionesAnuncioAdap
     }
 
 }
+ */

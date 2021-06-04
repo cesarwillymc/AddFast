@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.promociones
 
 import android.annotation.SuppressLint
@@ -71,3 +72,4 @@ class SpinnerAnunciosAdapter(private val context:Context): BaseAdapter() {
 
 
 }
+ */

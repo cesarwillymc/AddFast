@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.camera
 
 import android.util.Log
@@ -81,3 +82,4 @@ class GalleryAdapter(private val Listener: clickListener): RecyclerView.Adapter<
         fun click(path: File?, position: Int?)
     }
 }
+ */

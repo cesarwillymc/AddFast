@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.promociones
 
 import android.os.Bundle
@@ -66,3 +67,4 @@ class VerPromocionFragment: BaseFragment() {
 
     override fun getLayout()= R.layout.fragment_ver_promocion
 }
+ */

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils
 
 import android.Manifest
@@ -311,3 +312,5 @@ fun Context.getLocationMode(): Int {
     )
 }
 
+
+ */

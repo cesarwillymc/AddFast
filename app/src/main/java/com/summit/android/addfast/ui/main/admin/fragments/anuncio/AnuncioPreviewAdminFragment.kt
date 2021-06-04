@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.anuncio
 
 import android.os.Bundle
@@ -104,3 +105,4 @@ class AnuncioPreviewAdminFragment : BaseFragment() {
             })
     }
 }
+ */

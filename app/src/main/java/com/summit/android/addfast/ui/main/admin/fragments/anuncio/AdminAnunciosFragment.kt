@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.anuncio
 
 import android.os.Bundle
@@ -110,3 +111,4 @@ class AdminAnunciosFragment : BaseFragment(),VerCateegoriasAdapter.Listener {
     }
     override fun getLayout() = R.layout.fragment_admin_anuncios
 }
+ */

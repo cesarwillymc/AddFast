@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.system
 
 import android.content.Context
@@ -37,3 +38,4 @@ class SharedPreferencsManager {
 
 
 }
+ */

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.conexion
 
 import android.net.Uri
@@ -151,3 +152,4 @@ class AuthRepository(
     fun getUserTimeReal() = db.usuarioDao.selectUsuario()
 
 }
+ */

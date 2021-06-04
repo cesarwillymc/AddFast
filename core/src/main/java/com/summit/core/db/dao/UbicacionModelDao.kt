@@ -5,7 +5,7 @@ import androidx.room.*
 import com.summit.core.network.model.departamento.UbicacionModel
 
 @Dao
-internal interface UbicacionModelDao {
+interface UbicacionModelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUbicacionModel(ubicacionModel: UbicacionModel)
     @Update

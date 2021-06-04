@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main
 
 import android.util.Log
@@ -302,3 +303,4 @@ class MainViewModel(private val repo: MainRepository) :ViewModel(){
 
 
 }
+ */

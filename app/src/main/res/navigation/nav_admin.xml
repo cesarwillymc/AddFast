@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"/>
+<!--navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_admin.xml"
@@ -91,4 +94,4 @@
         android:id="@+id/galleryFragment3"
         android:name="com.summit.android.addfast.ui.camera.GalleryFragment"
         android:label="GalleryFragment" />
-</navigation>
+</navigation-->

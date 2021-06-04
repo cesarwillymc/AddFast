@@ -5,7 +5,7 @@ import androidx.room.*
 import com.summit.core.network.model.Usuario
 
 @Dao
-internal interface UsuarioDao {
+interface UsuarioDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertUsuario(usuario: Usuario)
     @Update

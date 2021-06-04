@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.camera
 
 import android.graphics.Color
@@ -63,3 +64,4 @@ class TipeSearchGalleryAdapter(private val Listener: TipeSearchGalleryListener):
         fun onclickGallery(dato: String, position: Int)
     }
 }
+ */

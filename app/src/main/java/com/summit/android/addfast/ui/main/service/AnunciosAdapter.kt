@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.service
 
 import android.util.Log
@@ -101,3 +102,4 @@ class AnunciosAdapter(private val listener: Listener): RecyclerView.Adapter<Anun
     }
 
 }
+ */

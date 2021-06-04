@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.auth
 
 import android.content.BroadcastReceiver
@@ -83,3 +84,4 @@ class AuthActivity :BaseActivity() {
 
     override fun getLayout()= R.layout.activity_auth
 }
+ */

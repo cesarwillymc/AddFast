@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils.system
 
 import android.view.View
@@ -33,3 +34,4 @@ class OnSingleClickListener : View.OnClickListener {
     }
 
 }
+ */

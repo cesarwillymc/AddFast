@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.camera
 
 import android.content.Intent
@@ -126,3 +127,4 @@ class SelectImage internal constructor() : Fragment() {
 
 
 }
+ */

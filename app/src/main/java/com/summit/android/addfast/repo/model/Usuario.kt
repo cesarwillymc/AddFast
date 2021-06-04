@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 
@@ -22,3 +23,4 @@ data class Usuario(
     var _id:String="",
     var admin:Boolean?=null
 ):Parcelable
+ */

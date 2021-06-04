@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 data class Reporte(
@@ -8,3 +9,4 @@ data class Reporte(
         val titleanuncio:String,
         val fecha:Long
 )
+ */

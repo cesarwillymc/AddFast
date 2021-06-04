@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.promociones
 
 import android.os.Bundle
@@ -63,3 +64,4 @@ class PromocionesFragment : BaseFragment(),PromocionesAdminAdapter.Listener {
         findNavController().navigate(PromocionesFragmentDirections.actionPromocionesFragmentToVerPromocionFragment(anuncios))
     }
 }
+ */

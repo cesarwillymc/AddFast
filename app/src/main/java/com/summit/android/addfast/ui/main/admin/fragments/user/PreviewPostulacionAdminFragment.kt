@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin.fragments.user
 
 import android.os.Bundle
@@ -141,3 +142,5 @@ class PreviewPostulacionAdminFragment : BaseFragment() {
     }
 
 }
+
+ */

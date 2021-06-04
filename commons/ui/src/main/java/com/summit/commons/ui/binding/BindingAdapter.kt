@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import coil.load
 import com.summit.commons.ui.R
 import com.summit.commons.ui.extension.hide
 import com.summit.commons.ui.extension.show
@@ -76,6 +75,7 @@ fun setErrorText(view: TextView, viewState: BaseViewState?,) {
         view.text = ""
 }
  */
+/*
 @BindingAdapter("imageUrl", "imagePlaceholder", requireAll = false)
 fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
     load(url) {
@@ -91,3 +91,5 @@ fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
         )
     }
 }
+
+ */

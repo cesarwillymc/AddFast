@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.service.ubication
 
 import android.annotation.SuppressLint
@@ -231,3 +232,5 @@ class Ubication : BaseFragment(){
 
 
 }
+
+ */

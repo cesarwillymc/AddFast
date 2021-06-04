@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.camera
 
 import android.content.Context
@@ -53,3 +54,4 @@ class CameraViewModel : ViewModel(){
 
     }
 }
+ */

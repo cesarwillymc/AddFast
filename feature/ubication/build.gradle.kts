@@ -6,6 +6,5 @@ plugins {
 }
 
 dependencies {
-    implementation(project(BuildModules.Features.HOME))
 
 }

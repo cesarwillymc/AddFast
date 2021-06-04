@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main
 
 import androidx.lifecycle.ViewModel
@@ -10,3 +11,4 @@ class MainViewModelFactory(private val repo: MainRepository) :ViewModelProvider.
     }
 
 }
+ */

@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.admin
 
 import androidx.lifecycle.ViewModel
@@ -13,3 +14,4 @@ class AdminViewModelFactory(private val repo: AdminRepository) :ViewModelProvide
     }
 
 }
+ */

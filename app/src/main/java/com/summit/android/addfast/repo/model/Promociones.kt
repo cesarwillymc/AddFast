@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 import android.os.Parcelable
@@ -12,3 +13,4 @@ data class Promociones(
     var name:String="",
     var fecha:Long=0L
 ):Parcelable
+ */

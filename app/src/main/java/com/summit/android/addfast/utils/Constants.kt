@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils
 
 object Constants {
@@ -172,3 +173,4 @@ object Constants {
 {"descripcion":"Insertion of Intramedullary Internal Fixation Device into Right Tibia, Percutaneous Endoscopic Approach","estado":"PUBLICADO","fecha":1610051203191,"id":"100000061","idempresa":"529188995268149760","idusuario":"534920587542331904","img":"http://dummyimage.com/221x144.jpg/cc0000/ffffff","phone":"341-918-6467","reportes":3,"titulo":"Curly Top","type":"Venta","typeID":"jEiWZ8dpAxsI6wQW89yP","visualizaciones":110}]"""
     const val departamentoJson="""[ {"id":"04","name":"Arequipa"},  {"id":"15","name":"Lima"},  {"id":"18","name":"Moquegua"}, {"id":"21","name":"Puno"}, {"id":"23","name":"Tacna"}]"""
 }
+ */

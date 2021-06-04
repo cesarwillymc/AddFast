@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.postulaciones
 
 import android.os.Bundle
@@ -85,3 +86,4 @@ class PostulacionesFragment : BaseFragment(),
     }
 
 }
+ */

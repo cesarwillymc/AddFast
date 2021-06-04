@@ -1,4 +1,5 @@
 /*
+/*
  * Copyright 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -95,3 +96,5 @@ fun AlertDialog.showImmersive() {
     // Set the dialog to focusable again
     window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
 }
+
+ */

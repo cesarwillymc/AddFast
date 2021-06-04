@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.utils
 
 import android.annotation.SuppressLint
@@ -87,3 +88,4 @@ class SpinnerAdapter( private val context:Context): BaseAdapter() {
 
 
 }
+ */

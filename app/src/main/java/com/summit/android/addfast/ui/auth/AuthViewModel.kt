@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.auth
 
 import android.util.Log
@@ -144,3 +145,4 @@ class AuthViewModel(private val repo: AuthRepository) : ViewModel() {
 
     }
 }
+ */

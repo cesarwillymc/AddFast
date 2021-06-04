@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.ui.main.user.profile
 
 import android.Manifest
@@ -185,3 +186,5 @@ class Profile : BaseFragment() {
 
 
 }
+
+ */

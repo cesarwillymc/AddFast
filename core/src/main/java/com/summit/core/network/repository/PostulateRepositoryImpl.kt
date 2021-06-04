@@ -5,6 +5,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.summit.core.db.AppDB
+import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.exception.ExceptionGeneral
 import com.summit.core.network.model.Postulacion
 import com.summit.core.network.model.Usuario
@@ -15,23 +16,23 @@ import kotlinx.coroutines.tasks.await
 import java.io.File
 
 internal class PostulateRepositoryImpl(
-    private val db: AppDB, private val firestore: FirebaseFirestore,
+    private val db: UbicacionModelDao, private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage
 ) : PostulateRepository {
     override suspend fun getAllPostulante(): List<Usuario> {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection("users").get().await()
         return anuncios.toObjects(Usuario::class.java)
     }
 
     override suspend fun getAllPostulanteByPalabra(palabra: String): List<Usuario> {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection("users").whereArrayContains("titulo", palabra).get().await()
         return anuncios.toObjects(Usuario::class.java)
     }
 
     override suspend fun postularAnuncio(id: String, idPostulacion: String) {
-        val ubicacion = db.ubicacionModelDao.selectUbicacionModelStatic()
+        val ubicacion = db.selectUbicacionModelStatic()
         firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id)
             .update("postulaciones", FieldValue.arrayUnion(idPostulacion)).await()

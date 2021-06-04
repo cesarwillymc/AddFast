@@ -1,3 +1,4 @@
+/*
 package com.summit.android.addfast.repo.model
 
 import android.os.Parcelable
@@ -11,3 +12,4 @@ data class CategoriasModel(
     var cantidad:Int=0
 
     ):Parcelable
+ */
