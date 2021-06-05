@@ -7,7 +7,7 @@
         dist:instant="true"
         dist:title="@string/title_navhost">
         <dist:delivery>
-            <dist:on-demand/>
+            <dist:install-time />
         </dist:delivery>
         <dist:fusing dist:include="false"/>
     </dist:module>

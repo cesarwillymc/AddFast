@@ -8,7 +8,7 @@ import androidx.navigation.NavController
 import com.summit.core.network.model.Usuario
 import com.summit.core.network.repository.UserRepository
 
-val NAV_FRAGMENTS_ID = setOf(R.id.nav_fragment)
+val NAV_FRAGMENTS_ID = setOf(R.id.nav_home)
 val MENU_FRAGMENT_ID = setOf(R.menu.menu, R.menu.menu_publisher, R.menu.menu_admin)
 
 class NavHostViewModel(private val userRepo: UserRepository) : ViewModel() {
@@ -26,14 +26,14 @@ class NavHostViewModel(private val userRepo: UserRepository) : ViewModel() {
 
     @DrawableRes
     fun getMenuActual(user: Usuario?):Int {
-        if (user != null) {
+        return if (user != null) {
             if (user.admin!!) {
-                return MENU_FRAGMENT_ID.elementAt(2)
+                MENU_FRAGMENT_ID.elementAt(2)
             } else {
-                return (MENU_FRAGMENT_ID.elementAt(1))
+                (MENU_FRAGMENT_ID.elementAt(1))
             }
         } else {
-            return (MENU_FRAGMENT_ID.elementAt(0))
+            (MENU_FRAGMENT_ID.elementAt(0))
         }
     }
 

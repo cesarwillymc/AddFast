@@ -1,9 +1,14 @@
+
+
 include(
     ":app",
     ":core",
-    ":commons:ui",
+
     ":feature:home",
-    ":feature:navhost"
+    ":feature:navhost",
+    ":commons:ui",
+    ":commons:views"
+
 )
 /*
 

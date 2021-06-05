@@ -3,6 +3,7 @@ import extension.buildConfigBooleanField
 import extension.buildConfigIntField
 import extension.buildConfigStringField
 import extension.implementation
+import extension.kapt
 
 plugins {
     id("commons.android-library")
@@ -18,7 +19,7 @@ android {
             it.buildConfigStringField( "ADDFAST_DATABASE_NAME", "add_fast-db")
             it.buildConfigIntField( "ADDFAST_DATABASE_VERSION", 1)
         }catch (ignored: Exception){
-            throw InvalidUserDataException("Error declared build config")
+            throw InvalidUserDataException()
         }
 
     }

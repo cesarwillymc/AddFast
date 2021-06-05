@@ -4,6 +4,7 @@ package com.summit.home
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.home.databinding.FragmentHomeBinding
+import com.summit.home.di.DaggerHomeComponent
 import com.summit.home.di.HomeModule
 
 

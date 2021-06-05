@@ -18,8 +18,11 @@ android {
         applicationId = BuildAndroidConfig.APPLICATION_ID
         minSdkVersion(BuildAndroidConfig.MIN_SDK_VERSION)
         targetSdkVersion(BuildAndroidConfig.TARGET_SDK_VERSION)
+
         versionCode = BuildAndroidConfig.VERSION_CODE
         versionName = BuildAndroidConfig.VERSION_NAME
+
+        vectorDrawables.useSupportLibrary = BuildAndroidConfig.SUPPORT_LIBRARY_VECTOR_DRAWABLES
         resConfigs(BuildAndroidConfig.RES_LANGUAGES)
         testInstrumentationRunner = BuildAndroidConfig.TEST_INSTRUMENTATION_RUNNER
     }
@@ -28,11 +31,12 @@ android {
         getByName(BuildType.RELEASE) {
             isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
             isTestCoverageEnabled = BuildTypeRelease.isTestCoverageEnabled
-            isShrinkResources = BuildTypeRelease.isShinkResource
 
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         getByName(BuildType.DEBUG) {
+
+            isShrinkResources = BuildTypeDebug.isShinkResource
             applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
             versionNameSuffix = BuildTypeDebug.versionNameSuffix
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
@@ -71,7 +75,7 @@ android {
     }
     dynamicFeatures = mutableSetOf(
 
-        BuildModules.Features.NAVHOST
+        BuildModules.Features.NAVHOST,  BuildModules.Features.HOME
     )
     /*
      ":feature:ubication",
@@ -79,7 +83,7 @@ android {
         ":feature:authentification",
         ":feature:camerax",
 ,
-        ":feature:home",
+
         ":feature:offert",
         ":feature:postulate",
         ":feature:profile",
@@ -95,7 +99,6 @@ dependencies {
 
     //Kotlin
     implementation(Dependencies.KOTLIN)
-    implementation(Dependencies.COREKTX)
 
     //Android
     implementation(Dependencies.APPCOMPACT)
