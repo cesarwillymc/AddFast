@@ -21,6 +21,8 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/navhost" />
+            <option value="$PROJECT_DIR$/libraries" />
+            <option value="$PROJECT_DIR$/libraries/test_utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

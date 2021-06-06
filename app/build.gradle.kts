@@ -61,6 +61,10 @@ android {
             java.srcDir("src/androidTest/kotlin")
         }
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
 
     buildFeatures {
         dataBinding = true

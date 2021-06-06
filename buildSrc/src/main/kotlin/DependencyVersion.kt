@@ -40,4 +40,18 @@ object DependencyVersion {
     const val RXJAVA="2.2.10"
 
     const val COIL = "0.13.0"
+
+    // Tests
+    const val COROUTINESTEST = "1.5.0"
+    const val SPEKVERSION = "2.0.16"
+    const val TEST = "1.3.0"
+    const val EXT = "1.1.2"
+    const val ARCH_CORE = "2.1.0"
+    const val JUNIT = "4.13.1"
+    const val ROBOELECTRIC = "4.4"
+    const val MOCKK = "1.10.2"
+    const val ASSERTJ = "3.17.2"
+    const val ESPRESSO = "3.3.0"
+    const val FRAGMENT_TEST = "1.2.5"
+    const val MOCK_WEB_SERVER = "4.9.0"
 }

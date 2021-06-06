@@ -1,14 +1,12 @@
 
-
 include(
     ":app",
     ":core",
-
     ":feature:home",
     ":feature:navhost",
     ":commons:ui",
-    ":commons:views"
-
+    ":commons:views",
+    ":libraries:test_utils"
 )
 /*
 

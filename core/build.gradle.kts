@@ -1,9 +1,5 @@
 import dependency.Dependencies
-import extension.buildConfigBooleanField
-import extension.buildConfigIntField
-import extension.buildConfigStringField
-import extension.implementation
-import extension.kapt
+import extension.*
 
 plugins {
     id("commons.android-library")
@@ -27,6 +23,7 @@ android {
 }
 
 dependencies {
+
     implementation(Dependencies.ROOMKTX)
     implementation(Dependencies.ROOMRUNTIME)
     implementation(Dependencies.RETROFIT)

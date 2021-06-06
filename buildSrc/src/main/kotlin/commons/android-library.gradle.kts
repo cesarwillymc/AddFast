@@ -7,6 +7,8 @@ import ProductFlavorProduction
 import ProductFlavorQA
 import dependency.Dependencies
 import extension.implementation
+import extension.testImplementation
+import extension.addTestsDependencies
 
 plugins {
     id("com.android.library")
@@ -49,15 +51,21 @@ android {
             java.srcDir("src/test/kotlin")
         }
     }
-
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
 
 }
 
 
 dependencies {
+
     implementation(Dependencies.KOTLIN)
     implementation(Dependencies.DAGGER)
     kapt(Dependencies.DAGGERCOMPILER)
     implementation(Dependencies.COROUTINESANDROID)
     implementation(Dependencies.COROUTINESSERVICES)
+    testImplementation(project(BuildModules.Libraries.TEST_UTILS))
+    addTestsDependencies()
 }

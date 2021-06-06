@@ -3,7 +3,7 @@ package extension
 
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
-
+import dependency.TestDependencies
 
 fun DependencyHandler.debugImplementation(dependencyNotation: String): Dependency? =
     add("debugImplementation", dependencyNotation)
@@ -28,9 +28,16 @@ fun DependencyHandler.androidTestImplementation(dependencyNotation: String): Dep
     add("androidTestImplementation", dependencyNotation)
 
 fun DependencyHandler.addTestsDependencies() {
-    /*testImplementation(TestDependencies.MOCKK)
+
+    testImplementation(TestDependencies.MOCKK)
     testImplementation(TestDependencies.ROOM)
     testImplementation(TestDependencies.COROUTINES_TEST)
-    testImplementation(TestDependencies.FRAGMENT_TEST)*/
+    testImplementation(TestDependencies.EXT)
+    testImplementation(TestDependencies.CORE)
+    testImplementation(TestDependencies.ARCH_CORE)
+    testImplementation(TestDependencies.RUNNER)
+    testImplementation(TestDependencies.ROBOELECTRIC)
+    testImplementation(TestDependencies.JUNIT)
+    testImplementation(TestDependencies.RULES)
 
 }
