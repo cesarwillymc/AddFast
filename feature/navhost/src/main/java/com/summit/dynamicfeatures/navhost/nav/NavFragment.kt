@@ -6,11 +6,13 @@ import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.commons.ui.extension.setupWithNavController
+import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.dynamicfeatures.navhost.NavHostViewModel
 import com.summit.dynamicfeatures.navhost.R
 import com.summit.dynamicfeatures.navhost.databinding.FragmentNavBinding
-import com.summit.dynamicfeatures.navhost.di.DaggerNavComponent
-import com.summit.dynamicfeatures.navhost.di.NavModule
+import com.summit.dynamicfeatures.navhost.dialog.SelectPlaceDialog
+import com.summit.dynamicfeatures.navhost.nav.di.DaggerNavComponent
+import com.summit.dynamicfeatures.navhost.nav.di.NavModule
 
 
 class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
@@ -47,7 +49,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     private fun setupMenu() {
         viewModel.getUserData.observe(viewLifecycleOwner) {
-            viewBinding.navView.menu.clear(); //clear old inflated items.
+            viewBinding.navView.menu.clear()
             viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
         }
     }
@@ -55,8 +57,33 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     private fun setupToolbar() {
         setHasOptionsMenu(true)
         requireCompatActivity().setSupportActionBar(viewBinding.tollbarMain)
+        setupBindingToolbar()
     }
 
+    private fun setupBindingToolbar() {
+        viewModel.getUbicacion.observe(this) {
+            if (it == null) {
+                viewModel.saveUbicacion(UbicacionModel("Puno", "Puno", 0))
+            }
+        }
+        viewBinding.imgIconGps.setOnClickListener {
+            initDialogSelectPlace()
+        }
+        viewBinding.mainUbicacion.setOnClickListener {
+            initDialogSelectPlace()
+        }
+    }
+    private fun initDialogSelectPlace(){
+        try {
+            val newFragment = SelectPlaceDialog()
+            newFragment.isCancelable=true
+            newFragment.show(
+                requireActivity().supportFragmentManager.beginTransaction(),
+                "dialog"
+            )
+        }catch (e: IllegalStateException){
+        }
+    }
     private fun setupBottomNavigationBar() {
         val navController = viewBinding.navView.setupWithNavController(
             navGraphIds = navGraphIds,

@@ -16,7 +16,7 @@ internal class GpsRepositoryImpl(
     override fun saveUbicacion(perfilUsuario: UbicacionModel) = db.insertUbicacionModel(perfilUsuario)
     override fun updateUbicacionAppDb(perfilUsuario: UbicacionModel) = db.updateUbicacionModel(perfilUsuario)
     override fun getUbicacion() = db.selectUbicacionModel()
-    override fun getUbicacionStatic() = db.selectUbicacionModel()
+    override fun getUbicacionStatic() = db.selectUbicacionModelStatic()
     override suspend fun verDepartamento(): List<ProvinciaItem>? {
         return Klaxon().parseArray<ProvinciaItem>(Constants.departamentoJson)
     }

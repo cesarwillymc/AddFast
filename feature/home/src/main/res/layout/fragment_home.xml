@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="viewModel" type="com.summit.home.HomeViewModel"/>
+        <variable name="viewModel" type="com.summit.home.home.HomeViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="match_parent">
@@ -34,7 +33,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/gilroy_extrabold"
-                            android:text="Lo que quieras"
+                            android:text="@string/home_text_welcome_1"
                             android:textColor="#000000"
                             android:textSize="25sp"
                             android:visibility="visible"
@@ -46,7 +45,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/gilroy_extrabold"
-                            android:text="Buscalo"
+                            android:text="@string/home_text_welcome_2"
                             android:textColor="#000000"
                             android:textSize="25sp"
                             android:visibility="visible"
@@ -55,7 +54,9 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/categorias_rv"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:visibility="@{viewModel.stateCategorys.complete}"
+                        />
 
                         <TextView
                             android:id="@+id/text_services_ofert"
@@ -63,9 +64,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/gilroy_extrabold"
-                            android:text="Ofertas"
+                            android:text="@{viewModel.statePromociones.complete?`Ofertas`:`Anuncios`}"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/add_size_big_title"
                             android:visibility="visible"
                             app:layout_constraintStart_toStartOf="@+id/guideline11"
                             app:layout_constraintTop_toBottomOf="@+id/textView52"/>
@@ -74,20 +75,37 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:overScrollMode="never"
-                            android:visibility="gone"/>
+                            app:visibility="@{viewModel.statePromociones.complete}"/>
                     </LinearLayout>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_services_producr"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="1dp"
-                android:orientation="vertical"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_height="match_parent">
+                <include
+                    android:id="@+id/include_list"
+                    layout="@layout/view_add_list"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
 
-            <!--/androidx.core.widget.NestedScrollView-->
+                <include
+                    android:id="@+id/include_list_empty"
+                    layout="@layout/view_add_list_empty"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+
+                <include
+                    android:id="@+id/include_list_error"
+                    layout="@layout/view_add_list_error"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+
+                <include
+                    android:id="@+id/include_list_loading"
+                    layout="@layout/view_add_list_loading"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+¿
 
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

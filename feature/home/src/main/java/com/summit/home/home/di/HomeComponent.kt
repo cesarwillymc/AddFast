@@ -1,9 +1,9 @@
 
-package com.summit.home.di
+package com.summit.home.home.di
 
 import com.summit.core.di.CoreComponent
 import com.summit.core.di.scope.FeatureScope
-import com.summit.home.HomeFragment
+import com.summit.home.home.HomeFragment
 import dagger.Component
 
 

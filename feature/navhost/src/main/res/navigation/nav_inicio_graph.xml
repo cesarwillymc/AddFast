@@ -5,7 +5,7 @@
             app:startDestination="@id/nav_home">
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.summit.home.HomeFragment"
+        android:name="com.summit.home.home.HomeFragment"
         android:label="Home"
        >
 

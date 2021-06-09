@@ -9,7 +9,7 @@ interface GpsRepository {
     fun saveUbicacion(perfilUsuario: UbicacionModel)
     fun updateUbicacionAppDb(perfilUsuario: UbicacionModel)
     fun getUbicacion(): LiveData<UbicacionModel>
-    fun getUbicacionStatic(): LiveData<UbicacionModel>
+    fun getUbicacionStatic(): UbicacionModel
     suspend fun verDepartamento(): List<ProvinciaItem>?
 
     suspend fun verProvincia(id: String): List<ProvinciaItem>?

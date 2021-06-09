@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+    <data>
+        <variable name="model" type="com.summit.core.network.model.CategoriasModel"/>
+    </data>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/fsi_constraint"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/border_button_carrito_inactive"
+        android:fontFamily="@font/gilroy_extrabold"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/fsi_texto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="12dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/gilroy_extrabold"
+                android:textColor="#fff"
+                android:text="@{model.name}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fsi_img"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fsi_img"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                app:imageUrl="@{model.img2}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
+</layout>
+

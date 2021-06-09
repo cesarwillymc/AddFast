@@ -65,7 +65,6 @@ class Categorias : BaseFragment(), SlideAdapter.onCLickListenerPromo,CategoriasP
             }else{
                 viewModel.saveUbicacion(UbicacionModel("Puno","Puno",0))
             }
-
         })
         //Rv Promociones
         slideAdapter =
@@ -175,7 +174,6 @@ class Categorias : BaseFragment(), SlideAdapter.onCLickListenerPromo,CategoriasP
                 Status.LOADING -> {
                 }
                 Status.SUCCESS -> {
-
                 }
                 Status.ERROR -> {
                     Log.e("getAnunciosByCategorias",it.exception!!.message!!)

@@ -11,12 +11,13 @@
     <color name="white">#f9f9f9</color>
     <color name="yellow">#F6DD00</color>
     <color name="gris_1">#CCCCCE</color>
-    <color name="gris_2">#7F7F83</color>
+
     <color name="gris_3">#7F7F83</color>
     <color name="red">#FF1100</color>
     <color name="gris_4">#56575C</color>
     <color name="gris_5">#2D2E35</color>
     <color name="black">#06070F</color>
+    <color name="gris_2">#7F7F83</color>
     <color name="icActive">#FFFFFFFF</color>
     <color name="icFocused">#DDFFFFFF</color>
     <color name="icPressed">#AAFFFFFF</color>

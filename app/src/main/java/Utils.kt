@@ -64,6 +64,7 @@ suspend fun desactivePermission() {
         settings[permission] = false
     }
 }
+}
 
 fun Context.verifyPermission() {
 
@@ -164,57 +165,7 @@ fun readEMUIVersion(): String {
 }
 
 
-fun ViewPager2.autoScroll(interval: Long) {
-    var scrollPosition = 0
-    val handler= Handler()
-    val runnable = object : Runnable {
 
-        override fun run() {
-
-            /**
-             * Calculate "scroll position" with
-             * adapter pages count and current
-             * value of scrollPosition.
-             */
-            try{
-                val count = adapter?.itemCount ?: 0
-
-                setCurrentItem(scrollPosition++ % count, true)
-                Log.e("autoScroll","$count   scrollPosition: $scrollPosition")
-                handler.postDelayed(this, interval)
-            }catch (e:Exception){
-
-            }
-        }
-    }
-    val registerCallbak = object: ViewPager2.OnPageChangeCallback() {
-        override fun onPageSelected(position: Int) {
-            // Updating "scroll position" when user scrolls manually
-            scrollPosition = position + 1
-            Log.e("autoScroll","change page scrollPosition: $scrollPosition")
-        }
-
-        override fun onPageScrollStateChanged(state: Int) {
-            // Not necessary
-        }
-
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-            // Not necessary
-        }
-    }
-    registerCallbak?.let {
-        registerOnPageChangeCallback(it)
-    }
-
-    runnable?.let {
-        handler.post(it)
-    }
-
-}
 fun <T> lazyDeferred(block: suspend CoroutineScope.() -> T): Lazy<Deferred<T>>{
     return lazy {
         GlobalScope.async(start = CoroutineStart.LAZY){

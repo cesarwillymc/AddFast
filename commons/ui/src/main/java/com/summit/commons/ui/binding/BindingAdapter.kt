@@ -2,6 +2,7 @@ package com.summit.commons.ui.binding
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.MenuCompat
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.transform.BlurTransformation
 import com.summit.commons.ui.R
 import com.summit.commons.ui.extension.hide
 import com.summit.commons.ui.extension.show
@@ -83,7 +85,24 @@ fun setErrorText(view: TextView, viewState: BaseViewState?,) {
 
 @BindingAdapter("imageUrl", "imagePlaceholder", requireAll = false)
 fun ImageView.imageUrl(url: String?, @DrawableRes placeholderId: Int?) {
+    Log.e("imageUrl","data $url")
     load(url) {
+        crossfade(true)
+        placeholder(
+            placeholderId?.let {
+                ContextCompat.getDrawable(context, it)
+            } ?: run {
+                val placeholdersColors = resources.getStringArray(R.array.placeholders)
+                val placeholderColor = placeholdersColors[Random.nextInt(placeholdersColors.size)]
+                ColorDrawable(Color.parseColor(placeholderColor))
+            }
+        )
+    }
+}
+@BindingAdapter("imageUrlBlur","imagePlaceholder",requireAll = false)
+fun ImageView.imageUrlBlur(url: String?, @DrawableRes placeholderId: Int?) {
+    load(url) {
+        transformations(BlurTransformation(context,20f))
         crossfade(true)
         placeholder(
             placeholderId?.let {

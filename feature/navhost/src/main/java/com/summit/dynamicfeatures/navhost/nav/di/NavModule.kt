@@ -1,4 +1,4 @@
-package com.summit.dynamicfeatures.navhost.di
+package com.summit.dynamicfeatures.navhost.nav.di
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.VisibleForTesting.PRIVATE
@@ -7,6 +7,7 @@ import com.summit.core.network.repository.UserRepository
 import com.summit.dynamicfeatures.navhost.NavHostViewModel
 import com.summit.dynamicfeatures.navhost.nav.NavFragment
 import com.summit.commons.ui.extension.viewModel
+import com.summit.core.network.repository.GpsRepository
 import dagger.Module
 import dagger.Provides
 
@@ -21,10 +22,12 @@ class NavModule(
     @Provides
     @FeatureScope
     fun providesNavViewModel(
-    userRepository: UserRepository
+    userRepository: UserRepository,
+    ubiRepo : GpsRepository
     ) = fragment.viewModel {
         NavHostViewModel(
-            userRepo =userRepository
+            userRepo =userRepository,
+            ubiRepo = ubiRepo
         )
     }
 }
