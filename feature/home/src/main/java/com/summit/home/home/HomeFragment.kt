@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
@@ -26,10 +27,7 @@ import com.summit.home.home.utils.autoScroll
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
-    override fun onAttach(context: Context) {
-        Log.e("onAttach","entro")
-        super.onAttach(context)
-    }
+
     override fun onInitDataBinding() {
         viewBinding.viewModel = viewModel
     }
@@ -59,12 +57,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             it.apply {
                 adapter = offertAdapter
             }
-
+            it.autoScroll(5000L)
         }
         viewModel.dataPromociones.observe(viewLifecycleOwner) {
             if (it != null) {
                 offertAdapter.setDataImage(it)
-                viewBinding.viewPager.autoScroll(5000L)
             }
         }
     }
@@ -72,14 +69,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     private fun setupRvBindingCategory() {
         val categoriasAdaper = CategoriasAdaper(object : CategoriasAdaper.CategoriasListener {
             override fun listener(position: Int, datos: CategoriasModel) {
-
+                if (datos.id != "Todos") {
+                    findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavListCategory(idcategory = datos.id))
+                }
             }
 
         })
         viewBinding.categoriasRv.apply {
             setHasFixedSize(true)
             adapter = categoriasAdaper
-            layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
         viewModel.dataCategorys.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -91,14 +90,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     private fun setupRvBindingAdd() {
         val adapterAdd = AdapterProductosCategoria(object : CategoriasProductosListener {
             override fun onClickVerMas(dato: ListaAnuncios, position: Int) {
-
+                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavListCategory(idcategory = dato.id))
             }
+
             override fun onCLickItem(dato: Anuncios, position: Int) {
 
             }
         })
         viewBinding.includeList.rvServicesProducr.apply {
-            layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = adapterAdd
         }
         viewModel.dataAnuncios.observe(viewLifecycleOwner) {

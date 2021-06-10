@@ -7,4 +7,6 @@
     <string name="card_product_category_see_all">Ver Todo</string>
     <string name="home_text_welcome_1">Lo que quieras</string>
     <string name="home_text_welcome_2">Buscalo</string>
+    <!--Category List-->
+    <string name="category_list_empty_text">No se encontraron publicaciones en esta categoria</string>
 </resources>

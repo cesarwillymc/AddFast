@@ -7,7 +7,15 @@
         android:id="@+id/nav_home"
         android:name="com.summit.home.home.HomeFragment"
         android:label="Home"
-       >
-
+    >
+        <action android:id="@+id/action_nav_home_to_nav_list_category" app:destination="@id/nav_list_category"/>
     </fragment>
+    <fragment
+        android:id="@+id/nav_list_category"
+        android:name="com.summit.home.category.CategoryFragment"
+        android:label="Category"
+    >
+        <argument android:name="idcategory" app:argType="string"/>
+    </fragment>
+
 </navigation>

@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -14,6 +15,8 @@ import com.summit.commons.ui.R
 import com.summit.commons.ui.extension.hide
 import com.summit.commons.ui.extension.show
 import jp.wasabeef.glide.transformations.BlurTransformation
+import org.ocpsoft.prettytime.PrettyTime
+import java.util.*
 import kotlin.random.Random
 
 
@@ -89,6 +92,12 @@ fun ImageView.imageUrl(url: String?) {
 @BindingAdapter("imageUrlBlur", requireAll = false)
 fun ImageView.imageUrlBlur(url: String?) {
     Glide.with(this).load(url).apply(RequestOptions.bitmapTransform(BlurTransformation(5, 2))).into(this)
+}
+@BindingAdapter("timeAgo", requireAll = false)
+fun TextView.timeAgo(time: Long) {
+    val prettyTime = PrettyTime(Locale.getDefault())
+    val ago: String = prettyTime.format(Date(time))
+    text=ago
 }
 
 
