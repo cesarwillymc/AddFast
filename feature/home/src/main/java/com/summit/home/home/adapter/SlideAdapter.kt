@@ -9,8 +9,6 @@ import com.summit.home.databinding.LayoutOffertCardBinding
 class SlideAdapter (private val listener:OnCLickListenerPromo):RecyclerView.Adapter<SlideAdapter.SlideViewHolder>(){
 
     fun setDataImage(data:List<Promociones>){
-        if(data.isNotEmpty())
-            slidesImg= listOf()
         slidesImg=data
         notifyDataSetChanged()
     }
@@ -25,7 +23,7 @@ class SlideAdapter (private val listener:OnCLickListenerPromo):RecyclerView.Adap
     private var slidesImg:List<Promociones> = listOf()
     inner class SlideViewHolder(private val binding: LayoutOffertCardBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(get:Promociones){
+        fun bind(get:Promociones,position: Int){
             binding.model=get
             binding.executePendingBindings()
             binding.root.setOnClickListener  {
@@ -40,7 +38,7 @@ class SlideAdapter (private val listener:OnCLickListenerPromo):RecyclerView.Adap
 
     override fun onBindViewHolder(holder: SlideViewHolder, position: Int) {
         if(slidesImg.isNotEmpty()){
-            holder.bind(slidesImg[position])
+            holder.bind(slidesImg[position],position)
         }
     }
     interface OnCLickListenerPromo{

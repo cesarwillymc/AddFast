@@ -32,7 +32,7 @@ class CategoriasAdaper(private val listener: CategoriasListener) : RecyclerView.
     fun updateData(data: MutableList<CategoriasModel>) {
         precios = mutableListOf()
         precios.addAll(data)
-        precios.add(0, CategoriasModel("Todos", "Todos", "","", 0))
+        precios.add(0, CategoriasModel("Todos", "Todos", "https://firebasestorage.googleapis.com/v0/b/addfast-af981.appspot.com/o/icon%2Fall.png?alt=media&token=357dba3e-4fda-403e-8759-e6fbaac9ad12", 0))
         notifyDataSetChanged()
     }
 
@@ -46,6 +46,7 @@ class CategoriasAdaper(private val listener: CategoriasListener) : RecyclerView.
 
 
         fun bind(get: CategoriasModel, position: Int) {
+            binding.model=get
             if (position == positionSelected) {
                 binding.fsiTexto.setTextColor(itemView.resources.getColor(R.color.black))
                 binding.fsiConstraint.background = itemView.context.getDrawable(R.drawable.border_button_carrito)

@@ -1,5 +1,3 @@
-
-
 package com.summit.home.home.state
 
 import com.summit.commons.ui.base.BaseViewState
@@ -27,5 +25,5 @@ sealed class HomeViewState : BaseViewState {
 
     fun isComplete() = this is Complete
 
-    fun isEmpty() = this is Complete
+    fun isEmpty() = this is Empty
 }

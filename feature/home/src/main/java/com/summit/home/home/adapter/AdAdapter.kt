@@ -13,7 +13,7 @@ class AdAdapter(private val producListener: CategoriasProductosListener,var lisP
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = LayoutAdCardBinding
-            .inflate(LayoutInflater.from(parent.context), parent, true)
+            .inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 

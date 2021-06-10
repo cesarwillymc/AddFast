@@ -13,5 +13,6 @@
     </dist:module>
     <application
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,MissingApplicationIcon" />
 </manifest>

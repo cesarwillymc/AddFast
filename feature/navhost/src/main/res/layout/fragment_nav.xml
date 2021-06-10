@@ -43,7 +43,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <LinearLayout
                         android:id="@+id/main_linear"
@@ -75,7 +75,7 @@
                             android:layout_marginStart="4dp"
                             android:fontFamily="@font/gilroy_ligth"
                             android:text="@{viewModel.getUbicacion.departamento +` - `+ viewModel.getUbicacion.provincia}"
-                            android:textColor="#000000" />
+                            android:textColor="#000000"/>
                     </LinearLayout>
 
 
@@ -88,13 +88,12 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:defaultNavHost="true"
+
             app:layout_constraintBottom_toTopOf="@+id/nav_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:navGraph="@navigation/nav_inicio_graph" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
@@ -108,8 +107,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:visible="@{viewModel.state.navigationScreen}"
             app:menu="@menu/menu"/>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -79,8 +79,8 @@ class HomeViewModel(
                     }
                     if (dato == response.size - 1) {
                         if (listado.isNotEmpty()) {
-                            _dataAnuncios.postValue(listado)
                             _stateAnuncios.postValue(HomeViewState.Complete)
+                            _dataAnuncios.postValue(listado)
                         } else {
                             _stateAnuncios.postValue(HomeViewState.Empty)
                         }

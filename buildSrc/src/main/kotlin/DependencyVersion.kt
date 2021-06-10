@@ -39,7 +39,7 @@ object DependencyVersion {
     const val RXANDROID="2.1.1"
     const val RXJAVA="2.2.10"
 
-    const val COIL = "0.13.0"
+    const val COIL = "1.2.2"
 
     // Tests
     const val COROUTINESTEST = "1.5.0"

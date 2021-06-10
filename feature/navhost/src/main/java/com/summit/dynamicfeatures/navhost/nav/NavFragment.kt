@@ -1,6 +1,8 @@
 package com.summit.dynamicfeatures.navhost.nav
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
@@ -19,7 +21,10 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     layoutId = R.layout.fragment_nav
 ) {
 
-
+    override fun onAttach(context: Context) {
+        Log.e("onAttach","navFragment")
+        super.onAttach(context)
+    }
     private val navGraphIds = listOf(
         R.navigation.nav_inicio_graph,
     )

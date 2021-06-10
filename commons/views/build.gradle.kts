@@ -4,7 +4,6 @@ import extension.kapt
 
 plugins {
     id("commons.android-library")
-    id("kotlin-android")
 }
 
 dependencies {

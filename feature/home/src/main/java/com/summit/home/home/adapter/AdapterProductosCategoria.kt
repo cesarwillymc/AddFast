@@ -1,6 +1,7 @@
 package com.summit.home.home.adapter
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,15 +15,18 @@ class AdapterProductosCategoria(private val producListener: CategoriasProductosL
     RecyclerView.Adapter<AdapterProductosCategoria.ViewHolder>() {
 
     private val viewPool = RecyclerView.RecycledViewPool()
-    private var lisProducts: List<ListaAnuncios> = listOf()
-    fun updateData(lisProducts: List<ListaAnuncios>) {
-        this.lisProducts = lisProducts
+    private var lisProducts= mutableListOf<ListaAnuncios>()
+    fun updateData(listaProduct: MutableList<ListaAnuncios>) {
+
+        lisProducts.clear()
+        lisProducts.addAll(listaProduct)
+        Log.e("anuncios","entro ${lisProducts.size}")
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = LayoutInitCategoryProductBinding
-            .inflate(LayoutInflater.from(parent.context), parent, true)
+            .inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -30,7 +34,7 @@ class AdapterProductosCategoria(private val producListener: CategoriasProductosL
     inner class ViewHolder(private val binding: LayoutInitCategoryProductBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(anuncio: ListaAnuncios, position: Int) {
-
+            Log.e("bind","${anuncio}")
             binding.model=anuncio
             binding.executePendingBindings()
             binding.ficiVerMas.setOnClickListener {
@@ -46,9 +50,12 @@ class AdapterProductosCategoria(private val producListener: CategoriasProductosL
 
             linearLayoutManager.initialPrefetchItemCount = anuncio.lista.size
             linearLayoutManager.isItemPrefetchEnabled = true
-            binding.ficiRv.setRecycledViewPool(viewPool)
-            binding.ficiRv.layoutManager = linearLayoutManager
-            binding.ficiRv.adapter=AdAdapter(producListener,anuncio.lista)
+            binding.ficiRv.apply {
+                setRecycledViewPool(viewPool)
+                layoutManager = linearLayoutManager
+                adapter= AdAdapter(producListener,anuncio.lista)
+            }
+
 
 
         }

@@ -1,6 +1,7 @@
 package com.summit.home.home
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -25,19 +26,20 @@ import com.summit.home.home.utils.autoScroll
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
-
+    override fun onAttach(context: Context) {
+        Log.e("onAttach","entro")
+        super.onAttach(context)
+    }
     override fun onInitDataBinding() {
-        //viewBinding.viewModel = viewModel
+        viewBinding.viewModel = viewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("onViewCreated","entro")
         viewModel.getCategorias()
         viewModel.getUbicacion.observe(viewLifecycleOwner) {
             it?.let {
                 loadAnunciosReload()
-                Log.e("getUbicacion","entro")
                 loadPromocionesReload()
             }
         }
@@ -57,13 +59,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             it.apply {
                 adapter = offertAdapter
             }
-            it.autoScroll(5000L)
-        }
 
+        }
         viewModel.dataPromociones.observe(viewLifecycleOwner) {
             if (it != null) {
-                Log.e("dataPromociones","entro")
                 offertAdapter.setDataImage(it)
+                viewBinding.viewPager.autoScroll(5000L)
             }
         }
     }
@@ -82,7 +83,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         }
         viewModel.dataCategorys.observe(viewLifecycleOwner) {
             if (it != null) {
-                Log.e("dataCategorys","entro")
                 categoriasAdaper.updateData(it.toMutableList())
             }
         }
@@ -93,20 +93,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             override fun onClickVerMas(dato: ListaAnuncios, position: Int) {
 
             }
-
             override fun onCLickItem(dato: Anuncios, position: Int) {
 
             }
-
         })
-        viewBinding.categoriasRv.apply {
+        viewBinding.includeList.rvServicesProducr.apply {
             layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = adapterAdd
         }
         viewModel.dataAnuncios.observe(viewLifecycleOwner) {
             if (it != null) {
-                Log.e("dataAnuncio","entro")
-                adapterAdd.updateData(it)
+                adapterAdd.updateData(it.toMutableList())
             }
         }
     }

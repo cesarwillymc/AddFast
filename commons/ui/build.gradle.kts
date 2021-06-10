@@ -14,7 +14,9 @@ dependencies {
     implementation(Dependencies.FRAGMENT_KTX)
     implementation(Dependencies.NAVIGATIONFRAGMENT)
     implementation(Dependencies.NAVIGATIONUI)
-    implementation(Dependencies.COIL)
+    implementation(Dependencies.GLIDE)
+    kapt(Dependencies.GLIDECOMPILER)
+    implementation(Dependencies.GLIDETRANSFORMATION)
 
     kapt(Dependencies.DATABINDING)
 }
