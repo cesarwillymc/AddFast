@@ -15,7 +15,7 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:visible="@{viewModel.state.navigationScreen}"
+            app:visible="@{viewModel.state.appBar||viewModel.state.fullScreen}"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
@@ -105,7 +105,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:visible="@{viewModel.state.navigationScreen}"
+            app:visible="@{viewModel.state.navigationScreen||viewModel.state.fullScreen}"
             app:menu="@menu/menu"/>
 
 

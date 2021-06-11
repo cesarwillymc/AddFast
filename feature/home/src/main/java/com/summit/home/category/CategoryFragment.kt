@@ -6,6 +6,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
+import com.summit.commons.ui.extension.observe
 import com.summit.core.network.model.Anuncios
 import com.summit.home.R
 import com.summit.home.category.adapter.AddLargeAdapter
@@ -17,6 +18,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
     layoutId = R.layout.fragment_category
 ) {
     private val args: CategoryFragmentArgs by navArgs()
+    private lateinit var adapterAdds:AddLargeAdapter
 
     override fun onInitDependencyInjection() {
         DaggerCategoryComponent.builder()
@@ -34,23 +36,23 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
         super.onViewCreated(view, savedInstanceState)
         viewModel.getAllAnunciosByCategorias(args.idcategory)
         setupRvCategoryAdapter()
+
     }
 
     private fun setupRvCategoryAdapter() {
-        val adapterAdds= AddLargeAdapter(object : AddLargeAdapter.Listener{
+        adapterAdds = AddLargeAdapter(object : AddLargeAdapter.Listener {
             override fun onclick(anuncios: Anuncios, position: Int) {
 
             }
 
         })
         viewBinding.includeList.categoriasVerRv.apply {
-            adapter=adapterAdds
+            adapter = adapterAdds
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
-        viewModel.data.observe(viewLifecycleOwner){
-            if(it!=null){
-                adapterAdds.updateData(it.toMutableList())
-            }
-        }
+        observe( viewModel.data,::updateAdapterAddsData)
+    }
+    private fun updateAdapterAddsData(anuncios:List<Anuncios>){
+        adapterAdds.updateData(anuncios.toMutableList())
     }
 }

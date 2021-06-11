@@ -1,7 +1,6 @@
 package com.summit.home.home
 
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
+import com.summit.commons.ui.extension.observe
 import com.summit.core.network.model.Anuncios
 import com.summit.core.network.model.CategoriasModel
 import com.summit.core.network.model.ListaAnuncios
@@ -28,6 +28,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
 
+    //Recycler view Binding
+    private lateinit var offertAdapter: SlideAdapter
+    private lateinit var categoriasAdaper: CategoriasAdaper
+    private lateinit var adapterAdd: AdapterProductosCategoria
+
     override fun onInitDataBinding() {
         viewBinding.viewModel = viewModel
     }
@@ -37,6 +42,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         viewModel.getCategorias()
         viewModel.getUbicacion.observe(viewLifecycleOwner) {
             it?.let {
+                Log.e("loagind","entro loading")
                 loadAnunciosReload()
                 loadPromocionesReload()
             }
@@ -47,7 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
 
     private fun setupRvBindingOffert() {
-        val offertAdapter = SlideAdapter(object : SlideAdapter.OnCLickListenerPromo {
+        offertAdapter = SlideAdapter(object : SlideAdapter.OnCLickListenerPromo {
             override fun onCLickItem(item: Promociones, position: Int) {
 
             }
@@ -59,15 +65,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             }
             it.autoScroll(5000L)
         }
-        viewModel.dataPromociones.observe(viewLifecycleOwner) {
-            if (it != null) {
-                offertAdapter.setDataImage(it)
-            }
-        }
+        observe(viewModel.dataPromociones, ::updateAdapterPromociones)
     }
 
+    private fun updateAdapterPromociones(promociones: List<Promociones>) =
+        offertAdapter.setDataImage(promociones.toMutableList())
+
     private fun setupRvBindingCategory() {
-        val categoriasAdaper = CategoriasAdaper(object : CategoriasAdaper.CategoriasListener {
+        categoriasAdaper = CategoriasAdaper(object : CategoriasAdaper.CategoriasListener {
             override fun listener(position: Int, datos: CategoriasModel) {
                 if (datos.id != "Todos") {
                     findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavListCategory(idcategory = datos.id))
@@ -80,15 +85,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             adapter = categoriasAdaper
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
-        viewModel.dataCategorys.observe(viewLifecycleOwner) {
-            if (it != null) {
-                categoriasAdaper.updateData(it.toMutableList())
-            }
-        }
+        observe(viewModel.dataCategorys, ::updateAdapterCategory)
     }
 
+    private fun updateAdapterCategory(category: List<CategoriasModel>) =
+        categoriasAdaper.updateData(category.toMutableList())
+
     private fun setupRvBindingAdd() {
-        val adapterAdd = AdapterProductosCategoria(object : CategoriasProductosListener {
+        adapterAdd = AdapterProductosCategoria(object : CategoriasProductosListener {
             override fun onClickVerMas(dato: ListaAnuncios, position: Int) {
                 findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavListCategory(idcategory = dato.id))
             }
@@ -101,12 +105,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = adapterAdd
         }
-        viewModel.dataAnuncios.observe(viewLifecycleOwner) {
-            if (it != null) {
-                adapterAdd.updateData(it.toMutableList())
-            }
-        }
+        observe(viewModel.dataAnuncios, ::updateAdapterAdd)
+
     }
+
+    private fun updateAdapterAdd(anuncios: List<ListaAnuncios>) = adapterAdd.updateData(anuncios.toMutableList())
 
     private fun loadPromocionesReload() {
         viewModel.getPromocionesUpdate()
