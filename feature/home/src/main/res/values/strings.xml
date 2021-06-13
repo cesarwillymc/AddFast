@@ -9,4 +9,16 @@
     <string name="home_text_welcome_2">Buscalo</string>
     <!--Category List-->
     <string name="category_list_empty_text">No se encontraron publicaciones en esta categoria</string>
+    <!--Detail Add-->
+    <string name="detail_string_error">Ups… ocurrio un error al traer el anuncio, revise su conexion</string>
+    <string name="detail_string_report">Reportar</string>
+    <string name="detail_string_time_ago">Hace 4 dias</string>
+    <string name="detail_string_desc">POLICLINICO ESCULAPIO BUSCA PRACTICANTE EN MEDICINA GENERAL</string>
+    <string name="detail_string_desc_aditional">Se busca que el prácticamente tenga un ponderado universitario de 15. Se
+        realizara una entrevista previa, tener conocimientos básicos en cardio, revisión general, metodologíasy mas.
+    </string>
+    <string name="detail_string_gps">VER UBICACIÓN</string>
+    <string name="detail_string_postulate">POSTULAR</string>
+    <string name="detail_string_call">Called</string>
+    <string name="detail_string_message">Message</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.summit.home.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,18 +7,22 @@ import androidx.lifecycle.viewModelScope
 import com.summit.core.network.model.CategoriasModel
 import com.summit.core.network.model.ListaAnuncios
 import com.summit.core.network.model.Promociones
+import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.core.network.repository.CategoryRepository
 import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.OfferRepository
 import com.summit.home.home.state.HomeViewState
 import kotlinx.coroutines.launch
 
+//viper
 
 class HomeViewModel(
-    private val repoUbi: GpsRepository,
+    repoUbi: GpsRepository,
     private val repoPromo: OfferRepository,
     private val repoCategory: CategoryRepository
 ) : ViewModel() {
+
+    var ubicationLast:UbicacionModel?=null
 
     val getUbicacion = repoUbi.getUbicacion()
 
@@ -98,7 +101,6 @@ class HomeViewModel(
       viewModelScope.launch {
          try {
             val response = repoCategory.getAllCategorias()
-
             _dataCategorys.postValue(response)
             _stateCategorys.postValue(HomeViewState.Complete)
          } catch (e: Exception) {

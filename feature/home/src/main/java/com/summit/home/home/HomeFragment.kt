@@ -13,6 +13,7 @@ import com.summit.core.network.model.Anuncios
 import com.summit.core.network.model.CategoriasModel
 import com.summit.core.network.model.ListaAnuncios
 import com.summit.core.network.model.Promociones
+import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.home.R
 import com.summit.home.databinding.FragmentHomeBinding
 import com.summit.home.home.adapter.AdapterProductosCategoria
@@ -37,27 +38,47 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         viewBinding.viewModel = viewModel
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getCategorias()
-        viewModel.getUbicacion.observe(viewLifecycleOwner) {
-            it?.let {
-                Log.e("loagind","entro loading")
-                loadAnunciosReload()
-                loadPromocionesReload()
-            }
-        }
+        observe(viewModel.getUbicacion, ::getUbicationModel)
         setupRvBindingAdd()
         setupRvBindingCategory()
         setupRvBindingOffert()
     }
 
-    private fun setupRvBindingOffert() {
-        offertAdapter = SlideAdapter(object : SlideAdapter.OnCLickListenerPromo {
-            override fun onCLickItem(item: Promociones, position: Int) {
+    private fun getUbicationModel(ubicacionModel: UbicacionModel?) {
+
+        ubicacionModel?.let {
+            viewModel.ubicationLast?.let {
+                if (ubicacionModel.departamento != viewModel.ubicationLast!!.departamento) {
+                    viewModel.ubicationLast = ubicacionModel
+                    setupRVs(isRefresh = true)
+                }
+
+            } ?: run {
+                viewModel.ubicationLast = ubicacionModel
+                setupRVs(isRefresh = false)
 
             }
 
+        }
+    }
+
+    private fun setupRVs(isRefresh: Boolean) {
+        loadAnunciosReload(isRefresh = isRefresh)
+        loadPromocionesReload(isRefresh = isRefresh)
+        loadCategoryReload(isRefresh = isRefresh)
+    }
+
+    private fun setupRvBindingOffert() {
+        offertAdapter = SlideAdapter(object : SlideAdapter.OnCLickListenerPromo {
+            override fun onCLickItem(item: Promociones, position: Int) {
+                if (item.idanuncio.isNotEmpty()) {
+                    Log.e("dataPromo", item.toString())
+                    findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavDetailAd(idAnuncio = item.idanuncio))
+                }
+            }
         })
         viewBinding.viewPager.let {
             it.apply {
@@ -98,7 +119,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             }
 
             override fun onCLickItem(dato: Anuncios, position: Int) {
-
+                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavDetailAd(model = dato))
             }
         })
         viewBinding.includeList.rvServicesProducr.apply {
@@ -111,12 +132,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
     private fun updateAdapterAdd(anuncios: List<ListaAnuncios>) = adapterAdd.updateData(anuncios.toMutableList())
 
-    private fun loadPromocionesReload() {
-        viewModel.getPromocionesUpdate()
+    private fun loadPromocionesReload(isRefresh: Boolean) {
+        if (viewModel.dataPromociones.value == null || isRefresh) {
+            viewModel.getPromocionesUpdate()
+        }
+
     }
 
-    private fun loadAnunciosReload() {
-        viewModel.getAnunciosByCategorias()
+    private fun loadCategoryReload(isRefresh: Boolean) {
+        if (viewModel.dataCategorys.value == null || isRefresh) {
+            viewModel.getCategorias()
+        }
+    }
+
+    private fun loadAnunciosReload(isRefresh: Boolean) {
+        if (viewModel.dataAnuncios.value == null || isRefresh) {
+            viewModel.getAnunciosByCategorias()
+        }
     }
 
     override fun onInitDependencyInjection() {

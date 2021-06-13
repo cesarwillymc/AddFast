@@ -9,6 +9,7 @@
         android:label="Home"
     >
         <action android:id="@+id/action_nav_home_to_nav_list_category" app:destination="@id/nav_list_category"/>
+        <action android:id="@+id/action_nav_home_to_nav_detail_ad" app:destination="@id/nav_detail_ad"/>
     </fragment>
     <fragment
         android:id="@+id/nav_list_category"
@@ -16,6 +17,16 @@
         android:label="Category"
     >
         <argument android:name="idcategory" app:argType="string"/>
+        <action android:id="@+id/action_nav_list_category_to_nav_detail_ad" app:destination="@id/nav_detail_ad"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detail_ad"
+        android:name="com.summit.home.detail.DetailAdFragment"
+        android:label="Detail"
+    >
+        <argument android:name="model" app:argType="com.summit.core.network.model.Anuncios" app:nullable="true"
+                  android:defaultValue="@null"/>
+        <argument android:name="idAnuncio" app:argType="string" app:nullable="true" android:defaultValue="@null"/>
     </fragment>
 
 </navigation>

@@ -104,10 +104,6 @@
                     app:viewState="@{viewModel.stateAnuncios}"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-¿
-
-
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

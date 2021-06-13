@@ -3,22 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewState"
-            type="com.summit.home.category.CategoryViewState" />
+            type="com.summit.home.detail.DetailAdState"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_view"
-        app:visible="@{viewState.error}">
+        app:visible="@{viewState.isLoading}">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+        <ProgressBar
+            android:layout_width="@dimen/add_list_loading_size"
             android:layout_height="wrap_content"
-            android:text="@string/home_list_error_text"
-            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

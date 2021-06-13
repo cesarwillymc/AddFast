@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.summit.home.detail.DetailAdState"/>
+        <variable name="model" type="com.summit.core.network.model.Anuncios"/>
+        <variable name="user" type="com.summit.core.network.model.Usuario"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:visible="@{viewState.complete}">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/ver_anuncio_report"
+                    android:layout_width="wrap_content"
+                    android:elevation="10dp"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="#FF5722"
+                    app:tint="@color/white"
+                    app:visibility="@{user!=null}"
+                    android:src="@drawable/ic_baseline_report_problem_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/detail_string_report"/>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    app:cardCornerRadius="40dp"
+                    android:elevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ver_anuncio_img_blur"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp"
+                        android:scaleType="centerCrop"
+                        app:imageUrlBlur="@{model.img}"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ver_anuncio_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp"
+                        app:imageUrl="@{model.img}"/>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/ver_anuncio_time_ago"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:timeAgo="@{model.fecha}"
+                    android:fontFamily="@font/gilroy_ligth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"/>
+
+                <TextView
+                    android:id="@+id/ver_anuncio_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/gilroy_extrabold"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:text="@{model.titulo}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ver_anuncio_time_ago"/>
+
+                <TextView
+                    android:id="@+id/ver_anuncio_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:text="@{model.descripcion}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ver_anuncio_title"/>
+
+                <Button
+                    android:id="@+id/ver_anuncio_ubicacion"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/border_button_carrito_inactive"
+                    android:text="@string/detail_string_gps"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ver_anuncio_desc"/>
+
+                <Button
+                    android:id="@+id/ver_anuncio_postular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="50dp"
+                    android:background="@drawable/border_button_carrito_inactive"
+                    android:backgroundTint="@color/yellow"
+                    android:text="@string/detail_string_postulate"
+                    app:visibility="@{user!=null &amp;&amp; model.typeID.equals(`Y3bRcyksupn35UaVIzRr`)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ver_anuncio_ubicacion"
+                    app:tint="@color/yellow"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/ver_anuncio_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:clickable="true"
+                    app:tint="@color/white"
+                    app:backgroundTint="#4CAF50"
+                    android:src="@drawable/ic_phone_call"
+                    app:visibility="@{user!=null}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ver_anuncio_postular"
+                    android:contentDescription="@string/detail_string_call" android:focusable="true"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/ver_anuncio_send_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    app:tint="@color/white"
+                    app:backgroundTint="#4CAF50"
+                    android:src="@drawable/ic_baseline_message_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ver_anuncio_postular"
+                    android:contentDescription="@string/detail_string_message" android:focusable="true"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

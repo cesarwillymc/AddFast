@@ -13,7 +13,7 @@ import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.UserRepository
 
 val NAV_FRAGMENTS_ID_BOTTOM = setOf(R.id.nav_home)
-val NAV_FRAGMENTS_ID_APPBAR = setOf(R.id.nav_home, R.id.nav_list_category)
+val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf<@DrawableRes Int>()
 val MENU_FRAGMENT_ID = setOf(R.menu.menu, R.menu.menu_publisher, R.menu.menu_admin)
 
 class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo: GpsRepository) : ViewModel() {
@@ -71,14 +71,14 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
 
     fun navigationControllerChanged(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) && NAV_FRAGMENTS_ID_APPBAR.contains(destination.id)) {
+            if (NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) && !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.id)) {
                 _state.postValue(NavHostViewState.FullScreen)
             } else {
                 when {
                     NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) -> {
                         _state.postValue(NavHostViewState.NavigationScreen)
                     }
-                    NAV_FRAGMENTS_ID_APPBAR.contains(destination.id) -> {
+                    !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.id) -> {
                         _state.postValue(NavHostViewState.AppBarScreen)
                     }
                     else -> {

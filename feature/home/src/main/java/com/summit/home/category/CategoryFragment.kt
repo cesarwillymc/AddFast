@@ -2,6 +2,7 @@ package com.summit.home.category
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
@@ -34,17 +35,21 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getAllAnunciosByCategorias(args.idcategory)
+        getAllAdds()
         setupRvCategoryAdapter()
+    }
 
+    private fun getAllAdds() {
+        if(viewModel.data.value==null){
+            viewModel.getAllAnunciosByCategorias(args.idcategory)
+        }
     }
 
     private fun setupRvCategoryAdapter() {
         adapterAdds = AddLargeAdapter(object : AddLargeAdapter.Listener {
             override fun onclick(anuncios: Anuncios, position: Int) {
-
+                findNavController().navigate(CategoryFragmentDirections.actionNavListCategoryToNavDetailAd(model=anuncios))
             }
-
         })
         viewBinding.includeList.categoriasVerRv.apply {
             adapter = adapterAdds
