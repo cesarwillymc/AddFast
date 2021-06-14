@@ -6,6 +6,8 @@ object BuildModules {
     object Features {
         const val HOME = ":feature:home"
         const val NAVHOST = ":feature:navhost"
+        const val PROFILE = ":feature:profile"
+        const val POSTULATE = ":feature:postulate"
 
     }
 

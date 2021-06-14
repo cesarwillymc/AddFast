@@ -17,7 +17,7 @@
         android:title="Promociones"
         />
     <item
-        android:id="@+id/nav_admin_perfil_graph"
+        android:id="@+id/nav_profile_graph"
         android:icon="@drawable/user"
         android:title="Perfil"
         />

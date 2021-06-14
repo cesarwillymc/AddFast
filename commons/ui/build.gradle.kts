@@ -18,6 +18,7 @@ dependencies {
     kapt(Dependencies.GLIDECOMPILER)
     implementation(Dependencies.GLIDETRANSFORMATION)
     implementation(Dependencies.PRETTYTIME)
+    implementation(Dependencies.CIRCLEIMAGE)
 
     kapt(Dependencies.DATABINDING)
 }

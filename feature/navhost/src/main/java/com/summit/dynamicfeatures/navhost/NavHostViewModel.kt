@@ -12,7 +12,7 @@ import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.UserRepository
 
-val NAV_FRAGMENTS_ID_BOTTOM = setOf(R.id.nav_home)
+val NAV_FRAGMENTS_ID_BOTTOM = setOf(R.id.nav_home,R.id.nav_profile,R.id.nav_postulate)
 val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf<@DrawableRes Int>()
 val MENU_FRAGMENT_ID = setOf(R.menu.menu, R.menu.menu_publisher, R.menu.menu_admin)
 

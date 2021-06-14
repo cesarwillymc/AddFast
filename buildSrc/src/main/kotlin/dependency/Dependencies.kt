@@ -56,7 +56,7 @@ object Dependencies {
     const val SWIPEDECORATOR = "it.xabaras.android:recyclerview-swipedecorator:${DependencyVersion.SWIPEDECORATOR}"
     const val RXANDROID = "io.reactivex.rxjava2:rxandroid:${DependencyVersion.RXANDROID}"
     const val RXJAVA = "io.reactivex.rxjava2:rxjava:${DependencyVersion.RXJAVA}"
-
+    const val LOTTIE ="com.airbnb.android:lottie:${DependencyVersion.LOTTIE}"
 
     const val COIL = "io.coil-kt:coil:${DependencyVersion.COIL}"
 

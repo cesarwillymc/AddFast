@@ -7,13 +7,13 @@
         />
 
     <item
-        android:id="@+id/nav_postulaciones_graph"
+        android:id="@+id/nav_postulate_graph"
         android:icon="@drawable/suitcase"
         android:title="Postulaciones"
         />
 
     <item
-        android:id="@+id/nav_perfil_graph"
+        android:id="@+id/nav_profile_graph"
         android:icon="@drawable/user"
         android:title="Perfil"
         />

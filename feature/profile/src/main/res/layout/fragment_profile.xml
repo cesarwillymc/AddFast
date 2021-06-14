@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.profile.ProfileViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/view_user_information"
+                 android:id="@+id/view_user_info"
+                 app:model="@{viewModel.userInformation}"
+                 app:viewModel="@{viewModel}"/>
+        <include layout="@layout/view_sign_in"
+                 android:id="@+id/view_user_signin"
+                 app:model="@{viewModel.userInformation}"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

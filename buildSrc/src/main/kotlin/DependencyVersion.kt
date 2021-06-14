@@ -38,6 +38,7 @@ object DependencyVersion {
     const val SWIPEDECORATOR="1.2.3"
     const val RXANDROID="2.1.1"
     const val RXJAVA="2.2.10"
+    const val LOTTIE="3.7.0"
 
     const val COIL = "1.2.2"
 

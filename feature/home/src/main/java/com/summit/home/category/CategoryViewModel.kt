@@ -9,7 +9,7 @@ import com.summit.core.network.repository.CategoryRepository
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(
-    private val repoCate:CategoryRepository
+    private val repoCate: CategoryRepository
 ) : ViewModel() {
 
     private val _state = MutableLiveData<CategoryViewState>()
@@ -18,18 +18,19 @@ class CategoryViewModel(
     private val _data = MutableLiveData<List<Anuncios>>()
     val data: LiveData<List<Anuncios>> get() = _data
 
-    fun  getAllAnunciosByCategorias(id: String) {
-        _state.postValue(CategoryViewState.Loading)
+    fun getAllAnunciosByCategorias(id: String) {
+
         viewModelScope.launch {
+            _state.postValue(CategoryViewState.Loading)
             try {
-                val resultado=repoCate.getAllAnunciosByCategorias(id)
-                if(resultado.isNotEmpty()){
+                val resultado = repoCate.getAllAnunciosByCategorias(id)
+                if (resultado.isNotEmpty()) {
                     _data.postValue(resultado)
                     _state.postValue(CategoryViewState.Complete)
-                }else{
+                } else {
                     _state.postValue(CategoryViewState.Empty)
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 _state.postValue(CategoryViewState.Error)
             }
 

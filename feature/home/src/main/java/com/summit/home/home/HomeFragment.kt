@@ -80,6 +80,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
                 }
             }
         })
+
         viewBinding.viewPager.let {
             it.apply {
                 adapter = offertAdapter

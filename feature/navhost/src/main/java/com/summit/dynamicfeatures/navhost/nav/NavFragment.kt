@@ -25,6 +25,8 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     private val navGraphIds = listOf(
         R.navigation.nav_inicio_graph,
+        R.navigation.nav_profile_graph,
+        R.navigation.nav_postulate_graph
     )
 
     override fun onInitDependencyInjection() {

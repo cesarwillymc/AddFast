@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_information_title">Mi Perfil</string>
+    <string name="profile_information_name">Nombre</string>
+    <string name="profile_information_lastname">Apellido</string>
+    <string name="profile_information_phone">Phone</string>
+    <string name="profile_information_bussiness">EMPRESA</string>
+    <string name="profile_information_ruc">RUC</string>
+    <string name="profile_information_sign_out">Cerrar Sesión</string>
+
+</resources>

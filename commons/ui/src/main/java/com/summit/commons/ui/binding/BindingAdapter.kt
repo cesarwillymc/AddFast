@@ -14,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.summit.commons.ui.R
 import com.summit.commons.ui.extension.hide
 import com.summit.commons.ui.extension.show
+import de.hdodenhof.circleimageview.CircleImageView
 import jp.wasabeef.glide.transformations.BlurTransformation
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
@@ -86,6 +87,11 @@ fun setErrorText(view: TextView, viewState: BaseViewState?,) {
 @BindingAdapter("imageUrl", requireAll = false)
 fun ImageView.imageUrl(url: String?) {
     Log.e("imageUrl", "data $url")
+    Glide.with(this).load(url).into(this)
+}
+
+@BindingAdapter("imageUrlCircular", requireAll = false)
+fun CircleImageView.imageUrlCircular(url: String?) {
     Glide.with(this).load(url).into(this)
 }
 

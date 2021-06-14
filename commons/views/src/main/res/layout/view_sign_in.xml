@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="model" type="com.summit.core.network.model.Usuario"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:visibility="@{model==null}"
+    >
+        <com.airbnb.lottie.LottieAnimationView android:id="@+id/lottieAnimationView" android:layout_width="0dp"
+                                               android:layout_height="300dp"
+                                               android:layout_marginStart="32dp"
+                                               android:layout_marginTop="16dp"
+                                               android:layout_marginEnd="32dp"
+                                               app:layout_constraintEnd_toEndOf="parent"
+                                               app:layout_constraintStart_toStartOf="parent"
+                                               app:layout_constraintTop_toTopOf="parent"
+                                               app:lottie_autoPlay="true"
+                                               app:lottie_repeatMode="restart"
+                                               app:lottie_repeatCount="100"
+                                               app:lottie_rawRes="@raw/contract_signin"/>
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/view_sign_in_message"
+            android:textColor="#000" android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView"/>
+        <Button
+            android:id="@+id/signin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginTop="32dp"
+            android:text="@string/view_sign_in_text" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView23"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

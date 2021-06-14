@@ -7,5 +7,4 @@ plugins {
 
 dependencies {
     implementation(project(BuildModules.Features.NAVHOST))
-    implementation(project(BuildModules.Commons.VIEW))
 }

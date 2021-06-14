@@ -22,7 +22,7 @@ class HomeViewModel(
     private val repoCategory: CategoryRepository
 ) : ViewModel() {
 
-    var ubicationLast:UbicacionModel?=null
+    var ubicationLast: UbicacionModel? = null
 
     val getUbicacion = repoUbi.getUbicacion()
 
@@ -42,23 +42,24 @@ class HomeViewModel(
     val stateAnuncios: LiveData<HomeViewState>
         get() = _stateAnuncios
 
-   private val _dataCategorys = MutableLiveData<List<CategoriasModel>>()
-   val dataCategorys: LiveData<List<CategoriasModel>>
-      get() = _dataCategorys
+    private val _dataCategorys = MutableLiveData<List<CategoriasModel>>()
+    val dataCategorys: LiveData<List<CategoriasModel>>
+        get() = _dataCategorys
 
-   private val _stateCategorys = MutableLiveData<HomeViewState>()
-   val stateCategorys: LiveData<HomeViewState>
-      get() = _stateCategorys
+    private val _stateCategorys = MutableLiveData<HomeViewState>()
+    val stateCategorys: LiveData<HomeViewState>
+        get() = _stateCategorys
 
     fun getPromocionesUpdate() {
-        _statePromociones.postValue(HomeViewState.Loading)
+
         viewModelScope.launch {
+            _statePromociones.postValue(HomeViewState.Loading)
             try {
                 val response = repoPromo.getPromocion()
-                if(response.isNotEmpty()){
+                if (response.isNotEmpty()) {
                     _dataPromociones.postValue(response)
                     _statePromociones.postValue(HomeViewState.Complete)
-                }else{
+                } else {
                     _statePromociones.postValue(HomeViewState.Empty)
                 }
 
@@ -69,8 +70,9 @@ class HomeViewModel(
     }
 
     fun getAnunciosByCategorias() {
-        _stateAnuncios.postValue(HomeViewState.Loading)
+
         viewModelScope.launch {
+            _stateAnuncios.postValue(HomeViewState.Loading)
             try {
                 val response = repoCategory.getAllCategorias()
                 val listado: MutableList<ListaAnuncios> = mutableListOf()
@@ -96,17 +98,18 @@ class HomeViewModel(
         }
     }
 
-   fun getCategorias() {
-      _stateCategorys.postValue(HomeViewState.Loading)
-      viewModelScope.launch {
-         try {
-            val response = repoCategory.getAllCategorias()
-            _dataCategorys.postValue(response)
-            _stateCategorys.postValue(HomeViewState.Complete)
-         } catch (e: Exception) {
-            _stateCategorys.postValue(HomeViewState.Error)
-         }
-      }
-   }
+    fun getCategorias() {
+
+        viewModelScope.launch {
+            _stateCategorys.postValue(HomeViewState.Loading)
+            try {
+                val response = repoCategory.getAllCategorias()
+                _dataCategorys.postValue(response)
+                _stateCategorys.postValue(HomeViewState.Complete)
+            } catch (e: Exception) {
+                _stateCategorys.postValue(HomeViewState.Error)
+            }
+        }
+    }
 
 }

@@ -79,7 +79,10 @@ android {
     }
     dynamicFeatures = mutableSetOf(
 
-        BuildModules.Features.NAVHOST,  BuildModules.Features.HOME
+        BuildModules.Features.NAVHOST,
+        BuildModules.Features.HOME,
+        BuildModules.Features.PROFILE,
+        BuildModules.Features.POSTULATE
     )
     /*
      ":feature:ubication",
@@ -120,47 +123,47 @@ dependencies {
     //DependencyInjection
     implementation(Dependencies.DAGGER)
     kapt(Dependencies.DAGGERCOMPILER)
-   /* //DB
-    implementation(Dependencies.ROOMRUNTIME)
-    kapt(Dependencies.ROOMCOMPILER)
-    implementation(Dependencies.ROOMKTX)
-    //UnitTest
+    /* //DB
+     implementation(Dependencies.ROOMRUNTIME)
+     kapt(Dependencies.ROOMCOMPILER)
+     implementation(Dependencies.ROOMKTX)
+     //UnitTest
 
-    //Format Hour
-    implementation(Dependencies.PRETTYTIME)
-
-
-
-    //Shimer
-    implementation(Dependencies.SHIMMER)
-
-    //Karumi Permission
-    implementation(Dependencies.KARUMI)
-
-    //LiveDta
-
-    implementation(Dependencies.LIVEDATA)
-    implementation(Dependencies.COROUTINESSERVICES)
-    implementation(Dependencies.LIFECYCLEKTX)
+     //Format Hour
+     implementation(Dependencies.PRETTYTIME)
 
 
-    // Preferences DataStore
-    implementation("com.google.android.gms:play-services-maps:17.0.0")
-    implementation("com.google.maps.android:android-maps-utils:2.2.0")
-    implementation("androidx.datastore:datastore-preferences:1.0.0-alpha02")
-    implementation("com.huawei.hms:maps:5.0.1.300")
-    //Location
-    implementation("com.huawei.hms:location:5.0.0.302")
-    //implementation(Dependencies.DATASTORE)
-    //implementation(Dependencies.DATASTORECORE)
 
-    implementation("androidx.datastore:datastore-core:1.0.0-alpha02")
-    //Glide data
+     //Shimer
+     implementation(Dependencies.SHIMMER)
 
-    implementation(Dependencies.GLIDE)
-    kapt(Dependencies.GLIDECOMPILER)
-    implementation(Dependencies.GLIDETRANSFORMATION)
-*/
+     //Karumi Permission
+     implementation(Dependencies.KARUMI)
+
+     //LiveDta
+
+     implementation(Dependencies.LIVEDATA)
+     implementation(Dependencies.COROUTINESSERVICES)
+     implementation(Dependencies.LIFECYCLEKTX)
+
+
+     // Preferences DataStore
+     implementation("com.google.android.gms:play-services-maps:17.0.0")
+     implementation("com.google.maps.android:android-maps-utils:2.2.0")
+     implementation("androidx.datastore:datastore-preferences:1.0.0-alpha02")
+     implementation("com.huawei.hms:maps:5.0.1.300")
+     //Location
+     implementation("com.huawei.hms:location:5.0.0.302")
+     //implementation(Dependencies.DATASTORE)
+     //implementation(Dependencies.DATASTORECORE)
+
+     implementation("androidx.datastore:datastore-core:1.0.0-alpha02")
+     //Glide data
+
+     implementation(Dependencies.GLIDE)
+     kapt(Dependencies.GLIDECOMPILER)
+     implementation(Dependencies.GLIDETRANSFORMATION)
+ */
     //Navigation components
     implementation(Dependencies.NAVIGATIONFRAGMENT)
     implementation(Dependencies.NAVIGATIONUI)

@@ -6,6 +6,8 @@ include(
     ":feature:navhost",
     ":commons:ui",
     ":commons:views",
+    ":feature:postulate",
+    ":feature:profile",
     ":libraries:test_utils"
 )
 /*

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.postulate.listPostulate.PostulateViewModel"/>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    >
+        <include layout="@layout/view_sign_in"
+                 app:model="@{viewModel.userInformation}"
+                 android:id="@+id/view_sign_in_profile"/>
+        <include layout="@layout/view_list_postulate"
+            android:id="@+id/view_listpostulate"
+            app:viewModel="@{viewModel}"/>
+
+    </FrameLayout>
+</layout>
