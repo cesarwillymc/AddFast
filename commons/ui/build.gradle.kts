@@ -19,6 +19,5 @@ dependencies {
     implementation(Dependencies.GLIDETRANSFORMATION)
     implementation(Dependencies.PRETTYTIME)
     implementation(Dependencies.CIRCLEIMAGE)
-
     kapt(Dependencies.DATABINDING)
 }

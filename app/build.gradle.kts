@@ -82,6 +82,8 @@ android {
         BuildModules.Features.NAVHOST,
         BuildModules.Features.HOME,
         BuildModules.Features.PROFILE,
+        BuildModules.Features.AUTHENTIFICATION,
+
         BuildModules.Features.POSTULATE
     )
     /*

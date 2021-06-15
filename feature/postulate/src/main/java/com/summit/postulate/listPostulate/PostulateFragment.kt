@@ -1,6 +1,8 @@
 package com.summit.postulate.listPostulate
 
 
+import android.os.Bundle
+import android.view.View
 import com.summit.android.addfast.app.MyApp
 import com.summit.postulate.R
 import com.summit.postulate.databinding.FragmentPostulateBinding
@@ -19,5 +21,10 @@ class PostulateFragment : BaseFragment<FragmentPostulateBinding, PostulateViewMo
 
     override fun onInitDataBinding() {
         viewBinding.viewModel=viewModel
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 }

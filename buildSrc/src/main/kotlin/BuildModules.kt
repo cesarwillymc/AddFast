@@ -1,4 +1,3 @@
-
 object BuildModules {
     const val APP = ":app"
     const val CORE = ":core"
@@ -8,6 +7,7 @@ object BuildModules {
         const val NAVHOST = ":feature:navhost"
         const val PROFILE = ":feature:profile"
         const val POSTULATE = ":feature:postulate"
+        const val AUTHENTIFICATION = ":feature:authentification"
 
     }
 

@@ -8,6 +8,5 @@ dependencies {
     implementation(project(BuildModules.Features.NAVHOST))
     implementation(project(BuildModules.Commons.VIEW))
     implementation(Dependencies.CIRCLEIMAGE)
-
-
+    implementation(Dependencies.LOTTIE)
 }

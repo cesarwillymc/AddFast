@@ -8,13 +8,14 @@ include(
     ":commons:views",
     ":feature:postulate",
     ":feature:profile",
+    ":feature:authentification",
     ":libraries:test_utils"
 )
 /*
 
     ":feature:ubication",
     ":feature:advertisements",
-    ":feature:authentification",
+
     ":feature:camerax",
 
     ":feature:offert",

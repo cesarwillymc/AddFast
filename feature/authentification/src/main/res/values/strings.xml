@@ -1,4 +1,6 @@
 <resources>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_string_peru">+51</string>
+    <string name="login_string_hint_edt">teléfono</string>
 </resources>

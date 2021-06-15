@@ -2,6 +2,7 @@ package com.summit.profile
 
 import android.os.Bundle
 import android.view.View
+import com.airbnb.lottie.LottieAnimationView
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.profile.databinding.FragmentProfileBinding
@@ -23,11 +24,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       // viewBinding.viewUserSignin.lottieAnimationView.playAnimation()
     }
 
     override fun onDetach() {
-
+        viewBinding.viewUserSignin
         super.onDetach()
     }
 }

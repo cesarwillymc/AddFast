@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/commons/views" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/authentification" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/navhost" />
             <option value="$PROJECT_DIR$/feature/postulate" />

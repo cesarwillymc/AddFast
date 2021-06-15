@@ -7,5 +7,8 @@
     <string name="profile_information_bussiness">EMPRESA</string>
     <string name="profile_information_ruc">RUC</string>
     <string name="profile_information_sign_out">Cerrar Sesión</string>
-
+    <string name="view_sign_in_text">Iniciar Sesion</string>
+    <string name="view_sign_in_message">No iniciaste sesion, para acceder a esta funcionalidad es necesario que inicies
+        sesion!.
+    </string>
 </resources>
