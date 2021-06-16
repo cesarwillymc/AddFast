@@ -32,6 +32,9 @@ object Dependencies {
     const val GLIDECOMPILER = "com.github.bumptech.glide:compiler:${DependencyVersion.GLIDECOMPILER}"
     const val GLIDETRANSFORMATION = "jp.wasabeef:glide-transformations:${DependencyVersion.GLIDETRANSFORMATION}"
     const val NAVIGATIONFRAGMENT = "androidx.navigation:navigation-fragment-ktx:${DependencyVersion.NAVIGATION}"
+    const val NAVIGATIONDYNAMIC = "androidx.navigation:navigation-dynamic-features-fragment:${DependencyVersion.NAVIGATION}"
+    const val NAVIGATION_RUNTIME =
+        "androidx.navigation:navigation-runtime-ktx:${DependencyVersion.NAVIGATION}"
     const val NAVIGATIONUI = "androidx.navigation:navigation-ui-ktx:${DependencyVersion.NAVIGATION}"
     const val ROOMRUNTIME = "androidx.room:room-runtime:${DependencyVersion.ROOM}"
     const val ROOMCOMPILER = "androidx.room:room-compiler:${DependencyVersion.ROOM}"

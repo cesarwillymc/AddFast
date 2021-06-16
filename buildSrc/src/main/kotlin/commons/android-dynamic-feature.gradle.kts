@@ -73,6 +73,8 @@ dependencies {
     implementation(Dependencies.COROUTINESANDROID)
     implementation(Dependencies.NAVIGATIONUI)
     implementation(Dependencies.NAVIGATIONFRAGMENT)
+    implementation(Dependencies.NAVIGATIONDYNAMIC)
+    implementation(Dependencies.NAVIGATION_RUNTIME)
     implementation(Dependencies.LIFECYCLEKTX)
     implementation(Dependencies.LIVEDATA)
     implementation(Dependencies.COREKTX)

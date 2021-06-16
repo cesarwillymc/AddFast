@@ -2,6 +2,8 @@ package com.summit.profile
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
@@ -24,10 +26,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.viewUserSignin.signinButton.setOnClickListener {
+          //  findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavGraphAuth())
+        }
     }
 
     override fun onDetach() {
-        viewBinding.viewUserSignin
+        viewBinding.viewUserSignin.lottieAnimationView.cancelAnimation()
+        viewBinding.viewUserSignin.lottieAnimationView.clearAnimation()
         super.onDetach()
     }
 }

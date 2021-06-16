@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
+          xmlns:dist="http://schemas.android.com/apk/distribution" xmlns:tools="http://schemas.android.com/tools"
           package="com.summit.authentification">
 
     <dist:module
-        dist:instant="false"
+        dist:instant="true"
         dist:title="@string/title_authentification">
         <dist:delivery>
-            <dist:on-demand/>
+            <dist:install-time />
         </dist:delivery>
-        <dist:fusing dist:include="true"/>
+        <dist:fusing dist:include="false"/>
     </dist:module>
+    <application
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup,MissingApplicationIcon" />
 </manifest>

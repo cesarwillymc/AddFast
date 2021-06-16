@@ -169,6 +169,8 @@ dependencies {
     //Navigation components
     implementation(Dependencies.NAVIGATIONFRAGMENT)
     implementation(Dependencies.NAVIGATIONUI)
+    implementation(Dependencies.NAVIGATIONDYNAMIC)
+    implementation(Dependencies.NAVIGATION_RUNTIME)
 /*
     //Huawei
 

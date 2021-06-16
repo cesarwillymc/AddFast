@@ -1,5 +1,6 @@
 package com.summit.dynamicfeatures.navhost.nav
 
+import DynamicNavigationFragment
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -18,7 +19,7 @@ import com.summit.dynamicfeatures.navhost.nav.di.DaggerNavComponent
 import com.summit.dynamicfeatures.navhost.nav.di.NavModule
 
 
-class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
+class NavFragment : DynamicNavigationFragment<FragmentNavBinding, NavHostViewModel>(
     layoutId = R.layout.fragment_nav
 ) {
 
@@ -49,6 +50,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             setupMenu()
             setupBottomNavigationBar()
         }
+
 
     }
 
@@ -108,7 +110,6 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             containerId = R.id.am_fragment,
             intent = requireActivity().intent
         )
-
         navController.observe(
             viewLifecycleOwner
         ) {

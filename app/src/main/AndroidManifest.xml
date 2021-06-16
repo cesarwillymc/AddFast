@@ -35,8 +35,7 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_icon_laucher_addfast_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:targetApi="m">
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.bugsnag.android.API_KEY"
             android:value="7ab76ae0446e70361741b2e589e47237" />
