@@ -1,5 +1,8 @@
 package com.summit.authentification.login
 
+import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import com.summit.android.addfast.app.MyApp
 import com.summit.authentification.R
 import com.summit.authentification.databinding.FragmentLoginBinding
@@ -17,6 +20,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
 
     override fun onInitDataBinding() {
         viewBinding.viewModel = viewModel
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewBinding.lblInicioSend.setOnClickListener {
+            Toast.makeText(requireContext(),"CLicked",Toast.LENGTH_LONG).show()
+        }
     }
 
 }

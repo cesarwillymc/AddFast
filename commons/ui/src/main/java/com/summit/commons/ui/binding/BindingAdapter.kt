@@ -4,9 +4,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -29,7 +31,24 @@ fun setVisibilty(view: View, isVisible: Boolean) {
         view.hide()
     }
 }
+@BindingAdapter("app:errorText")
+fun setError(tInputLayout: EditText, str: String?) {
+    if (str.isNullOrEmpty()) {
+        tInputLayout.error = null
+    } else {
+        tInputLayout.error = str
 
+    }
+}
+@BindingAdapter("app:enabledView")
+fun CardView.setEnabledView(enabled: Boolean) {
+    this.isEnabled=enabled
+    if(enabled){
+        setCardBackgroundColor(Color.BLACK)
+    }else{
+        setCardBackgroundColor(Color.GRAY)
+    }
+}
 @set:BindingAdapter("visible")
 var View.visible
     get() = visibility == View.VISIBLE

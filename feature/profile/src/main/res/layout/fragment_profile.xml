@@ -3,18 +3,20 @@
     <data>
         <variable name="viewModel" type="com.summit.profile.ProfileViewModel"/>
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <include layout="@layout/view_user_information"
-                 android:id="@+id/view_user_info"
-                 app:model="@{viewModel.userInformation}"
-                 app:viewModel="@{viewModel}"/>
-        <include layout="@layout/view_sign_in"
-                 android:id="@+id/view_user_signin"
-                 app:model="@{viewModel.userInformation}"/>
+            <include layout="@layout/view_user_information"
+                     android:id="@+id/view_user_info"
+                     app:model="@{viewModel.userInformation}"
+                     app:viewModel="@{viewModel}"/>
+            <include layout="@layout/view_sign_in"
+                     android:id="@+id/view_user_signin"
+                     app:model="@{viewModel.userInformation}"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

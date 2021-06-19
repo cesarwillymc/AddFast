@@ -17,18 +17,33 @@
             app:layout_constraintBottom_toBottomOf="@+id/lbl_inicio_telefono"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/lbl_inicio_telefono"/>
-
         <TextView
-            android:id="@+id/comfirm_code_peru"
+            android:id="@+id/comfirm_code_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/gilroy_extrabold"
-            android:text="@string/login_string_peru"
+            android:hint="@string/login_string_add"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/imageView6"/>
+        <EditText
+            android:id="@+id/comfirm_code_peru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="aa"
+            android:fontFamily="@font/gilroy_ligth"
+            android:hint="@string/login_string_peru"
+            android:inputType="number"
+            app:errorText="@{viewModel.stateCode.CodeEmpty?@string/login_string_empty_code:viewModel.stateCode.CodeError?@string/login_string_error_code:@string/login_vacio}"
+            android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextCodeCountryPhone(word)}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/comfirm_code_add"
             app:layout_constraintTop_toTopOf="@+id/imageView6"/>
 
         <EditText
@@ -39,8 +54,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:ems="10"
-            android:fontFamily="@font/gilroy_extrabold"
+            android:fontFamily="@font/gilroy_ligth"
             android:hint="@string/login_string_hint_edt"
+            app:errorText="@{viewModel.statePhone.PhoneEmpty?@string/login_string_empty_phone:viewModel.statePhone.PhoneError?@string/login_string_error_phone:@string/login_vacio}"
+            android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberPhone(word)}"
             android:inputType="number"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,32 +65,36 @@
             app:layout_constraintStart_toEndOf="@+id/comfirm_code_peru"
             app:layout_constraintTop_toBottomOf="@+id/imageView" android:autofillHints="true"/>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/lbl_inicio_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/button_black"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="5dp"
+            app:cardBackgroundColor="@color/gray"
+            app:cardCornerRadius="20dp"
+            app:contentPadding="@dimen/margin_xsmall"
+
+            app:enabledView="@{viewModel.stateCode.CodeSucces &amp;&amp; viewModel.statePhone.PhoneSucces}"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lbl_inicio_telefono">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView7"
-                android:layout_width="0dp"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/ic_arrow_forward"/>
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="@dimen/size_view"
+            android:layout_height="@dimen/size_view"
             android:background="@drawable/fondo"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
