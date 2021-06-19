@@ -27,7 +27,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.viewUserSignin.signinButton.setOnClickListener {
-          //  findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavGraphAuth())
+           findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavAuthentificationGraph())
         }
     }
 

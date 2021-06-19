@@ -19,7 +19,7 @@ import com.summit.dynamicfeatures.navhost.nav.di.DaggerNavComponent
 import com.summit.dynamicfeatures.navhost.nav.di.NavModule
 
 
-class NavFragment : DynamicNavigationFragment<FragmentNavBinding, NavHostViewModel>(
+class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     layoutId = R.layout.fragment_nav
 ) {
 

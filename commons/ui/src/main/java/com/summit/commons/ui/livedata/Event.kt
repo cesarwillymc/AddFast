@@ -1,6 +1,6 @@
 package com.summit.commons.ui.livedata
 
-internal open class Event<out T>(private val content: T) {
+open class Event<out T>(private val content: T) {
 
     var hasBeenHandled = false
         private set // Allow external read but not write

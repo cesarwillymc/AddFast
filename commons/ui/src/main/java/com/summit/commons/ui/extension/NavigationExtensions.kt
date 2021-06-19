@@ -10,9 +10,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.summit.commons.ui.R
+import com.summit.commons.ui.base.BaseDynamicNavHostFragment
 
 
-@Suppress("UnsafeCast", "UnsafeCallOnNullableType", "LongMethod", "ComplexMethod")
 fun BottomNavigationView.setupWithNavController(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
@@ -51,18 +52,11 @@ fun BottomNavigationView.setupWithNavController(
 
         // Attach or detach nav host fragment depending on whether it's the selected item.
         if (this.selectedItemId == graphId) {
-            // Update liveData with the selected graph
+            // Update livedata with the selected graph
             selectedNavController.value = navHostFragment.navController
-            attachNavHostFragment(
-                fragmentManager,
-                navHostFragment,
-                index == 0
-            )
+            attachNavHostFragment(fragmentManager, navHostFragment, index == 0)
         } else {
-            detachNavHostFragment(
-                fragmentManager,
-                navHostFragment
-            )
+            detachNavHostFragment(fragmentManager, navHostFragment)
         }
     }
 
@@ -139,7 +133,6 @@ fun BottomNavigationView.setupWithNavController(
     return selectedNavController
 }
 
-@Suppress("UnsafeCast")
 private fun BottomNavigationView.setupDeepLinks(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
@@ -165,7 +158,6 @@ private fun BottomNavigationView.setupDeepLinks(
     }
 }
 
-@Suppress("UnsafeCast")
 private fun BottomNavigationView.setupItemReselected(
     graphIdToTagMap: SparseArray<String>,
     fragmentManager: FragmentManager
@@ -206,7 +198,6 @@ private fun attachNavHostFragment(
         .commitNow()
 }
 
-@Suppress("UnsafeCast")
 private fun obtainNavHostFragment(
     fragmentManager: FragmentManager,
     fragmentTag: String,
@@ -218,7 +209,7 @@ private fun obtainNavHostFragment(
     existingFragment?.let { return it }
 
     // Otherwise, create it and return it.
-    val navHostFragment = NavHostFragment.create(navGraphId)
+    val navHostFragment = BaseDynamicNavHostFragment.createDynamicNavHostFragment(navGraphId)
     fragmentManager.beginTransaction()
         .add(containerId, navHostFragment, fragmentTag)
         .commitNow()

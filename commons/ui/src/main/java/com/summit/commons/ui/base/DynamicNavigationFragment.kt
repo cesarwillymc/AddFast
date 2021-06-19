@@ -17,13 +17,9 @@ abstract class DynamicNavigationFragment<B : ViewDataBinding, M : ViewModel>(
 ) :
     BaseFragment<B, M>(layoutId) {
 
-    /**
-     * [DynamicInstallMonitor] is for monitoring installation progress of a dynamic module
-     * after we tried to navigate to it and under circumstances that it's not available.
-     */
     private val installMonitor = DynamicInstallMonitor()
 
-    fun navigateWithInstallMonitor(
+    fun navigateWithInastallMonitor(
         navController: NavController,
         @IdRes destinationId: Int,
         bundle: Bundle? = null

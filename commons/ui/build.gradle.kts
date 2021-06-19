@@ -13,6 +13,7 @@ dependencies {
     implementation(Dependencies.COREKTX)
     implementation(Dependencies.FRAGMENT_KTX)
     implementation(Dependencies.NAVIGATIONFRAGMENT)
+    implementation(Dependencies.NAVIGATION_RUNTIME)
     implementation(Dependencies.NAVIGATIONUI)
     implementation(Dependencies.NAVIGATIONDYNAMIC)
     implementation(Dependencies.GLIDE)
