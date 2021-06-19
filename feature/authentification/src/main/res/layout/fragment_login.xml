@@ -64,30 +64,22 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/comfirm_code_peru"
             app:layout_constraintTop_toBottomOf="@+id/imageView" android:autofillHints="true"/>
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/lbl_inicio_telefono">
+            <include
+                android:id="@+id/lbl_inicio_send"
+                layout="@layout/view_button_next"
+                app:buttonEnabled="@{viewModel.stateCode.CodeSucces &amp;&amp; viewModel.statePhone.PhoneSucces}"
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/lbl_inicio_send"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="horizontal"
-            app:cardBackgroundColor="@color/gray"
-            app:cardCornerRadius="20dp"
-            app:contentPadding="@dimen/margin_xsmall"
+                app:viewEnabled="@{!viewModel.stateLogin.loading}"/>
+            <include
+                android:id="@+id/lbl_inicio_loading"
+                layout="@layout/view_loading"
+                app:viewEnabled="@{viewModel.stateLogin.loading}"/>
+        </FrameLayout>
 
-            app:enabledView="@{viewModel.stateCode.CodeSucces &amp;&amp; viewModel.statePhone.PhoneSucces}"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_inicio_telefono">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView7"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_arrow_forward"/>
-        </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"

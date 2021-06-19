@@ -1,15 +1,19 @@
 package com.summit.authentification.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.summit.core.exception.ExceptionGeneral
+import com.summit.core.network.repository.AuthRepository
+import com.summit.core.status.Resource
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val repoAuth:AuthRepository) : ViewModel() {
     private val _statePhone = MutableLiveData<LoginViewState>()
     val statePhone: LiveData<LoginViewState> get() = _statePhone
 
 
     private lateinit var _dataPhone :String
+    val dataPhone get() = _dataPhone
     fun updateTextNumberPhone(phone: CharSequence) {
         if (phone.isNotEmpty()) {
             if (phone.length > 7) {
@@ -28,6 +32,7 @@ class LoginViewModel : ViewModel() {
     val stateCode: LiveData<LoginViewState> get() = _stateCode
 
     private lateinit var _dataCode:String
+    val dataCode get() = _dataCode
     fun updateTextCodeCountryPhone(code: CharSequence) {
         if (code.isNotEmpty()) {
             if (code.length <=2) {
@@ -41,4 +46,24 @@ class LoginViewModel : ViewModel() {
         }
     }
 
+    private val _stateLogin = MutableLiveData<LoginViewState>()
+    val stateLogin: LiveData<LoginViewState> get() = _stateLogin
+    fun sendMessageLogged() {
+        viewModelScope.launch {
+            _stateLogin.postValue(LoginViewState.Loading)
+            try {
+                repoAuth.sendNumberCode(_dataCode, _dataPhone)
+                _stateLogin.postValue(LoginViewState.Complete)
+            } catch (e: Exception) {
+                _stateLogin.postValue(LoginViewState.Error)
+            }
+        }
+    }
+    fun onStopViewModel(){
+        viewModelScope.cancel()
+    }
+    override fun onCleared() {
+        viewModelScope.cancel()
+        super.onCleared()
+    }
 }
