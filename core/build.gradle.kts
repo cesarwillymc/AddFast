@@ -29,6 +29,7 @@ dependencies {
     implementation(Dependencies.RETROFIT)
     implementation(Dependencies.GSONCONVERTER)
     implementation(Dependencies.HUAWEIAUTH)
+    implementation(Dependencies.APPCOMPACT)
     implementation(Dependencies.HUAWEICORE)
     implementation(Dependencies.FIREBASESTORAGE)
     implementation(Dependencies.FIRESTORE)

@@ -1,35 +1,38 @@
 package com.summit.dynamicfeatures.navhost.nav
 
-import DynamicNavigationFragment
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.commons.ui.extension.setupWithNavController
 import com.summit.core.network.model.departamento.UbicacionModel
+import com.summit.core.style.ThemeUtils
 import com.summit.dynamicfeatures.navhost.NavHostViewModel
 import com.summit.dynamicfeatures.navhost.R
 import com.summit.dynamicfeatures.navhost.databinding.FragmentNavBinding
 import com.summit.dynamicfeatures.navhost.dialog.SelectPlaceDialog
+import com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
 import com.summit.dynamicfeatures.navhost.nav.di.DaggerNavComponent
 import com.summit.dynamicfeatures.navhost.nav.di.NavModule
+import javax.inject.Inject
 
 
 class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     layoutId = R.layout.fragment_nav
 ) {
 
+    @Inject
+    lateinit var themeUtils: ThemeUtils
+
+    private val delayThemeUtils = 0L
 
     private val navGraphIds = listOf(
         R.navigation.nav_inicio_graph,
         R.navigation.nav_profile_graph,
         R.navigation.nav_postulate_graph
     )
-
     override fun onInitDependencyInjection() {
         DaggerNavComponent
             .builder()
@@ -54,11 +57,21 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     }
 
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        setupMenu()
+        setupBottomNavigationBar()
+    }
+
     private fun setupMenu() {
-        viewModel.getUserData.observe(viewLifecycleOwner) {
-            viewBinding.navView.menu.clear()
-            viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
+        if(viewModel.getUserData.value==null){
+            viewModel.getUserData.observe(viewLifecycleOwner) {
+                viewBinding.navView.menu.clear()
+                viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
+
+            }
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -83,6 +96,18 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
                 viewModel.saveUbicacion(UbicacionModel("Puno", "Puno", 0))
             }
         }
+        viewBinding.iconTheme.setOnClickListener {
+            it?.let {
+                if (it is ToggleThemeCheckBox) {
+                    val checked = themeUtils.isDarkTheme(requireContext())
+                    it.isChecked = checked
+                    themeUtils.setNightMode(!checked, delayThemeUtils)
+
+                }
+            }
+
+        }
+
         viewBinding.imgIconGps.setOnClickListener {
             initDialogSelectPlace()
         }

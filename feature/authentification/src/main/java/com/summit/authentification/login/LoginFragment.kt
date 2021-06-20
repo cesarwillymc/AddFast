@@ -50,15 +50,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>(
                                 )
                             )
                         } catch (e: Exception) {
-                            e.message?.let{
-                                Log.e("errornavi",it)
-                            }
-
+                            Log.e("errornavi","$e")
                         }
 
                     }
                     LoginViewState.Error -> {
-                        toast("Surgio un error, asegurese de que cuenta con internet")
+                        toast(requireContext().getString(R.string.error_exceptio))
                     }
                     else -> {
                     }

@@ -8,4 +8,5 @@ plugins {
 
 dependencies {
     implementation(project(BuildModules.Features.NAVHOST))
+
 }

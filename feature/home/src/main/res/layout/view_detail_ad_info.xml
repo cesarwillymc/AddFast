@@ -85,7 +85,7 @@
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/gilroy_extrabold"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:text="@{model.titulo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"

@@ -3,6 +3,7 @@ package com.summit.core.network.repository
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.huawei.agconnect.auth.AGConnectAuth
 import com.summit.core.db.AppDB
 import com.summit.core.db.dao.UsuarioDao
 import com.summit.core.network.model.Reporte
@@ -14,7 +15,7 @@ import kotlin.coroutines.resumeWithException
 
 internal class UserRepositoryImpl(
     private val db: UsuarioDao, private val firestore: FirebaseFirestore,
-    private val storage: FirebaseStorage
+    private val storage: FirebaseStorage, private val api: AGConnectAuth,
 ) : UserRepository {
     override suspend fun getUrlDownloadFile(path: String): String = suspendCancellableCoroutine { continuation ->
         storage.getReference(path).downloadUrl.addOnSuccessListener {
@@ -28,7 +29,11 @@ internal class UserRepositoryImpl(
 
     override fun updateUser(usuario: Usuario) = db.updateUsuario(usuario)
 
-    override fun deleteUser() = db.deleteUsuario()
+    override fun deleteUser() {
+        db.deleteUsuario()
+        api.signOut()
+        api.deleteUser()
+    }
 
     override fun getUserStatic() = db.selectUsuarioStatic()
 

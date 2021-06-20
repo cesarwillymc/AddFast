@@ -12,5 +12,5 @@ interface ThemeUtils {
     fun isLightTheme(context: Context): Boolean
 
 
-   // fun setNightMode(forceNight: Boolean, delay: Long = 0L)
+    fun setNightMode(forceNight: Boolean, delay: Long = 0L)
 }

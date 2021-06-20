@@ -6,11 +6,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.db.dao.UsuarioDao
-import com.summit.core.di.modules.ContextModule
-import com.summit.core.di.modules.DatabaseModule
-import com.summit.core.di.modules.NetworkModule
-import com.summit.core.di.modules.RepositoryModule
+import com.summit.core.di.modules.*
 import com.summit.core.network.repository.*
+import com.summit.core.style.ThemeUtils
 import dagger.Component
 import javax.inject.Singleton
 
@@ -20,7 +18,8 @@ import javax.inject.Singleton
         ContextModule::class,
         NetworkModule::class,
         DatabaseModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        UtilsModule::class
     ]
 )
 interface CoreComponent {
@@ -40,4 +39,6 @@ interface CoreComponent {
     fun firestore(): FirebaseFirestore
     fun storage(): FirebaseStorage
     fun huaweiAuth(): AGConnectAuth
+
+    fun themeUtils(): ThemeUtils
 }

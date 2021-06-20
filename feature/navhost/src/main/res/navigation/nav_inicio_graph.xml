@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/nav_inicio_graph"
+            app:moduleName="navhost"
             app:startDestination="@id/nav_home">
     <fragment
         android:id="@+id/nav_home"

@@ -4,8 +4,12 @@
     <color name="colorPrimaryDark">#004E98</color>
     <color name="colorAccent">#004E98</color>
     <color name="shimmerColor">#919191</color>
-
-
+    <color name="backgroundColor">#fff</color>
+    <color name="subBackGroundColor">#F6DD00</color>
+    <!--Text colors-->
+    <color name="textColor">#000</color>
+    <color name="selectedColor">#004E98</color>
+    <color name="unSelectedColor">#D0D3D6</color>
     <!--Gris Scale-->
     <color name="control_background">#cc4285f4</color>
     <color name="white">#f9f9f9</color>

@@ -44,7 +44,7 @@
                 android:fontFamily="@font/gilroy_extrabold"
                 android:singleLine="true"
                 android:text="@{model.titulo}"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
                 app:layout_constraintTop_toTopOf="@+id/cardView"/>
@@ -68,7 +68,7 @@
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="@{model.descripcion}"
-                android:textColor="@color/gris_4"
+                android:textColor="@color/unSelectedColor"
                 app:layout_constraintBottom_toTopOf="@+id/fcai_timeago"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView"

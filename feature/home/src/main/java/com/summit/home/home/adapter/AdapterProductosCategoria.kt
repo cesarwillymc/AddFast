@@ -1,7 +1,7 @@
 package com.summit.home.home.adapter
 
 
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +20,6 @@ class AdapterProductosCategoria(private val producListener: CategoriasProductosL
 
         lisProducts.clear()
         lisProducts.addAll(listaProduct)
-        Log.e("anuncios","entro ${lisProducts.size}")
         notifyDataSetChanged()
     }
 
@@ -34,7 +33,7 @@ class AdapterProductosCategoria(private val producListener: CategoriasProductosL
     inner class ViewHolder(private val binding: LayoutInitCategoryProductBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(anuncio: ListaAnuncios, position: Int) {
-            Log.e("bind","${anuncio}")
+
             binding.model=anuncio
             binding.executePendingBindings()
             binding.ficiVerMas.setOnClickListener {

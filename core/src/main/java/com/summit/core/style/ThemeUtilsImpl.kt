@@ -3,9 +3,12 @@ package com.summit.core.style
 
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Handler
+import androidx.appcompat.app.AppCompatDelegate
+import javax.inject.Inject
 
 
-internal class ThemeUtilsImpl : ThemeUtils {
+class ThemeUtilsImpl @Inject constructor() : ThemeUtils {
 
 
     override fun isDarkTheme(context: Context) = context.resources.configuration.uiMode and
@@ -15,7 +18,7 @@ internal class ThemeUtilsImpl : ThemeUtils {
     override fun isLightTheme(context: Context) = !isDarkTheme(context)
 
 
-/*    override fun setNightMode(forceNight: Boolean, delay: Long) {
+    override fun setNightMode(forceNight: Boolean, delay: Long) {
         Handler().postDelayed(
             {
                 AppCompatDelegate.setDefaultNightMode(
@@ -28,5 +31,5 @@ internal class ThemeUtilsImpl : ThemeUtils {
             },
             delay
         )
-    }*/
+    }
 }

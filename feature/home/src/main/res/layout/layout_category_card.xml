@@ -24,7 +24,7 @@
                 android:layout_marginEnd="12dp"
                 android:textSize="12sp"
                 android:fontFamily="@font/gilroy_extrabold"
-                android:textColor="#fff"
+                android:textColor="@color/black"
                 android:text="@{model.name}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

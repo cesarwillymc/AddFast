@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="viewModel" type="com.summit.authentification.confirm.ConfirmCodeViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
+        android:background="@color/backgroundColor"
         android:layout_height="match_parent"
     >
 
@@ -39,9 +39,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="Verificación Móvil"
-            android:textColor="@color/black"
+            android:fontFamily="@font/gilroy_extrabold"
+            android:text="@string/confirm_title"
+            android:textColor="@color/textColor"
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -52,15 +52,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat"
-            android:text="Por favor, Ingrese su codigo que le llego a su numero para confirmar su acceso."
-            android:textColor="@color/black"
+            android:fontFamily="@font/gilroy_ligth"
+            android:text="@string/confirm_desc"
+            android:textColor="@color/textColor"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline10"
             app:layout_constraintTop_toBottomOf="@+id/TextView8"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView6"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -75,9 +75,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:fontFamily="@font/montserrat"
-            android:text="051"
-            android:textColor="@color/black"
+            android:fontFamily="@font/gilroy_ligth"
+            android:text="@{viewModel.codeArgs}"
+            android:textColor="@color/textColor"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -90,35 +90,34 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:autofillHints="true"
             android:ems="10"
             android:fontFamily="@font/montserrat"
-            android:hint="Code"
+            android:hint="@string/confirm_hint"
+            app:errorText="@{viewModel.stateCode.CodeEmpty?@string/confirm_string_empty_code:viewModel.stateCode.CodeError?@string/confirm_string_error_code:@string/login_vacio}"
+            android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberCode(word)}"
             android:inputType="number"
+            android:textColor="@color/textColor"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
-            app:layout_constraintStart_toStartOf="@+id/guideline10"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintStart_toStartOf="@+id/guideline10"
             app:layout_constraintTop_toBottomOf="@+id/imageView6"/>
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/et_cellphone__validate">
+            <include
+                android:id="@+id/lbl_inicio_send"
+                layout="@layout/view_button_next"
+                app:buttonEnabled="@{viewModel.stateCode.CodeSucces}"
 
-        <LinearLayout
-            android:id="@+id/btn_validate_number"
-            android:paddingVertical="5dp"
-            android:paddingHorizontal="20dp"
-            android:background="@drawable/button_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_cellphone__validate">
+                app:viewEnabled="@{!viewModel.stateConfirmCode.loading}"/>
+            <include
+                android:id="@+id/lbl_inicio_loading"
+                layout="@layout/view_loading"
+                app:viewEnabled="@{viewModel.stateConfirmCode.loading}"/>
+        </FrameLayout>
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_arrow_forward"/>
-        </LinearLayout>
 
         <TextView
             android:id="@+id/comfirm_code_number_peru"
@@ -126,9 +125,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="32dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/black"
+            android:fontFamily="@font/gilroy_extrabold"
+            android:textColor="@color/textColor"
             android:textSize="16sp"
+            android:text="@{viewModel.phoneArgs}"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toEndOf="@+id/comfirm_code_peru"

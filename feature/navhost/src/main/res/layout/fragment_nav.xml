@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="com.summit.dynamicfeatures.navhost.R"/>
@@ -22,7 +22,7 @@
                 android:id="@+id/tollbar_main"
                 android:layout_width="match_parent"
                 android:elevation="0dp"
-                android:background="@color/white"
+                android:background="@color/backgroundColor"
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,38 +45,44 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
 
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/main_linear"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:gravity="start|center"
-                        android:orientation="horizontal"
                         android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="UseCompoundDrawables">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/img_icon_gps"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="4dp"
+                            android:contentDescription="@string/imagenavhosy"
                             android:src="@drawable/ic_map_toolbar"
-                            android:contentDescription="@string/imagenavhosy"/>
+                            android:tint="@color/selectedColor" app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
                         <TextView
                             android:id="@+id/main_ubicacion"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
                             android:fontFamily="@font/gilroy_ligth"
                             android:text="@{viewModel.getUbicacion.departamento +` - `+ viewModel.getUbicacion.provincia}"
-                            android:textColor="#000000"/>
-                    </LinearLayout>
+                            app:layout_constraintBottom_toBottomOf="@+id/img_icon_gps"
+                            app:layout_constraintEnd_toStartOf="@+id/icon_theme"
+                            app:layout_constraintStart_toEndOf="@+id/img_icon_gps" app:layout_constraintTop_toTopOf="@+id/img_icon_gps"/>
+                        <com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
+                            android:id="@+id/icon_theme"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp" app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+
+                            app:layout_constraintVertical_bias="0.0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -100,8 +106,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="?android:attr/windowBackground"
+            android:background="@color/backgroundColor"
             app:labelVisibilityMode="labeled"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

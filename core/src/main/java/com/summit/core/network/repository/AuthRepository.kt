@@ -18,7 +18,7 @@ interface AuthRepository {
     //Verificar mensajes de texto
     suspend fun sendVerifyCode(credential: SignIn):String?
     //Create User WITH number
-    suspend fun createUserVerifyCode(credential: PhoneUser):String
+    suspend fun createUserVerifyCode(credential: SignIn):String
     //GET INFO
     suspend fun getDataInformation(id: String): Usuario?
     //CREATE DATA INFORMATION

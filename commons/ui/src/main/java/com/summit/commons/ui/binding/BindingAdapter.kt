@@ -1,15 +1,11 @@
 package com.summit.commons.ui.binding
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -20,7 +16,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 import jp.wasabeef.glide.transformations.BlurTransformation
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
-import kotlin.random.Random
 
 
 @BindingAdapter("app:visibility")
@@ -44,9 +39,9 @@ fun setError(tInputLayout: EditText, str: String?) {
 fun CardView.setEnabledView(enabled: Boolean) {
     this.isEnabled=enabled
     if(enabled){
-        setCardBackgroundColor(Color.BLACK)
+        setCardBackgroundColor(context.getColor(R.color.enabled))
     }else{
-        setCardBackgroundColor(Color.GRAY)
+        setCardBackgroundColor(context.getColor(R.color.disable))
     }
 }
 @set:BindingAdapter("visible")
@@ -105,7 +100,6 @@ fun setErrorText(view: TextView, viewState: BaseViewState?,) {
 
 @BindingAdapter("imageUrl", requireAll = false)
 fun ImageView.imageUrl(url: String?) {
-    Log.e("imageUrl", "data $url")
     Glide.with(this).load(url).into(this)
 }
 

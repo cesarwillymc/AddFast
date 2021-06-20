@@ -5,5 +5,4 @@ data class SignIn(
      val numberPhone:String,
      val password:String = "th3lastford4ad",
      val codeRecibe:String
-
 )

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="model" type="com.summit.core.network.model.Usuario"/>
         <variable name="viewModel" type="com.summit.profile.ProfileViewModel"/>
@@ -9,14 +9,15 @@
         android:layout_height="match_parent"
         app:visibility="@{model!=null}">
         <androidx.cardview.widget.CardView
-            app:cardCornerRadius="4dp"
             android:id="@+id/cardView3"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline29"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="@dimen/margin_xsmall"
+            app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline17"
             app:layout_constraintStart_toStartOf="@+id/guideline15"
-            app:layout_constraintTop_toTopOf="@+id/guideline27">
+            app:layout_constraintTop_toBottomOf="@+id/profile_image">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -26,10 +27,10 @@
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="24dp"
                     android:fontFamily="@font/gilroy_extrabold"
                     android:text="@string/profile_information_title"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +44,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/gilroy_extrabold"
                     android:text="@string/profile_information_name"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView18"/>
@@ -55,10 +56,10 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/gilroy_extrabold"
-                    android:visibility="gone"
                     android:text="@string/profile_information_lastname"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColor"
                     android:textSize="16sp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lbl_txt_direction"/>
 
@@ -90,7 +91,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/gilroy_extrabold"
                         android:text="@string/profile_information_phone"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lbl_txt_direction"/>
@@ -99,9 +100,9 @@
                         android:id="@+id/phone_lbl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@{model.phone}"
                         app:layout_constraintBottom_toBottomOf="@+id/lbl_txt_direction"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:text="@{model.phone}"
                         app:layout_constraintStart_toEndOf="@+id/lbl_txt_direction"
                         app:layout_constraintTop_toBottomOf="@+id/textView18"/>
                 </LinearLayout>
@@ -111,11 +112,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:gravity="center"
-                    app:visibility="@{!model.nameEmpresa.empty}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                    app:visibility="@{!model.nameEmpresa.empty}">
 
                     <TextView
                         android:layout_width="100dp"
@@ -126,7 +127,7 @@
                         android:fontFamily="@font/gilroy_extrabold"
                         android:text="@string/profile_information_bussiness"
 
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lbl_txt_direction"/>
@@ -135,9 +136,9 @@
                         android:id="@+id/nameEmpresa_lbl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="@{model.nameEmpresa}"
                         app:layout_constraintBottom_toBottomOf="@+id/lbl_txt_direction"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:text="@{model.nameEmpresa}"
                         app:layout_constraintStart_toEndOf="@+id/lbl_txt_direction"
                         app:layout_constraintTop_toBottomOf="@+id/textView18"/>
                 </LinearLayout>
@@ -147,11 +148,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="24dp"
                     android:gravity="center"
-                    app:visibility="@{!model.ruc.empty}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                    app:visibility="@{!model.ruc.empty}">
 
                     <TextView
                         android:layout_width="100dp"
@@ -160,7 +162,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/gilroy_extrabold"
                         android:text="@string/profile_information_ruc"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lbl_txt_direction"/>
@@ -168,8 +170,8 @@
                     <TextView
                         android:id="@+id/ruc_lbl"
                         android:layout_width="match_parent"
-                        android:text="@{model.ruc}"
                         android:layout_height="match_parent"
+                        android:text="@{model.ruc}"
                         app:layout_constraintBottom_toBottomOf="@+id/lbl_txt_direction"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/lbl_txt_direction"
@@ -258,27 +260,28 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="100dp"
-            android:layout_height="0dp"
-            app:imageUrlCircular="@{model.uriImgPerfil}"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/cardView3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline15"
-            app:layout_constraintTop_toTopOf="@+id/guideline16"/>
+            app:imageUrlCircular="@{model.uriImgPerfil}"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <Button
             android:id="@+id/lbl_logout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:background="@color/black"
             android:fontFamily="@font/gilroy_extrabold"
             android:onClick="@{()->viewModel.clearUserInformation()}"
             android:text="@string/profile_information_sign_out"
             app:layout_constraintEnd_toStartOf="@+id/guideline17"
-            app:layout_constraintStart_toStartOf="@+id/guideline15"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3"/>
+            app:layout_constraintStart_toStartOf="@+id/guideline15" app:layout_constraintTop_toBottomOf="@+id/cardView3"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

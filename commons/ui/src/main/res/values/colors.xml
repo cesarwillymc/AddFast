@@ -12,4 +12,6 @@
         <item>#757575</item>
         <item>#616161</item>
     </string-array>
+    <color name="enabled">#000</color>
+    <color name="disable">#7F7F83</color>
 </resources>

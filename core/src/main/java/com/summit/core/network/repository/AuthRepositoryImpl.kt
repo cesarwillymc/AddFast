@@ -41,11 +41,12 @@ internal class AuthRepositoryImpl(
         }
 
     //Verificar mensajes de texto
-    override suspend fun sendVerifyCode(sign: SignIn): String? = suspendCancellableCoroutine { continuation ->
-        val credential = PhoneAuthProvider.credentialWithVerifyCode(
-            sign.code, sign.numberPhone, sign.password, sign.codeRecibe
+    override suspend fun sendVerifyCode(credential: SignIn): String? = suspendCancellableCoroutine { continuation ->
+        val credentialVerify = PhoneAuthProvider.credentialWithVerifyCode(
+            credential.code, credential.numberPhone, credential.password, credential.codeRecibe
         )
-        api.signIn(credential).addOnSuccessListener {
+        api.signOut()
+        api.signIn(credentialVerify).addOnSuccessListener {
             if (it.user != null)
                 continuation.resume(it.user.uid)
             else
@@ -57,27 +58,30 @@ internal class AuthRepositoryImpl(
     }
 
     //Create User WITH number
-    override suspend fun createUserVerifyCode(credential: PhoneUser): String =
-        suspendCancellableCoroutine { continuation ->
-            api.createUser(credential).addOnSuccessListener {
-                continuation.resume(it.user.uid)
-            }.addOnFailureListener {
-                continuation.resumeWithException(it)
-            }
+    override suspend fun createUserVerifyCode(credential: SignIn): String = suspendCancellableCoroutine { continuation ->
+        val phoneUser = PhoneUser.Builder()
+            .setCountryCode(credential.code)
+            .setPhoneNumber(credential.numberPhone)
+            .setVerifyCode(credential.codeRecibe)
+            .setPassword(credential.password)
+            .build()
 
+        api.createUser(phoneUser).addOnSuccessListener {
+            continuation.resume(it.user.uid)
+        }.addOnFailureListener {
+            continuation.resumeWithException(it)
         }
+
+
+    }
 
     //GET INFO
     override suspend fun getDataInformation(id: String): Usuario? = suspendCancellableCoroutine { continuation ->
         firebase.collection("users").document(id).get().addOnCompleteListener {
             try {
                 if (it.result != null) {
-                    if (it.result!!.exists()) {
-                        Log.e("getinfo", "informacion ${it.result!!.get("admin")}")
-                        continuation.resume(it.result!!.toObject(Usuario::class.java))
-                    } else {
-                        continuation.resume(null)
-                    }
+                    val usuario =it.result!!.toObject(Usuario::class.java)
+                    continuation.resume(usuario)
                 } else {
                     continuation.resume(null)
                 }
@@ -87,8 +91,10 @@ internal class AuthRepositoryImpl(
             }
         }.addOnFailureListener {
             try {
+                Log.e("getinfo", "exception}")
                 continuation.resumeWithException(it)
             } catch (e: Exception) {
+                Log.e("getinfo", "exception}  x2")
                 continuation.resumeWithException(Exception("Surgio un errorr"))
             }
 

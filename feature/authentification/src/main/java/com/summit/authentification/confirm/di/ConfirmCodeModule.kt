@@ -6,6 +6,8 @@ import com.summit.authentification.confirm.ConfirmCodeViewModel
 import com.summit.authentification.login.LoginViewModel
 import com.summit.commons.ui.extension.viewModel
 import com.summit.core.di.scope.FeatureScope
+import com.summit.core.network.repository.AuthRepository
+import com.summit.core.network.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 
@@ -13,13 +15,13 @@ import dagger.Provides
 @Module
 class ConfirmCodeModule(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    val fragment:ConfirmCodeFragment
+    val fragment: ConfirmCodeFragment
 ) {
 
     @FeatureScope
     @Provides
-    fun setupFragmentWithViewModel() = fragment.viewModel{
-        ConfirmCodeViewModel()
+    fun setupFragmentWithViewModel(repoAuth: AuthRepository,repoUser: UserRepository) = fragment.viewModel {
+        ConfirmCodeViewModel(repoAuth = repoAuth,repoUser = repoUser)
     }
 
 }
