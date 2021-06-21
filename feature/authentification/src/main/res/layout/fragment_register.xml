@@ -303,10 +303,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimary"
                 android:fontFamily="@font/gilroy_ligth"
-                android:paddingHorizontal="5dp"
-                android:textSize="10sp"
+                android:textColor="@color/textColor"
+                android:paddingHorizontal="8dp"
+                android:textSize="14sp"
                 android:text="@string/register_hint_load"
                 app:layout_constraintEnd_toEndOf="@+id/cardViewten"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewten" tools:ignore="SmallSp"/>
@@ -318,7 +319,7 @@
                 android:onCheckedChanged="@{(compoundButton, checked) -> viewModel.onCheckedButton(checked)}"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:buttonTint="@color/black"
+                android:buttonTint="@color/itemMenuUnchecked"
                 android:checked="false"
                 android:text="@string/register_hint_register_with"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -81,7 +81,7 @@ class RegisterViewModel(private val repoAuth: AuthRepository) : ViewModel() {
             _stateBussiness.postValue(RegisterViewState.BussinessEmpty)
         }
     }
-    private val _dataOnChecked = MutableLiveData<Boolean>(false)
+    private val _dataOnChecked = MutableLiveData(false)
     val dataOnChecked: LiveData<Boolean> get() = _dataOnChecked
 
     fun onCheckedButton(value:Boolean){

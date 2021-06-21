@@ -1,7 +1,6 @@
 package com.summit.authentification.confirm
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -62,9 +61,9 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
         viewModel.user.observe(viewLifecycleOwner){
             it?.let {
                 if(it.ruc.isNullOrEmpty()){
-                    //findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
+                    findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
                 }else{
-                    //findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
+                    findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
                 }
             }
         }

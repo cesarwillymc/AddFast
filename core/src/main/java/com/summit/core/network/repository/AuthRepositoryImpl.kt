@@ -80,8 +80,12 @@ internal class AuthRepositoryImpl(
         firebase.collection("users").document(id).get().addOnCompleteListener {
             try {
                 if (it.result != null) {
-                    val usuario =it.result!!.toObject(Usuario::class.java)
-                    continuation.resume(usuario)
+                  if(it.result!!.exists()){
+                      val usuario =it.result!!.toObject(Usuario::class.java)
+                      continuation.resume(usuario)
+                  }else{
+                      continuation.resume(null)
+                  }
                 } else {
                     continuation.resume(null)
                 }
@@ -91,10 +95,8 @@ internal class AuthRepositoryImpl(
             }
         }.addOnFailureListener {
             try {
-                Log.e("getinfo", "exception}")
                 continuation.resumeWithException(it)
             } catch (e: Exception) {
-                Log.e("getinfo", "exception}  x2")
                 continuation.resumeWithException(Exception("Surgio un errorr"))
             }
 
