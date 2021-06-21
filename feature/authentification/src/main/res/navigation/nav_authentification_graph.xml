@@ -20,21 +20,25 @@
         <argument android:name="phone" app:argType="string"/>
         <action android:id="@+id/action_confirmCodeFragment_to_nav_inicio_graph"
                 app:destination="@id/nav_inicio_graph" app:popUpTo="@id/nav_inicio_graph" app:popUpToInclusive="true"/>
-        <!--action android:id="@+id/action_confirmCodeFragment_to_nav_profile_graph"
-                app:destination="@id/nav_profile_graph" app:popUpTo="@id/nav_profile_graph"/-->
+        <action android:id="@+id/action_confirmCodeFragment_to_nav_profile_graph"
+                app:destination="@id/nav_profile_graph" app:popUpTo="@id/nav_profile_graph"
+        />
         <action android:id="@+id/action_confirmCodeFragment_to_registerFragment"
                 app:destination="@id/registerFragment" app:popUpTo="@id/nav_login" app:popUpToInclusive="true"/>
     </fragment>
+
     <include-dynamic
         android:id="@id/nav_inicio_graph"
         android:name="com.summit.navhost"
         app:moduleName="navhost"
         app:graphResName="nav_inicio_graph"/>
-    <!--include-dynamic
+
+    <include-dynamic
         android:id="@id/nav_profile_graph"
         android:name="com.summit.navhost"
         app:moduleName="navhost"
-        app:graphResName="nav_profile_graph"/-->
+        app:graphResName="nav_profile_graph_loged"/>
+
     <fragment android:id="@+id/registerFragment" android:name="com.summit.authentification.register.RegisterFragment"
               android:label="RegisterFragment">
         <action android:id="@+id/action_registerFragment_to_nav_inicio_graph" app:destination="@id/nav_inicio_graph"
