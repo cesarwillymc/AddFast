@@ -2,6 +2,7 @@ package com.summit.commons.ui.base
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,8 +45,10 @@ abstract class BaseFragment<B : ViewDataBinding, M : ViewModel>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.e("onCreateView","entro aca")
         viewBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         viewBinding.lifecycleOwner = viewLifecycleOwner
+        onInitDataBinding()
         return viewBinding.root
     }
 
@@ -56,8 +59,9 @@ abstract class BaseFragment<B : ViewDataBinding, M : ViewModel>(
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         onInitDataBinding()
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
 

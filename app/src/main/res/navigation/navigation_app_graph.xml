@@ -9,4 +9,5 @@
         android:name="com.summit.dynamicfeatures.navhost.nav.NavFragment"
         android:label="NavFragment">
     </fragment>
+
 </navigation>

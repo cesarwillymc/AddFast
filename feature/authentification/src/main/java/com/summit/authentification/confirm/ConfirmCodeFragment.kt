@@ -62,9 +62,9 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
         viewModel.user.observe(viewLifecycleOwner){
             it?.let {
                 if(it.ruc.isNullOrEmpty()){
-                    findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
+                    //findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
                 }else{
-                    findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
+                    //findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
                 }
             }
         }

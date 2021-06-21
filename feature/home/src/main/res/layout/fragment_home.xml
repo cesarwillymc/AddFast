@@ -27,18 +27,29 @@
                         android:layout_marginHorizontal="10dp"
                         android:orientation="vertical"
                         app:layout_collapseMode="parallax">
-                        <TextView
-                            android:id="@+id/textView51"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/gilroy_extrabold"
-                            android:text="@string/home_text_welcome_1"
-                            android:textColor="@color/textColor"
-                            android:textSize="25sp"
-                            android:visibility="visible"
-                            app:layout_constraintStart_toStartOf="@+id/guideline11"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                                           android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/textView51"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:fontFamily="@font/gilroy_extrabold"
+                                android:text="@string/home_text_welcome_1"
+                                android:textColor="@color/textColor"
+                                android:textSize="25sp" android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/icon_theme"
+                                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                            <com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
+                                android:id="@+id/icon_theme"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                         <TextView
                             android:id="@+id/textView52"
@@ -48,9 +59,7 @@
                             android:text="@string/home_text_welcome_2"
                             android:textColor="@color/textColor"
                             android:textSize="25sp"
-                            android:visibility="visible"
-                            app:layout_constraintStart_toStartOf="@+id/guideline11"
-                            app:layout_constraintTop_toBottomOf="@+id/textView51"/>
+                            android:visibility="visible"/>
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/categorias_rv"
                             android:layout_width="match_parent"
@@ -67,9 +76,7 @@
                             android:text="@{viewModel.statePromociones.complete?`Ofertas`:`Anuncios`}"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/add_size_big_title"
-                            android:visibility="visible"
-                            app:layout_constraintStart_toStartOf="@+id/guideline11"
-                            app:layout_constraintTop_toBottomOf="@+id/textView52"/>
+                            android:visibility="visible"/>
                         <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/viewPager"
                             android:layout_width="match_parent"
@@ -81,8 +88,8 @@
             </com.google.android.material.appbar.AppBarLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
                 <include
                     android:id="@+id/include_list"
                     layout="@layout/view_add_list"

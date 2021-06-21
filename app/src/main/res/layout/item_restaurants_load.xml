@@ -55,7 +55,6 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:fontFamily="@font/montserrat"
                     android:textColor="#000"
                     android:textSize="20dp"
                     android:text="                                                "
@@ -85,7 +84,7 @@
 
 
             <TextView
-                android:fontFamily="@font/montserrat"
+
                 android:textSize="12dp"
                 android:layout_weight="2"
                 android:text="                   "
@@ -108,7 +107,6 @@
                     android:src="@drawable/border_shimmer" />
 
                 <TextView
-                    android:fontFamily="@font/montserrat"
                     android:textSize="12dp"
                     android:textStyle="bold"
                     android:textColor="#FFEB3B"
@@ -118,7 +116,6 @@
                     android:text="    " />
 
                 <TextView
-                    android:fontFamily="@font/montserrat"
                     android:layout_marginLeft="5dp"
                     android:textSize="12dp"
                     android:background="@drawable/border_shimmer"

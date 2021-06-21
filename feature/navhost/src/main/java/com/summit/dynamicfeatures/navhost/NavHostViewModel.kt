@@ -1,16 +1,14 @@
 package com.summit.dynamicfeatures.navhost
 
 import androidx.annotation.DrawableRes
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import androidx.navigation.NavController
 import com.summit.core.network.model.Usuario
 import com.summit.core.network.model.departamento.ProvinciaItem
 import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
 
 val NAV_FRAGMENTS_ID_BOTTOM = setOf(R.id.nav_home, R.id.nav_profile, R.id.nav_postulate)
 val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf<@DrawableRes Int>()
@@ -41,7 +39,7 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
     fun updateUbicacionAppDb(item: UbicacionModel) = ubiRepo.updateUbicacionAppDb(item)
     fun saveUbicacion(item: UbicacionModel) = ubiRepo.saveUbicacion(item)
     val getUbicacion = ubiRepo.getUbicacion()
-    fun getDepartamentos() = liveData<List<ProvinciaItem>> {
+    fun getDepartamentos() = liveData<List<ProvinciaItem>>(viewModelScope.coroutineContext+ Dispatchers.Main) {
         try {
             val resultado = ubiRepo.verDepartamento()
             if (resultado != null) {
@@ -53,7 +51,7 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
         }
     }
 
-    fun getProvincias(id: String) = liveData<List<ProvinciaItem>> {
+    fun getProvincias(id: String) = liveData<List<ProvinciaItem>>(viewModelScope.coroutineContext+ Dispatchers.Main) {
         try {
             val resultado = ubiRepo.verProvincia(id)
             if (resultado != null) {

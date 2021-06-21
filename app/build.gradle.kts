@@ -102,9 +102,8 @@ android {
 }
 
 dependencies {
-    //implementation(fileTree("libs") { include(listOf("*.aar")) })
-    implementation(project(path = ":core"))
 
+    implementation(project(path = ":core"))
 
     //Kotlin
     implementation(Dependencies.KOTLIN)
@@ -115,103 +114,15 @@ dependencies {
     implementation(Dependencies.MATERIALDESING)
     //Busgnack
     implementation(Dependencies.BUGSNAG)
-    /*
-      implementation(Dependencies.CONSTRAINT)
-    implementation(Dependencies.SUPPORTLEGACY)
-    implementation(Dependencies.CARDVIEW)
-    implementation(Dependencies.RECYCLERVIEW)
-     */
-
+    implementation(Dependencies.CONSTRAINT)
     //DependencyInjection
     implementation(Dependencies.DAGGER)
     kapt(Dependencies.DAGGERCOMPILER)
-    /* //DB
-     implementation(Dependencies.ROOMRUNTIME)
-     kapt(Dependencies.ROOMCOMPILER)
-     implementation(Dependencies.ROOMKTX)
-     //UnitTest
-
-     //Format Hour
-     implementation(Dependencies.PRETTYTIME)
-
-
-
-     //Shimer
-     implementation(Dependencies.SHIMMER)
-
-     //Karumi Permission
-     implementation(Dependencies.KARUMI)
-
-     //LiveDta
-
-     implementation(Dependencies.LIVEDATA)
-     implementation(Dependencies.COROUTINESSERVICES)
-     implementation(Dependencies.LIFECYCLEKTX)
-
-
-     // Preferences DataStore
-     implementation("com.google.android.gms:play-services-maps:17.0.0")
-     implementation("com.google.maps.android:android-maps-utils:2.2.0")
-     implementation("androidx.datastore:datastore-preferences:1.0.0-alpha02")
-     implementation("com.huawei.hms:maps:5.0.1.300")
-     //Location
-     implementation("com.huawei.hms:location:5.0.0.302")
-     //implementation(Dependencies.DATASTORE)
-     //implementation(Dependencies.DATASTORECORE)
-
-     implementation("androidx.datastore:datastore-core:1.0.0-alpha02")
-     //Glide data
-
-     implementation(Dependencies.GLIDE)
-     kapt(Dependencies.GLIDECOMPILER)
-     implementation(Dependencies.GLIDETRANSFORMATION)
- */
     //Navigation components
     implementation(Dependencies.NAVIGATIONFRAGMENT)
     implementation(Dependencies.NAVIGATIONUI)
     implementation(Dependencies.NAVIGATIONDYNAMIC)
     implementation(Dependencies.NAVIGATION_RUNTIME)
-/*
-    //Huawei
 
-    implementation(Dependencies.HUAWEIAUTH)
-    implementation(Dependencies.HUAWEICORE)
-
-    // Firebase
-    implementation(Dependencies.FIRESTORE)
-    implementation(Dependencies.FIREBASESTORAGE)
-
-
-    //Camera x
-    implementation(Dependencies.CAMERA)
-    implementation(Dependencies.CAMERALIFECYCLE)
-    implementation(Dependencies.CAMERAVIEW)
-    implementation(Dependencies.CAMERACORE)
-
-
-    //Retrofit
-    implementation(Dependencies.RETROFIT)
-    implementation(Dependencies.GSONCONVERTER)
-    implementation(Dependencies.SCALARCONVERTER)
-
-
-    //Gruie
-    implementation(Dependencies.GROUPIE)
-    implementation(Dependencies.GROUPIEEXTENSION)
-
-    //Gpuimage
-    implementation(Dependencies.GPUIMAGE)
-
-    //MAPSUTIL
-    implementation(Dependencies.MAPSUTIL)
-    //KLAXON
-    implementation(Dependencies.KLAXON)
-    //CIRCLEIMAGE
-    implementation(Dependencies.CIRCLEIMAGE)
-    //SWIPEDECORATOR
-    implementation(Dependencies.SWIPEDECORATOR)
-    //RX
-    implementation(Dependencies.RXANDROID)
-    implementation(Dependencies.RXJAVA)*/
 
 }

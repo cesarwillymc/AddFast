@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.fragment.RegisterInfoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +32,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_light"
                 android:text="@string/as_ciate_con"
                 android:textColor="@color/black"
                 android:textSize="28sp"
@@ -47,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/nameApp"
                 android:textColor="@color/black"
                 android:textSize="28sp"
@@ -59,7 +56,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:fontFamily="@font/montserrat_light"
                 android:text="@string/complemento2"
                 android:textColor="@color/black"
                 android:textSize="28sp"
@@ -72,7 +68,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/nameApp"
                 android:textColor="@color/gris_4"
                 android:textSize="18sp"
@@ -80,7 +75,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
-                android:fontFamily="@font/montserrat_light"
                 android:textSize="18sp"
                 android:textColor="@color/gris_4"
                 android:id="@+id/textView10"
@@ -96,7 +90,6 @@
                 android:id="@+id/textView11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_light"
                 android:text="@string/desc_dalo_register"
                 android:textColor="@color/gris_4"
                 android:textSize="18sp"
@@ -120,7 +113,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_medium"
                 android:text="@string/comienza"
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -145,7 +137,6 @@
                     android:ems="10"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
-                    android:fontFamily="@font/montserrat"
                     android:hint="Nombres Completos."
 
                     android:inputType="textCapWords"
@@ -169,7 +160,6 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:ems="10"
-                    android:fontFamily="@font/montserrat"
                     android:hint="Nombre de la Empresa "
                     android:inputType="textAutoComplete"
 
@@ -192,7 +182,6 @@
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:ems="10"
-                    android:fontFamily="@font/montserrat"
                     android:hint="DNI"
                     android:inputType="number"
                     android:padding="10dp" />
@@ -215,7 +204,6 @@
                     android:background="#fff"
                     android:ems="10"
                     android:visibility="gone"
-                    android:fontFamily="@font/montserrat"
                     android:hint="RUC"
                     android:inputType="number"
                     android:padding="10dp" />
@@ -226,7 +214,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/montserrat_medium"
                 android:text="Fotografía."
                 android:textColor="@color/black"
                 android:textSize="22sp"
@@ -237,7 +224,6 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_light"
                 android:text="*Obligatorio"
                 android:textColor="@color/gris_3"
                 app:layout_constraintStart_toStartOf="@+id/guideline7"
@@ -270,7 +256,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_light"
                 android:text="@string/desc_condiciones"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -304,7 +289,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:background="@color/colorPrimaryDark"
-                android:fontFamily="@font/montserrat_light"
                 android:paddingHorizontal="5dp"
                 android:textSize="10sp"
                 android:text="Cargar Foto"

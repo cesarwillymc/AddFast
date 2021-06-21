@@ -1,8 +1,14 @@
 package com.summit.dynamicfeatures.navhost.nav
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import androidx.lifecycle.coroutineScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
@@ -16,6 +22,7 @@ import com.summit.dynamicfeatures.navhost.dialog.SelectPlaceDialog
 import com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
 import com.summit.dynamicfeatures.navhost.nav.di.DaggerNavComponent
 import com.summit.dynamicfeatures.navhost.nav.di.NavModule
+import kotlinx.coroutines.cancel
 import javax.inject.Inject
 
 
@@ -23,8 +30,66 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     layoutId = R.layout.fragment_nav
 ) {
 
-    @Inject
-    lateinit var themeUtils: ThemeUtils
+    override fun onAttach(context: Context) {
+        Log.e("onAttach","entro aca")
+        super.onAttach(context)
+
+    }
+
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e("onCreate","entro aca")
+        super.onCreate(savedInstanceState)
+    }
+    override fun onStart() {
+        Log.e("onStart","entro aca")
+        super.onStart()
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        Log.e("onActivityCreated","entro aca")
+        super.onActivityCreated(savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        Log.e("onResume","entro aca")
+        super.onResume()
+
+    }
+
+    override fun onDetach() {
+        Log.e("onDetach","entro aca")
+
+        super.onDetach()
+
+    }
+
+    override fun onDestroy() {
+        Log.e("onDestroy","entro aca")
+        super.onDestroy()
+
+    }
+
+    override fun onDestroyView() {
+        Log.e("onDestroyView","entro aca")
+        super.onDestroyView()
+    }
+
+    override fun onStop() {
+        Log.e("onStop","entro aca")
+        super.onStop()
+
+    }
+
+    override fun onPause() {
+        Log.e("onPause","entro aca")
+        super.onPause()
+
+    }
+
 
     private val delayThemeUtils = 0L
 
@@ -47,6 +112,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.e("onViewCreated","entro aca")
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         if (savedInstanceState == null) {
@@ -57,7 +123,12 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.e("onSaveInstanceState","entro aca")
+        super.onSaveInstanceState(outState)
+    }
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        Log.e("onViewStateRestored","entro aca")
         super.onViewStateRestored(savedInstanceState)
         setupMenu()
         setupBottomNavigationBar()
@@ -95,17 +166,6 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             if (it == null) {
                 viewModel.saveUbicacion(UbicacionModel("Puno", "Puno", 0))
             }
-        }
-        viewBinding.iconTheme.setOnClickListener {
-            it?.let {
-                if (it is ToggleThemeCheckBox) {
-                    val checked = themeUtils.isDarkTheme(requireContext())
-                    it.isChecked = checked
-                    themeUtils.setNightMode(!checked, delayThemeUtils)
-
-                }
-            }
-
         }
 
         viewBinding.imgIconGps.setOnClickListener {

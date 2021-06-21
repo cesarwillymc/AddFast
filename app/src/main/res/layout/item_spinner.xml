@@ -12,7 +12,6 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:paddingEnd="10dp"
-        android:fontFamily="@font/montserrat_medium"
         android:text="Comidas"
         android:textColor="@color/black"
         android:textSize="18sp"/>

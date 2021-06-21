@@ -39,7 +39,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/montserrat_bold"
                 android:singleLine="true"
                 android:text="Restaurante Internacional"
                 android:textColor="@color/black"
@@ -52,7 +51,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:fontFamily="@font/montserrat"
 
                 android:text="Hace 4 horas"
                 app:layout_constraintBottom_toBottomOf="@+id/cardView"
@@ -63,7 +61,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/montserrat"
                 android:ellipsize="end"
                 android:text="Jr. Lima #154"
                 android:textColor="@color/gris_4"

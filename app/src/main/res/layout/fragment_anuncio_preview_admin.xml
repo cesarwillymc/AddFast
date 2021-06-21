@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.admin.fragments.anuncio.AnuncioPreviewAdminFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,7 +60,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:fontFamily="@font/montserrat_bold"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:text="POLICLINICO ESCULAPIO BUSCA PRACTICANTE EN MEDICINA GENERAL"

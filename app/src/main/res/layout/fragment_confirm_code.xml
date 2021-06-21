@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.auth.fragment.ConfirmCodeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
@@ -36,7 +35,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/montserrat_bold"
         android:text="Verificación Móvil"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -49,7 +47,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/montserrat"
         android:text="Por favor, Ingrese su codigo que le llego a su numero para confirmar su acceso."
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -72,7 +69,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:fontFamily="@font/montserrat"
         android:text="051"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -88,7 +84,6 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:fontFamily="@font/montserrat"
         android:hint="Code"
         android:inputType="number"
         android:textSize="16sp"
@@ -123,7 +118,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
-        android:fontFamily="@font/montserrat"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
