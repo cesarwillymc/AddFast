@@ -20,7 +20,7 @@ interface UserRepository {
 
     fun deleteUser()
 
-    fun getUserStatic(): Usuario
+    fun getUserStatic(): Usuario?
 
     fun getUserTimeReal(): LiveData<Usuario>
 

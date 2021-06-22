@@ -1,100 +1,28 @@
 package com.summit.dynamicfeatures.navhost.nav
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.coroutineScope
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.commons.ui.extension.setupWithNavController
 import com.summit.core.network.model.departamento.UbicacionModel
-import com.summit.core.style.ThemeUtils
 import com.summit.dynamicfeatures.navhost.NavHostViewModel
 import com.summit.dynamicfeatures.navhost.R
 import com.summit.dynamicfeatures.navhost.databinding.FragmentNavBinding
 import com.summit.dynamicfeatures.navhost.dialog.SelectPlaceDialog
-import com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
 import com.summit.dynamicfeatures.navhost.nav.di.DaggerNavComponent
 import com.summit.dynamicfeatures.navhost.nav.di.NavModule
-import kotlinx.coroutines.cancel
-import javax.inject.Inject
 
 
 class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     layoutId = R.layout.fragment_nav
 ) {
-
-    override fun onAttach(context: Context) {
-        Log.e("onAttach", "entro aca")
-        super.onAttach(context)
-
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("onCreate", "entro aca")
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onStart() {
-        Log.e("onStart", "entro aca")
-        super.onStart()
-
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        Log.e("onActivityCreated", "entro aca")
-        super.onActivityCreated(savedInstanceState)
-
-    }
-
-    override fun onResume() {
-        Log.e("onResume", "entro aca")
-        super.onResume()
-
-    }
-
-    override fun onDetach() {
-        Log.e("onDetach", "entro aca")
-
-        super.onDetach()
-
-    }
-
-    override fun onDestroy() {
-        Log.e("onDestroy", "entro aca")
-        super.onDestroy()
-
-    }
-
-    override fun onDestroyView() {
-        Log.e("onDestroyView", "entro aca")
-        super.onDestroyView()
-    }
-
-    override fun onStop() {
-        Log.e("onStop", "entro aca")
-        super.onStop()
-
-    }
-
-    override fun onPause() {
-        Log.e("onPause", "entro aca")
-        super.onPause()
-
-    }
-
-
-    private val delayThemeUtils = 0L
 
     private val navGraphIds = listOf(
         R.navigation.nav_inicio_graph,
@@ -116,7 +44,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.e("onViewCreated", "entro aca")
+
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         if (savedInstanceState == null) {
@@ -126,18 +54,14 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.e("onSaveInstanceState", "entro aca")
-        super.onSaveInstanceState(outState)
-    }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        Log.e("onViewStateRestored", "entro aca")
         super.onViewStateRestored(savedInstanceState)
         setupMenu()
 
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupMenu() {
         if (viewModel.getUserData.value == null) {
             viewModel.getUserData.observe(viewLifecycleOwner) {
@@ -194,6 +118,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     }
 
     private var navController: LiveData<NavController>? = null
+    @SuppressLint("RestrictedApi")
     private fun setupBottomNavigationBar() {
 
         navController = viewBinding.navView.setupWithNavController(
@@ -206,6 +131,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             it.observe(
                 viewLifecycleOwner
             ) {nav->
+                Log.e("setupBottomNav","entri")
                 viewModel.navigationControllerChanged(nav)
                 NavigationUI.setupActionBarWithNavController(requireCompatActivity(), nav)
             }

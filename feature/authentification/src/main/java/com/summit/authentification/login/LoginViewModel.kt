@@ -1,6 +1,5 @@
 package com.summit.authentification.login
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.summit.core.network.repository.AuthRepository
 import kotlinx.coroutines.cancel
@@ -49,21 +48,17 @@ class LoginViewModel(private val repoAuth:AuthRepository) : ViewModel() {
     val stateLogin: LiveData<LoginViewState> get() = _stateLogin
     fun sendMessageLogged() {
         viewModelScope.launch {
-            Log.e("login","entro ")
-
             _stateLogin.postValue(LoginViewState.Loading)
             try {
                 repoAuth.sendNumberCode(_dataCode, _dataPhone)
                 _stateLogin.postValue(LoginViewState.Complete)
             } catch (e: Exception) {
-                Log.e("login","error ")
-                Log.e("login","${e.message}")
                 _stateLogin.postValue(LoginViewState.Error)
             }
         }
     }
     fun onStopViewModel(){
-        viewModelScope.cancel()
+        _stateLogin.postValue(null)
     }
     override fun onCleared() {
         viewModelScope.cancel()

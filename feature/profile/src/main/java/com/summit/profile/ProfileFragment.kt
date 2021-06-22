@@ -30,7 +30,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
         super.onViewCreated(view, savedInstanceState)
         Log.e("onViewCreated","entro aca profile")
         viewBinding.viewUserSignin.signinButton.setOnClickListener {
-           findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavAuthentificationGraph())
+           try{
+               findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavAuthentificationGraph())
+           }catch (e:Exception){}
         }
     }
 

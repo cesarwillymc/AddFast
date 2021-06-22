@@ -4,7 +4,6 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
-import com.summit.core.db.AppDB
 import com.summit.core.db.dao.UsuarioDao
 import com.summit.core.network.model.Reporte
 import com.summit.core.network.model.Usuario

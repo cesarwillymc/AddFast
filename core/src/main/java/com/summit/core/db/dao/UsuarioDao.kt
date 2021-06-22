@@ -19,5 +19,5 @@ interface UsuarioDao {
     fun selectUsuario(): LiveData<Usuario>
 
     @Query("SELECT * FROM NAME_TABLE_USER")
-    fun selectUsuarioStatic(): Usuario
+    fun selectUsuarioStatic(): Usuario?
 }

@@ -1,5 +1,6 @@
 package com.summit.dynamicfeatures.navhost
 
+import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.*
 import androidx.navigation.NavController
@@ -107,10 +108,12 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
         }
     }
 
+    @SuppressLint("RestrictedApi")
     fun navigationControllerChanged(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) && !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.id)) {
                 _state.postValue(NavHostViewState.FullScreen)
+
             } else {
                 when {
                     NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) -> {

@@ -94,12 +94,7 @@ internal class AuthRepositoryImpl(
                 continuation.resume(null)
             }
         }.addOnFailureListener {
-            try {
-                continuation.resumeWithException(it)
-            } catch (e: Exception) {
-                throw Exception("Surgio un error")
-            }
-
+            continuation.resumeWithException(Exception("error"))
         }
     }
 

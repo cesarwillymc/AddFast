@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summit.core.network.model.SignIn
+import com.summit.core.network.model.Usuario
 import com.summit.core.network.repository.AuthRepository
 import com.summit.core.network.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -13,7 +14,7 @@ class ConfirmCodeViewModel(private val repoAuth: AuthRepository, private val rep
     lateinit var codeArgs: String
     lateinit var phoneArgs: String
     lateinit var identificador: String
-    val user = repoUser.getUserTimeReal()
+    fun getUser() = repoUser.getUserStatic()
 
     private val _stateCode = MutableLiveData<ConfirmCodeViewState>()
     val stateCode: LiveData<ConfirmCodeViewState> get() = _stateCode
@@ -68,6 +69,18 @@ class ConfirmCodeViewModel(private val repoAuth: AuthRepository, private val rep
             }
         }
     }
-
+    fun stopViewModel(){
+        _stateConfirmCode.postValue(null)
+    }
+    fun invitado(){
+        repoUser.insertUser(
+            Usuario(
+                "Invitado", "aa ", "Peru", "Puno",
+                ruc="sadsad",
+                admin=false,
+                uriImgPerfil = "https://summit-puno.s3.us-east-2.amazonaws.com/yachay/boy.webp",_id = "invitado"
+            )
+        )
+    }
 
 }

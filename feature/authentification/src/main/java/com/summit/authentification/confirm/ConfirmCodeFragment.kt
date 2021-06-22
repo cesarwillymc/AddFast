@@ -2,6 +2,7 @@ package com.summit.authentification.confirm
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -11,7 +12,6 @@ import com.summit.authentification.confirm.di.ConfirmCodeModule
 import com.summit.authentification.confirm.di.DaggerConfirmCodeComponent
 import com.summit.authentification.databinding.FragmentConfirmCodeBinding
 import com.summit.commons.ui.base.BaseFragment
-
 class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCodeViewModel>(
     layoutId = R.layout.fragment_confirm_code
 ) {
@@ -35,39 +35,52 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
         }
     }
 
+    override fun onDestroyView() {
+        viewModel.stopViewModel()
+        super.onDestroyView()
+    }
+
     private fun listenStateSendCode() {
 
-        if(viewModel.stateConfirmCode.value==null){
-            viewModel.stateConfirmCode.observe(viewLifecycleOwner){
-                when(it){
-                    ConfirmCodeViewState.Loading->{
+        if (viewModel.stateConfirmCode.value == null) {
+            viewModel.stateConfirmCode.observe(viewLifecycleOwner) {
+                when (it) {
+                    ConfirmCodeViewState.Loading -> {
                         hideKeyboard()
                     }
-                    ConfirmCodeViewState.Complete->{
-                        navigateFragmentwithUser()
+                    ConfirmCodeViewState.Complete -> {
+                        Handler().postDelayed({
+                            navigateFragmentwithUser()
+                        },500L)
                     }
-                    ConfirmCodeViewState.InComplete->{
-                        findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToRegisterFragment(id = viewModel.identificador,phone = viewModel.phoneArgs))
+                    ConfirmCodeViewState.InComplete -> {
+                        findNavController().navigate(
+                            ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToRegisterFragment(
+                                id = viewModel.identificador,
+                                phone = viewModel.phoneArgs
+                            )
+                        )
                     }
-                    ConfirmCodeViewState.Error->{
+                    ConfirmCodeViewState.Error -> {
                         toast(requireContext().getString(R.string.error_exceptio))
                     }
-                    else->{}
+                    else -> {
+                    }
                 }
             }
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private fun navigateFragmentwithUser() {
-        viewModel.user.observe(viewLifecycleOwner){
-            it?.let {
-                if(it.ruc.isNullOrEmpty()){
-                    //findNavController().setGraph(R.navigation.nav_profile_graph)
-                    findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
-                }else{
-                    //findNavController().backStack.clear()
-                    findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
-                }
+        val user = viewModel.getUser()
+        user?.let {
+            if (it.ruc.isNullOrEmpty()) {
+                findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
+                findNavController().backStack.clear()
+            } else {
+                findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
+                findNavController().backStack.clear()
             }
         }
 

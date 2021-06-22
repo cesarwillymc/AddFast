@@ -1,13 +1,8 @@
 package com.summit.core.network.repository
 
 
-import com.huawei.agconnect.auth.AGConnectAuthCredential
-import com.huawei.agconnect.auth.PhoneUser
-import com.huawei.agconnect.auth.VerifyCodeSettings
 import com.summit.core.network.model.SignIn
 import com.summit.core.network.model.Usuario
-import com.summit.core.status.Resource
-import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface AuthRepository {
