@@ -33,6 +33,7 @@
         app:moduleName="navhost"
         app:graphResName="nav_inicio_graph"/>
 
+
     <include-dynamic
         android:id="@id/nav_profile_graph"
         android:name="com.summit.navhost"
@@ -45,5 +46,13 @@
                 app:popUpTo="@id/nav_inicio_graph" app:popUpToInclusive="true"/>
         <argument android:name="id" app:argType="string"/>
         <argument android:name="phone" app:argType="string"/>
+        <action android:id="@+id/action_registerFragment_to_nav_camerax_graph" app:destination="@id/nav_camerax_graph"/>
     </fragment>
+
+    <include-dynamic
+        android:id="@id/nav_camerax_graph"
+        android:name="com.summit.camerax"
+        app:moduleName="camerax"
+        app:graphResName="nav_camerax_graph"/>
+
 </navigation>

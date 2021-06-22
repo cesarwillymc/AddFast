@@ -6,6 +6,7 @@ import com.summit.authentification.register.RegisterViewModel
 import com.summit.commons.ui.extension.viewModel
 import com.summit.core.di.scope.FeatureScope
 import com.summit.core.network.repository.AuthRepository
+import com.summit.core.network.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 
@@ -17,8 +18,9 @@ class RegisterModule(
     @FeatureScope
     @Provides
     fun setupFragmentWithViewModel(
-        repoAuth: AuthRepository
+        repoAuth: AuthRepository,
+        repoUser: UserRepository
     ) = fragment.viewModel {
-        RegisterViewModel(repoAuth = repoAuth)
+        RegisterViewModel(repoAuth = repoAuth,repoUser = repoUser)
     }
 }

@@ -2,12 +2,15 @@ package com.summit.commons.ui.binding
 
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.summit.commons.ui.R
 import com.summit.commons.ui.extension.hide
@@ -15,6 +18,7 @@ import com.summit.commons.ui.extension.show
 import de.hdodenhof.circleimageview.CircleImageView
 import jp.wasabeef.glide.transformations.BlurTransformation
 import org.ocpsoft.prettytime.PrettyTime
+import java.io.File
 import java.util.*
 
 
@@ -42,6 +46,15 @@ fun CardView.setEnabledView(enabled: Boolean) {
         setCardBackgroundColor(context.getColor(R.color.enabled))
     }else{
         setCardBackgroundColor(context.getColor(R.color.disable))
+    }
+}
+@BindingAdapter("app:enabledButton")
+fun Button.setEnabledButton(enabled: Boolean) {
+    this.isEnabled=enabled
+    if(enabled){
+        setBackgroundColor(context.getColor(R.color.enabled))
+    }else{
+        setBackgroundColor(context.getColor(R.color.disable))
     }
 }
 @set:BindingAdapter("visible")
@@ -97,7 +110,14 @@ fun setErrorText(view: TextView, viewState: BaseViewState?,) {
         view.text = ""
 }
  */
-
+@BindingAdapter("imageFile", requireAll = false)
+fun ImageView.imageFile(file: File?) {
+    file?.let{
+        var requestOptions = RequestOptions()
+        requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(24))
+        Glide.with(this).load(file).apply(requestOptions).into(this)
+    }
+}
 @BindingAdapter("imageUrl", requireAll = false)
 fun ImageView.imageUrl(url: String?) {
     Glide.with(this).load(url).into(this)

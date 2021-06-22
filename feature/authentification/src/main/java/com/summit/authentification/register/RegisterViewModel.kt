@@ -3,15 +3,24 @@ package com.summit.authentification.register
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.summit.core.network.model.Usuario
 import com.summit.core.network.repository.AuthRepository
+import com.summit.core.network.repository.UserRepository
+import kotlinx.coroutines.launch
+import java.io.File
 
-class RegisterViewModel(private val repoAuth: AuthRepository) : ViewModel() {
+class RegisterViewModel(private val repoAuth: AuthRepository, private val repoUser: UserRepository) : ViewModel() {
+    /** Args **/
+    lateinit var phoneArgs: String
+    lateinit var idArgs: String
+
     private val _stateRuc = MutableLiveData<RegisterViewState>()
     val stateRuc: LiveData<RegisterViewState> get() = _stateRuc
 
 
     private lateinit var _dataRuc: String
-    val dataRuc get() = _dataRuc
+    private val dataRuc get() = _dataRuc
     fun updateTextNumberRuc(word: CharSequence) {
         if (word.isNotEmpty()) {
             if (word.length > 10) {
@@ -30,7 +39,7 @@ class RegisterViewModel(private val repoAuth: AuthRepository) : ViewModel() {
 
 
     private lateinit var _dataDni: String
-    val dataDni get() = _dataDni
+    private val dataDni get() = _dataDni
     fun updateTextNumberDni(Dni: CharSequence) {
         if (Dni.isNotEmpty()) {
             if (Dni.length > 7) {
@@ -49,7 +58,7 @@ class RegisterViewModel(private val repoAuth: AuthRepository) : ViewModel() {
 
 
     private lateinit var _dataName: String
-    val dataName get() = _dataName
+    private val dataName get() = _dataName
     fun updateTextNumberName(Name: CharSequence) {
         if (Name.isNotEmpty()) {
             if (Name.length > 3) {
@@ -68,7 +77,7 @@ class RegisterViewModel(private val repoAuth: AuthRepository) : ViewModel() {
 
 
     private lateinit var _dataBussiness: String
-    val dataBussiness get() = _dataBussiness
+    private val dataBussiness get() = _dataBussiness
     fun updateTextNumberBussiness(Bussiness: CharSequence) {
         if (Bussiness.isNotEmpty()) {
             if (Bussiness.length > 3) {
@@ -81,11 +90,42 @@ class RegisterViewModel(private val repoAuth: AuthRepository) : ViewModel() {
             _stateBussiness.postValue(RegisterViewState.BussinessEmpty)
         }
     }
+
     private val _dataOnChecked = MutableLiveData(false)
     val dataOnChecked: LiveData<Boolean> get() = _dataOnChecked
 
-    fun onCheckedButton(value:Boolean){
+    fun onCheckedButton(value: Boolean) {
         _dataOnChecked.postValue(value)
+    }
+
+    var photoDirection = MutableLiveData<File>()
+
+    private val _stateRegister = MutableLiveData<RegisterViewState>()
+    val stateRegister: LiveData<RegisterViewState> get() = _stateRegister
+    fun registerInformationUser() {
+        viewModelScope.launch {
+            _stateRegister.postValue(RegisterViewState.Loading)
+            try {
+
+                val responsePhoto = repoAuth.uploadImageProfile(imagen = photoDirection.value!!)
+                val urlPath = repoUser.getUrlDownloadFile(responsePhoto)
+                val modelUser =
+                    Usuario(dataName, dataDni, phoneArgs, dataBussiness, dataRuc, urlPath, admin = false, _id = idArgs)
+                val responseCreate = repoAuth.createDataInformation(
+                    idArgs,
+                    modelUser
+                )
+                if (responseCreate) {
+                    repoUser.insertUser(modelUser)
+                    _stateRegister.postValue(RegisterViewState.Complete)
+                } else {
+                    _stateRegister.postValue(RegisterViewState.Error)
+                }
+
+            } catch (e: Exception) {
+                _stateRegister.postValue(RegisterViewState.Error)
+            }
+        }
     }
 
 }

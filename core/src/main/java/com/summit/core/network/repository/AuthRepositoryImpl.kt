@@ -12,6 +12,7 @@ import com.summit.core.status.Resource
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.tasks.await
 import java.io.File
 import java.util.*
 import kotlin.coroutines.resume
@@ -89,7 +90,6 @@ internal class AuthRepositoryImpl(
                 } else {
                     continuation.resume(null)
                 }
-
             } catch (e: Exception) {
                 continuation.resume(null)
             }
@@ -97,7 +97,7 @@ internal class AuthRepositoryImpl(
             try {
                 continuation.resumeWithException(it)
             } catch (e: Exception) {
-                continuation.resumeWithException(Exception("Surgio un errorr"))
+                throw Exception("Surgio un error")
             }
 
         }
@@ -118,26 +118,10 @@ internal class AuthRepositoryImpl(
         }
     //Get link image storage
 
-    override suspend fun uploadImageProfile(imagen: File) = callbackFlow<Resource<String>> {
-
+    override suspend fun uploadImageProfile(imagen: File):String {
         val path = "images/${imagen.name}"
-        val storageReference = storage.getReference(path)
-        //,attribute,100L
-        val uploadTask = storageReference.putFile(Uri.fromFile(imagen))
-        uploadTask.addOnProgressListener {
-            Log.e("uploadTask", "addOnProgressListener")
-            val total = ((it.bytesTransferred * 1.0) / it.totalByteCount)
-            offer(Resource.loading(total))
-        }.addOnSuccessListener {
-            Log.e("uploadTask", "addOnSuccessListener")
-            offer(Resource.success(path))
-        }.addOnFailureListener {
-            Log.e("uploadTask", "addOnFailureListener")
-            offer(Resource.error(ExceptionGeneral(it.message ?: "")))
-        }
-        awaitClose {
-            uploadTask.cancel()
-        }
+        storage.getReference(path).putFile(Uri.fromFile(imagen)).await()
+        return path
     }
 
 

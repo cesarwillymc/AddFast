@@ -31,6 +31,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
         }
     }
 
+
     override fun onDetach() {
         try{
             viewBinding.viewUserSignin.lottieAnimationView.cancelAnimation()

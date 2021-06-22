@@ -8,6 +8,7 @@ include(
     ":commons:views",
     ":feature:postulate",
     ":feature:profile",
+    ":feature:camerax",
     ":feature:authentification",
     ":libraries:test_utils"
 )
@@ -16,7 +17,7 @@ include(
     ":feature:ubication",
     ":feature:advertisements",
 
-    ":feature:camerax",
+
 
     ":feature:offert",
     ":feature:postulate",

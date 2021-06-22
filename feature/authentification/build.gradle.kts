@@ -8,5 +8,6 @@ plugins {
 
 dependencies {
     implementation(project(BuildModules.Features.NAVHOST))
+    implementation(project(BuildModules.Features.CAMERAX))
 
 }

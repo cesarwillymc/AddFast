@@ -83,7 +83,7 @@ android {
         BuildModules.Features.HOME,
         BuildModules.Features.PROFILE,
         BuildModules.Features.AUTHENTIFICATION,
-
+        BuildModules.Features.CAMERAX,
         BuildModules.Features.POSTULATE
     )
     /*

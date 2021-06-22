@@ -9,7 +9,7 @@ object DependencyVersion {
     const val RECYCLERVIEW="1.2.0"
     const val MATERIALDESING="1.4.0-beta01"
     const val SHIMMER="0.5.0"
-    const val FRAGMENT_KTX = "1.2.5"
+    const val FRAGMENT_KTX = "1.3.4"
     const val DATABINDING = "3.1.4"
     const val KARUMI="6.2.1"
     const val PRETTYTIME="4.0.4.Final"

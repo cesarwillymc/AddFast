@@ -1,5 +1,6 @@
 package com.summit.dynamicfeatures.navhost.nav
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -117,7 +118,6 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
         setupToolbar()
         if (savedInstanceState == null) {
             setupMenu()
-            setupBottomNavigationBar()
         }
 
 
@@ -131,15 +131,17 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
         Log.e("onViewStateRestored","entro aca")
         super.onViewStateRestored(savedInstanceState)
         setupMenu()
-        setupBottomNavigationBar()
+
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupMenu() {
         if(viewModel.getUserData.value==null){
             viewModel.getUserData.observe(viewLifecycleOwner) {
                 viewBinding.navView.menu.clear()
                 viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
-
+                findNavController().backStack.clear()
+                setupBottomNavigationBar()
             }
         }
 
@@ -195,6 +197,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             containerId = R.id.am_fragment,
             intent = requireActivity().intent
         )
+
         navController.observe(
             viewLifecycleOwner
         ) {

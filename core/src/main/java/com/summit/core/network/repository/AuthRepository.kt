@@ -24,7 +24,7 @@ interface AuthRepository {
     //CREATE DATA INFORMATION
     suspend fun createDataInformation(id: String, usuario: Usuario): Boolean
 
-    suspend fun uploadImageProfile(imagen: File): Flow<Resource<String>>
+    suspend fun uploadImageProfile(imagen: File): String
 
 
 

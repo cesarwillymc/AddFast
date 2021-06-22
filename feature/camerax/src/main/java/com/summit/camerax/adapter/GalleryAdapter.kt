@@ -1,85 +1,62 @@
-/*
-package com.summit.android.addfast.ui.camera
+package com.summit.camerax.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
-import com.summit.android.addfast.R
+import com.summit.camerax.databinding.GalleryItemAdapterBinding
 import java.io.File
 
-class GalleryAdapter(private val Listener: clickListener): RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
+class GalleryAdapter(private val Listener: clickListener) : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
 
-    var listPedido:List<File> = listOf()
-    var posiciionDato:String?=null
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(
-        R.layout.imagen_carrusel,parent,false))
-    override fun getItemCount() = if (listPedido!=null) listPedido!!.size else 0
+    var listPedido: List<File> = listOf()
+    var posiciionDato: String? = null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(GalleryItemAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    }
+
+    override fun getItemCount() = listPedido.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listPedido?.get(position)!!,position)
+        holder.bind(listPedido[position], position)
     }
-    fun selectData(position: String?){
-        posiciionDato= position
-        notifyDataSetChanged()
-    }
-    fun updateData(data: List<File>?){
 
-        listPedido = if(data==null){
-            listOf()
-        }else{
-            data!!
-        }
+    fun selectData(position: String?) {
+        posiciionDato = position
         notifyDataSetChanged()
     }
 
-    fun getData()= listPedido
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    fun updateData(data: List<File>?) {
+        listPedido = data ?: listOf()
+        notifyDataSetChanged()
+    }
 
-        val imagen = itemView.findViewById<ImageView>(R.id.imagecarrusel)
-        val selectImage = itemView.findViewById<ImageView>(R.id.select_image)
-        fun bind(get: File, position: Int) {
+    inner class ViewHolder(private val binding: GalleryItemAdapterBinding) : RecyclerView.ViewHolder(binding.root) {
 
-            when (posiciionDato) {
-                null -> {
-                    selectImage.visibility=View.GONE
-                }
-                get.path -> {
-                    Log.e("datosadapter$position","$posiciionDato \n ${get.path}")
-                    selectImage.visibility=View.VISIBLE
+        fun bind(file: File, position: Int) {
+            binding.file = file
+            binding.state = when (posiciionDato) {
+                file.path -> {
+                    true
                 }
                 else -> {
-                    selectImage.visibility=View.GONE
+                    false
                 }
             }
-            var requestOptions = RequestOptions()
-            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(24))
-            Glide.with(itemView.context)
-                .load(get)
-                .apply(requestOptions)
-                .into(imagen)
+            binding.executePendingBindings()
 
-            itemView.setOnClickListener {
-                if (posiciionDato==get.path){
-                    Listener.click(null,position)
-                }else {
-                    Listener.click(get,position)
+            binding.root.setOnClickListener {
+                if (posiciionDato == file.path) {
+                    Listener.click(null, position)
+                } else {
+                    Listener.click(file, position)
 
                 }
-//(posiciionDato==null) if (posiciionDato==get.path)
+
             }
         }
     }
 
-    interface clickListener{
+    interface clickListener {
         fun click(path: File?, position: Int?)
     }
 }
- */

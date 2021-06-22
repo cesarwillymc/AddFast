@@ -78,7 +78,7 @@ fun BottomNavigationView.setupWithNavController(
                     firstFragmentTag,
                     FragmentManager.POP_BACK_STACK_INCLUSIVE
                 )
-                val selectedFragment = fragmentManager.findFragmentByTag(newlySelectedItemTag)
+                 val selectedFragment = fragmentManager.findFragmentByTag(newlySelectedItemTag)
                         as NavHostFragment
 
                 // Exclude the first fragment tag because it's always in the back stack.

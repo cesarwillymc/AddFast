@@ -1,3 +1,7 @@
+package com.summit.camerax
+
+import com.summit.commons.ui.base.BaseViewState
+
 sealed class GalleryViewState : BaseViewState {
 
 
