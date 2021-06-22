@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:autofillHints="aa"
+            android:autofillHints="number"
             android:fontFamily="@font/gilroy_ligth"
             android:hint="@string/login_string_peru"
             android:inputType="number"
@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/comfirm_code_peru"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" android:autofillHints="true"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageView" android:autofillHints="phone"/>
         <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                      app:layout_constraintEnd_toEndOf="parent"
                      app:layout_constraintStart_toStartOf="parent"

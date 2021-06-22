@@ -2,7 +2,6 @@ package com.summit.authentification.confirm
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -12,6 +11,7 @@ import com.summit.authentification.confirm.di.ConfirmCodeModule
 import com.summit.authentification.confirm.di.DaggerConfirmCodeComponent
 import com.summit.authentification.databinding.FragmentConfirmCodeBinding
 import com.summit.commons.ui.base.BaseFragment
+
 class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCodeViewModel>(
     layoutId = R.layout.fragment_confirm_code
 ) {
@@ -35,11 +35,13 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
         }
     }
 
+
     override fun onDestroyView() {
         viewModel.stopViewModel()
         super.onDestroyView()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun listenStateSendCode() {
 
         if (viewModel.stateConfirmCode.value == null) {
@@ -49,9 +51,7 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
                         hideKeyboard()
                     }
                     ConfirmCodeViewState.Complete -> {
-                        Handler().postDelayed({
-                            navigateFragmentwithUser()
-                        },500L)
+                        findNavController().backStack.clear()
                     }
                     ConfirmCodeViewState.InComplete -> {
                         findNavController().navigate(
@@ -71,18 +71,5 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
         }
     }
 
-    @SuppressLint("RestrictedApi")
-    private fun navigateFragmentwithUser() {
-        val user = viewModel.getUser()
-        user?.let {
-            if (it.ruc.isNullOrEmpty()) {
-                findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
-                findNavController().backStack.clear()
-            } else {
-                findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavInicioGraph())
-                findNavController().backStack.clear()
-            }
-        }
 
-    }
 }

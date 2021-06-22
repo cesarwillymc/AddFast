@@ -53,6 +53,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
             }
         }
     }
+    @SuppressLint("RestrictedApi")
     private fun listenStateOnClick() {
         if (viewModel.stateRegister.value == null) {
             viewModel.stateRegister.observe(viewLifecycleOwner) {
@@ -61,7 +62,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
                         hideKeyboard()
                     }
                     RegisterViewState.Complete -> {
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToNavInicioGraph())
+                        findNavController().backStack.clear()
                     }
                     RegisterViewState.Error -> {
                         toast("Sucedio un error al registrar tu cuenta")

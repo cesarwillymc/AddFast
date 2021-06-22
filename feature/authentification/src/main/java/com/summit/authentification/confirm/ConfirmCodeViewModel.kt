@@ -53,7 +53,7 @@ class ConfirmCodeViewModel(private val repoAuth: AuthRepository, private val rep
                 //Inserta el usuario en caso exista y en caso no se ira a la siguiente ventana de registro
                 repoAuth.getDataInformation(idOrNull).apply {
                     if (this != null) {
-                        repoUser.insertUser(this)
+                         repoUser.insertUser(this)
                         _stateConfirmCode.postValue(ConfirmCodeViewState.Complete)
                     } else {
                         identificador=idOrNull

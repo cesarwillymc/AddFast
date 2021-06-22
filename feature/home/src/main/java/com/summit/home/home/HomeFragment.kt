@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 ) {
     @Inject
     lateinit var themeUtils: ThemeUtils
+
     //Recycler view Binding
     private lateinit var offertAdapter: SlideAdapter
     private lateinit var categoriasAdaper: CategoriasAdaper

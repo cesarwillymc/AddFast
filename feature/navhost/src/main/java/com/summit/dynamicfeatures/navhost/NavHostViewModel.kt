@@ -12,7 +12,7 @@ import com.summit.core.network.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 
 val NAV_FRAGMENTS_ID_BOTTOM = setOf(R.id.nav_home, R.id.nav_profile, R.id.nav_postulate)
-val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf<@DrawableRes Int>()
+val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf("GalleryFragment")
 val MENU_FRAGMENT_ID = setOf(R.menu.menu, R.menu.menu_user, R.menu.menu_publisher, R.menu.menu_admin)
 val LIST_NAV_GRAPH = listOf(
     listOf(
@@ -32,8 +32,6 @@ val LIST_NAV_GRAPH = listOf(
 
 class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo: GpsRepository) : ViewModel() {
     val getUserData = userRepo.getUserTimeReal()
-    fun deleteUser() = userRepo.deleteUser()
-    fun getStaticDataUser() = userRepo.getUserStatic()
 
 
     /** UBICACION UPDATE **/
@@ -119,7 +117,7 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
                     NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) -> {
                         _state.postValue(NavHostViewState.NavigationScreen)
                     }
-                    !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.id) -> {
+                    !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.label) -> {
                         _state.postValue(NavHostViewState.AppBarScreen)
                     }
                     else -> {

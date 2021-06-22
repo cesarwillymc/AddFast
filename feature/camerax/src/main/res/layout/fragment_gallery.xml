@@ -3,7 +3,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="viewModel" type="com.summit.camerax.GalleryViewModel"/>
-        <variable name="activity" type="android.app.Activity"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,7 +32,6 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/back_button_alt"
             android:elevation="20dp"
-            android:onClick="@{()->activity.onBackPressed()}"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
