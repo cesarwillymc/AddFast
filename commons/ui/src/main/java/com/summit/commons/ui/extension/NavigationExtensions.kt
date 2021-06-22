@@ -14,7 +14,7 @@ import com.summit.commons.ui.R
 import com.summit.commons.ui.base.BaseDynamicNavHostFragment
 
 
-fun BottomNavigationView.setupWithNavController(
+fun BottomNavigationView.   setupWithNavController(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,
     containerId: Int,

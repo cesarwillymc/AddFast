@@ -1,5 +1,6 @@
 package com.summit.authentification.register
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -38,6 +39,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
     }
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
+
         listenFragmentData()
     }
     private fun listenFragmentData(){
