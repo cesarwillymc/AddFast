@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.offert.myadds.MyAddViewModel"/>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    >
+        <include layout="@layout/view_list_adds"
+                 android:id="@+id/view_listadds"
+                 app:viewModel="@{viewModel}"/>
+        <include layout="@layout/view_adds_empty"
+                 app:viewState="@{viewModel.stateListAdds}"
+                 android:id="@+id/view_empty"/>
+        <include layout="@layout/view_adds_error"
+                 app:viewState="@{viewModel.stateListAdds}"
+                 android:id="@+id/view_error"/>
+        <include layout="@layout/view_adds_loading"
+                 app:viewState="@{viewModel.stateListAdds}"
+                 android:id="@+id/view_loading"/>
+
+
+    </FrameLayout>
+</layout>

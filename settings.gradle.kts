@@ -10,6 +10,7 @@ include(
     ":feature:profile",
     ":feature:camerax",
     ":feature:authentification",
+    ":feature:offert",
     ":libraries:test_utils"
 )
 /*
@@ -19,7 +20,7 @@ include(
 
 
 
-    ":feature:offert",
+
     ":feature:postulate",
     ":feature:profile",
     ":feature:report",

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="postulate_empty_text">No se encontraron anuncios en esta ubicacion</string>
-    <string name="postulate_error_text">Ups… ocurrio un error al traer anuncios revise su conexion</string>
+    <string name="postulate_empty_text">No postulaste a ningun anuncio</string>
+    <string name="postulate_error_text">Ups… ocurrio un error,revise su conexion</string>
 </resources>

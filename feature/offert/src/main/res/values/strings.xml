@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_add_create">create</string>
+
+    <string name="my_add_empty_text">No publicaste ningun anuncio</string>
+    <string name="my_add_error_text">Ups… ocurrio un error,revise su conexion</string>
+</resources>

@@ -1,27 +1,28 @@
-package com.summit.postulate.listPostulate.di
+package com.summit.offert.myadds.di
 
 import androidx.annotation.VisibleForTesting
-import com.summit.postulate.listPostulate.PostulateFragment
-import com.summit.postulate.listPostulate.PostulateViewModel
 import com.summit.core.di.scope.FeatureScope
 import dagger.Module
 import dagger.Provides
 import com.summit.commons.ui.extension.viewModel
+import com.summit.core.network.repository.AdRepository
 import com.summit.core.network.repository.PostulateRepository
 import com.summit.core.network.repository.UserRepository
+import com.summit.offert.myadds.MyAddViewModel
+import com.summit.offert.myadds.MyAddsFragment
 
 @Module
-class ListPostulateModule(
+class MyAddModule(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    val fragment:PostulateFragment
+    val fragment:MyAddsFragment
 ) {
 
     @FeatureScope
     @Provides
     fun setProviderViewModelPostulate(
-        userRepository: UserRepository,
-        postulateRepo: PostulateRepository
+      userRepo: UserRepository,
+      adRepo: AdRepository
     ) = fragment.viewModel{
-        PostulateViewModel(userRepo = userRepository,postulateRepo= postulateRepo)
+        MyAddViewModel(userRepo= userRepo,adRepo=adRepo)
     }
 }

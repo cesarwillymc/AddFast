@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="add_list_loading_size">50dp</dimen>
+    <dimen name="add_size_big_title">18sp</dimen>
+    <dimen name="card_ad_text_desc">10sp</dimen>
+    <dimen name="size_view">400dp</dimen>
+    <dimen name="postulate_loading_size">50dp</dimen>
+</resources>

@@ -84,7 +84,8 @@ android {
         BuildModules.Features.PROFILE,
         BuildModules.Features.AUTHENTIFICATION,
         BuildModules.Features.CAMERAX,
-        BuildModules.Features.POSTULATE
+        BuildModules.Features.POSTULATE,
+        BuildModules.Features.OFFERT
     )
     /*
      ":feature:ubication",
