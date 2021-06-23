@@ -25,7 +25,6 @@ import com.summit.home.home.di.HomeModule
 import com.summit.home.home.utils.autoScroll
 
 
-
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
@@ -47,7 +46,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         setupRvBindingCategory()
         setupRvBindingOffert()
     }
-
 
 
     private fun getUbicationModel(ubicacionModel: UbicacionModel?) {
@@ -75,14 +73,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
 
     private fun setupRvBindingOffert() {
-        offertAdapter = SlideAdapter(object : SlideAdapter.OnCLickListenerPromo {
-            override fun onCLickItem(item: Promociones, position: Int) {
-                if (item.idanuncio.isNotEmpty()) {
-                    Log.e("dataPromo", item.toString())
-                    findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavDetailAd(idAnuncio = item.idanuncio))
-                }
+        offertAdapter = SlideAdapter { item, _ ->
+            if (item.idanuncio.isNotEmpty()) {
+                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavDetailAd(idAnuncio = item.idanuncio))
             }
-        })
+
+        }
 
         viewBinding.viewPager.let {
             it.apply {
@@ -97,14 +93,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
         offertAdapter.setDataImage(promociones.toMutableList())
 
     private fun setupRvBindingCategory() {
-        categoriasAdaper = CategoriasAdaper(object : CategoriasAdaper.CategoriasListener {
-            override fun listener(position: Int, datos: CategoriasModel) {
-                if (datos.id != "Todos") {
-                    findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavListCategory(idcategory = datos.id))
-                }
+        categoriasAdaper = CategoriasAdaper { _, datos ->
+            if (datos.id != "Todos") {
+                findNavController().navigate(HomeFragmentDirections.actionNavHomeToNavListCategory(idcategory = datos.id))
             }
-
-        })
+        }
         viewBinding.categoriasRv.apply {
             setHasFixedSize(true)
             adapter = categoriasAdaper

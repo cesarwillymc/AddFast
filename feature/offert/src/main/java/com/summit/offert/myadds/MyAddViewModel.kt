@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summit.core.network.model.Anuncios
-import com.summit.core.network.model.Postulacion
 import com.summit.core.network.repository.AdRepository
-import com.summit.core.network.repository.PostulateRepository
 import com.summit.core.network.repository.UserRepository
 import kotlinx.coroutines.launch
 

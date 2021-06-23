@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.summit.camerax.databinding.GalleryItemAdapterOptionsBinding
 
-class GalleryOptionsAdapter(private val Listener: GalleryOptionsAdapterListener) :
+class GalleryOptionsAdapter(private val Listener: (String, Int) -> Unit) :
     RecyclerView.Adapter<GalleryOptionsAdapter.ViewHolder>() {
 
     var listPedido: List<GalleryDocs> = listOf()
@@ -50,7 +50,7 @@ class GalleryOptionsAdapter(private val Listener: GalleryOptionsAdapterListener)
                 binding.textTipeSearch.setTextColor(Color.GRAY)
 
             binding.root.setOnClickListener {
-                Listener.onclickGallery(get.directorio, position)
+                Listener.invoke(get.directorio, position)
             }
         }
     }
@@ -60,7 +60,4 @@ class GalleryOptionsAdapter(private val Listener: GalleryOptionsAdapterListener)
         val directorio: String
     )
 
-    interface GalleryOptionsAdapterListener {
-        fun onclickGallery(dato: String, position: Int)
-    }
 }

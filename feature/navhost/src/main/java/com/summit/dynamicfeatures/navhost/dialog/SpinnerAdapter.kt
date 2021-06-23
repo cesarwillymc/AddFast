@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.summit.core.network.model.departamento.ProvinciaItem
-import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.dynamicfeatures.navhost.R
 
 @SuppressLint("ViewHolder")
-class SpinnerAdapter( private val context:Context): BaseAdapter() {
+class SpinnerAdapter( context:Context): BaseAdapter() {
     var inflater: LayoutInflater = LayoutInflater.from(context)
     var lisProducts:List<ProvinciaItem>? = null
     fun updateData(data: List<ProvinciaItem>?){
@@ -23,7 +22,7 @@ class SpinnerAdapter( private val context:Context): BaseAdapter() {
         notifyDataSetChanged()
     }
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var viewHolder:DropDownViewHolder
+        val viewHolder:DropDownViewHolder
         var view= convertView
         viewHolder = if (view==null){
             view= inflater.inflate( R.layout.item_spinner_dropdown,parent,false)
@@ -31,13 +30,13 @@ class SpinnerAdapter( private val context:Context): BaseAdapter() {
         }else{
             view.tag as DropDownViewHolder
         }
-        view?.tag=viewHolder
+        view.tag =viewHolder
         viewHolder.textoD.text=lisProducts?.get(position)!!.name
 
         return view
     }
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var viewHolder:ViewHolder
+        val viewHolder:ViewHolder
         var view= convertView
         viewHolder = if (view==null){
             view= inflater.inflate( R.layout.item_spinner,parent,false)
@@ -45,7 +44,7 @@ class SpinnerAdapter( private val context:Context): BaseAdapter() {
         }else{
             view.tag as ViewHolder
         }
-        view?.tag=viewHolder
+        view.tag =viewHolder
 
         viewHolder.texto.text=lisProducts?.get(position)!!.name
 
@@ -61,16 +60,10 @@ class SpinnerAdapter( private val context:Context): BaseAdapter() {
     }
 
     class ViewHolder(view:View){
-        lateinit var texto:TextView
-        init {
-            texto= view.findViewById<TextView>(R.id.spinnerValue)
-        }
+        var texto:TextView = view.findViewById(R.id.spinnerValue)
     }
     class DropDownViewHolder(view:View){
-        lateinit var textoD:TextView
-        init {
-            textoD= view.findViewById<TextView>(R.id.spinnerValueDrop)
-        }
+        var textoD:TextView = view.findViewById(R.id.spinnerValueDrop)
     }
     override fun getCount(): Int = if (lisProducts!=null) lisProducts!!.size else 0
 

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.summit.android.addfast.R
 import com.summit.postulate.databinding.PostulateOptionsAdapterBinding
 
-class PostulateOptionsAdapter(private val Listener: PostulateOptionsAdapterListener) :
+class PostulateOptionsAdapter(private val Listener: (String,Int)->Unit) :
     RecyclerView.Adapter<PostulateOptionsAdapter.ViewHolder>() {
 
     var listPedido: List<String> = listOf()
@@ -50,13 +50,10 @@ class PostulateOptionsAdapter(private val Listener: PostulateOptionsAdapterListe
                 binding.textTipeSearch.setTextColor(Color.GRAY)
 
             binding.root.setOnClickListener {
-                Listener.onclickPostulate(letter, position)
+                Listener.invoke(letter, position)
             }
         }
     }
 
 
-    interface PostulateOptionsAdapterListener {
-        fun onclickPostulate(dato: String, position: Int)
-    }
 }

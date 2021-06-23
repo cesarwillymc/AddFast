@@ -19,7 +19,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
     layoutId = R.layout.fragment_category
 ) {
     private val args: CategoryFragmentArgs by navArgs()
-    private lateinit var adapterAdds:AddLargeAdapter
+    private lateinit var adapterAdds: AddLargeAdapter
 
     override fun onInitDependencyInjection() {
         DaggerCategoryComponent.builder()
@@ -40,24 +40,23 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
     }
 
     private fun getAllAdds() {
-        if(viewModel.data.value==null){
+        if (viewModel.data.value == null) {
             viewModel.getAllAnunciosByCategorias(args.idcategory)
         }
     }
 
     private fun setupRvCategoryAdapter() {
-        adapterAdds = AddLargeAdapter(object : AddLargeAdapter.Listener {
-            override fun onclick(anuncios: Anuncios, position: Int) {
-                findNavController().navigate(CategoryFragmentDirections.actionNavListCategoryToNavDetailAd(model=anuncios))
-            }
-        })
+        adapterAdds = AddLargeAdapter { anuncios, _ ->
+            findNavController().navigate(CategoryFragmentDirections.actionNavListCategoryToNavDetailAd(model = anuncios))
+        }
         viewBinding.includeList.categoriasVerRv.apply {
             adapter = adapterAdds
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
-        observe( viewModel.data,::updateAdapterAddsData)
+        observe(viewModel.data, ::updateAdapterAddsData)
     }
-    private fun updateAdapterAddsData(anuncios:List<Anuncios>){
+
+    private fun updateAdapterAddsData(anuncios: List<Anuncios>) {
         adapterAdds.updateData(anuncios.toMutableList())
     }
 }

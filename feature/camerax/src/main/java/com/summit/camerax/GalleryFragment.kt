@@ -24,7 +24,7 @@ import java.io.File
 
 class GalleryFragment internal constructor() : BaseFragment<FragmentGalleryBinding, GalleryViewModel>(
     layoutId = R.layout.fragment_gallery
-), GalleryAdapter.clickListener, GalleryOptionsAdapter.GalleryOptionsAdapterListener {
+) {
 
     private val keyPhoto = "KEY_PHOTO_REGISTER"
     lateinit var adaptadorView: GalleryOptionsAdapter
@@ -100,8 +100,23 @@ class GalleryFragment internal constructor() : BaseFragment<FragmentGalleryBindi
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun setupGalleryAdapterOptions() {
-        adaptadorView = GalleryOptionsAdapter(this)
+        adaptadorView = GalleryOptionsAdapter { dato, position ->
+            if (dato == "") {
+                listaimg = viewModel.getImagesPath(requireActivity())
+                adaptador.updateData(listaimg)
+                adaptadorView.setearPosition(position)
+            } else {
+                viewModel.listImages(dato).observe(this) {
+                    if (it.isNotEmpty()) {
+                        listaimg = it
+                        adaptador.updateData(listaimg)
+                        adaptadorView.setearPosition(position)
+                    }
+                }
+            }
+        }
         viewBinding.reclyclerOptions.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = adaptadorView
@@ -110,7 +125,17 @@ class GalleryFragment internal constructor() : BaseFragment<FragmentGalleryBindi
     }
 
     private fun setupGalleryAdapter() {
-        adaptador = GalleryAdapter(this)
+        adaptador = GalleryAdapter { path, _ ->
+            if (path == null) {
+                file = null
+                viewBinding.enviarImagen.visibility = View.GONE
+                adaptador.selectData(null)
+            } else {
+                file = path
+                viewBinding.enviarImagen.visibility = View.VISIBLE
+                adaptador.selectData(path.path)
+            }
+        }
         viewBinding.reciclerImg.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = adaptador
@@ -120,37 +145,7 @@ class GalleryFragment internal constructor() : BaseFragment<FragmentGalleryBindi
 
 
     var file: File? = null
-    override fun click(path: File?, position: Int?) {
-        if (path == null) {
-            file = null
-            viewBinding.enviarImagen.visibility = View.GONE
-            adaptador.selectData(null)
-        } else {
-            file = path
-            viewBinding.enviarImagen.visibility = View.VISIBLE
-            adaptador.selectData(path.path)
-        }
 
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onclickGallery(dato: String, position: Int) {
-        if (dato == "") {
-            listaimg = viewModel.getImagesPath(requireActivity())
-            adaptador.updateData(listaimg)
-            adaptadorView.setearPosition(position)
-        } else {
-            viewModel.listImages(dato).observe(this) {
-                if (it.isNotEmpty()) {
-                    listaimg = it
-                    adaptador.updateData(listaimg)
-                    adaptadorView.setearPosition(position)
-                }
-            }
-        }
-
-    }
 
     override fun onInitDependencyInjection() {
         DaggerGalleryComponent

@@ -2,14 +2,12 @@ package com.summit.postulate.listPostulate
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.postulate.R
 import com.summit.postulate.databinding.FragmentPostulateBinding
 import com.summit.commons.ui.base.BaseFragment
-import com.summit.core.network.model.Postulacion
 import com.summit.postulate.listPostulate.adapter.PostulacionesAdapter
 import com.summit.postulate.listPostulate.adapter.PostulateOptionsAdapter
 import com.summit.postulate.listPostulate.di.DaggerListPostulateComponent
@@ -17,7 +15,7 @@ import com.summit.postulate.listPostulate.di.ListPostulateModule
 
 class PostulateFragment : BaseFragment<FragmentPostulateBinding, PostulateViewModel>(
     layoutId = R.layout.fragment_postulate
-), PostulateOptionsAdapter.PostulateOptionsAdapterListener, PostulacionesAdapter.Listener {
+){
 
     override fun onInitDependencyInjection() {
         DaggerListPostulateComponent.builder().coreComponent(MyApp.coreComponent(requireContext())).listPostulateModule(
@@ -63,7 +61,9 @@ class PostulateFragment : BaseFragment<FragmentPostulateBinding, PostulateViewMo
     }
 
     private fun setupRvPostulateItems() {
-        adapterPostulacion = PostulacionesAdapter(this)
+        adapterPostulacion = PostulacionesAdapter { postulacion, _ ->
+
+        }
         viewBinding.viewListpostulate.postulacionesRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = adapterPostulacion
@@ -71,19 +71,15 @@ class PostulateFragment : BaseFragment<FragmentPostulateBinding, PostulateViewMo
     }
 
     private fun setupRvOptionsTop() {
-        postulateItem = PostulateOptionsAdapter(this)
+        postulateItem = PostulateOptionsAdapter {dato,position->
+            postulateItem.setearPosition(position)
+            adapterPostulacion.searchBy(dato)
+        }
         viewBinding.viewListpostulate.postulacionesOptions.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = postulateItem
         }
     }
 
-    override fun onclick(anuncios: Postulacion, position: Int) {
 
-    }
-
-    override fun onclickPostulate(dato: String, position: Int) {
-        postulateItem.setearPosition(position)
-        adapterPostulacion.searchBy(dato)
-    }
 }

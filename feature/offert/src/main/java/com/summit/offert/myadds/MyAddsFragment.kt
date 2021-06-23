@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
-import com.summit.core.network.model.Anuncios
 import com.summit.offert.R
 import com.summit.offert.databinding.FragmentMyAddsBinding
 import com.summit.offert.myadds.adapter.MyAddAdapter
@@ -16,7 +15,7 @@ import com.summit.offert.myadds.di.MyAddModule
 
 class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     layoutId = R.layout.fragment_my_adds
-), MyAddOptionsAdapter.MyAddOptionsAdapterListener,MyAddAdapter.Listener{
+){
 
     private lateinit var adaptadorView:MyAddOptionsAdapter
     private lateinit var adapterAnuncios:MyAddAdapter
@@ -35,7 +34,9 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     }
 
     private fun setupRvAdapterList() {
-        adapterAnuncios = MyAddAdapter(this)
+        adapterAnuncios = MyAddAdapter { anuncios, _ ->
+
+        }
         viewBinding.viewListadds.misAnuncioRv.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
             adapter = adapterAnuncios
@@ -43,7 +44,10 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     }
 
     private fun setupRvOptionsMyAdds() {
-        adaptadorView = MyAddOptionsAdapter(this)
+        adaptadorView = MyAddOptionsAdapter { type,position->
+            adaptadorView.setearPosition(position)
+            adapterAnuncios.searchBy(type)
+        }
         viewBinding.viewListadds.misAnuncioOptions.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
             adapter = adaptadorView
@@ -70,9 +74,7 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
 
 
 
-    override fun onclick(anuncios: Anuncios, position: Int) {
-     //   findNavController().navigate(MisAnunciosFragmentDirections.actionNavAnunciosToMiAnuncioPreviewFragment(anuncios))
-    }
+
 
     override fun onInitDependencyInjection() {
         DaggerMyAddComponent.builder().coreComponent(MyApp.coreComponent(requireContext())).myAddModule(
@@ -84,8 +86,4 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
         viewBinding.viewModel=viewModel
     }
 
-    override fun onclickMyAdd(dato: String, position: Int) {
-        adaptadorView.setearPosition(position)
-        adapterAnuncios.searchBy(dato)
-    }
 }

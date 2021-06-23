@@ -7,7 +7,7 @@ import com.summit.core.network.model.Anuncios
 import com.summit.home.databinding.LayoutCategoryLargeCardBinding
 
 
-class AddLargeAdapter(private val listener: Listener) : RecyclerView.Adapter<AddLargeAdapter.ViewHolder>() {
+class AddLargeAdapter(private val listener: (Anuncios,Int)->Unit) : RecyclerView.Adapter<AddLargeAdapter.ViewHolder>() {
 
     var anuncios: MutableList<Anuncios> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,14 +40,12 @@ class AddLargeAdapter(private val listener: Listener) : RecyclerView.Adapter<Add
             binding.model = anuncio
             binding.executePendingBindings()
             binding.root.setOnClickListener {
-                listener.onclick(anuncio, position)
+                listener.invoke(anuncio, position)
 
             }
         }
     }
 
-    interface Listener {
-        fun onclick(anuncios: Anuncios, position: Int)
-    }
+
 }
 

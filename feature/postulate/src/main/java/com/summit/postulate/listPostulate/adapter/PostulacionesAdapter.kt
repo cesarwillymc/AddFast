@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.summit.core.network.model.Postulacion
 import com.summit.postulate.databinding.FragmentPostulateItemBinding
 
-class PostulacionesAdapter(private val listener: Listener) : RecyclerView.Adapter<PostulacionesAdapter.ViewHolder>() {
+class PostulacionesAdapter(private val listener: (Postulacion,Int)->Unit) : RecyclerView.Adapter<PostulacionesAdapter.ViewHolder>() {
 
     private var precios: MutableList<Postulacion> = mutableListOf()
     private var preciosinicial: MutableList<Postulacion> = mutableListOf()
@@ -58,14 +58,12 @@ class PostulacionesAdapter(private val listener: Listener) : RecyclerView.Adapte
             binding.executePendingBindings()
 
             itemView.setOnClickListener {
-                listener.onclick(model, position)
+                listener.invoke(model, position)
 
             }
         }
     }
 
-    interface Listener {
-        fun onclick(anuncios: Postulacion, position: Int)
-    }
+
 
 }

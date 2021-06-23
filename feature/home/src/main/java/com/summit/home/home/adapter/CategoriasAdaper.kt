@@ -7,7 +7,7 @@ import com.summit.android.addfast.R
 import com.summit.core.network.model.CategoriasModel
 import com.summit.home.databinding.LayoutCategoryCardBinding
 
-class CategoriasAdaper(private val listener: CategoriasListener) : RecyclerView.Adapter<CategoriasAdaper.ViewHolder>() {
+class CategoriasAdaper(private val listener: (Int,CategoriasModel)->Unit) : RecyclerView.Adapter<CategoriasAdaper.ViewHolder>() {
 
     var precios: MutableList<CategoriasModel> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,10 +24,7 @@ class CategoriasAdaper(private val listener: CategoriasListener) : RecyclerView.
     }
 
     var positionSelected = 0
-    fun selectPosition(position: Int) {
-        positionSelected = position
-        notifyDataSetChanged()
-    }
+
 
     fun updateData(data: MutableList<CategoriasModel>) {
         precios = mutableListOf()
@@ -37,10 +34,6 @@ class CategoriasAdaper(private val listener: CategoriasListener) : RecyclerView.
     }
 
     fun getValue(position: Int) = precios[position]
-    fun removeDato(posicion: Int) {
-        precios.removeAt(posicion)
-        notifyDataSetChanged()
-    }
 
     inner class ViewHolder(private val binding: LayoutCategoryCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -48,21 +41,18 @@ class CategoriasAdaper(private val listener: CategoriasListener) : RecyclerView.
         fun bind(get: CategoriasModel, position: Int) {
             binding.model=get
             if (position == positionSelected) {
-                binding.fsiTexto.setTextColor(itemView.resources.getColor(R.color.black))
+                binding.fsiTexto.setTextColor(itemView.context.getColor(R.color.black))
                 binding.fsiConstraint.background = itemView.context.getDrawable(R.drawable.border_button_carrito)
             } else {
-                binding.fsiTexto.setTextColor(itemView.resources.getColor(R.color.gris_2))
+                binding.fsiTexto.setTextColor(itemView.context.getColor(R.color.gris_2))
                 binding.fsiConstraint.background =
                     itemView.context.getDrawable(R.drawable.border_button_carrito_inactive)
             }
 
             binding.root.setOnClickListener {
-                listener.listener(position, get)
+                listener.invoke(position, get)
             }
         }
     }
 
-    interface CategoriasListener {
-        fun listener(position: Int, datos: CategoriasModel)
-    }
 }

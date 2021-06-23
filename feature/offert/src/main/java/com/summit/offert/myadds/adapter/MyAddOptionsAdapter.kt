@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.summit.android.addfast.R
 import com.summit.offert.databinding.MyAddOptionsAdapterBinding
 
-class MyAddOptionsAdapter(private val Listener: MyAddOptionsAdapterListener) :
+class MyAddOptionsAdapter(private val Listener: (String, Int) -> Unit) :
     RecyclerView.Adapter<MyAddOptionsAdapter.ViewHolder>() {
 
     var listPedido: List<String> = listOf()
@@ -50,13 +50,9 @@ class MyAddOptionsAdapter(private val Listener: MyAddOptionsAdapterListener) :
                 binding.textTipeSearch.setTextColor(Color.GRAY)
 
             binding.root.setOnClickListener {
-                Listener.onclickMyAdd(letter, position)
+                Listener.invoke(letter, position)
             }
         }
     }
 
-
-    interface MyAddOptionsAdapterListener {
-        fun onclickMyAdd(dato: String, position: Int)
-    }
 }

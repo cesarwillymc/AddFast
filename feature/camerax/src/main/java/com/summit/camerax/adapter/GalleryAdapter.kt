@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.summit.camerax.databinding.GalleryItemAdapterBinding
 import java.io.File
 
-class GalleryAdapter(private val Listener: clickListener) : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
+class GalleryAdapter(private val Listener: (File?,Int)->Unit) : RecyclerView.Adapter<GalleryAdapter.ViewHolder>() {
 
     var listPedido: List<File> = listOf()
     var posiciionDato: String? = null
@@ -46,9 +46,9 @@ class GalleryAdapter(private val Listener: clickListener) : RecyclerView.Adapter
 
             binding.root.setOnClickListener {
                 if (posiciionDato == file.path) {
-                    Listener.click(null, position)
+                    Listener.invoke(null, position)
                 } else {
-                    Listener.click(file, position)
+                    Listener.invoke(file, position)
 
                 }
 
@@ -56,7 +56,5 @@ class GalleryAdapter(private val Listener: clickListener) : RecyclerView.Adapter
         }
     }
 
-    interface clickListener {
-        fun click(path: File?, position: Int?)
-    }
+
 }

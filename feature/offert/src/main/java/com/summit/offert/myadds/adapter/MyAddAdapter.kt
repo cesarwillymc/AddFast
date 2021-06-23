@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.summit.core.network.model.Anuncios
 import com.summit.offert.databinding.FragmentMyAddsItemBinding
 
-class MyAddAdapter(private val listener: Listener) : RecyclerView.Adapter<MyAddAdapter.ViewHolder>() {
+class MyAddAdapter(private val listener: (Anuncios,Int)->Unit) : RecyclerView.Adapter<MyAddAdapter.ViewHolder>() {
 
     private var adds: MutableList<Anuncios> = mutableListOf()
     private var addsinicial: MutableList<Anuncios> = mutableListOf()
@@ -55,14 +55,11 @@ class MyAddAdapter(private val listener: Listener) : RecyclerView.Adapter<MyAddA
             binding.executePendingBindings()
 
             itemView.setOnClickListener {
-                listener.onclick(add, position)
+                listener.invoke(add, position)
 
             }
         }
     }
 
-    interface Listener {
-        fun onclick(anuncios: Anuncios, position: Int)
-    }
 
 }
