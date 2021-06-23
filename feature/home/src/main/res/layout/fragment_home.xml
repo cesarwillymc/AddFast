@@ -39,15 +39,9 @@
                                 android:textColor="@color/textColor"
                                 android:textSize="25sp" android:visibility="visible"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/icon_theme"
-                                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-                            <com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
-                                android:id="@+id/icon_theme"
-                                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                android:layout_marginEnd="8dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"/>
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

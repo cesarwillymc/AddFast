@@ -14,8 +14,6 @@ import com.summit.core.network.model.CategoriasModel
 import com.summit.core.network.model.ListaAnuncios
 import com.summit.core.network.model.Promociones
 import com.summit.core.network.model.departamento.UbicacionModel
-import com.summit.core.style.ThemeUtils
-import com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
 import com.summit.home.R
 import com.summit.home.databinding.FragmentHomeBinding
 import com.summit.home.home.adapter.AdapterProductosCategoria
@@ -25,14 +23,12 @@ import com.summit.home.home.adapter.SlideAdapter
 import com.summit.home.home.di.DaggerHomeComponent
 import com.summit.home.home.di.HomeModule
 import com.summit.home.home.utils.autoScroll
-import javax.inject.Inject
+
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     layoutId = R.layout.fragment_home
 ) {
-    @Inject
-    lateinit var themeUtils: ThemeUtils
 
     //Recycler view Binding
     private lateinit var offertAdapter: SlideAdapter
@@ -47,25 +43,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe(viewModel.getUbicacion, ::getUbicationModel)
-        setupOnCheckedTheme()
         setupRvBindingAdd()
         setupRvBindingCategory()
         setupRvBindingOffert()
     }
 
-    private fun setupOnCheckedTheme() {
-        viewBinding.iconTheme.setOnClickListener {
-            it?.let {
-                if (it is ToggleThemeCheckBox) {
-                    val checked = themeUtils.isDarkTheme(requireContext())
-                    it.isChecked = checked
-                    themeUtils.setNightMode(!checked, 0L)
-                }
-            }
 
-        }
-
-    }
 
     private fun getUbicationModel(ubicacionModel: UbicacionModel?) {
 

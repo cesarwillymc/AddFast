@@ -69,14 +69,21 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_marginEnd="8dp"
                             android:fontFamily="@font/gilroy_ligth"
+
                             android:text="@{viewModel.getUbicacion.departamento +` - `+ viewModel.getUbicacion.provincia}"
-
                             app:layout_constraintBottom_toBottomOf="@+id/img_icon_gps"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/icon_theme"
                             app:layout_constraintStart_toEndOf="@+id/img_icon_gps" app:layout_constraintTop_toTopOf="@+id/img_icon_gps"/>
-
+                        <com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
+                            android:id="@+id/icon_theme"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:visible="@{viewModel.state.navigationScreen||viewModel.state.fullScreen}"
+                            app:layout_constraintTop_toTopOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
