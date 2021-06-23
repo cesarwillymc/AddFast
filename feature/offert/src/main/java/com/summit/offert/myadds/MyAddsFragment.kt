@@ -2,6 +2,7 @@ package com.summit.offert.myadds
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
@@ -29,7 +30,7 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
         loadDataPaginas()
 
         viewBinding.viewListadds.crearanuncioButton.setOnClickListener {
-          //  MisAnunciosFragmentDirections.actionNavAnunciosToCrearAnuncioFragment().toLoad()
+          findNavController().navigate(MyAddsFragmentDirections.actionNavMyAddToNavCreateAdd())
         }
     }
 

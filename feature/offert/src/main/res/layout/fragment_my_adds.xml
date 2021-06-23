@@ -17,7 +17,7 @@
                  app:viewState="@{viewModel.stateListAdds}"
                  android:id="@+id/view_error"/>
         <include layout="@layout/view_adds_loading"
-                 app:viewState="@{viewModel.stateListAdds}"
+                 app:enable="@{viewModel.stateListAdds.loading}"
                  android:id="@+id/view_loading"/>
 
 

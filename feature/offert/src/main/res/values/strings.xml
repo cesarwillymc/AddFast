@@ -4,4 +4,17 @@
 
     <string name="my_add_empty_text">No publicaste ningun anuncio</string>
     <string name="my_add_error_text">Ups… ocurrio un error,revise su conexion</string>
+    <string name="form_create_alert">Tu anuncio entrara en revisión una vez publicado, esto demorara entre 1 a 3 horas
+    </string>
+    <string name="form_create_title">1.- Escribe el titulo de tu anuncio</string>
+    <string name="form_create_resume">2.- Escribe un pequeño resumen</string>
+    <string name="form_create_ubication">3.- Para donde es tu publico</string>
+    <string name="form_create_depart">Departamento</string>
+    <string name="form_create_prov">Provincia</string>
+    <string name="form_create_address">4.- Agrega una direccion</string>
+    <string name="form_create_btn_add">agregar</string>
+    <string name="form_create_type">5.- Tipo de Anuncio</string>
+    <string name="form_create_reference">6.- Agrega una foto de referencia</string>
+    <string name="form_create_load_photo">Cargar Foto</string>
+    <string name="form_create_send">ENVIAR</string>
 </resources>

@@ -4,14 +4,14 @@
 
     <data>
         <variable
-            name="viewState"
-            type="com.summit.offert.myadds.MyAddViewState" />
+            name="enable"
+            type="java.lang.Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_view"
-        app:visible="@{viewState.isLoading}">
+        app:visible="@{enable}">
 
         <ProgressBar
             android:layout_width="@dimen/postulate_loading_size"

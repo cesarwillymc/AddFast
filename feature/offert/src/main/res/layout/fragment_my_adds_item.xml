@@ -93,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:paddingHorizontal="8dp"
+                app:visibility="@{model.type.equals(`Trabajos`)}"
                 android:layout_marginEnd="1dp"
                 android:text="@{Integer.toString(model.postulaciones.size)}"
                 android:background="@drawable/border_button_carrito"

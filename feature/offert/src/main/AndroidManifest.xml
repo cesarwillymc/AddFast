@@ -4,11 +4,11 @@
           package="com.summit.offert">
 
     <dist:module
-        dist:instant="false"
+        dist:instant="true"
         dist:title="@string/title_offert">
         <dist:delivery>
-            <dist:on-demand/>
+            <dist:install-time />
         </dist:delivery>
-        <dist:fusing dist:include="true"/>
+        <dist:fusing dist:include="false"/>
     </dist:module>
 </manifest>

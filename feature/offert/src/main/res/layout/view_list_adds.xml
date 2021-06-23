@@ -26,9 +26,7 @@
             android:layout_height="match_parent">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mis_anuncio_options"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:background="@color/colorPrimaryDark"
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>

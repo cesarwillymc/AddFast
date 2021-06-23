@@ -106,7 +106,6 @@ class RegisterViewModel(private val repoAuth: AuthRepository, private val repoUs
         viewModelScope.launch {
             _stateRegister.postValue(RegisterViewState.Loading)
             try {
-
                 val responsePhoto = repoAuth.uploadImageProfile(imagen = photoDirection.value!!)
                 val urlPath = repoUser.getUrlDownloadFile(responsePhoto)
                 val modelUser =

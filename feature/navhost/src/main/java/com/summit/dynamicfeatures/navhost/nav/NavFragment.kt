@@ -56,6 +56,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
         setupToolbar()
         if (savedInstanceState == null) {
             setupMenu()
+            setupBottomNavigationBar()
         }
 
 
@@ -77,7 +78,6 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             viewModel.getUserData.observe(viewLifecycleOwner) {
                 viewBinding.navView.menu.clear()
                 viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
-                navController = null
                 setupBottomNavigationBar()
             }
         }
@@ -137,11 +137,9 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
         }
     }
 
-    private var navController: LiveData<NavController>? = null
-    @SuppressLint("RestrictedApi")
     private fun setupBottomNavigationBar() {
 
-        navController = viewBinding.navView.setupWithNavController(
+       val navController = viewBinding.navView.setupWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = childFragmentManager,
             containerId = R.id.am_fragment,

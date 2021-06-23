@@ -1,16 +1,11 @@
 package com.summit.core.network.repository
 
 import android.net.Uri
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.*
-import com.summit.core.exception.ExceptionGeneral
 import com.summit.core.network.model.SignIn
 import com.summit.core.network.model.Usuario
-import com.summit.core.status.Resource
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import java.io.File
@@ -46,6 +41,7 @@ internal class AuthRepositoryImpl(
         val credentialVerify = PhoneAuthProvider.credentialWithVerifyCode(
             credential.code, credential.numberPhone, credential.password, credential.codeRecibe
         )
+
         api.signOut()
         api.signIn(credentialVerify).addOnSuccessListener {
             if (it.user != null)
@@ -78,24 +74,31 @@ internal class AuthRepositoryImpl(
 
     //GET INFO
     override suspend fun getDataInformation(id: String): Usuario? = suspendCancellableCoroutine { continuation ->
-        firebase.collection("users").document(id).get().addOnCompleteListener {
-            try {
-                if (it.result != null) {
-                  if(it.result!!.exists()){
-                      val usuario =it.result!!.toObject(Usuario::class.java)
-                      continuation.resume(usuario)
-                  }else{
-                      continuation.resume(null)
-                  }
-                } else {
+
+        if(continuation.isActive){
+            firebase.collection("users").document(id).get().addOnCompleteListener {
+                try {
+                    if (it.result != null) {
+                        if(it.result!!.exists()){
+                            val usuario =it.result!!.toObject(Usuario::class.java)
+                            continuation.resume(usuario)
+                        }else{
+                            continuation.resume(null)
+                        }
+                    } else {
+                        continuation.resume(null)
+                    }
+                } catch (e: Exception) {
                     continuation.resume(null)
                 }
-            } catch (e: Exception) {
-                continuation.resume(null)
+            }.addOnFailureListener {
+                continuation.resumeWithException(Exception("error"))
             }
-        }.addOnFailureListener {
-            continuation.resumeWithException(Exception("error"))
+
+        }else{
+            continuation.cancel()
         }
+
     }
 
     //CREATE DATA INFORMATION

@@ -8,6 +8,13 @@
         android:id="@+id/nav_my_add"
         android:name="com.summit.offert.myadds.MyAddsFragment"
         android:label="MyAdds"
+    >
+        <action android:id="@+id/action_nav_my_add_to_nav_create_add" app:destination="@id/nav_create_add"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_create_add"
+        android:name="com.summit.offert.create.CreateAddFragment"
+        android:label="Create"
     />
 
 
