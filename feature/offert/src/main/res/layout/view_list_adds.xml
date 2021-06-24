@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:visibility="@{viewModel.stateListAdds.Complete}">
+        >
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/crearanuncio_button"
             android:layout_width="wrap_content"
@@ -17,13 +17,15 @@
             app:tint="@color/white"
             app:backgroundTint="@color/colorPrimary"
             android:backgroundTint="@color/colorPrimary"
+            app:visibility="@{viewModel.stateListAdds.Complete||viewModel.stateListAdds.empty}"
             android:clickable="true"
             android:src="@drawable/ic_baseline_add_24" android:contentDescription="@string/list_add_create" android:focusable="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:visibility="@{viewModel.stateListAdds.Complete}">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mis_anuncio_options"
                 android:layout_width="match_parent"

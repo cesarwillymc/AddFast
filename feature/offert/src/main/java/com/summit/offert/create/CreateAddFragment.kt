@@ -169,7 +169,7 @@ class CreateAddFragment : BaseFragment<FragmentCreateAddBinding, CreateAddViewMo
     }
 
     private fun setupBindingViews() {
-        viewBinding.formView.button.setOnClickListener {
+        viewBinding.formView.crearAnuncioCrear.setOnClickListener {
             viewModel.createAdd()
             listenResultForm()
         }
