@@ -36,6 +36,9 @@ class GalleryFragment internal constructor() : BaseFragment<FragmentGalleryBindi
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.backButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
         val permission =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
                 if (permissions.containsValue(true)) {
@@ -63,9 +66,7 @@ class GalleryFragment internal constructor() : BaseFragment<FragmentGalleryBindi
                 }
             }
         }
-        viewBinding.backButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
+
         viewBinding.enviarImagen.setOnClickListener {
             viewModel.getImageFile(requireContext(), file!!.path)
             compressImageSize()

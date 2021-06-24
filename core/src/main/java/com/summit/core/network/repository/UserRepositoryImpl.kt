@@ -39,31 +39,25 @@ internal class UserRepositoryImpl(
     override fun getUserTimeReal() = db.selectUsuario()
 
     override suspend fun disableAccount(id: String) {
-        val result = firestore.collection("users").document(id).update("accountactivate", false).await()
-        return Unit
+        firestore.collection("users").document(id).update("accountactivate", false).await()
     }
 
     override  suspend fun activeAccount(id: String) {
-        val result = firestore.collection("users").document(id).update("accountactivate", true).await()
-        return Unit
+        firestore.collection("users").document(id).update("accountactivate", true).await()
     }
 
     override suspend fun disableAdmin(id: String) {
-        val result = firestore.collection("users").document(id).update("isAdmin", false).await()
-        return Unit
+        firestore.collection("users").document(id).update("isAdmin", false).await()
     }
 
     override suspend fun addAdmin(id: String) {
-        val result = firestore.collection("users").document(id).update("isAdmin", true).await()
-        return Unit
+        firestore.collection("users").document(id).update("isAdmin", true).await()
     }
     override suspend fun crearReporte(reporte: Reporte) {
         firestore.collection("reporte").add(reporte).await()
-        return Unit
     }
 
     override suspend fun reportarUsuario(iduser: String) {
         firestore.collection("users").document(iduser).update("reportes", FieldValue.increment(1)).await()
-        return Unit
     }
 }

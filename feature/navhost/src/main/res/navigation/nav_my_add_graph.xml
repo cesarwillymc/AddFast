@@ -4,18 +4,24 @@
             android:id="@+id/nav_my_add_graph"
             app:moduleName="navhost"
             app:startDestination="@id/nav_my_add">
-    <fragment
-        android:id="@+id/nav_my_add"
-        android:name="com.summit.offert.myadds.MyAddsFragment"
-        android:label="MyAdds"
-    >
-        <action android:id="@+id/action_nav_my_add_to_nav_create_add" app:destination="@id/nav_create_add"/>
-    </fragment>
-    <fragment
-        android:id="@+id/nav_create_add"
-        android:name="com.summit.offert.create.CreateAddFragment"
-        android:label="Create"
-    />
+<fragment
+    android:id="@+id/nav_my_add"
+    android:name="com.summit.offert.myadds.MyAddsFragment"
+    android:label="MyAdds"
+>
+    <action android:id="@+id/action_nav_my_add_to_nav_create_add" app:destination="@id/nav_create_add"/>
+</fragment>
+<fragment
+    android:id="@+id/nav_create_add"
+    android:name="com.summit.offert.create.CreateAddFragment"
+    android:label="Create"
+>
+    <action android:id="@+id/action_nav_create_add_to_nav_camerax_graph" app:destination="@+id/nav_camerax_graph"/>
+</fragment>
 
-
+<include-dynamic
+    android:id="@+id/nav_camerax_graph"
+    android:name="com.summit.camerax"
+    app:moduleName="camerax"
+    app:graphResName="nav_camerax_graph"/>
 </navigation>

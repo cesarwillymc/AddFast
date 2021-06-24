@@ -20,13 +20,11 @@ internal class PostulateRepositoryImpl(
     private val storage: FirebaseStorage
 ) : PostulateRepository {
     override suspend fun getAllPostulante(): List<Usuario> {
-        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection("users").get().await()
         return anuncios.toObjects(Usuario::class.java)
     }
 
     override suspend fun getAllPostulanteByPalabra(palabra: String): List<Usuario> {
-        val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection("users").whereArrayContains("titulo", palabra).get().await()
         return anuncios.toObjects(Usuario::class.java)
     }
@@ -36,7 +34,6 @@ internal class PostulateRepositoryImpl(
         firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id)
             .update("postulaciones", FieldValue.arrayUnion(idPostulacion)).await()
-        return Unit
     }
 
     override suspend fun uploadCurriculumPostulacion(cv: File) = callbackFlow<Resource<String>> {
@@ -66,7 +63,6 @@ internal class PostulateRepositoryImpl(
 
     override suspend fun cambiarEstadoPostulacion(id: String, message: String): Unit {
         firestore.collection("postulaciones").document(id).update("estado", message).await()
-        return Unit
     }
 
     override suspend fun verMisPostulaciones(id: String): List<Postulacion> {

@@ -18,7 +18,6 @@ class RegisterViewModel(private val repoAuth: AuthRepository, private val repoUs
     private val _stateRuc = MutableLiveData<RegisterViewState>()
     val stateRuc: LiveData<RegisterViewState> get() = _stateRuc
 
-
     private lateinit var _dataRuc: String
     private val dataRuc get() = _dataRuc
     fun updateTextNumberRuc(word: CharSequence) {

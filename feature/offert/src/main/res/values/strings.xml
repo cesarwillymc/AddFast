@@ -13,8 +13,16 @@
     <string name="form_create_prov">Provincia</string>
     <string name="form_create_address">4.- Agrega una direccion</string>
     <string name="form_create_btn_add">agregar</string>
-    <string name="form_create_type">5.- Tipo de Anuncio</string>
-    <string name="form_create_reference">6.- Agrega una foto de referencia</string>
+    <string name="form_create_type">4.- Tipo de Anuncio</string>
+    <string name="form_create_reference">5.- Agrega una foto de referencia</string>
     <string name="form_create_load_photo">Cargar Foto</string>
     <string name="form_create_send">ENVIAR</string>
+
+    <!-- Form Register -->
+    <string name="register_add_string_error_title">El titulo debe ser mas largo</string>
+    <string name="register_add_string_empty_title">Debes introducir un titulo</string>
+
+    <string name="register_add_string_error_desc">La descripcion es muy corta</string>
+    <string name="register_add_string_empty_desc">Debes de introducir una descripcion</string>
+    <string name="register_vacio"/>
 </resources>

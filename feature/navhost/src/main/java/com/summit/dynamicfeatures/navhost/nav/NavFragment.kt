@@ -1,12 +1,9 @@
 package com.summit.dynamicfeatures.navhost.nav
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment

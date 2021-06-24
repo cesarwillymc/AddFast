@@ -9,7 +9,7 @@
         <include
             android:id="@+id/loading_view"
             layout="@layout/view_adds_loading"
-            app:enable="@{viewModel.stateRegister.loading}"
+            app:enable="@{viewModel.stateRegister.loading || viewModel.stateCategory.loading}"
         />
         <include layout="@layout/view_form_create_add"
                  android:id="@+id/form_view"

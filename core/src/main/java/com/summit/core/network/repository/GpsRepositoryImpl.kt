@@ -1,9 +1,6 @@
 package com.summit.core.network.repository
 
 import com.beust.klaxon.Klaxon
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.summit.core.db.AppDB
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.json.Constants
 import com.summit.core.network.model.departamento.ProvinciaItem
@@ -18,10 +15,10 @@ internal class GpsRepositoryImpl(
     override fun getUbicacion() = db.selectUbicacionModel()
     override fun getUbicacionStatic() = db.selectUbicacionModelStatic()
     override suspend fun verDepartamento(): List<ProvinciaItem>? {
-        return Klaxon().parseArray<ProvinciaItem>(Constants.departamentoJson)
+        return Klaxon().parseArray(Constants.departamentoJson)
     }
 
-    override suspend fun verProvincia(id: String): List<ProvinciaItem>? {
+    override suspend fun verProvincia(id: String): List<ProvinciaItem> {
         val datos = mutableListOf<ProvinciaItem>()
         Klaxon().parseArray<ProvinciaItem>(Constants.provinciaJson)?.forEach {
             if (it.department_id == id) {

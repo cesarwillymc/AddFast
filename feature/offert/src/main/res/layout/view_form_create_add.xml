@@ -47,9 +47,8 @@
 
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/button_black"
-                android:backgroundTint="@color/gris_1"
-
+                app:errorText="@{viewModel.stateTitle.TitleError?@string/register_add_string_error_title:@string/register_vacio}"
+                android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberTitle(word)}"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:lines="4"
@@ -77,15 +76,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/button_black"
-
-                android:backgroundTint="@color/gris_1"
                 android:ems="10"
+                app:errorText="@{viewModel.stateDesc.DescError?@string/register_add_string_error_desc:@string/register_vacio}"
+                android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberDesc(word)}"
                 android:inputType="textMultiLine|textAutoComplete"
-                android:lines="4"
                 android:paddingVertical="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -103,18 +99,35 @@
                 android:fontFamily="@font/gilroy_extrabold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/crear_anuncio_resumen"/>
-            <Spinner
-                android:id="@+id/crear_anuncio_departamento"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:background="@null"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
-
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
+                <Spinner
+                    android:id="@+id/crear_anuncio_departamento"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                />
+                <Spinner
+                    android:id="@+id/crear_anuncio_provincia"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@null"/>
+            </LinearLayout>
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
                 android:layout_width="wrap_content"
@@ -122,17 +135,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5"/>
 
-            <Spinner
-                android:id="@+id/crear_anuncio_provincia"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:background="@null"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+
 
             <TextView
                 android:id="@+id/textView"
@@ -159,21 +162,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:visibility="gone"
                 android:text="@string/form_create_address"
                 android:fontFamily="@font/gilroy_extrabold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/crear_anuncio_departamento"/>
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
 
             <EditText
                 android:id="@+id/crear_anuncio_direccion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-
+                android:visibility="gone"
                 android:layout_marginTop="8dp"
-
-                android:background="@drawable/button_black"
-                android:backgroundTint="@color/gris_1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:lines="4"
@@ -192,6 +193,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:text="@string/form_create_btn_add"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -247,6 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/gris_1"
+                    app:imageFile="@{viewModel.photoDirection}"
                     android:padding="5dp"
                     android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
@@ -270,6 +273,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/form_create_send"
+                app:enabledButton="@{!viewModel.departamentData.empty &amp;&amp; !viewModel.provinceData.empty &amp;&amp; viewModel.stateTitle.titleSucces &amp;&amp; viewModel.stateDesc.descSucces &amp;&amp; !viewModel.typeAdd.empty &amp;&amp; (viewModel.photoDirection!=null)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

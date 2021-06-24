@@ -11,7 +11,7 @@ import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 
-val NAV_FRAGMENTS_ID_BOTTOM = setOf(R.id.nav_home, R.id.nav_profile, R.id.nav_postulate,R.id.nav_my_add)
+val NAV_FRAGMENTS_ID_BOTTOM = setOf("Home", "Profile", "Postulate","MyAdds")
 val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf("GalleryFragment")
 val MENU_FRAGMENT_ID = setOf(R.menu.menu, R.menu.menu_user, R.menu.menu_publisher, R.menu.menu_admin)
 val LIST_NAV_GRAPH = listOf(
@@ -109,12 +109,12 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
     @SuppressLint("RestrictedApi")
     fun navigationControllerChanged(navController: NavController) {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) && !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.id)) {
+            if (NAV_FRAGMENTS_ID_BOTTOM.contains(destination.label) && !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.label)) {
                 _state.postValue(NavHostViewState.FullScreen)
 
             } else {
                 when {
-                    NAV_FRAGMENTS_ID_BOTTOM.contains(destination.id) -> {
+                    NAV_FRAGMENTS_ID_BOTTOM.contains(destination.label) -> {
                         _state.postValue(NavHostViewState.NavigationScreen)
                     }
                     !NAV_FRAGMENTS_ID_NOT_APPBAR.contains(destination.label) -> {
