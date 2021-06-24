@@ -6,13 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summit.core.network.model.Anuncios
 import com.summit.core.network.repository.AdRepository
+import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class MyAddViewModel(
     private val userRepo: UserRepository,
-    private val adRepo: AdRepository
+    private val adRepo: AdRepository,
+    repoUbi: GpsRepository,
 ):ViewModel() {
+    val getUbicacion = repoUbi.getUbicacion()
 
     fun getUserInfo()=userRepo.getUserStatic()
 
@@ -40,4 +43,5 @@ class MyAddViewModel(
         }
 
     }
+    var searchType:String?=null
 }

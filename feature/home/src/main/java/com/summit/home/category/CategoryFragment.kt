@@ -9,6 +9,7 @@ import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
 import com.summit.commons.ui.extension.observe
 import com.summit.core.network.model.Anuncios
+import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.home.R
 import com.summit.home.category.adapter.AddLargeAdapter
 import com.summit.home.category.di.CategoryModule
@@ -35,16 +36,14 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getAllAdds()
+        observe(viewModel.getUbicacion, ::getUbicationModel)
         setupRvCategoryAdapter()
     }
-
-    private fun getAllAdds() {
-        if (viewModel.data.value == null) {
+    fun getUbicationModel(ubi: UbicacionModel?) {
+        ubi?.let {
             viewModel.getAllAnunciosByCategorias(args.idcategory)
         }
     }
-
     private fun setupRvCategoryAdapter() {
         adapterAdds = AddLargeAdapter { anuncios, _ ->
             findNavController().navigate(CategoryFragmentDirections.actionNavListCategoryToNavDetailAd(model = anuncios))
@@ -60,3 +59,5 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding, CategoryViewModel
         adapterAdds.updateData(anuncios.toMutableList())
     }
 }
+
+

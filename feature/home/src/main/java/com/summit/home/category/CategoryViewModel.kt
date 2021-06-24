@@ -6,12 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.summit.core.network.model.Anuncios
 import com.summit.core.network.repository.CategoryRepository
+import com.summit.core.network.repository.GpsRepository
 import kotlinx.coroutines.launch
 
 class CategoryViewModel(
+    repoUbi: GpsRepository,
     private val repoCate: CategoryRepository
 ) : ViewModel() {
-
+    val getUbicacion = repoUbi.getUbicacion()
     private val _state = MutableLiveData<CategoryViewState>()
     val state: LiveData<CategoryViewState> get() = _state
 

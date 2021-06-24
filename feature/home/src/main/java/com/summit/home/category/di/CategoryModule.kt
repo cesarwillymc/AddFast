@@ -9,6 +9,7 @@ import dagger.Module
 import dagger.Provides
 import com.summit.commons.ui.extension.viewModel
 import com.summit.core.network.repository.CategoryRepository
+import com.summit.core.network.repository.GpsRepository
 
 @Module
 class CategoryModule(
@@ -18,10 +19,11 @@ class CategoryModule(
     @Provides
     @FeatureScope
     fun providesNavViewModel(
+        repoUbi: GpsRepository,
         repoCate:CategoryRepository
     ) = fragment.viewModel {
         CategoryViewModel(
-            repoCate=repoCate
+            repoCate=repoCate,repoUbi=repoUbi,
         )
     }
 }

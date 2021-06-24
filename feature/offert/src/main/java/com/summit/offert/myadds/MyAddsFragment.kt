@@ -6,6 +6,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
+import com.summit.commons.ui.extension.observe
+import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.offert.R
 import com.summit.offert.databinding.FragmentMyAddsBinding
 import com.summit.offert.myadds.adapter.MyAddAdapter
@@ -21,7 +23,7 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     private lateinit var adapterAnuncios:MyAddAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        observe(viewModel.getUbicacion, ::getUbicationModel)
         setupRvOptionsMyAdds()
         setupRvAdapterList()
         loadBarraSuperior()
@@ -30,6 +32,14 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
 
         viewBinding.viewListadds.crearanuncioButton.setOnClickListener {
           findNavController().navigate(MyAddsFragmentDirections.actionNavMyAddToNavCreateAdd())
+        }
+    }
+
+    private fun getUbicationModel(ubicacionModel: UbicacionModel?) {
+        ubicacionModel?.let {
+            viewModel.getUserInfo()?.let {user->
+                viewModel.verMisPostulaciones(user._id)
+            }
         }
     }
 
@@ -46,6 +56,7 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     private fun setupRvOptionsMyAdds() {
         adaptadorView = MyAddOptionsAdapter { type,position->
             adaptadorView.setearPosition(position)
+            viewModel.searchType=type
             adapterAnuncios.searchBy(type)
         }
         viewBinding.viewListadds.misAnuncioOptions.apply {
@@ -55,15 +66,15 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     }
 
     private fun loadDataPaginas() {
-        viewModel.getUserInfo()?.let {user->
-            viewModel.verMisPostulaciones(user._id)
-            viewModel.dataListAdds.observe(viewLifecycleOwner) { data ->
-                data?.let { list ->
-                    adapterAnuncios.updateData(list.toMutableList())
+        viewModel.dataListAdds.observe(viewLifecycleOwner) { data ->
+            data?.let { list ->
+                adapterAnuncios.updateData(list.toMutableList())
+                viewModel.searchType?.let {
+                    adapterAnuncios.searchBy(it)
                 }
             }
-
         }
+
 
     }
 

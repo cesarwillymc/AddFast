@@ -35,7 +35,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
         super.onViewCreated(view, savedInstanceState)
         listenFragmentData()
         setupBinding()
-        listenStateOnClick()
+
+
     }
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
@@ -81,6 +82,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
         }
         viewBinding.formView.imgRiderFr.setOnClickListener {
             onClickPhoto()
+        }
+        viewBinding.formView.btnRegisterSend.setOnClickListener {
+            viewModel.registerInformationUser()
+            listenStateOnClick()
         }
     }
 

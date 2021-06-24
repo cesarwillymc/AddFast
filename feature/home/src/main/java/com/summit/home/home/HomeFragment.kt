@@ -60,7 +60,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
             } ?: run {
                 viewModel.ubicationLast = ubicacionModel
                 setupRVs(isRefresh = false)
-
             }
 
         }

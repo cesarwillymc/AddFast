@@ -1,5 +1,6 @@
 package com.summit.authentification.register
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -103,6 +104,7 @@ class RegisterViewModel(private val repoAuth: AuthRepository, private val repoUs
     val stateRegister: LiveData<RegisterViewState> get() = _stateRegister
     fun registerInformationUser() {
         viewModelScope.launch {
+            Log.e("entro","register info")
             _stateRegister.postValue(RegisterViewState.Loading)
             try {
                 val responsePhoto = repoAuth.uploadImageProfile(imagen = photoDirection.value!!)
