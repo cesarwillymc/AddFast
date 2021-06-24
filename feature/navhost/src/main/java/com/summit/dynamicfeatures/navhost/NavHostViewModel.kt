@@ -1,34 +1,19 @@
 package com.summit.dynamicfeatures.navhost
 
 import android.annotation.SuppressLint
-import androidx.annotation.DrawableRes
+import android.view.Menu
+import androidx.core.view.get
 import androidx.lifecycle.*
 import androidx.navigation.NavController
-import com.summit.core.network.model.Usuario
 import com.summit.core.network.model.departamento.ProvinciaItem
 import com.summit.core.network.model.departamento.UbicacionModel
 import com.summit.core.network.repository.GpsRepository
 import com.summit.core.network.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 
-val NAV_FRAGMENTS_ID_BOTTOM = setOf("Home", "Profile", "Postulate","MyAdds")
+val NAV_FRAGMENTS_ID_BOTTOM = setOf("Home", "Profile", "Postulate", "MyAdds")
 val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf("GalleryFragment")
-val MENU_FRAGMENT_ID = setOf(R.menu.menu, R.menu.menu_user, R.menu.menu_publisher, R.menu.menu_admin)
-val LIST_NAV_GRAPH = listOf(
-    listOf(
-        R.navigation.nav_inicio_graph,
-        R.navigation.nav_profile_graph,
-    ), listOf(
-        R.navigation.nav_inicio_graph,
-        R.navigation.nav_profile_graph,
-        R.navigation.nav_postulate_graph
-    ), listOf(
-        R.navigation.nav_inicio_graph,
-        R.navigation.nav_profile_graph,
-    ), listOf(
-        R.navigation.nav_profile_graph
-    )
-)
+
 
 class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo: GpsRepository) : ViewModel() {
     val getUserData = userRepo.getUserTimeReal()
@@ -38,7 +23,7 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
     fun updateUbicacionAppDb(item: UbicacionModel) = ubiRepo.updateUbicacionAppDb(item)
     fun saveUbicacion(item: UbicacionModel) = ubiRepo.saveUbicacion(item)
     val getUbicacion = ubiRepo.getUbicacion()
-    fun getDepartamentos() = liveData<List<ProvinciaItem>>(viewModelScope.coroutineContext+ Dispatchers.Main) {
+    fun getDepartamentos() = liveData<List<ProvinciaItem>>(viewModelScope.coroutineContext + Dispatchers.Main) {
         try {
             val resultado = ubiRepo.verDepartamento()
             if (resultado != null) {
@@ -50,7 +35,7 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
         }
     }
 
-    fun getProvincias(id: String) = liveData<List<ProvinciaItem>>(viewModelScope.coroutineContext+ Dispatchers.Main) {
+    fun getProvincias(id: String) = liveData<List<ProvinciaItem>>(viewModelScope.coroutineContext + Dispatchers.Main) {
         try {
             val resultado = ubiRepo.verProvincia(id)
             if (resultado != null) {
@@ -68,41 +53,25 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
     val state: LiveData<NavHostViewState>
         get() = _state
 
-    @DrawableRes
-    fun getMenuActual(user: Usuario?): Int {
-        return if (user != null) {
+
+
+    fun setVisibilityMenu(menu: Menu) {
+
+        val user = userRepo.getUserStatic()
+        if (user != null) {
             when {
-                user.admin!! -> {
-                    MENU_FRAGMENT_ID.elementAt(3)
-                }
                 user.ruc.isNullOrEmpty() -> {
-                    (MENU_FRAGMENT_ID.elementAt(1))
+                    menu[2].isVisible = false
+                    menu[1].isVisible = true
                 }
                 else -> {
-                    (MENU_FRAGMENT_ID.elementAt(2))
+                    menu[1].isVisible = true
+                    menu[2].isVisible = true
                 }
             }
         } else {
-            (MENU_FRAGMENT_ID.elementAt(0))
-        }
-    }
-
-
-    fun getGraphActual(user: Usuario?): List<Int> {
-        return if (user != null) {
-            when {
-                user.admin!! -> {
-                    LIST_NAV_GRAPH.elementAt(3)
-                }
-                user.ruc.isNullOrEmpty() -> {
-                    (LIST_NAV_GRAPH.elementAt(1))
-                }
-                else -> {
-                    (LIST_NAV_GRAPH.elementAt(2))
-                }
-            }
-        } else {
-            (LIST_NAV_GRAPH.elementAt(0))
+            menu[1].isVisible = false
+            menu[2].isVisible = false
         }
     }
 

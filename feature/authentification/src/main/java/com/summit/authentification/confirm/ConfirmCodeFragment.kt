@@ -51,6 +51,7 @@ class ConfirmCodeFragment : BaseFragment<FragmentConfirmCodeBinding, ConfirmCode
                         hideKeyboard()
                     }
                     ConfirmCodeViewState.Complete -> {
+                        findNavController().navigate(ConfirmCodeFragmentDirections.actionConfirmCodeFragmentToNavProfileGraph())
                         findNavController().backStack.clear()
                     }
                     ConfirmCodeViewState.InComplete -> {

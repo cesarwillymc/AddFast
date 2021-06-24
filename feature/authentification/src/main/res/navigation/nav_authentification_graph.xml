@@ -47,6 +47,8 @@
         <argument android:name="id" app:argType="string"/>
         <argument android:name="phone" app:argType="string"/>
         <action android:id="@+id/action_registerFragment_to_nav_camerax_graph" app:destination="@id/nav_camerax_graph"/>
+        <action android:id="@+id/action_registerFragment_to_nav_profile_graph" app:destination="@id/nav_profile_graph"
+                app:popUpTo="@id/nav_profile_graph" app:popUpToInclusive="true"/>
     </fragment>
 
     <include-dynamic

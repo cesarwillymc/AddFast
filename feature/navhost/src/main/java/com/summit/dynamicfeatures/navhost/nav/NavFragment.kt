@@ -63,19 +63,14 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 
-        viewModel.getUserData.value?.let {
-            viewBinding.navView.menu.clear()
-            viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
-        }
         setupBottomNavigationBar()
     }
 
     private fun setupMenu() {
         if (viewModel.getUserData.value == null) {
             viewModel.getUserData.observe(viewLifecycleOwner) {
-                viewBinding.navView.menu.clear()
-                viewBinding.navView.inflateMenu(viewModel.getMenuActual(it))
-                setupBottomNavigationBar()
+                viewModel.setVisibilityMenu( viewBinding.navView.menu)
+
             }
         }
 
@@ -142,7 +137,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
             containerId = R.id.am_fragment,
             intent = requireActivity().intent
         )
-        navController?.let {
+        navController.let {
             it.observe(
                 viewLifecycleOwner
             ) {nav->

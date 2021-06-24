@@ -62,6 +62,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterViewModel
                         hideKeyboard()
                     }
                     RegisterViewState.Complete -> {
+                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToNavInicioGraph())
                         findNavController().backStack.clear()
                     }
                     RegisterViewState.Error -> {
