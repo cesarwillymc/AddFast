@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.summit.core.BuildConfig
 import com.summit.core.db.AppDB
-import com.summit.core.db.migration.MIGRATION_1_2
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,7 +17,6 @@ class DatabaseModule {
     fun provideMarvelDatabase(context: Context) =
         Room.databaseBuilder(context, AppDB::class.java, BuildConfig.ADDFAST_DATABASE_NAME)
             .allowMainThreadQueries()
-            .addMigrations(MIGRATION_1_2)
             .fallbackToDestructiveMigration()
             .build()
     @Singleton
