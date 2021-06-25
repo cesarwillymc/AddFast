@@ -7,14 +7,15 @@
 
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent">
+
+        <include layout="@layout/view_register_form"
+                 android:id="@+id/form_view"
+                 app:viewModel="@{viewModel}"
+        />
         <include
             android:id="@+id/loading_view"
             layout="@layout/view_loading"
             app:viewEnabled="@{viewModel.stateRegister.loading}"
-        />
-        <include layout="@layout/view_register_form"
-                 android:id="@+id/form_view"
-                 app:viewModel="@{viewModel}"
         />
     </FrameLayout>
 

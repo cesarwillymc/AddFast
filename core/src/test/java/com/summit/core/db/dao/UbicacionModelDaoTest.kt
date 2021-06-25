@@ -1,10 +1,7 @@
 package com.summit.core.db.dao
 
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.summit.core.db.AppDB
 import com.summit.core.network.model.departamento.UbicacionModel
@@ -14,8 +11,6 @@ import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotSame
 import kotlinx.coroutines.runBlocking
 import org.junit.*
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 
 
 class UbicacionModelDaoTest: TestRobolectric()  {
@@ -79,7 +74,7 @@ class UbicacionModelDaoTest: TestRobolectric()  {
         data.departamento="Acapulco"
         ubicacionModelDao.updateUbicacionModel(data)
         val ubicationUpdated = ubicacionModelDao.selectUbicacionModel()
-        assertEquals(fakeUbication[0], getValue(ubicationUpdated))
+        assertEquals(data, getValue(ubicationUpdated))
     }
     @Test
     fun `select data without livedata, should return value`() {

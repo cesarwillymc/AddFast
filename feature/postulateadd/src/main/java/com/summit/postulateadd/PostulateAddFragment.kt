@@ -19,7 +19,7 @@ import com.summit.postulateadd.di.DaggerPostulateAddComponent
 import com.summit.postulateadd.di.PostulateAddModule
 import java.io.File
 
-class PostulateAddFragment:BaseFragment<FragmentCreatePostulateBinding,PostulateAddViewModel>(
+class PostulateAddFragment : BaseFragment<FragmentCreatePostulateBinding, PostulateAddViewModel>(
     layoutId = R.layout.fragment_create_postulate
 ) {
 
@@ -29,10 +29,11 @@ class PostulateAddFragment:BaseFragment<FragmentCreatePostulateBinding,Postulate
     }
 
     override fun onInitDataBinding() {
-        viewBinding.viewModel=viewModel
+        viewBinding.viewModel = viewModel
         val argsAdd = arguments?.get("model") as Anuncios
         viewModel.anuncioArgs.postValue(argsAdd)
     }
+
     private lateinit var someActivityResultLauncher: ActivityResultLauncher<Intent>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,14 +45,14 @@ class PostulateAddFragment:BaseFragment<FragmentCreatePostulateBinding,Postulate
         someActivityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if(it.resultCode == Activity.RESULT_OK){
-                try{
-                    val datos= FileUtils().getPath(requireContext(), it!!.data!!.data!!)!!
+            if (it.resultCode == Activity.RESULT_OK) {
+                try {
+                    val datos = FileUtils().getPath(requireContext(), it!!.data!!.data!!)!!
                     Handler(Looper.getMainLooper()).postDelayed({
                         viewModel.dataFile.postValue(File(datos))
                         viewBinding.formView.crearPostulacionImg.setImageDrawable(requireCompatActivity().getDrawable(R.drawable.loadcomplete))
-                    },1000L)
-                }catch (e:Exception){
+                    }, 1000L)
+                } catch (e: Exception) {
                     toast("Elige otro gestor de archivos para elegir el documento")
                 }
             }
@@ -61,28 +62,33 @@ class PostulateAddFragment:BaseFragment<FragmentCreatePostulateBinding,Postulate
     private fun setupOnClickBinding() {
         viewBinding.formView.crearPostulacionPostular.setOnClickListener {
             viewModel.crearPostulacion()
-            observe(viewModel.stateRegister,::listenStateRegister)
+            observe(viewModel.stateRegister, ::listenStateRegister)
         }
         viewBinding.formView.crearPostulacionCargar.setOnClickListener {
             val mRequestFileIntent = Intent(Intent.ACTION_GET_CONTENT)
             mRequestFileIntent.type = "application/pdf"
-            someActivityResultLauncher.launch(Intent.createChooser(mRequestFileIntent,"Seleccione una app para elegir el pdf"))
+            someActivityResultLauncher.launch(
+                Intent.createChooser(
+                    mRequestFileIntent,
+                    "Seleccione una app para elegir el pdf"
+                )
+            )
         }
     }
 
     private fun listenStateRegister(postulateAddViewState: PostulateAddViewState) {
-        when(postulateAddViewState){
-            PostulateAddViewState.Loading->{
+        when (postulateAddViewState) {
+            PostulateAddViewState.Loading -> {
                 hideKeyboard()
             }
-            PostulateAddViewState.Complete->{
+            PostulateAddViewState.Complete -> {
                 toast("Postulacion completada.")
                 findNavController().navigateUp()
             }
-            PostulateAddViewState.Error->{
+            PostulateAddViewState.Error -> {
                 toast("Surgio un error al postular a esta oferta.")
             }
-            else->{
+            else -> {
 
             }
         }
