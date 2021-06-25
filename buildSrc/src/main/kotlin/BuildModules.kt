@@ -8,6 +8,7 @@ object BuildModules {
         const val PROFILE = ":feature:profile"
         const val POSTULATE = ":feature:postulate"
         const val OFFERT = ":feature:offert"
+        const val POSTULATEADD = ":feature:postulateadd"
         const val AUTHENTIFICATION = ":feature:authentification"
         const val CAMERAX = ":feature:camerax"
 

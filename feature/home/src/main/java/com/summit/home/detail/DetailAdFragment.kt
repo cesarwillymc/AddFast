@@ -1,8 +1,8 @@
 package com.summit.home.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.summit.android.addfast.app.MyApp
 import com.summit.commons.ui.base.BaseFragment
@@ -37,6 +37,7 @@ class DetailAdFragment : BaseFragment<FragmentDetailAdBinding, DetailAdViewModel
         args.idAnuncio?.let {
             viewModel.getAnuncioId(it)
             viewModel.addViewsAd(it)
+
         }
         setupOnClickListener()
     }
@@ -46,6 +47,9 @@ class DetailAdFragment : BaseFragment<FragmentDetailAdBinding, DetailAdViewModel
 
         }
         viewBinding.includeListData.verAnuncioPostular.setOnClickListener {
+            viewModel.data.value?.let { add->
+                findNavController().navigate(DetailAdFragmentDirections.actionNavDetailAdToNavAddPostulateGraph(add))
+            }
 
         }
         viewBinding.includeListData.verAnuncioSendMessage.setOnClickListener {

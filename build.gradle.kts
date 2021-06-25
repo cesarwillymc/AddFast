@@ -1,7 +1,6 @@
 import extension.applyDefault
 buildscript {
 
-
     repositories {
         google()
         mavenCentral()

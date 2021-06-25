@@ -28,6 +28,16 @@
         <argument android:name="model" app:argType="com.summit.core.network.model.Anuncios" app:nullable="true"
                   android:defaultValue="@null"/>
         <argument android:name="idAnuncio" app:argType="string" app:nullable="true" android:defaultValue="@null"/>
+        <action android:id="@+id/action_nav_detail_ad_to_nav_add_postulate_graph"
+                app:destination="@+id/nav_add_postulate_graph"/>
     </fragment>
+
+    <include-dynamic
+        android:id="@id/nav_add_postulate_graph"
+        android:name="com.summit.postulateadd"
+        app:moduleName="postulateadd"
+        app:graphResName="nav_add_postulate_graph">
+        <argument android:name="model" app:argType="com.summit.core.network.model.Anuncios"/>
+    </include-dynamic>
 
 </navigation>

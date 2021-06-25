@@ -85,20 +85,8 @@ android {
         BuildModules.Features.AUTHENTIFICATION,
         BuildModules.Features.CAMERAX,
         BuildModules.Features.POSTULATE,
-        BuildModules.Features.OFFERT
+        BuildModules.Features.OFFERT, BuildModules.Features.POSTULATEADD
     )
-    /*
-     ":feature:ubication",
-        ":feature:advertisements",
-        ":feature:authentification",
-        ":feature:camerax",
-,
-
-        ":feature:offert",
-        ":feature:postulate",
-        ":feature:profile",
-        ":feature:report",
-     */
 
 }
 

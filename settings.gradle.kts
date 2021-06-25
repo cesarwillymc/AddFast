@@ -11,19 +11,9 @@ include(
     ":feature:camerax",
     ":feature:authentification",
     ":feature:offert",
+    ":feature:postulateadd",
     ":libraries:test_utils"
 )
-/*
 
-    ":feature:ubication",
-    ":feature:advertisements",
-
-
-
-
-    ":feature:postulate",
-    ":feature:profile",
-    ":feature:report",
- */
 rootProject.buildFileName = "build.gradle.kts"
 

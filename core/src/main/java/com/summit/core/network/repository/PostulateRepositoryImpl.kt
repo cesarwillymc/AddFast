@@ -4,16 +4,12 @@ import android.net.Uri
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.summit.core.db.AppDB
 import com.summit.core.db.dao.UbicacionModelDao
-import com.summit.core.exception.ExceptionGeneral
 import com.summit.core.network.model.Postulacion
 import com.summit.core.network.model.Usuario
-import com.summit.core.status.Resource
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import java.io.File
+import java.util.*
 
 internal class PostulateRepositoryImpl(
     private val db: UbicacionModelDao, private val firestore: FirebaseFirestore,
@@ -31,28 +27,17 @@ internal class PostulateRepositoryImpl(
 
     override suspend fun postularAnuncio(id: String, idPostulacion: String) {
         val ubicacion = db.selectUbicacionModelStatic()
-        firestore.collection(ubicacion.departamento.trim().toLowerCase())
-            .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").document(id)
+        firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
+            .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios").document(id)
             .update("postulaciones", FieldValue.arrayUnion(idPostulacion)).await()
     }
 
-    override suspend fun uploadCurriculumPostulacion(cv: File) = callbackFlow<Resource<String>> {
+    override suspend fun uploadCurriculumPostulacion(cv: File): String {
         val path = "curriculum/${cv.name}"
         val storageReference = storage.getReference(path)
-        val uploadTask = storageReference.putFile(Uri.fromFile(cv))
-        uploadTask.addOnProgressListener {
-            val total = ((it.bytesTransferred * 1.0) / cv.length())
-            val total2 = ((it.bytesTransferred * 1.0) / it.totalByteCount)
-            //  Log.e("SubiendoDatos","total $total 2 $total2 ${it.bytesTransferred} ${it.totalByteCount} ${cv.length()}  ")
-            offer(Resource.loading(total))
-        }.addOnSuccessListener {
-            offer(Resource.success(path))
-        }.addOnFailureListener {
-            offer(Resource.error(ExceptionGeneral(it.message?:"")))
-        }
-        awaitClose {
-            uploadTask.cancel()
-        }
+        storageReference.putFile(Uri.fromFile(cv)).await()
+        val response: Uri? =storage.getReference(path).downloadUrl.await()
+        return response.toString()
     }
 
     override suspend fun crearPostulacion(postulacion: Postulacion): String {
@@ -61,7 +46,7 @@ internal class PostulateRepositoryImpl(
         return data.id
     }
 
-    override suspend fun cambiarEstadoPostulacion(id: String, message: String): Unit {
+    override suspend fun cambiarEstadoPostulacion(id: String, message: String) {
         firestore.collection("postulaciones").document(id).update("estado", message).await()
     }
 
