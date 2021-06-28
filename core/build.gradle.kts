@@ -27,15 +27,12 @@ dependencies {
 
     implementation(Dependencies.ROOMKTX)
     implementation(Dependencies.ROOMRUNTIME)
-    implementation(Dependencies.RETROFIT)
-    implementation(Dependencies.GSONCONVERTER)
     implementation(Dependencies.HUAWEIAUTH)
     implementation(Dependencies.APPCOMPACT)
     implementation(Dependencies.HUAWEICORE)
     implementation(Dependencies.LOGGING)
     implementation(Dependencies.FIREBASESTORAGE)
     implementation(Dependencies.FIRESTORE)
-    implementation(Dependencies.FIREBASEREALTIME)
     implementation(Dependencies.KLAXON)
     kapt(Dependencies.ROOMCOMPILER)
 }

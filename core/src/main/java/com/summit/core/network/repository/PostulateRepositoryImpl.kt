@@ -20,10 +20,7 @@ internal class PostulateRepositoryImpl(
         return anuncios.toObjects(Usuario::class.java)
     }
 
-    override suspend fun getAllPostulanteByPalabra(palabra: String): List<Usuario> {
-        val anuncios = firestore.collection("users").whereArrayContains("titulo", palabra).get().await()
-        return anuncios.toObjects(Usuario::class.java)
-    }
+
 
     override suspend fun postularAnuncio(id: String, idPostulacion: String) {
         val ubicacion = db.selectUbicacionModelStatic()
@@ -46,17 +43,11 @@ internal class PostulateRepositoryImpl(
         return data.id
     }
 
-    override suspend fun cambiarEstadoPostulacion(id: String, message: String) {
-        firestore.collection("postulaciones").document(id).update("estado", message).await()
-    }
+
 
     override suspend fun verMisPostulaciones(id: String): List<Postulacion> {
         val anuncios = firestore.collection("postulaciones").whereEqualTo("idpostulante", id).get().await()
         return anuncios.toObjects(Postulacion::class.java)
     }
 
-    override suspend fun verPostulacionesdemiAnuncio(idAnuncio: String): List<Postulacion> {
-        val anuncios = firestore.collection("postulaciones").whereEqualTo("idanuncio", idAnuncio).get().await()
-        return anuncios.toObjects(Postulacion::class.java)
-    }
 }

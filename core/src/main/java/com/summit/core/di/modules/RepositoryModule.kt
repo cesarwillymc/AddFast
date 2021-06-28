@@ -3,10 +3,8 @@ package com.summit.core.di.modules
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
-import com.summit.core.db.AppDB
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.db.dao.UsuarioDao
-import com.summit.core.network.api.RestApi
 import com.summit.core.network.repository.*
 import com.summit.core.network.repository.AdRepositoryImpl
 import com.summit.core.network.repository.AuthRepositoryImpl
@@ -27,8 +25,7 @@ class RepositoryModule {
         firestore: FirebaseFirestore,
         db: UbicacionModelDao,
         storage: FirebaseStorage,
-        api: RestApi
-    ): AdRepository = AdRepositoryImpl(firestore, api,db, storage)
+    ): AdRepository = AdRepositoryImpl(firestore,db, storage)
 
     @Singleton
     @Provides

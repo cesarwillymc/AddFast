@@ -6,6 +6,6 @@ import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.cancellation.CancellationException
 
 @MockK
-suspend fun <T> Task<T>.await(): T {
+fun <T> Task<T>.await(): T {
     return result as T
 }
