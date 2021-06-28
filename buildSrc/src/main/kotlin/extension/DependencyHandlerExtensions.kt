@@ -4,10 +4,33 @@ package extension
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import dependency.TestDependencies
+import org.gradle.api.Project
+import java.util.*
+
+private const val LOCAL_PROPERTIES_FILE_NAME = "local.properties"
+
+
+fun getLocalProperty(propertyName: String, project: Project): String {
+    val localProperties = Properties().apply {
+        val localPropertiesFile = project.rootProject.file(LOCAL_PROPERTIES_FILE_NAME)
+        if (localPropertiesFile.exists()) {
+            load(localPropertiesFile.inputStream())
+        }
+    }
+
+    return localProperties.getProperty(propertyName)?.let {
+        it
+    } ?: run {
+        throw NoSuchFieldException("Not defined property: $propertyName")
+    }
+}
+
+fun Project.getLocalProperty(propertyName: String): String {
+    return getLocalProperty(propertyName, this)
+}
 
 fun DependencyHandler.debugImplementation(dependencyNotation: String): Dependency? =
     add("debugImplementation", dependencyNotation)
-
 
 fun DependencyHandler.implementation(dependencyNotation: String): Dependency? =
     add("implementation", dependencyNotation)
@@ -27,6 +50,9 @@ fun DependencyHandler.testImplementation(dependencyNotation: String): Dependency
 fun DependencyHandler.androidTestImplementation(dependencyNotation: String): Dependency? =
     add("androidTestImplementation", dependencyNotation)
 
+fun DependencyHandler.testRuntimeOnly(dependencyNotation: Any): Dependency? =
+    add("testRuntimeOnly", dependencyNotation)
+
 fun DependencyHandler.addTestsDependencies() {
 
     testImplementation(TestDependencies.MOCKK)
@@ -37,7 +63,11 @@ fun DependencyHandler.addTestsDependencies() {
     testImplementation(TestDependencies.ARCH_CORE)
     testImplementation(TestDependencies.RUNNER)
     testImplementation(TestDependencies.ROBOELECTRIC)
-    testImplementation(TestDependencies.JUNIT)
+    // (Required) Writing and executing Unit Tests on the JUnit Platform
+    testImplementation(TestDependencies.JUNIT5_API)
+    testRuntimeOnly(TestDependencies.JUNIT5_ENGINE)
     testImplementation(TestDependencies.RULES)
-
+    // Truth
+    testImplementation(TestDependencies.TRUTH)
+    androidTestImplementation(TestDependencies.TRUTH)
 }

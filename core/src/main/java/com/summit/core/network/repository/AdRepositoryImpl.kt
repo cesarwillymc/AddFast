@@ -1,12 +1,14 @@
 package com.summit.core.network.repository
 
 import android.net.Uri
+import android.util.Log
 import com.beust.klaxon.Klaxon
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.json.Constants
+import com.summit.core.network.api.RestApi
 import com.summit.core.network.model.Anuncios
 import kotlinx.coroutines.tasks.await
 import java.io.File
@@ -14,15 +16,24 @@ import java.util.*
 
 internal class AdRepositoryImpl(
     private val firestore: FirebaseFirestore,
+    private val api: RestApi,
     private val db: UbicacionModelDao,
     private val storage: FirebaseStorage
 ) : AdRepository {
 
     override suspend fun getAnuncioId(id: String): Anuncios {
+
         val ubicacion = db.selectUbicacionModelStatic()
-        val dato = firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
-            .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios").document(id).get().await()
-        return dato.toObject(Anuncios::class.java)!!
+        val departamento=ubicacion.departamento.trim().toLowerCase(Locale.ROOT)
+        val province=ubicacion.provincia.trim().toLowerCase(Locale.ROOT)
+        Log.e("data","depa $departamento province $province id $id")
+        return api.getAddById(
+            departament =departamento ,
+            province = province,
+            addid = id
+        )
+
+
     }
 
     override suspend fun getAllAnunciosByPalabra(palabra: String): List<Anuncios> {
@@ -41,7 +52,7 @@ internal class AdRepositoryImpl(
         return anuncios.toObjects(Anuncios::class.java)
     }
 
-     override suspend fun getAllAnunciosPost(): List<Anuncios> {
+    override suspend fun getAllAnunciosPost(): List<Anuncios> {
         val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
             .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios")
@@ -71,9 +82,11 @@ internal class AdRepositoryImpl(
     }
 
     override suspend fun crearAnuncio(anuncios: Anuncios, departamento: String, provincia: String) {
-        val result = firestore.collection(departamento.trim().toLowerCase(Locale.ROOT)).document(provincia.trim().toLowerCase(Locale.ROOT))
+        val result = firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
+            .document(provincia.trim().toLowerCase(Locale.ROOT))
             .collection("anuncios").add(anuncios).await()
-        firestore.collection(departamento.trim().toLowerCase(Locale.ROOT)).document(provincia.trim().toLowerCase(Locale.ROOT))
+        firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
+            .document(provincia.trim().toLowerCase(Locale.ROOT))
             .collection("anuncios").document(result.id).update("id", result.id).await()
     }
 
@@ -81,17 +94,19 @@ internal class AdRepositoryImpl(
         val datos: List<Anuncios>? = Klaxon().parseArray<Anuncios>(Constants.data)
         datos?.forEach {
             val result =
-                firestore.collection(departamento.trim().toLowerCase(Locale.ROOT)).document(provincia.trim().toLowerCase(Locale.ROOT))
+                firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
+                    .document(provincia.trim().toLowerCase(Locale.ROOT))
                     .collection("anuncios").add(it).await()
-            firestore.collection(departamento.trim().toLowerCase(Locale.ROOT)).document(provincia.trim().toLowerCase(Locale.ROOT))
+            firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
+                .document(provincia.trim().toLowerCase(Locale.ROOT))
                 .collection("anuncios").document(result.id).update("id", result.id).await()
         }
     }
 
-    override suspend fun uploadFotoAnuncio(imagen: File) :String{
+    override suspend fun uploadFotoAnuncio(imagen: File): String {
         val path = "images/${imagen.name}"
         storage.getReference(path).putFile(Uri.fromFile(imagen)).await()
-        val response: Uri? =storage.getReference(path).downloadUrl.await()
+        val response: Uri? = storage.getReference(path).downloadUrl.await()
         return response.toString()
     }
 
@@ -99,7 +114,8 @@ internal class AdRepositoryImpl(
         val ubicacion = db.selectUbicacionModelStatic()
 
         val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
-            .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios").whereEqualTo("idempresa", id)
+            .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios")
+            .whereEqualTo("idempresa", id)
             .get().await()
         return anuncios.toObjects(Anuncios::class.java)
     }

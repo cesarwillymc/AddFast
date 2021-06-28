@@ -30,7 +30,6 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Bugsnag.start(this)
-
         initCoreDependencyInjection()
         initAppDependencyInjection()
         //themeUtils.setNightMode(true)

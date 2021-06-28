@@ -1,8 +1,6 @@
 
-import extension.addTestsDependencies
-import extension.implementation
-import extension.kapt
-import extension.testImplementation
+import extension.*
+import org.gradle.kotlin.dsl.testRuntimeOnly
 
 plugins {
     id("commons.android-library")
@@ -16,7 +14,9 @@ dependencies {
     implementation(dependency.TestDependencies.CORE)
     implementation(dependency.TestDependencies.RUNNER)
     implementation(dependency.TestDependencies.ROBOELECTRIC)
-    implementation(dependency.TestDependencies.JUNIT)
+    // (Required) Writing and executing Unit Tests on the JUnit Platform
+    testImplementation(dependency.TestDependencies.JUNIT5_API)
+    testRuntimeOnly(dependency.TestDependencies.JUNIT5_ENGINE)
     implementation(dependency.TestDependencies.RULES)
 
 }

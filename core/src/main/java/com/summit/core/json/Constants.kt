@@ -2,7 +2,7 @@ package com.summit.core.json
 
 internal object Constants {
 
-    const val APP_SETTINGS_PATH_PHOTOS="/storage/emulated/0/summitFood/"
+
 
     val category = listOf(
             "Restaurantes",

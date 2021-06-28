@@ -6,6 +6,7 @@ import com.huawei.agconnect.auth.AGConnectAuth
 import com.summit.core.db.AppDB
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.db.dao.UsuarioDao
+import com.summit.core.network.api.RestApi
 import com.summit.core.network.repository.*
 import com.summit.core.network.repository.AdRepositoryImpl
 import com.summit.core.network.repository.AuthRepositoryImpl
@@ -25,8 +26,9 @@ class RepositoryModule {
     fun provideAdRepository(
         firestore: FirebaseFirestore,
         db: UbicacionModelDao,
-        storage: FirebaseStorage
-    ): AdRepository = AdRepositoryImpl(firestore, db, storage)
+        storage: FirebaseStorage,
+        api: RestApi
+    ): AdRepository = AdRepositoryImpl(firestore, api,db, storage)
 
     @Singleton
     @Provides

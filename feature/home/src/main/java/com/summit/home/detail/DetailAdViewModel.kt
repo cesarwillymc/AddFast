@@ -39,6 +39,7 @@ class DetailAdViewModel(
                 _data.postValue(response)
                 _state.postValue(DetailAdState.Complete)
             } catch (e: Exception) {
+                Log.e("getAnuncoId",e.message!!)
                 _state.postValue(DetailAdState.Error)
             }
         }

@@ -25,11 +25,13 @@ object DependencyVersion {
     const val ROOM="2.3.0"
     const val HUAWEI="1.4.1.300"
     const val FIRESTORE="23.0.0"
+    const val FIREBASEREALTIME="20.0.0"
     const val FIREBASESTORAGE="20.0.0"
     const val CAMERAX="1.1.0-alpha04"
     const val CAMERAXVIEW="1.0.0-alpha24"
     const val RETROFIT="2.7.2"
     const val CONVERTER="2.9.0"
+    const val LOGGING = "4.9.0"
     const val GROUPIE="2.8.1"
     const val GPUIMAGE="2.1.0"
     const val MAPSUTIL="2.2.0"
@@ -44,15 +46,13 @@ object DependencyVersion {
 
     // Tests
     const val COROUTINESTEST = "1.5.0"
-    const val SPEKVERSION = "2.0.16"
     const val TEST = "1.3.0"
     const val EXT = "1.1.2"
+    // Truth Assertion
+    const val truthVersion = "1.0.1"
     const val ARCH_CORE = "2.1.0"
-    const val JUNIT = "4.13.1"
+    // Junit5
+    const val junit5Version = "5.4.0"
     const val ROBOELECTRIC = "4.4"
     const val MOCKK = "1.10.2"
-    const val ASSERTJ = "3.17.2"
-    const val ESPRESSO = "3.3.0"
-    const val FRAGMENT_TEST = "1.2.5"
-    const val MOCK_WEB_SERVER = "4.9.0"
 }
