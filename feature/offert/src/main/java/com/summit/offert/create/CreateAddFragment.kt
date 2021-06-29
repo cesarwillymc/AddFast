@@ -139,8 +139,6 @@ class CreateAddFragment : BaseFragment<FragmentCreateAddBinding, CreateAddViewMo
                     parent: AdapterView<*>?, view: View?, position: Int, id: Long
                 ) {
                     viewModel.positionProvince=position
-                    val item = adapterProvince.lisProducts[position]
-                    viewModel.provinceData.postValue(item.name)
                 }
             }
     }

@@ -25,7 +25,7 @@ class MyAddViewModel(
     private val _stateListAdds = MutableLiveData<MyAddViewState>()
     val stateListAdds: LiveData<MyAddViewState> get() = _stateListAdds
 
-    fun verMisPostulaciones(id: String) {
+    fun getMisAnuncios(id: String) {
         viewModelScope.launch {
             _stateListAdds.postValue(MyAddViewState.Loading)
             try {

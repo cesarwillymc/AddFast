@@ -273,7 +273,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/form_create_send"
-                app:enabledButton="@{!viewModel.departamentData.empty &amp;&amp; !viewModel.provinceData.empty &amp;&amp; viewModel.stateTitle.titleSucces &amp;&amp; viewModel.stateDesc.descSucces &amp;&amp; !viewModel.typeAdd.empty &amp;&amp; (viewModel.photoDirection!=null)}"
+                app:enabledButton="@{!viewModel.departamentData.empty  &amp;&amp; viewModel.stateTitle.titleSucces &amp;&amp; viewModel.stateDesc.descSucces &amp;&amp; !viewModel.typeAdd.empty &amp;&amp; (viewModel.photoDirection!=null)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

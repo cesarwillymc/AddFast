@@ -38,7 +38,7 @@ class MyAddsFragment : BaseFragment<FragmentMyAddsBinding,MyAddViewModel>(
     private fun getUbicationModel(ubicacionModel: UbicacionModel?) {
         ubicacionModel?.let {
             viewModel.getUserInfo()?.let {user->
-                viewModel.verMisPostulaciones(user._id)
+                viewModel.getMisAnuncios(user._id)
             }
         }
     }

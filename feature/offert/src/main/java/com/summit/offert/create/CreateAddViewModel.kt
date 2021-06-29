@@ -28,8 +28,11 @@ class CreateAddViewModel(
     var positionDepartament=0
 
     fun initViewModel(){
-        getDepartamentos()
-        getCategorias()
+        if(dataProvincia.value==null&&dataDepartamento.value==null){
+            getDepartamentos()
+            getCategorias()
+        }
+
     }
 
     private val _stateTitle = MutableLiveData<CreateAddViewState>()
@@ -73,7 +76,6 @@ class CreateAddViewModel(
 
     val typeAdd = MutableLiveData<List<String>>()
 
-    val provinceData = MutableLiveData<String>()
 
     val departamentData = MutableLiveData<String>()
 
@@ -104,6 +106,7 @@ class CreateAddViewModel(
             try {
                 val resultado = gpsRepo.verProvincia(id)
                 if (resultado != null) {
+                    positionProvince=0
                     _dataProvincia.postValue(resultado)
                 } else {
                     _dataProvincia.postValue(listOf())
@@ -134,7 +137,7 @@ class CreateAddViewModel(
                     titulo = dataTitle, postulaciones = listOf(),
                     reporte = 0, visualizaciones = 0, estado = "PUBLICADO"
                 )
-                adRepo.crearAnuncio(model, departamentData.value!!, provinceData.value!!)
+                adRepo.crearAnuncio(model, departamentData.value!!, dataProvincia.value!![positionProvince].name)
                 _stateRegister.postValue(CreateAddViewState.Complete)
             } catch (e: Exception) {
                 _stateRegister.postValue(CreateAddViewState.Error)

@@ -1,11 +1,24 @@
-# ADD FAST
+## Android Components Architecture in a Modular Word
 
 ![N|Solid](https://i.blogs.es/df41c1/kotlin_800x320/450_1000.png)
 
-## Gestion de anuncios 
-git
+## Application mobile with theme dark and light
 
-La arquitectura usada es de MVVM
+<img src="assets/app.gif" width="250" align="right" hspace="20">
+
+| Mode| Light| Dark| 
+| ----- | ---- |---- | 
+| HOME | <img src="assets/light/home.jpeg" width="250"> | <img src="assets/dark/home.jpeg" width="250"> |
+| CATEGORY | <img src="assets/light/category.jpeg" width="250"> | <img src="assets/dark/category.jpeg" width="250"> |
+| DETAIL ADD | <img src="assets/light/adddetail.jpeg" width="250"> | <img src="assets/dark/adddetail.jpeg" width="250"> |
+| PROFILE | <img src="assets/light/profile.jpeg" width="250"> | <img src="assets/dark/profile.jpeg" width="250"> |
+| AUTH | <img src="assets/light/login.jpeg" width="250"> | <img src="assets/dark/login.jpeg" width="250"> |
+| AUTH CODE | <img src="assets/light/code.jpeg" width="250"> | <img src="assets/dark/code.jpeg" width="250"> |
+| POSTULATE | <img src="assets/light/postulate.jpeg" width="250"> | <img src="assets/dark/postulate.jpeg" width="250"> |
+| MY ADDS | <img src="assets/light/myadd.jpeg" width="250"> | <img src="assets/dark/myadd.jpeg" width="250"> |
+
+
+
 
 ## Ejecucion del Proyecto
 

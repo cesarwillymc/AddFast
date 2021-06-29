@@ -52,7 +52,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
 
         ubicacionModel?.let {
             viewModel.ubicationLast?.let {
-                if (ubicacionModel.departamento != viewModel.ubicationLast!!.departamento) {
+                if ((ubicacionModel.departamento != viewModel.ubicationLast!!.departamento) ||
+                    (ubicacionModel.provincia != viewModel.ubicationLast!!.provincia)) {
                     viewModel.ubicationLast = ubicacionModel
                     setupRVs(isRefresh = true)
                 }
