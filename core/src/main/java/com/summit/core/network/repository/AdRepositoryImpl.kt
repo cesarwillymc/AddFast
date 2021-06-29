@@ -1,12 +1,10 @@
 package com.summit.core.network.repository
 
 import android.net.Uri
-import com.beust.klaxon.Klaxon
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.summit.core.db.dao.UbicacionModelDao
-import com.summit.core.json.Constants
 import com.summit.core.network.model.Anuncios
 import kotlinx.coroutines.tasks.await
 import java.io.File
@@ -19,31 +17,22 @@ internal class AdRepositoryImpl(
 ) : AdRepository {
 
     override suspend fun getAnuncioId(id: String): Anuncios {
-
         val ubicacion = db.selectUbicacionModelStatic()
         val data = firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
             .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios").document(id).get()
             .await()
 
         return data.toObject(Anuncios::class.java)!!
-
-
-    }
-
-    override suspend fun getAllAnunciosByPalabra(palabra: String): List<Anuncios> {
-        val ubicacion = db.selectUbicacionModelStatic()
-        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
-            .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios")
-            .whereEqualTo("estado", "PENDIENTE").get().await()
-        return anuncios.toObjects(Anuncios::class.java)
     }
 
 
-    override suspend fun aumentarVisualizacionesAnuncios(id: String) {
+    override suspend fun aumentarVisualizacionesAnuncios(id: String){
         val ubicacion = db.selectUbicacionModelStatic()
+
         firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
             .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios").document(id)
-            .update("visualizaciones", FieldValue.increment(1)).await()
+            .update("visualizaciones",FieldValue.increment(1) ).await()
+        return
     }
 
 
@@ -54,6 +43,7 @@ internal class AdRepositoryImpl(
         firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
             .document(provincia.trim().toLowerCase(Locale.ROOT))
             .collection("anuncios").document(result.id).update("id", result.id).await()
+        return
     }
 
 
