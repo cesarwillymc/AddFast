@@ -1,4 +1,6 @@
-## Android Components Architecture in a Modular Word
+## Android Components Architecture 
+
+### You can help me improve by giving me advice on my [LinkedIn!](https://www.linkedin.com/in/cesarwillymc/)
 
 ![N|Solid](https://i.blogs.es/df41c1/kotlin_800x320/450_1000.png)
 
@@ -9,6 +11,8 @@
 This application has the objective of containing basic things for a good architecture in android projects, this project will improve sequentially first by migrating the MVVM project to Modular Architecture.
 This project is carried out in my National University of the Altiplano as a basic work, which I am refactoring to become a guide for android developers.
 Any comment you can communicate with me through my Linkedin [CESAR](https://www.linkedin.com/in/cesarwillymc/)
+
+In the proyect i used `Firestore`, `Bugsnack`, `Coroutines`, `Navigation Dynamic` and Others.
 
 | Mode| Light| Dark| 
 | ----- | ---- |---- | 
