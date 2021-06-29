@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:moduleName="postulateadd"
+            android:id="@id/nav_add_postulate_graph" app:startDestination="@id/postulateAddFragment">
+
+    <fragment android:id="@+id/postulateAddFragment" android:name="com.summit.postulateadd.PostulateAddFragment"
+              android:label="PostulateAddFragment"/>
+</navigation>

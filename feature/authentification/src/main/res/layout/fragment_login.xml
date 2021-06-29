@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.authentification.login.LoginViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/backgroundColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_peru"
+            app:layout_constraintBottom_toBottomOf="@+id/lbl_inicio_telefono"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lbl_inicio_telefono"/>
+        <TextView
+            android:id="@+id/comfirm_code_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/gilroy_extrabold"
+            android:hint="@string/login_string_add"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/imageView6"/>
+        <EditText
+            android:id="@+id/comfirm_code_peru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:autofillHints="number"
+            android:fontFamily="@font/gilroy_ligth"
+            android:hint="@string/login_string_peru"
+            android:inputType="number"
+            app:errorText="@{viewModel.stateCode.CodeEmpty?@string/login_string_empty_code:viewModel.stateCode.CodeError?@string/login_string_error_code:@string/login_vacio}"
+            android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextCodeCountryPhone(word)}"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/comfirm_code_add"
+            app:layout_constraintTop_toTopOf="@+id/imageView6"/>
+
+        <EditText
+            android:id="@+id/lbl_inicio_telefono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:ems="10"
+
+            android:fontFamily="@font/gilroy_ligth"
+            android:hint="@string/login_string_hint_edt"
+            app:errorText="@{viewModel.statePhone.PhoneEmpty?@string/login_string_empty_phone:viewModel.statePhone.PhoneError?@string/login_string_error_phone:@string/login_vacio}"
+            android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberPhone(word)}"
+            android:inputType="number"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/comfirm_code_peru"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" android:autofillHints="phone"/>
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toBottomOf="@+id/lbl_inicio_telefono">
+            <include
+                android:id="@+id/lbl_inicio_send"
+                layout="@layout/view_button_next"
+                app:buttonEnabled="@{viewModel.stateCode.CodeSucces &amp;&amp; viewModel.statePhone.PhoneSucces}"
+
+                app:viewEnabled="@{!viewModel.stateLogin.loading}"/>
+            <include
+                android:id="@+id/lbl_inicio_loading"
+                layout="@layout/view_loading"
+                app:viewEnabled="@{viewModel.stateLogin.loading}"/>
+        </FrameLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/size_view"
+            android:layout_height="@dimen/size_view"
+            android:background="@drawable/fondo"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

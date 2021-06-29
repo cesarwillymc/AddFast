@@ -12,7 +12,7 @@
 		"project_id":"736430079244764192",
 		"app_id":"103593343",
 		"api_key":"CgB6e3x96jkbETS+jbVupbPWkvimE3G9OWYHtTEOlRJ/8+JewkXSBYSd3E2zsJ1id3krIQVsXrVgjIhT8ZQr5jmD",
-		"package_name":"com.summit.android.addfast"
+		"package_name":"com.summit.android.addfast.debug"
 	},
 	"service":{
 		"analytics":{

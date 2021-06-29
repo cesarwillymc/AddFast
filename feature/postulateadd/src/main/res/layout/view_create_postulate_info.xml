@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.postulateadd.PostulateAddViewModel"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:visibility="@{!viewModel.stateRegister.loading}"
+    >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/crear_postulacion_titulo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{viewModel.anuncioArgs.titulo}"
+                android:textSize="18sp"
+                android:textColor="@color/textColor"
+                android:fontFamily="@font/gilroy_extrabold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:id="@+id/crear_postulacion_especialidad"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:paddingVertical="10dp"
+                app:errorText="@{viewModel.stateEspeciality.EspecialityError?@string/register_string_error_speciality:@string/register_vacio}"
+                android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextEspeciality(word)}"
+                android:paddingHorizontal="5dp"
+                android:inputType="textAutoComplete|textMultiLine"
+                android:hint="@string/register_speciality"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crear_postulacion_titulo" android:autofillHints="true"/>
+
+            <EditText
+                android:id="@+id/crear_postulacion_cv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:paddingVertical="10dp"
+                android:ems="10"
+                android:inputType="textAutoComplete|textMultiLine"
+                app:errorText="@{viewModel.stateResume.ResumeError?@string/register_string_error_resume:@string/register_vacio}"
+                android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextResume(word)}"
+                android:hint="@string/register_cv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crear_postulacion_especialidad" android:autofillHints="true"/>
+
+            <EditText
+                android:id="@+id/crear_postulacion_diferencia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:paddingVertical="10dp"
+                app:errorText="@{viewModel.stateDifference.DifferenceError?@string/register_string_error_difference:@string/register_vacio}"
+                android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextDifference(word)}"
+                android:inputType="textAutoComplete|textMultiLine"
+                android:hint="@string/register_difference"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crear_postulacion_cv" android:autofillHints="true"/>
+
+            <EditText
+                android:id="@+id/crear_postulacion_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                app:errorText="@{viewModel.statePhone.PhoneError?@string/register_string_error_phone:@string/register_vacio}"
+                android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberPhone(word)}"
+                android:paddingVertical="10dp"
+                android:inputType="phone"
+                android:hint="@string/register_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crear_postulacion_diferencia"/>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/register_opcional"
+                android:textSize="14sp"
+                android:fontFamily="@font/gilroy_extrabold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crear_postulacion_phone"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/crear_postulacion_img"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/pdf"
+                android:background="@color/itemMenuUnchecked"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+
+            <TextView
+                android:id="@+id/crear_postulacion_cargar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/register_load"
+                android:background="@drawable/border_button_carrito"
+                android:backgroundTint="#4CAF50"
+                android:textColor="@color/white"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/crear_postulacion_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/crear_postulacion_img"/>
+
+            <Button
+                android:id="@+id/crear_postulacion_postular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:paddingVertical="15dp"
+                android:text="@string/register_send"
+                android:textSize="22sp"
+                android:fontFamily="@font/gilroy_extrabold"
+                app:enabledButton="@{viewModel.statePhone.PhoneSucces &amp;&amp; viewModel.stateDifference.DifferenceSucces &amp;&amp; viewModel.stateResume.ResumeSucces &amp;&amp; viewModel.stateEspeciality.EspecialitySucces &amp;&amp; (viewModel.dataFile !=null)}"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crear_postulacion_img"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

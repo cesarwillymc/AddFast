@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="postulate_empty_text">No postulaste a ningun anuncio</string>
+    <string name="postulate_error_text">Ups… ocurrio un error,revise su conexion</string>
+</resources>

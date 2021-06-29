@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+          xmlns:dist="http://schemas.android.com/apk/distribution"
+          package="com.summit.postulate">
+
+    <dist:module
+        dist:instant="true"
+        dist:title="@string/title_postulate">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="false"/>
+    </dist:module>
+</manifest>
