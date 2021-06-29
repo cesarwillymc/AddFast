@@ -39,7 +39,6 @@ internal class AdRepositoryImpl(
     }
 
 
-
     override suspend fun aumentarVisualizacionesAnuncios(id: String) {
         val ubicacion = db.selectUbicacionModelStatic()
         firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))

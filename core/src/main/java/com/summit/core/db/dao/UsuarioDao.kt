@@ -7,7 +7,7 @@ import com.summit.core.network.model.Usuario
 @Dao
 interface UsuarioDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUsuario(usuario: Usuario)
+    suspend fun insertUsuario(usuario: Usuario)
 
     @Update
     fun updateUsuario(usuario: Usuario)

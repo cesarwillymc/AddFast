@@ -62,7 +62,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-
+        setupMenu()
         setupBottomNavigationBar()
     }
 

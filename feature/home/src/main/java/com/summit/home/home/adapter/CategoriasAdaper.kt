@@ -3,8 +3,8 @@ package com.summit.home.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.summit.android.addfast.R
 import com.summit.core.network.model.CategoriasModel
+import com.summit.home.R
 import com.summit.home.databinding.LayoutCategoryCardBinding
 
 class CategoriasAdaper(private val listener: (Int,CategoriasModel)->Unit) : RecyclerView.Adapter<CategoriasAdaper.ViewHolder>() {

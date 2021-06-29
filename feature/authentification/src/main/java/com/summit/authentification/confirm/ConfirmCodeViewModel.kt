@@ -72,15 +72,6 @@ class ConfirmCodeViewModel(private val repoAuth: AuthRepository, private val rep
     fun stopViewModel(){
         _stateConfirmCode.postValue(null)
     }
-    fun invitado(){
-        repoUser.insertUser(
-            Usuario(
-                "Invitado", "aa ", "Peru", "Puno",
-                ruc="sadsad",
-                admin=false,
-                uriImgPerfil = "https://summit-puno.s3.us-east-2.amazonaws.com/yachay/boy.webp",_id = "invitado"
-            )
-        )
-    }
+
 
 }

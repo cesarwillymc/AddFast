@@ -14,7 +14,7 @@ interface UserRepository {
 
     //CRUD BASICO DB BASE INSERT, DELETE, UPDATE, SELECT
 
-    fun insertUser(usuario: Usuario)
+    suspend fun insertUser(usuario: Usuario)
 
     fun updateUser(usuario: Usuario)
 
@@ -24,11 +24,4 @@ interface UserRepository {
 
     fun getUserTimeReal(): LiveData<Usuario>
 
-    suspend fun disableAccount( id:String)
-    suspend fun activeAccount( id:String)
-    suspend fun disableAdmin( id:String)
-    suspend fun addAdmin( id:String)
-    suspend fun crearReporte(reporte: Reporte)
-
-    suspend fun reportarUsuario(iduser: String)
 }

@@ -68,21 +68,21 @@ class UsuarioDaoTest : TestRobolectric() {
     }
 
     @Test
-    fun `insert user and obtain user, should return data and equals data`() {
+    fun `insert user and obtain user, should return data and equals data`()= runBlocking {
         usuarioDao.insertUsuario(fakeUser)
         val usuario = usuarioDao.selectUsuarioStatic()
         assertEquals(fakeUser, usuario)
     }
 
     @Test
-    fun `insert user and obtain user, should return data not equals`() {
+    fun `insert user and obtain user, should return data not equals`()= runBlocking {
         usuarioDao.insertUsuario(fakeUser)
         val user = usuarioDao.selectUsuarioStatic()
         assertNotSame(fakeUser2, user)
     }
 
     @Test
-    fun `insert user and delete data, should return null`() {
+    fun `insert user and delete data, should return null`() = runBlocking{
         usuarioDao.insertUsuario(fakeUser)
         val user = usuarioDao.selectUsuarioStatic()
         Assert.assertTrue(user != null)
@@ -92,7 +92,7 @@ class UsuarioDaoTest : TestRobolectric() {
     }
 
     @Test
-    fun `insert user and update user, should return not equals value`() {
+    fun `insert user and update user, should return not equals value`()= runBlocking {
         usuarioDao.insertUsuario(fakeUser)
         val user = usuarioDao.selectUsuarioStatic()
         assertEquals(fakeUser, user)
@@ -105,7 +105,7 @@ class UsuarioDaoTest : TestRobolectric() {
     }
 
     @Test
-    fun `select data with livedata, should return value`() {
+    fun `select data with livedata, should return value`()= runBlocking {
         usuarioDao.insertUsuario(fakeUser)
         val user = usuarioDao.selectUsuario()
         assertEquals(fakeUser, getValue(user))

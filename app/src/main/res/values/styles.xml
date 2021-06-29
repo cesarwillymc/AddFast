@@ -9,20 +9,4 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
-    <style name="FabShapeSyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">50%</item>
-        <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerFamilyBottomLeft">rounded</item>
-        <item name="cornerFamilyBottomRight">cut</item>
-    </style>
-    <style name="FabShapeSyleReverse" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerSize">50%</item>
-        <item name="cornerSizeBottomLeft">0dp</item>
-        <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerFamilyBottomLeft">cut</item>
-        <item name="cornerFamilyBottomRight">rounded</item>
-    </style>
 </resources>

@@ -62,8 +62,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideUserRepository(
-        db: UsuarioDao, firestore: FirebaseFirestore, storage: FirebaseStorage, api: AGConnectAuth
-    ): UserRepository = UserRepositoryImpl(db, firestore, storage, api)
+        db: UsuarioDao, storage: FirebaseStorage, api: AGConnectAuth
+    ): UserRepository = UserRepositoryImpl(db, storage, api)
 
 
 }
