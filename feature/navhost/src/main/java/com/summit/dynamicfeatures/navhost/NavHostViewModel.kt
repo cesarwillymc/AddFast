@@ -18,7 +18,6 @@ val NAV_FRAGMENTS_ID_NOT_APPBAR = setOf("GalleryFragment")
 class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo: GpsRepository) : ViewModel() {
     val getUserData = userRepo.getUserTimeReal()
 
-
     /** UBICACION UPDATE **/
     fun updateUbicacionAppDb(item: UbicacionModel) = ubiRepo.updateUbicacionAppDb(item)
     fun saveUbicacion(item: UbicacionModel) = ubiRepo.saveUbicacion(item)
@@ -52,7 +51,6 @@ class NavHostViewModel(private val userRepo: UserRepository, private val ubiRepo
 
     val state: LiveData<NavHostViewState>
         get() = _state
-
 
 
     fun setVisibilityMenu(menu: Menu) {

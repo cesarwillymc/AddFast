@@ -19,24 +19,25 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>(
     }
 
     override fun onInitDataBinding() {
-        viewBinding.viewModel=viewModel
+        viewBinding.viewModel = viewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.viewUserSignin.signinButton.setOnClickListener {
-           try{
-               findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavAuthentificationGraph())
-           }catch (e:Exception){}
+            try {
+                findNavController().navigate(ProfileFragmentDirections.actionNavProfileToNavAuthentificationGraph())
+            } catch (e: Exception) {
+            }
         }
     }
 
 
     override fun onDetach() {
-        try{
+        try {
             viewBinding.viewUserSignin.lottieAnimationView.cancelAnimation()
             viewBinding.viewUserSignin.lottieAnimationView.clearAnimation()
-        }catch (e:Exception){
+        } catch (e: Exception) {
 
         }
         super.onDetach()

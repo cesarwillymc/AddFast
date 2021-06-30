@@ -6,6 +6,5 @@ interface OfferRepository {
     suspend fun getAllPromociones(): List<Promociones>
     suspend fun getUrlDownloadFile(path: String): String
 
-    suspend fun getPromocion(): List<Promociones>
 
 }

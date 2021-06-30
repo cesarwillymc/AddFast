@@ -7,7 +7,6 @@ import java.io.File
 interface AdRepository {
 
 
-    suspend fun getAllAnunciosByPalabra(palabra: String): List<Anuncios>
 
     suspend fun getAnuncioId(id: String): Anuncios
 

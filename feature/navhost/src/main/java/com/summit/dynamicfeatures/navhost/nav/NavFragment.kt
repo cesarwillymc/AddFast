@@ -1,7 +1,6 @@
 package com.summit.dynamicfeatures.navhost.nav
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.navigation.ui.NavigationUI
@@ -48,32 +47,26 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
+        setupMenu()
         if (savedInstanceState == null) {
-            setupMenu()
+
             setupBottomNavigationBar()
         }
 
-
     }
 
+    fun setupMenu() {
+        viewModel.getUserData.observe(viewLifecycleOwner) {
+            viewModel.setVisibilityMenu(viewBinding.navView.menu)
+        }
+    }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        setupMenu()
+        viewModel.setVisibilityMenu(viewBinding.navView.menu)
         setupBottomNavigationBar()
-    }
-
-    private fun setupMenu() {
-        if (viewModel.getUserData.value == null) {
-            viewModel.getUserData.observe(viewLifecycleOwner) {
-                viewModel.setVisibilityMenu( viewBinding.navView.menu)
-
-            }
-        }
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -131,7 +124,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
 
     private fun setupBottomNavigationBar() {
 
-       val navController = viewBinding.navView.setupWithNavController(
+        val navController = viewBinding.navView.setupWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = childFragmentManager,
             containerId = R.id.am_fragment,
@@ -140,8 +133,7 @@ class NavFragment : BaseFragment<FragmentNavBinding, NavHostViewModel>(
         navController.let {
             it.observe(
                 viewLifecycleOwner
-            ) {nav->
-                Log.e("setupBottomNav","entri")
+            ) { nav ->
                 viewModel.navigationControllerChanged(nav)
                 NavigationUI.setupActionBarWithNavController(requireCompatActivity(), nav)
             }

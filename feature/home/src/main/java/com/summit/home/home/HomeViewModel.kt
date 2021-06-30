@@ -55,7 +55,7 @@ class HomeViewModel(
         viewModelScope.launch {
             _statePromociones.postValue(HomeViewState.Loading)
             try {
-                val response = repoPromo.getPromocion()
+                val response = repoPromo.getAllPromociones()
                 if (response.isNotEmpty()) {
                     _dataPromociones.postValue(response)
                     _statePromociones.postValue(HomeViewState.Complete)

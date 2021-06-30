@@ -3,7 +3,10 @@ package com.summit.core.network.repository
 import android.net.Uri
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.huawei.agconnect.auth.*
+import com.huawei.agconnect.auth.AGConnectAuth
+import com.huawei.agconnect.auth.PhoneAuthProvider
+import com.huawei.agconnect.auth.PhoneUser
+import com.huawei.agconnect.auth.VerifyCodeSettings
 import com.summit.core.network.model.SignIn
 import com.summit.core.network.model.Usuario
 import kotlinx.coroutines.suspendCancellableCoroutine

@@ -1,7 +1,6 @@
 package com.summit.core.network.repository
 
 
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
 import com.summit.core.db.dao.UsuarioDao
@@ -29,9 +28,9 @@ internal class UserRepositoryImpl(
     override fun updateUser(usuario: Usuario) = db.updateUsuario(usuario)
 
     override fun deleteUser() {
-        db.deleteUsuario()
         api.signOut()
         api.deleteUser()
+        db.deleteUsuario()
     }
 
     override fun getUserStatic() = db.selectUsuarioStatic()
