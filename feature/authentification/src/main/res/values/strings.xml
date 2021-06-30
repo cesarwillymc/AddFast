@@ -1,0 +1,57 @@
+<resources>
+    <string name="error_exceptio">"Surgio un error, asegurese de que cuenta con internet"</string>
+
+    <string name="login_vacio"/>
+    <string name="login_string_peru">51</string>
+    <string name="login_string_add">+</string>
+    <string name="login_string_hint_edt">teléfono</string>
+
+
+    <string name="login_string_error_phone">El numero celular es incorrecto</string>
+    <string name="login_string_empty_phone">Debes introducir un numero celular</string>
+
+    <string name="login_string_error_code">El codigo de pais es incorrecto</string>
+    <string name="login_string_empty_code">Debes de introducir un codigo de pais</string>
+
+    <!--Confirm Fragment -->
+    <string name="confirm_title">Verificación Móvil</string>
+    <string name="confirm_desc">Por favor, Ingrese su codigo que le llego a su numero para confirmar su acceso.</string>
+    <string name="confirm_hint">Code</string>
+    <string name="confirm_string_error_code">El codigo es incorrecto</string>
+    <string name="confirm_string_empty_code">Debes de introducir el codigo recibido</string>
+
+
+    <!-- Register info-->
+    <string name="as_ciate_con">Asóciate con</string>
+    <string name="nameApp">AddFast</string>
+    <string name="complemento2">Y vive la mejor experiencia.</string>
+    <string name="desc_dalo_register">tecnológica que ayuda a buscar ofertas de trabajos, lugares en alquiler y mucho
+        mas.
+    </string>
+    <string name="comienza">Comienza.</string>
+    <string name="desc_condiciones">Al hacer clic en Enviar, aceptas los Términos y condiciones de AddFast y reconoces
+        que leíste la Política de privacidad.
+    </string>
+    <string name="register_plataform">es una plataforma</string>
+    <string name="register_hint_name">Nombres Completos.</string>
+    <string name="register_hint_bussnes">Nombre de la Empresa</string>
+    <string name="register_hint_dni">Documento de identidad</string>
+    <string name="ruc">Numero de identidad empresa</string>
+    <string name="register_hint_photo">Fotografía.</string>
+    <string name="register_hint_required">*Obligatorio</string>
+    <string name="register_hint_register_with">Registrarme como empresa</string>
+    <string name="register_hint_load">Cargar Foto</string>
+    <string name="register_hint_send">ENVIAR</string>
+
+    <string name="register_string_error_Ruc">El RUC es incorrecto</string>
+    <string name="register_string_empty_Ruc">Debes de introducir un RUC de pais</string>
+
+    <string name="register_string_error_Dni">El DNI es incorrecto</string>
+    <string name="register_string_empty_Dni">Debes de introducir un DNI de pais</string>
+
+    <string name="register_string_error_Name">El nombre es incorrecto</string>
+    <string name="register_string_empty_Name">Debes de introducir tu nombre completo</string>
+
+    <string name="register_string_error_Bussiness">El nombre de la empresa es incorrecto</string>
+    <string name="register_string_empty_Bussiness">Ingresa el nombre de la empresa</string>
+</resources>

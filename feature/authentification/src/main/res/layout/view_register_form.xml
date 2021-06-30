@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.summit.authentification.register.RegisterViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        app:visibility="@{!viewModel.stateRegister.loading}"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.04"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.96"/>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:text="@string/as_ciate_con"
+
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+
+                    android:id="@+id/comfirm_code_peru"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/gilroy_extrabold"
+                    android:text="@string/nameApp"
+
+                    android:textSize="28sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:text="@string/complemento2"
+                    android:textSize="28sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline40"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/gilroy_extrabold"
+                    android:text="@string/nameApp"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"/>
+
+                <TextView
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:textSize="18sp"
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/register_plataform"
+                    app:layout_constraintStart_toEndOf="@+id/textView9"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"/>
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:text="@string/desc_dalo_register"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline40"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9"/>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/gris_1"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/gilroy_extrabold"
+                    android:text="@string/comienza"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewOne"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardElevation="1dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline40"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+                    <EditText
+                        android:id="@+id/et_register_fullname_person"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:errorText="@{viewModel.stateName.NameEmpty?@string/register_string_empty_Name:viewModel.stateName.NameError?@string/register_string_error_Name:@string/login_vacio}"
+                        android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberName(word)}"
+                        android:ems="10"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/gilroy_ligth"
+                        android:hint="@string/register_hint_name"
+
+                        android:inputType="textCapWords"
+                        android:padding="10dp" android:autofillHints="true" android:importantForAutofill="no"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewThree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardElevation="1dp"
+                    app:visibility="@{viewModel.dataOnChecked}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline40"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/cb_register_check">
+
+                    <EditText
+
+                        android:id="@+id/et_register_name_company"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberBussiness(word)}"
+                        android:ems="10"
+                        app:errorText="@{viewModel.stateBussiness.BussinessEmpty?@string/register_string_empty_Bussiness:viewModel.stateBussiness.BussinessError?@string/register_string_error_Bussiness:@string/login_vacio}"
+
+                        android:fontFamily="@font/gilroy_ligth"
+                        android:hint="@string/register_hint_bussnes"
+                        android:inputType="textAutoComplete"
+
+                        android:padding="10dp" android:autofillHints="true"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardElevation="1dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline40"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewOne">
+
+                    <EditText
+                        android:id="@+id/et_register_dni_person"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:errorText="@{viewModel.stateDni.DniEmpty?@string/register_string_empty_Dni:viewModel.stateDni.DniError?@string/register_string_error_Dni:@string/login_vacio}"
+
+                        android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberDni(word)}"
+                        android:ems="10"
+                        android:fontFamily="@font/gilroy_ligth"
+                        android:hint="@string/register_hint_dni"
+                        android:inputType="number"
+                        android:padding="10dp" android:autofillHints="true"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewFour"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardElevation="1dp"
+                    app:visibility="@{viewModel.dataOnChecked}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline40"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewThree">
+
+                    <EditText
+                        android:id="@+id/et_register_ruc_company"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:onTextChanged="@{(word,b,c,d)->viewModel.updateTextNumberRuc(word)}"
+                        app:errorText="@{viewModel.stateRuc.RucEmpty?@string/register_string_empty_Ruc:viewModel.stateRuc.RucError?@string/register_string_error_Ruc:@string/login_vacio}"
+
+                        android:fontFamily="@font/gilroy_ligth"
+                        android:hint="@string/ruc"
+                        android:inputType="number"
+                        android:padding="10dp" android:autofillHints="true"/>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/gilroy_extrabold"
+                    android:text="@string/register_hint_photo"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewFour"/>
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:text="@string/register_hint_required"
+
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/textView13"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewten"
+                    app:cardElevation="1dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:scaleType="centerCrop"
+                        android:padding="5dp"
+                        android:id="@+id/img_rider_fr"
+                        android:background="@color/gris_1"
+                        app:imageFile="@{viewModel.photoDirection}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </androidx.cardview.widget.CardView>
+
+
+                <TextView
+                    android:id="@+id/terminos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:text="@string/desc_condiciones"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cargarfoto"/>
+
+
+                <Button
+
+
+                    android:id="@+id/btn_register_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="10dp"
+
+                    android:paddingHorizontal="50dp"
+                    android:paddingVertical="5dp"
+                    android:text="@string/register_hint_send"
+                    android:onClick="@{()->viewModel.registerInformationUser()}"
+                    app:enabledButton="@{(viewModel.stateDni.DniSucces &amp;&amp; viewModel.stateName.NameSucces &amp;&amp; (viewModel.photoDirection!=null )  )&amp;&amp; viewModel.dataOnChecked? (viewModel.stateBussiness.BussinessSucces &amp;&amp; viewModel.stateRuc.RucSucces):true}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/terminos"/>
+
+                <TextView
+                    android:id="@+id/cargarfoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/gilroy_ligth"
+                    android:textColor="@color/textColor"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="14sp"
+                    android:text="@string/register_hint_load"
+                    app:layout_constraintEnd_toEndOf="@+id/cardViewten"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewten" tools:ignore="SmallSp"/>
+
+                <CheckBox
+
+                    android:id="@+id/cb_register_check"
+                    android:layout_width="0dp"
+                    android:onCheckedChanged="@{(compoundButton, checked) -> viewModel.onCheckedButton(checked)}"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:buttonTint="@color/itemMenuUnchecked"
+                    android:checked="false"
+                    android:text="@string/register_hint_register_with"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline7"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewTwo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

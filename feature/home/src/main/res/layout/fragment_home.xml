@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.home.home.HomeViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                       android:layout_height="match_parent">
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundColor" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundColor"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="vertical"
+                        app:layout_collapseMode="parallax">
+                        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                                           android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/textView51"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:fontFamily="@font/gilroy_extrabold"
+                                android:text="@string/home_text_welcome_1"
+                                android:textColor="@color/textColor"
+                                android:textSize="25sp" android:visibility="visible"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <TextView
+                            android:id="@+id/textView52"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gilroy_extrabold"
+                            android:text="@string/home_text_welcome_2"
+                            android:textColor="@color/textColor"
+                            android:textSize="25sp"
+                            android:visibility="visible"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/categorias_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:visibility="@{viewModel.stateCategorys.complete}"
+                        />
+
+                        <TextView
+                            android:id="@+id/text_services_ofert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/gilroy_extrabold"
+                            android:text="@{viewModel.statePromociones.complete?`Ofertas`:`Anuncios`}"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/add_size_big_title"
+                            android:visibility="visible"/>
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:overScrollMode="never"
+                            app:visibility="@{viewModel.statePromociones.complete}"/>
+                    </LinearLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <include
+                    android:id="@+id/include_list"
+                    layout="@layout/view_add_list"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+
+                <include
+                    android:id="@+id/include_list_empty"
+                    layout="@layout/view_add_list_empty"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+
+                <include
+                    android:id="@+id/include_list_error"
+                    layout="@layout/view_add_list_error"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+
+                <include
+                    android:id="@+id/include_list_loading"
+                    layout="@layout/view_add_list_loading"
+                    app:viewState="@{viewModel.stateAnuncios}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

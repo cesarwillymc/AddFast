@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.summit.dynamicfeatures.navhost.R"/>
+        <variable name="viewModel" type="com.summit.dynamicfeatures.navhost.NavHostViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visible="@{viewModel.state.appBar||viewModel.state.fullScreen}"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tollbar_main"
+                android:layout_width="match_parent"
+                android:elevation="0dp"
+                android:background="@color/backgroundColor"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/main_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/gilroy_extrabold"
+                        android:text="@string/imagenInit"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/main_linear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/img_icon_gps"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:contentDescription="@string/imagenavhosy"
+                            android:src="@drawable/ic_map_toolbar"
+                            android:tint="@color/selectedColor" app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/main_ubicacion"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/gilroy_ligth"
+
+                            android:text="@{viewModel.getUbicacion.departamento +` - `+ viewModel.getUbicacion.provincia}"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_icon_gps"
+                            app:layout_constraintEnd_toStartOf="@+id/icon_theme"
+                            app:layout_constraintStart_toEndOf="@+id/img_icon_gps" app:layout_constraintTop_toTopOf="@+id/img_icon_gps"/>
+                        <com.summit.dynamicfeatures.navhost.menu.ToggleThemeCheckBox
+                            android:id="@+id/icon_theme"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:visible="@{viewModel.state.navigationScreen||viewModel.state.fullScreen}"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/am_fragment"
+            android:name="androidx.navigation.dynamicfeatures.fragment.DynamicNavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+            app:layout_constraintBottom_toTopOf="@+id/nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/backgroundColor"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visible="@{viewModel.state.navigationScreen||viewModel.state.fullScreen}"
+            app:menu="@menu/menu"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

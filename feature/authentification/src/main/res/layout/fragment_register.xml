@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.authentification.register.RegisterViewModel"/>
+    </data>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+
+        <include layout="@layout/view_register_form"
+                 android:id="@+id/form_view"
+                 app:viewModel="@{viewModel}"
+        />
+        <include
+            android:id="@+id/loading_view"
+            layout="@layout/view_loading"
+            app:viewEnabled="@{viewModel.stateRegister.loading}"
+        />
+    </FrameLayout>
+
+
+</layout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_information_title">Mi Perfil</string>
+    <string name="profile_information_name">NOMBRE</string>
+    <string name="profile_information_lastname">Apellido</string>
+    <string name="profile_information_phone">CELULAR</string>
+    <string name="profile_information_bussiness">EMPRESA</string>
+    <string name="profile_information_ruc">RUC</string>
+    <string name="profile_information_sign_out">Cerrar Sesión</string>
+    <string name="view_sign_in_text">Iniciar Sesion</string>
+    <string name="view_sign_in_message">No iniciaste sesion, para acceder a esta funcionalidad es necesario que inicies
+        sesion!.
+    </string>
+</resources>

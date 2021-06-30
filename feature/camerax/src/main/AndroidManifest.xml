@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    xmlns:dist="http://schemas.android.com/apk/distribution" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.summit.camerax">
+
+    <dist:module
+        dist:instant="true"
+        dist:title="@string/title_camerax">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="false"/>
+    </dist:module>
+    <application
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup,MissingApplicationIcon" />
+</manifest>

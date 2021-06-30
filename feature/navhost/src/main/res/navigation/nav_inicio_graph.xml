@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_inicio_graph"
+            app:moduleName="navhost"
+            app:startDestination="@id/nav_home">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.summit.home.home.HomeFragment"
+        android:label="Home"
+    >
+        <action android:id="@+id/action_nav_home_to_nav_list_category" app:destination="@id/nav_list_category"/>
+        <action android:id="@+id/action_nav_home_to_nav_detail_ad" app:destination="@id/nav_detail_ad"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_list_category"
+        android:name="com.summit.home.category.CategoryFragment"
+        android:label="Category"
+    >
+        <argument android:name="idcategory" app:argType="string"/>
+        <action android:id="@+id/action_nav_list_category_to_nav_detail_ad" app:destination="@id/nav_detail_ad"/>
+    </fragment>
+    <fragment
+        android:id="@+id/nav_detail_ad"
+        android:name="com.summit.home.detail.DetailAdFragment"
+        android:label="Detail"
+    >
+        <argument android:name="model" app:argType="com.summit.core.network.model.Anuncios" app:nullable="true"
+                  android:defaultValue="@null"/>
+        <argument android:name="idAnuncio" app:argType="string" app:nullable="true" android:defaultValue="@null"/>
+        <action android:id="@+id/action_nav_detail_ad_to_nav_add_postulate_graph"
+                app:destination="@+id/nav_add_postulate_graph"/>
+    </fragment>
+
+    <include-dynamic
+        android:id="@id/nav_add_postulate_graph"
+        android:name="com.summit.postulateadd"
+        app:moduleName="postulateadd"
+        app:graphResName="nav_add_postulate_graph">
+        <argument android:name="model" app:argType="com.summit.core.network.model.Anuncios"/>
+    </include-dynamic>
+
+</navigation>

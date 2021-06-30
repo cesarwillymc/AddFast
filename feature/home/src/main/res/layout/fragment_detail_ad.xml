@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+    <data>
+        <variable name="viewModel" type="com.summit.home.detail.DetailAdViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                       android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/include_list_data"
+            layout="@layout/view_detail_ad_info"
+            app:viewState="@{viewModel.state}"
+            app:user="@{viewModel.user}"
+            app:model="@{viewModel.data}"
+        />
+
+        <include
+            android:id="@+id/include_list_error"
+            layout="@layout/view_detail_ad_error"
+            app:viewState="@{viewModel.state}"/>
+
+        <include
+            android:id="@+id/include_list_loading"
+            layout="@layout/view_detail_ad_loading"
+            app:viewState="@{viewModel.state}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

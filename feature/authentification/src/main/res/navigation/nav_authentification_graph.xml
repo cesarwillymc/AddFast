@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@id/nav_authentification_graph"
+            app:moduleName="authentification"
+            app:startDestination="@id/nav_login"
+>
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.summit.authentification.login.LoginFragment"
+        android:label="Login"
+    >
+        <action android:id="@+id/action_nav_login_to_confirmCodeFragment" app:destination="@id/confirmCodeFragment"
+                app:popUpTo="@id/nav_login"/>
+    </fragment>
+    <fragment android:id="@+id/confirmCodeFragment"
+              android:name="com.summit.authentification.confirm.ConfirmCodeFragment"
+              android:label="ConfirmCodeFragment">
+        <argument android:name="code" app:argType="string"/>
+        <argument android:name="phone" app:argType="string"/>
+        <action android:id="@+id/action_confirmCodeFragment_to_nav_inicio_graph"
+                app:destination="@id/nav_inicio_graph" app:popUpTo="@id/nav_inicio_graph" app:popUpToInclusive="true"/>
+        <action android:id="@+id/action_confirmCodeFragment_to_nav_profile_graph"
+                app:destination="@id/nav_profile_graph" app:popUpTo="@id/nav_profile_graph"
+        />
+        <action android:id="@+id/action_confirmCodeFragment_to_registerFragment"
+                app:destination="@id/registerFragment" app:popUpTo="@id/nav_login" app:popUpToInclusive="true"/>
+    </fragment>
+
+    <include-dynamic
+        android:id="@id/nav_inicio_graph"
+        android:name="com.summit.navhost"
+        app:moduleName="navhost"
+        app:graphResName="nav_inicio_graph"/>
+
+
+    <include-dynamic
+        android:id="@id/nav_profile_graph"
+        android:name="com.summit.navhost"
+        app:moduleName="navhost"
+        app:graphResName="nav_profile_graph_loged"/>
+
+    <fragment android:id="@+id/registerFragment" android:name="com.summit.authentification.register.RegisterFragment"
+              android:label="RegisterFragment">
+        <action android:id="@+id/action_registerFragment_to_nav_inicio_graph" app:destination="@id/nav_inicio_graph"
+                app:popUpTo="@id/nav_inicio_graph" app:popUpToInclusive="true"/>
+        <argument android:name="id" app:argType="string"/>
+        <argument android:name="phone" app:argType="string"/>
+        <action android:id="@+id/action_registerFragment_to_nav_camerax_graph" app:destination="@id/nav_camerax_graph"/>
+        <action android:id="@+id/action_registerFragment_to_nav_profile_graph" app:destination="@id/nav_profile_graph"
+                app:popUpTo="@id/nav_profile_graph" app:popUpToInclusive="true"/>
+    </fragment>
+
+    <include-dynamic
+        android:id="@id/nav_camerax_graph"
+        android:name="com.summit.camerax"
+        app:moduleName="camerax"
+        app:graphResName="nav_camerax_graph"/>
+
+</navigation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#004E98</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#004E98</color>
+    <color name="shimmerColor">#919191</color>
+    <color name="backgroundColor">#000</color>
+    <color name="subBackGroundColor">#FFE500</color>
+    <!--Text colors-->
+    <color name="textColor">#f1f1f1</color>
+    <color name="selectedColor">#FFFFFF</color>
+    <color name="unSelectedColor">#DFDFDF</color>
+
+    <color name="itemMenuChecked">#aaaaaa</color>
+    <color name="itemMenuUnchecked">#ffffff</color>
+</resources>

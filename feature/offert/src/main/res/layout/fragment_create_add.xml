@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="viewModel" type="com.summit.offert.create.CreateAddViewModel"/>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/view_form_create_add"
+                 android:id="@+id/form_view"
+                 app:viewModel="@{viewModel}"
+        />
+        <include
+            android:id="@+id/loading_view"
+            layout="@layout/view_adds_loading"
+            app:enable="@{viewModel.stateRegister.loading || viewModel.stateCategory.loading}"
+        />
+    </FrameLayout>
+</layout>

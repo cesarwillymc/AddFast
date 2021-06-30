@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="buttonEnabled" type="java.lang.Boolean"/>
+        <variable name="viewEnabled" type="java.lang.Boolean"/>
+    </data>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:visibility="@{viewEnabled}"
+    >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/button_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/gris_1"
+            app:cardCornerRadius="20dp"
+            app:contentPadding="@dimen/margin_xsmall"
+
+            app:enabledView="@{buttonEnabled}"
+>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView7"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_forward"/>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_speciality">Cuentanos sobre tu especialidad</string>
+    <string name="register_cv">Resumen de tu CV</string>
+    <string name="register_difference">Que te diferencia de los demas</string>
+    <string name="register_number">Escribe un numero de contacto</string>
+    <string name="register_opcional">OPCIONAL SUBIR CV</string>
+    <string name="register_load">CARGAR</string>
+    <string name="register_send">POSTULAR</string>
+
+    <string name="register_string_error_difference">Debes escribir mas palabras</string>
+
+    <string name="register_string_error_resume">Debes escribir mas palabras</string>
+
+    <string name="register_string_error_speciality">Debes escribir mas palabras</string>
+
+    <string name="register_string_error_phone">Ingresa un numero de contacto</string>
+
+    <string name="register_string_empty_phone">Debes de introducir un numero de contacto</string>
+    <string name="register_vacio"/>
+</resources>
