@@ -31,11 +31,5 @@ internal class OfferRepositoryImpl(
 
 
 
-    override suspend fun getPromocion(): List<Promociones> {
-        val ubicacion = db.selectUbicacionModelStatic()
-        val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase())
-            .document(ubicacion.provincia.trim().toLowerCase()).collection("promocion").whereEqualTo("state", true)
-            .get().await()
-        return anuncios.toObjects(Promociones::class.java)
-    }
+
 }

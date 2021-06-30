@@ -4,16 +4,14 @@ import com.google.firebase.storage.FirebaseStorage
 import com.huawei.agconnect.auth.AGConnectAuth
 import com.summit.core.db.dao.UsuarioDao
 import com.summit.core.network.model.Usuario
-import io.mockk.*
+import io.mockk.MockKAnnotations
+import io.mockk.clearMocks
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import junit.framework.Assert
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInstance
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -64,11 +62,4 @@ class UserRepositoryImplTest {
 
     }
 
-    fun testUpdateUser() {}
-
-    fun testDeleteUser() {}
-
-    fun testGetUserStatic() {}
-
-    fun testGetUserTimeReal() {}
 }

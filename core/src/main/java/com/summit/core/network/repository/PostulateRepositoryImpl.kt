@@ -22,6 +22,8 @@ internal class PostulateRepositoryImpl(
         firestore.collection(ubicacion.departamento.trim().toLowerCase(Locale.ROOT))
             .document(ubicacion.provincia.trim().toLowerCase(Locale.ROOT)).collection("anuncios").document(id)
             .update("postulaciones", FieldValue.arrayUnion(idPostulacion)).await()
+
+        return
     }
 
     override suspend fun uploadCurriculumPostulacion(cv: File): String {
@@ -33,9 +35,9 @@ internal class PostulateRepositoryImpl(
     }
 
     override suspend fun crearPostulacion(postulacion: Postulacion): String {
-        val data = firestore.collection("postulaciones").add(postulacion).await()
-        firestore.collection("postulaciones").document(data.id).update("id", data.id).await()
-        return data.id
+        val data = firestore.collection("postulaciones").add(postulacion).await().id
+        firestore.collection("postulaciones").document(data).update("id", data).await()
+        return data
     }
 
 
