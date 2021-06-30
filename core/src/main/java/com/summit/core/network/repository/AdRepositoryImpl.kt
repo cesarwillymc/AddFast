@@ -39,10 +39,10 @@ internal class AdRepositoryImpl(
     override suspend fun crearAnuncio(anuncios: Anuncios, departamento: String, provincia: String) {
         val result = firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
             .document(provincia.trim().toLowerCase(Locale.ROOT))
-            .collection("anuncios").add(anuncios).await()
+            .collection("anuncios").add(anuncios).await().id
         firestore.collection(departamento.trim().toLowerCase(Locale.ROOT))
             .document(provincia.trim().toLowerCase(Locale.ROOT))
-            .collection("anuncios").document(result.id).update("id", result.id).await()
+            .collection("anuncios").document(result).update("id", result).await()
         return
     }
 
@@ -50,8 +50,7 @@ internal class AdRepositoryImpl(
     override suspend fun uploadFotoAnuncio(imagen: File): String {
         val path = "images/${imagen.name}"
         storage.getReference(path).putFile(Uri.fromFile(imagen)).await()
-        val response: Uri? = storage.getReference(path).downloadUrl.await()
-        return response.toString()
+        return storage.getReference(path).downloadUrl.await().toString()
     }
 
     override suspend fun getMisAnuncios(id: String): List<Anuncios> {

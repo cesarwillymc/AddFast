@@ -1,6 +1,5 @@
 package com.summit.core.network.repository
 
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.network.model.Anuncios
@@ -21,9 +20,9 @@ internal class CategoryRepositoryImpl(
         val ubicacion = db.selectUbicacionModelStatic()
         val anuncios = firestore.collection(ubicacion.departamento.trim().toLowerCase())
             .document(ubicacion.provincia.trim().toLowerCase()).collection("anuncios").whereEqualTo("typeID", id)
-            .whereEqualTo("estado", "PUBLICADO").limit(5).get()
+            .whereEqualTo("estado", "PUBLICADO").limit(5).get().await()
 
-        return anuncios.await().toObjects(Anuncios::class.java)
+        return anuncios.toObjects(Anuncios::class.java)
     }
 
     override suspend fun getAllAnunciosByCategorias(id: String): List<Anuncios> {

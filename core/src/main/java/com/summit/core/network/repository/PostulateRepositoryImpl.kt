@@ -6,7 +6,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.summit.core.db.dao.UbicacionModelDao
 import com.summit.core.network.model.Postulacion
-import com.summit.core.network.model.Usuario
 import kotlinx.coroutines.tasks.await
 import java.io.File
 import java.util.*
@@ -15,10 +14,6 @@ internal class PostulateRepositoryImpl(
     private val db: UbicacionModelDao, private val firestore: FirebaseFirestore,
     private val storage: FirebaseStorage
 ) : PostulateRepository {
-    override suspend fun getAllPostulante(): List<Usuario> {
-        val anuncios = firestore.collection("users").get().await()
-        return anuncios.toObjects(Usuario::class.java)
-    }
 
 
 
