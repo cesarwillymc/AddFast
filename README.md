@@ -2,6 +2,7 @@
 
 ### You can help me improve by giving me advice on my [LinkedIn!](https://www.linkedin.com/in/cesarwillymc/)
 
+### The next version will be cross-platform kotlin for android and ios 
 ![N|Solid](https://i.blogs.es/df41c1/kotlin_800x320/450_1000.png)
 
 ## Application mobile with theme dark and light
@@ -12,7 +13,11 @@ This application has the objective of containing basic things for a good archite
 This project is carried out in my National University of the Altiplano as a basic work, which I am refactoring to become a guide for android developers.
 Any comment you can communicate with me through my Linkedin [CESAR](https://www.linkedin.com/in/cesarwillymc/)
 
-In the proyect i used `Firestore`, `Bugsnack`, `Coroutines`, `Navigation Dynamic` and Others.
+In the proyect i used `Firestore`, `Bugsnack`, `Coroutines`, `Navigation Dynamic`,`Mockk` , `JUnit5`  and Others.
+
+The elements of the project change according to some things, such as if you are logged in, if you are an administrator and many other things.
+The project only displays basic flowchart options.
+Modules such as viewing applications, super user type user and many more are missing.
 
 | Mode| Light| Dark| 
 | ----- | ---- |---- | 
